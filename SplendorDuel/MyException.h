@@ -2,8 +2,8 @@
 #include <string>
 #include <iostream>
 
-//Class pour créer mes Exception
-//elle contiendra juste un string donné a la construction
+//Class pour creer mes Exception
+//elle contiendra juste un string donne a la construction
 class MyException
 {
 public:

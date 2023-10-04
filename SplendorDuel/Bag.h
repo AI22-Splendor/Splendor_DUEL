@@ -1,8 +1,8 @@
 #pragma once
 #include "Gemmes.h"
 
-//Class représentant un "sac" de gemmes
-//utilisé par les Joueurs et le Plateau
+//Class representant un sac de gemmes
+//utilise par les Joueurs et le Plateau
 class Bag
 {
 public:
@@ -18,7 +18,7 @@ public:
 	//Ajouter une Gemme dans le sac
 	//Param : Gemmes g : la couleur de la Gemmes
 	//return void
-	//throw Exception si le sac est déja rempli
+	//throw Exception si le sac est deja rempli
 	void addGemmes(const Gemmes &g);
 
 	//Retire une Gemme du Sac

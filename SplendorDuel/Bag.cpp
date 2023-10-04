@@ -1,6 +1,5 @@
 #include "Bag.h"
 #include <ctime>
-#include <cstdlib>
 #include "MyException.h"
 
 //Constructeur
@@ -32,7 +31,7 @@ int Bag::getNbGemmes() {
 void Bag::addGemmes(const Gemmes &g) {
 	if (this->getNbGemmes() == this->taille) {
 		//On creer notre Exception:
-		MyException exep("Erreur dans l'ajout d'une gemme, sac dejà rempli");
+		MyException exep("Erreur dans l'ajout d'une gemme, sac deja rempli");
 		throw exep;
 	}
 
