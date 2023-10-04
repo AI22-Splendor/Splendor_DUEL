@@ -11,6 +11,9 @@ public:
     SplendorDuel(QWidget *parent = nullptr);
     ~SplendorDuel();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::SplendorDuelClass ui;
 };

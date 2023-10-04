@@ -11,6 +11,9 @@ public:
 	//param : la taille du sac
 	Bag(const int &n);
 
+	//destructeur
+	inline ~Bag() { delete this->bag; };
+
 	//connaitre le nombre de gemmes dans le sac
 	//return : le nombre de Gemmes
 	int getNbGemmes() const;

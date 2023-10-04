@@ -1,9 +1,10 @@
 #pragma once
-#include <string>
 #include <iostream>
+#include <string>
 
 //Class pour creer mes Exception
 //elle contiendra juste un string donne a la construction
+using namespace std;
 class MyException
 {
 public:
@@ -13,16 +14,16 @@ public:
 	};
 
 	//getteur de l'erreur
-	std::string inline getErreur() { return this->erreur; }
+    string inline getErreur() { return this->erreur; }
 
 	//operateur<< pour l'afficher facilement
-	inline std::ostream& operator<<(std::ostream& left) {
+    inline ostream& operator<<(ostream& left) {
 		left << this->erreur;
 		return left;
 	}
 
 private:
-	std::string erreur;
+    string erreur;
 };
 
 

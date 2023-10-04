@@ -8,3 +8,9 @@ SplendorDuel::SplendorDuel(QWidget *parent)
 
 SplendorDuel::~SplendorDuel()
 {}
+
+void SplendorDuel::on_pushButton_clicked()
+{
+
+}
+

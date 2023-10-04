@@ -1,9 +1,10 @@
 #include "Bag.h"
-#include <ctime>
 #include "MyException.h"
+#include <ctime>
 
 //Constructeur
 //param : la taille du sac
+using namespace std;
 Bag::Bag(const int &n)
 {
 	this->bag = new Gemmes[n];
@@ -80,9 +81,9 @@ int Bag::getNbGemmesType(const Gemmes &g) const {
 
 //Melanger les Gemmes dans le sac
 void Bag::melanger() {
-	std::srand(std::time(nullptr));
+    srand(time(nullptr));
 	for (int i = 0; i < this->getTaille(); i++) {
-		int nb = std::rand() % this->getTaille();
+        int nb = rand() % this->getTaille();
 		if (nb != i) {
 			Gemmes cpy = this->bag[i];
 			this->bag[i] = this->bag[nb];
