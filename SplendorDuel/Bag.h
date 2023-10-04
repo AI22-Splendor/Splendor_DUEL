@@ -13,7 +13,7 @@ public:
 
 	//connaitre le nombre de gemmes dans le sac
 	//return : le nombre de Gemmes
-	int getNbGemmes();
+	int getNbGemmes() const;
 
 	//Ajouter une Gemme dans le sac
 	//Param : Gemmes g : la couleur de la Gemmes
@@ -31,13 +31,13 @@ public:
 	//Avoir le nombre de Gemme de la couleur donne
 	//param : la couleur
 	//return le nombre
-	int getNbGemmesType(const Gemmes &g);
+	int getNbGemmesType(const Gemmes &g) const;
 
 	//Melanger les Gemmes dans le sac
 	void melanger();
 
 	//getteur de la taille du sac
-	int inline getTaille() { return this->taille;  }
+	int inline getTaille() const { return this->taille;  }
 
 private:
 	//la taille du sac

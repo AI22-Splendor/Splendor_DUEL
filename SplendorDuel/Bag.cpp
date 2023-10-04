@@ -16,7 +16,7 @@ Bag::Bag(const int &n)
 
 //connaitre le nombre de gemmes dans le sac
 //return : le nombre de Gemmes
-int Bag::getNbGemmes() {
+int Bag::getNbGemmes() const{
 	int n = 0;
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] != Gemmes::Vide) n++;
@@ -35,9 +35,11 @@ void Bag::addGemmes(const Gemmes &g) {
 		throw exep;
 	}
 
-	//on l'initialise vide
+	//on cherche une place vide
 	for (int i = 0; i < this->getTaille(); i++) {
+		//si vide
 		if (this->bag[i] == Gemmes::Vide) {
+			//on ajoute
 			this->bag[i] = g;
 			return;
 		}
@@ -49,6 +51,7 @@ void Bag::addGemmes(const Gemmes &g) {
 //param : le Type de Gemmes a supprimer
 //throw Exception si on la possede pas
 void Bag::suppGemmes(const Gemmes &g) {
+	//on cherche la gemme
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] == g) {
 			this->bag[i] = Gemmes::Vide;
@@ -66,7 +69,7 @@ void Bag::suppGemmes(const Gemmes &g) {
 //Avoir le nombre de Gemme de la couleur donne
 //param : la couleur
 //return le nombre
-int Bag::getNbGemmesType(const Gemmes &g) {
+int Bag::getNbGemmesType(const Gemmes &g) const {
 	int n = 0;
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] == g)
