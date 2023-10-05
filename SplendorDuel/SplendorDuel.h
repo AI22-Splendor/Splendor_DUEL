@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
+#include <iostream>
 
 class SplendorDuel : public QMainWindow
 {
@@ -11,8 +12,8 @@ public:
     SplendorDuel(QWidget *parent = nullptr);
     ~SplendorDuel();
 
-private slots:
-    void on_pushButton_clicked();
+
+    bool close();
 
 private:
     Ui::SplendorDuelClass ui;

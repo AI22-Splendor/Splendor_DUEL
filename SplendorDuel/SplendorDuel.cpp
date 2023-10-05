@@ -3,14 +3,15 @@
 SplendorDuel::SplendorDuel(QWidget *parent)
     : QMainWindow(parent)
 {
-    ui.setupUi(this);
+    //ui.setupUi(this);
 }
 
 SplendorDuel::~SplendorDuel()
-{}
-
-void SplendorDuel::on_pushButton_clicked()
 {
-
+    
 }
 
+bool SplendorDuel::close(){
+    QMainWindow::close();
+    return true;
+}
