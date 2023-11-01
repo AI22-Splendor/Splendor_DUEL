@@ -37,9 +37,11 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
+    <QMakeExtraArgs>
+    </QMakeExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>6.5.3_msvc2019_64</QtInstall>
@@ -72,7 +74,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -93,11 +95,16 @@
     <QtUic Include="SplendorDuel.ui" />
     <QtMoc Include="SplendorDuel.h" />
     <ClCompile Include="Bag.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="GameFactory.cpp" />
+    <ClCompile Include="Gemmes.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bag.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="GameFactory.h" />
     <ClInclude Include="Gemmes.h" />
     <ClInclude Include="MyException.h" />
   </ItemGroup>

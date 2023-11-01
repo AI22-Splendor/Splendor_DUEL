@@ -2,9 +2,12 @@
 #include "MyException.h"
 #include <ctime>
 
+#include <iostream>
+using namespace std;
+
+
 //Constructeur
 //param : la taille du sac
-using namespace std;
 Bag::Bag(const int &n)
 {
 	this->bag = new Gemmes[n];
@@ -15,7 +18,7 @@ Bag::Bag(const int &n)
 	this->taille = n;
 }
 
-//connaitre le nombre de gemmes dans le sac
+//connaitre le nombre de Gemmes dans le sac
 //return : le nombre de Gemmes
 int Bag::getNbGemmes() const{
 	int n = 0;
@@ -80,7 +83,7 @@ int Bag::getNbGemmesType(const Gemmes &g) const {
 }
 
 //Melanger les Gemmes dans le sac
-void Bag::melanger() {
+void Bag::melanger() const {
     srand(time(nullptr));
 	for (int i = 0; i < this->getTaille(); i++) {
         int nb = rand() % this->getTaille();
@@ -90,4 +93,22 @@ void Bag::melanger() {
 			this->bag[nb] = cpy;
 		}
 	}
+}
+
+/**
+* Mélange puis renvoie une gemme présente dans le bag 
+*/
+Gemmes Bag::piocherGemme() const {
+	this->melanger();
+	if (this->getNbGemmes() <= 0) {
+		return Gemmes::Vide;
+	}
+	for (int i = 0; i < this->getTaille(); i++) {
+		if (bag[i] != Gemmes::Vide) {
+			Gemmes pioche = bag[i];
+			bag[i] = Gemmes::Vide;
+			return pioche;
+		}
+	}
+	return Gemmes::Vide;
 }

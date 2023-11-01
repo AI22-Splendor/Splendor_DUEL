@@ -1,11 +1,16 @@
+#include "GameFactory.h"
 #include "SplendorDuel.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
+
+
+
+    // Before is testing code
     QApplication a(argc, argv);
    
-    SplendorDuel w;
+    SplendorDuel& w = GameFactory::buildSplendor();
     QPushButton b("Quitter", &w);
     QObject::connect(&b, &QPushButton::clicked, &w, &SplendorDuel::close);
     

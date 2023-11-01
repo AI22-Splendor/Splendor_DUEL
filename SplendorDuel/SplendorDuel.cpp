@@ -1,9 +1,17 @@
 #include "SplendorDuel.h"
 
-SplendorDuel::SplendorDuel(QWidget *parent)
-    : QMainWindow(parent)
-{
-    //ui.setupUi(this);
+#include "Bag.h"
+#include "Board.h"
+
+#include <iostream>
+using namespace std;
+
+
+SplendorDuel::SplendorDuel(Bag& bag, Board& board, QWidget *parent)
+    : bag(bag), board(board),
+    QMainWindow(parent)
+{ 
+
 }
 
 SplendorDuel::~SplendorDuel()

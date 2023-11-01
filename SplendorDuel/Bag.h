@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BAG_H
+#define BAG_H
+
 #include "Gemmes.h"
 
 //Class representant un sac de gemmes
@@ -37,10 +39,15 @@ public:
 	int getNbGemmesType(const Gemmes &g) const;
 
 	//Melanger les Gemmes dans le sac
-	void melanger();
+	void melanger() const;
 
 	//getteur de la taille du sac
 	int inline getTaille() const { return this->taille;  }
+
+	/**
+	* Mélange puis renvoie une gemme présente dans le bag
+	*/
+	Gemmes piocherGemme() const;
 
 private:
 	//la taille du sac
@@ -49,6 +56,8 @@ private:
 	//la tableau de gemmes
 	Gemmes* bag;
 };
+
+#endif
 
 
 

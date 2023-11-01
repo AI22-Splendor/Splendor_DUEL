@@ -1,15 +1,19 @@
-#pragma once
+#ifndef SPLENDORDUEL_H
+#define SPLENDORDUEL_H
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
 #include <iostream>
+
+#include "Bag.h"
+#include "Board.h"
 
 class SplendorDuel : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SplendorDuel(QWidget *parent = nullptr);
+    SplendorDuel(Bag& bag, Board& board, QWidget* parent = nullptr);
     ~SplendorDuel();
 
 
@@ -17,4 +21,8 @@ public:
 
 private:
     Ui::SplendorDuelClass ui;
+    Bag& bag;
+    Board& board;
 };
+
+#endif
