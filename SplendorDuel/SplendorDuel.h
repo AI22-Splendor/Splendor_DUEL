@@ -1,5 +1,4 @@
-#ifndef SPLENDORDUEL_H
-#define SPLENDORDUEL_H
+#pragma once
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
@@ -24,5 +23,3 @@ private:
     Bag& bag;
     Board& board;
 };
-
-#endif

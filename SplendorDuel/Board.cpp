@@ -18,13 +18,20 @@ void Board::remplirBoard(const Bag& bag) const {
 Gemmes Board::prendreGemme(const int pos) const {
 	if (pos < BOARD_SIZE) {
 		Gemmes gem = gems[pos];
-		cout << gem;
 		gems[pos] = Gemmes::Vide;
-		cout << gem;
 		return gem;
 	}
 	char* error = new char[35];
-	sprintf(error, "No gem at this position : %d", pos);
+	sprintf(error, "This position is out of the board: %d", pos);
+	throw new MyException(error);
+}
+
+bool Board::positionPasVide(const int pos) const {
+	if (pos < BOARD_SIZE) {
+		return gems[pos] == Gemmes::Vide;
+	}
+	char* error = new char[35];
+	sprintf(error, "This position is out of the board: %d", pos);
 	throw new MyException(error);
 }
 

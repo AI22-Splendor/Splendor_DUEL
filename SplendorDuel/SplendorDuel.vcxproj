@@ -102,6 +102,8 @@
     <QtMoc Include="SplendorDuel.h" />
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="DrawPile.cpp" />
     <ClCompile Include="GameFactory.cpp" />
     <ClCompile Include="Gemmes.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
@@ -110,6 +112,8 @@
   <ItemGroup>
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="DrawPile.h" />
     <ClInclude Include="GameFactory.h" />
     <ClInclude Include="Gemmes.h" />
     <ClInclude Include="MyException.h" />

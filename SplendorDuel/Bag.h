@@ -1,5 +1,4 @@
-#ifndef BAG_H
-#define BAG_H
+#pragma once
 
 #include "Gemmes.h"
 
@@ -57,8 +56,5 @@ private:
 	//la tableau de gemmes
 	Gemmes* bag;
 };
-
-#endif
-
 
 

@@ -1,6 +1,4 @@
-#ifndef GAMEFACTORY_H
-#define GAMEFACTORY_H
-
+#pragma once
 
 #include "SplendorDuel.h"
 #include "Board.h"
@@ -44,5 +42,3 @@ public:
 		return *(new SplendorDuel(bag, board));
 	}
 };
-
-#endif
