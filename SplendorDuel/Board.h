@@ -20,7 +20,7 @@ public:
 	}
 
 	void remplirBoard(const Bag& bag) const;
-	Gemmes& prendreGemme(const int pos) const;
+	Gemmes prendreGemme(const int pos) const;
 
 private:
 	static const unsigned int BOARD_SIDE = 5;
@@ -41,7 +41,7 @@ private:
 	private :
 		enum Direction { Right, Down, Left, Up, Repeat };
 		int nextDirection = Up;
-		size_t nextIdx;
+		std::size_t nextIdx;
 		int steps = 1;
 		int stepRepetitionLeft = 2;
 		int stepsLeftBeforeTurn = 1;

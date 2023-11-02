@@ -8,15 +8,19 @@ void Board::remplirBoard(const Bag& bag) const {
 	iterator it = this->getIterator();
 	while (it.hasNext()) {
 		Gemmes* gem = it.getNext();
-		*gem = bag.piocherGemme();
-		cout << *gem << endl;
+		if (*gem == Gemmes::Vide) {
+			// Si il n'y a plus de gemmes dans le bag, alors la gemme retournée est nulle
+			*gem = bag.piocherGemme();
+		}
 	}
 }
 
-Gemmes& Board::prendreGemme(const int pos) const {
+Gemmes Board::prendreGemme(const int pos) const {
 	if (pos < BOARD_SIZE) {
-		Gemmes& gem = gems[pos];
+		Gemmes gem = gems[pos];
+		cout << gem;
 		gems[pos] = Gemmes::Vide;
+		cout << gem;
 		return gem;
 	}
 	char* error = new char[35];
@@ -25,8 +29,6 @@ Gemmes& Board::prendreGemme(const int pos) const {
 }
 
 Gemmes* Board::iterator::getNext() {
-	cout << "next : " << nextIdx;
-	cout << "(" << steps << ")";
 	stepsLeftBeforeTurn--;
 	stepsTaken++;
 	Gemmes* current = &(board.gems[nextIdx]);

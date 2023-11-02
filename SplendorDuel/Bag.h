@@ -11,7 +11,7 @@ public:
 
 	//Constructeur
 	//param : la taille du sac
-	Bag(const int &n);
+	Bag(const int& n);
 
 	//destructeur
 	inline ~Bag() { delete this->bag; };
@@ -24,28 +24,29 @@ public:
 	//Param : Gemmes g : la couleur de la Gemmes
 	//return void
 	//throw Exception si le sac est deja rempli
-	void addGemmes(const Gemmes &g);
+	void addGemmes(const Gemmes& g);
 
 	//Retire une Gemme du Sac
 	//Prerequis : le Sac dois en contenir une de ce type
 	//param : le Type de Gemmes a supprimer
 	//throw Exception si on la possede pas
-	void suppGemmes(const Gemmes &g);
+	void suppGemmes(const Gemmes& g);
 
 
 	//Avoir le nombre de Gemme de la couleur donne
 	//param : la couleur
 	//return le nombre
-	int getNbGemmesType(const Gemmes &g) const;
+	int getNbGemmesType(const Gemmes& g) const;
 
 	//Melanger les Gemmes dans le sac
 	void melanger() const;
 
 	//getteur de la taille du sac
-	int inline getTaille() const { return this->taille;  }
+	int inline getTaille() const { return this->taille; }
 
 	/**
 	* Mélange puis renvoie une gemme présente dans le bag
+	* Si le bag est vide, renvoie une gemme vide
 	*/
 	Gemmes piocherGemme() const;
 
