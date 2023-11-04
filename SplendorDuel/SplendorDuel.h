@@ -6,13 +6,14 @@
 
 #include "Bag.h"
 #include "Board.h"
+#include "DrawPile.h"
 
 class SplendorDuel : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SplendorDuel(Bag& bag, Board& board, QWidget* parent = nullptr);
+    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget* parent = nullptr);
     ~SplendorDuel();
 
 
@@ -22,4 +23,5 @@ private:
     Ui::SplendorDuelClass ui;
     Bag& bag;
     Board& board;
+    DrawPile** drawPiles;
 };

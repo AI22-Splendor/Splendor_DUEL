@@ -72,9 +72,6 @@
     <ClInclude Include="Bag.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Gemmes.h">
-      <Filter>Header Files\Util</Filter>
-    </ClInclude>
     <ClInclude Include="MyException.h">
       <Filter>Header Files\Exception</Filter>
     </ClInclude>
@@ -88,6 +85,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DrawPile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gemmes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

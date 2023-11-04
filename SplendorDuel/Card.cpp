@@ -39,3 +39,7 @@ bool Card::canBeBought(const int* wallet) const {
 	}
 	return true;
 }
+
+ostream& operator<<(ostream& os, const Card card) {
+	return os << "Card[" << card.level << "/" << card.ptsPrestige << "P/" << card.bonusType << "x" << card.nbBonus << "/" << card.crowns << "C]";
+}

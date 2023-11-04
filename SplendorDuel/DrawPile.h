@@ -2,6 +2,9 @@
 
 #include "Card.h"
 
+#include<iostream>
+using namespace std;
+
 class DrawPile {
 public:
 	DrawPile(const unsigned int level, size_t taille): level(level), taille(taille) {
@@ -10,6 +13,8 @@ public:
 	}
 
 	bool estVide() const;
+
+	bool estPleine() const;
 
 	/**
 	* Renvoie une carte du paquet
@@ -25,12 +30,14 @@ public:
 
 	void melanger();
 
-
 private:
 	unsigned int level;
 	Card** pile;
 	size_t taille;
-	unsigned int head = 0;
-	unsigned int last = 0;
+	int head = 0;
+	int last = 0;
+	friend ostream& operator<<(ostream& os, const DrawPile drawPile);
 };
+
+ostream& operator<<(ostream& os, const DrawPile drawPile);
 

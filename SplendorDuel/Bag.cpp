@@ -1,7 +1,7 @@
 #include "Bag.h"
 #include "MyException.h"
-#include <ctime>
 
+#include <ctime>
 #include <iostream>
 using namespace std;
 

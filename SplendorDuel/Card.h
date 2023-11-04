@@ -38,5 +38,7 @@ private:
 	Gemmes bonusType;
 	unsigned int nbBonus;
 	unsigned int crowns;
+	friend ostream& operator<<(ostream& os, const Card card);
 };
 
+ostream& operator<<(ostream& os, const Card card);

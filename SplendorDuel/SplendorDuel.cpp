@@ -7,8 +7,8 @@
 using namespace std;
 
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& board, QWidget *parent)
-    : bag(bag), board(board),
+SplendorDuel::SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget *parent)
+    : bag(bag), board(board), drawPiles(drawPiles),
     QMainWindow(parent)
 { 
 

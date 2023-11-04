@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     // Before is testing code
     QApplication a(argc, argv);
    
-    SplendorDuel& w = GameFactory::buildSplendor();
+    SplendorDuel& w = GameFactory::buildNewSplendor();
     QPushButton b("Quitter", &w);
     QObject::connect(&b, &QPushButton::clicked, &w, &SplendorDuel::close);
     
