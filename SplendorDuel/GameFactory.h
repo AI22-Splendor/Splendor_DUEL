@@ -26,6 +26,7 @@ public:
 		Board& board = *(new Board);
 		board.remplirBoard(bag);
 
+		// TODO : une vraie analyse de comment générer les cartes
 		DrawPile** drawPiles;
 		drawPiles = new DrawPile*[3];
 		for (int i = 0; i < 3; i++) {
@@ -33,9 +34,8 @@ public:
 			for (int j = 0; j < (30 - (i * 5)); j++) {
 				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j%5 == 0 ? j : 0));
 			}
+			drawPiles[i]->melanger();
 		}
-
-		GameFactory::testDrawPile(*(drawPiles[0]));
 
 		return *(new SplendorDuel(bag, board, drawPiles));
 	}
@@ -63,7 +63,24 @@ private:
 
 		drawPile.melanger();
 
-		cout << "==============================" << endl;
+		cout << "=Melange======================" << endl;
+		cout << drawPile << endl;
+
+		Card* c1 = drawPile.piocher();
+		Card* c2 = drawPile.piocher();
+		Card* c3 = drawPile.piocher();
+		cout << "=3 cartes piochees============" << endl;
+		cout << *c1 << " - " << *c2 << " - " << *c3 << endl;
+		cout << drawPile << endl;
+
+		cout << "=2 cartes remises=============" << endl;
+		cout << *c1 << endl;
+		drawPile.deposer(c2);
+		drawPile.deposer(c3);
+		cout << drawPile << endl;
+
+		cout << "=Melange======================" << endl;
+		drawPile.melanger();
 		cout << drawPile << endl;
 	}
 }; 
