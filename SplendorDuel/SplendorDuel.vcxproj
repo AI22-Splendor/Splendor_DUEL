@@ -105,6 +105,7 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="DrawPile.cpp" />
     <ClCompile Include="GameFactory.cpp" />
+    <ClCompile Include="GameHandler.cpp" />
     <ClCompile Include="Gemmes.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
     <ClCompile Include="main.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Card.h" />
     <ClInclude Include="DrawPile.h" />
     <ClInclude Include="GameFactory.h" />
+    <ClInclude Include="GameHandler.h" />
     <ClInclude Include="Gemmes.h" />
     <ClInclude Include="MyException.h" />
   </ItemGroup>

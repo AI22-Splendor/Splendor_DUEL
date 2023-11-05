@@ -2,11 +2,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
-#include <iostream>
 
-#include "Bag.h"
-#include "Board.h"
-#include "DrawPile.h"
+#include "GameHandler.h"
 
 class SplendorDuel : public QMainWindow
 {
@@ -16,12 +13,12 @@ public:
     SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget* parent = nullptr);
     ~SplendorDuel();
 
+    void start();
 
     bool close();
 
 private:
     Ui::SplendorDuelClass ui;
-    Bag& bag;
-    Board& board;
-    DrawPile** drawPiles;
+    GameHandler gameHandler;
+    
 };

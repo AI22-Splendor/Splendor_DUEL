@@ -1,14 +1,13 @@
 #include "SplendorDuel.h"
 
-#include "Bag.h"
-#include "Board.h"
+#include "GameHandler.h"
 
 #include <iostream>
 using namespace std;
 
 
 SplendorDuel::SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget *parent)
-    : bag(bag), board(board), drawPiles(drawPiles),
+    : gameHandler(bag, board, drawPiles),
     QMainWindow(parent)
 { 
 
@@ -17,6 +16,12 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget
 SplendorDuel::~SplendorDuel()
 {
     
+}
+
+void SplendorDuel::start() {
+    while (!gameHandler.gameFinished()) {
+        gameHandler.nextAction();
+    }
 }
 
 bool SplendorDuel::close(){
