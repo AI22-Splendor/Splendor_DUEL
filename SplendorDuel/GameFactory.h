@@ -37,6 +37,7 @@ public:
 			drawPiles[i]->melanger();
 		}
 
+
 		return *(new SplendorDuel(bag, board, drawPiles));
 	}
 private:

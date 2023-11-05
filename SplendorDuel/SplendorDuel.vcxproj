@@ -107,6 +107,7 @@
     <ClCompile Include="GameFactory.cpp" />
     <ClCompile Include="GameHandler.cpp" />
     <ClCompile Include="Gemmes.cpp" />
+    <ClCompile Include="PrivilegeHandler.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -119,6 +120,7 @@
     <ClInclude Include="GameHandler.h" />
     <ClInclude Include="Gemmes.h" />
     <ClInclude Include="MyException.h" />
+    <ClInclude Include="PrivilegeHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
