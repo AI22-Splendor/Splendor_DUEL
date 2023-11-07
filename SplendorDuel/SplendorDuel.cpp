@@ -1,14 +1,27 @@
 #include "SplendorDuel.h"
 
-SplendorDuel::SplendorDuel(QWidget *parent)
-    : QMainWindow(parent)
-{
-    //ui.setupUi(this);
+#include "GameHandler.h"
+
+#include <iostream>
+using namespace std;
+
+
+SplendorDuel::SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget *parent)
+    : gameHandler(bag, board, drawPiles),
+    QMainWindow(parent)
+{ 
+
 }
 
 SplendorDuel::~SplendorDuel()
 {
     
+}
+
+void SplendorDuel::start() {
+    while (!gameHandler.gameFinished()) {
+        gameHandler.nextAction();
+    }
 }
 
 bool SplendorDuel::close(){
