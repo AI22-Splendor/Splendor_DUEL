@@ -25,6 +25,7 @@ public:
 		
 		Board& board = *(new Board);
 		board.remplirBoard(bag);
+		cout << board << "\n";
 
 		// TODO : une vraie analyse de comment générer les cartes
 		DrawPile** drawPiles;
