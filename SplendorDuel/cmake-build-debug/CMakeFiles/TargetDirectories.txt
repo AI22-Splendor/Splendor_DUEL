@@ -1,0 +1,3 @@
+D:/UTC/GI01-cours/AI22/splendor-duel/Splendor_DUEL/SplendorDuel/cmake-build-debug/CMakeFiles/SplendorDuel.dir
+D:/UTC/GI01-cours/AI22/splendor-duel/Splendor_DUEL/SplendorDuel/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/UTC/GI01-cours/AI22/splendor-duel/Splendor_DUEL/SplendorDuel/cmake-build-debug/CMakeFiles/rebuild_cache.dir

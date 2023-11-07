@@ -10,6 +10,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget
     : gameHandler(bag, board, drawPiles),
     QMainWindow(parent)
 { 
+      
 }
 
 SplendorDuel::~SplendorDuel()

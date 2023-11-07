@@ -44,7 +44,7 @@ public:
 	int inline getTaille() const { return this->taille; }
 
 	/**
-	* Mélange puis renvoie une gemme présente dans le bag
+	* MÃ©lange puis renvoie une gemme prÃ©sente dans le bag
 	* Si le bag est vide, renvoie une gemme vide
 	*/
 	Gemmes piocherGemme() const;
@@ -56,3 +56,4 @@ private:
 	//la tableau de gemmes
 	Gemmes* bag;
 };
+

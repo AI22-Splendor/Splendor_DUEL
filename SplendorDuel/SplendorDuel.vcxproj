@@ -38,9 +38,12 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
+    <QMakeExtraArgs>
+    </QMakeExtraArgs>
+    <QtToolsDesignTime>false</QtToolsDesignTime>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>6.5.3_msvc2019_64</QtInstall>
@@ -69,6 +72,7 @@
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalIncludeDirectories>C:\Qt\6.6.0\msvc2019_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -79,7 +83,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -99,6 +103,16 @@
     <QtRcc Include="SplendorDuel.qrc" />
     <QtUic Include="SplendorDuel.ui" />
     <QtMoc Include="SplendorDuel.h" />
+    <ClCompile Include="Bag.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="DrawPile.cpp" />
+    <ClCompile Include="GameFactory.cpp" />
+    <ClCompile Include="GameHandler.cpp" />
+    <ClCompile Include="Gemmes.cpp" />
+    <ClCompile Include="PrivilegeHandler.cpp" />
+    <ClCompile Include="SplendorDuel.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bag.h" />
