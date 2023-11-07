@@ -20,5 +20,4 @@ public:
 private:
     Ui::SplendorDuelClass ui;
     GameHandler gameHandler;
-    
 };

@@ -26,7 +26,7 @@ public:
 		Board& board = *(new Board);
 		board.remplirBoard(bag);
 
-		// TODO : une vraie analyse de comment générer les cartes
+		// TODO : une vraie analyse de comment gÃ©nÃ©rer les cartes
 		DrawPile** drawPiles;
 		drawPiles = new DrawPile*[3];
 		for (int i = 0; i < 3; i++) {

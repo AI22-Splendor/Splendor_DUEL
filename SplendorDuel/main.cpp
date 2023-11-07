@@ -2,10 +2,9 @@
 #include "SplendorDuel.h"
 #include <QtWidgets/QApplication>
 
+
 int main(int argc, char *argv[])
 {
-
-
 
     // Before is testing code
     QApplication a(argc, argv);
