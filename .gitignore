@@ -2,5 +2,5 @@
 **.log
 **.tlog
 **.user
-**.vcxproj*
+**.vcxproj.user
 .vs
