@@ -2,19 +2,22 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
-#include <iostream>
+
+#include "GameHandler.h"
 
 class SplendorDuel : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SplendorDuel(QWidget *parent = nullptr);
+    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget* parent = nullptr);
     ~SplendorDuel();
 
+    void start();
 
     bool close();
 
 private:
     Ui::SplendorDuelClass ui;
+    GameHandler gameHandler;
 };
