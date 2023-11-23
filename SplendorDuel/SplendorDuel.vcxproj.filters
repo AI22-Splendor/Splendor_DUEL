@@ -30,6 +30,9 @@
     <Filter Include="Header Files\Util">
       <UniqueIdentifier>{bed57bfc-29fd-40e5-ae60-2ea994801e03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\img">
+      <UniqueIdentifier>{93505e64-0e3d-45e0-9d2d-6c5c2c8a645a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -70,6 +73,9 @@
     <ClInclude Include="Gemmes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StyleDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameHandler.cpp">
@@ -102,5 +108,56 @@
     <ClCompile Include="Gemmes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BoardUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GemmesUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StyleDecorator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="BoardUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GemmesUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="blanc.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="noir.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Pictures\vert.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rouge.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="or.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="perle.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="vert.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="bleu.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="blanc.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SplendorDuel.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

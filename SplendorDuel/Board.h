@@ -33,12 +33,16 @@ public:
 	*/
 	bool positionPasVide(const int pos) const;
 
-private:
-	Gemmes* gems;
+	/// <summary>
+	/// connaitre la gemmes a la position sans l'enlever
+	/// </summary>
+	/// <param name="pos">la position de la gemme dans le plateau (de droite a gauche de haut en bas)</param>
+	/// <returns>la gemme</returns>
+	Gemmes const connaitreGemmes(const int pos)const;
 
 	class iterator {
 	public:
-		iterator(const Board& board): board(board) {
+		iterator(const Board& board) : board(board) {
 			// We get the index of the center of the board
 			nextIdx = (BOARD_SIZE - 1) / 2;
 		}
@@ -47,7 +51,7 @@ private:
 		}
 		Gemmes* getNext();
 
-	private :
+	private:
 		enum Direction { Right, Down, Left, Up, Repeat };
 		int nextDirection = Up;
 		std::size_t nextIdx;
@@ -58,10 +62,13 @@ private:
 		const Board& board;
 	};
 
-	friend class Board::iterator;
-	friend ostream& operator<<(ostream& os, const Board board);
 
 	iterator getIterator() const { return iterator(*this); }
+private:
+	Gemmes* gems;
+
+	friend class Board::iterator;
+	friend ostream& operator<<(ostream& os, const Board board);
 };
 
 ostream& operator<<(ostream& os, const Board board);
