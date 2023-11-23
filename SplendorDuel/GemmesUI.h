@@ -1,9 +1,8 @@
 #pragma once
-
-#include <qlabel.h>
+#include "GemmesUI.h"
+#include <qwidget.h>
 #include "Gemmes.h"
-#include <qlineedit.h>
-#include "StyleDecorator.h"
+#include "GemmesContainerGUI.h"
 class GemmesUI : public QWidget
 {
 	Q_OBJECT
@@ -20,9 +19,9 @@ public:
 	/// </summary>
 	/// <param name="ligne">la ligne correspondante</param>
 	/// <param name="col">la collonne correspondante</param>
-	GemmesUI(int ligne, int col, QWidget* parent);
+	GemmesUI(int ligne, int col, GemmesContainerGUI* parent);
 
-	~GemmesUI();
+	inline ~GemmesUI() { QWidget::~QWidget(); }
 
 	/// <summary>
 	/// Modifie la gemmes affiché sur le plateau

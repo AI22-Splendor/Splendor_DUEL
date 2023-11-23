@@ -4,6 +4,7 @@
 #include "ui_SplendorDuel.h"
 #include "BoardUI.h"
 #include "GameHandler.h"
+#include "GemmesContainerGUI.h"
 
 class SplendorDuel : public QMainWindow
 {

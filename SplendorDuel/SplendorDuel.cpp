@@ -3,7 +3,7 @@
 #include "BoardUI.h"
 
 #include "GameHandler.h"
-
+#include <qgridlayout.h>
 #include <iostream>
 #include <qevent.h>
 using namespace std;
@@ -14,12 +14,18 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *pa
 {
     
     setWindowTitle("SplendorDuel");
-    board = new BoardUI(this);
-    GameHandler::Instanciate(bag, b, drawPiles, board);
+    QWidget* w = new QWidget();
+    QGridLayout* grid = new QGridLayout(w);
+    grid->setContentsMargins(0, 0, 0, 0);
+    grid->setSpacing(0);
+
+    board = new BoardUI(w);
+    GameHandler::Instanciate(bag, b, drawPiles);
     board->setGemmes(b);
+    //on y ajoute tous les composant
     
-    
-    setCentralWidget(board);
+    grid->addWidget(board, 1, 1);
+    setCentralWidget(w);
 }
 
 SplendorDuel::~SplendorDuel()

@@ -1,9 +1,10 @@
 #include "GameHandler.h"
+#include "Rules.h"
 GameHandler* GameHandler::instance = nullptr;
 
-void GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, BoardUI* boardui) {
+void GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles) {
 	if(GameHandler::instance == nullptr)
-		GameHandler::instance = new GameHandler(bag, board, drawPiles, boardui);
+		GameHandler::instance = new GameHandler(bag, board, drawPiles);
 }
 
 void GameHandler::destroy() {
@@ -23,38 +24,31 @@ void GameHandler::nextAction() {
 	return;
 }
 
-void GameHandler::gemmesHover(const int pos, bool isHover) {
-	//on ne selectionne pas les gemmes vide et les Gemmes or si c'est l'action principale
-	if (instance->board.connaitreGemmes(pos) != Gemmes::Vide) {
-		if (instance->action == Action::MAIN_ACTION) {
-			instance->boardUI->hover(pos, true, isHover);
-		}
-		else {
-			instance->boardUI->hover(pos, false, isHover);
-		}
-	}
+const int GameHandler::gemmesToSelect() {
+	if (instance->action == Action::MAIN_ACTION)
+		return 3;
+	return 1;
 }
 
-void GameHandler::gemmesPick(){
-	//TODO les règles de vérifications que l'on peut
-	if (instance->action == Action::MAIN_ACTION) {
-		bool possible = true;
+bool GameHandler::gemmesPick(const int *posTab){
+	switch (Rules::isPossibleTakeGems(instance->board, posTab, instance->action))
+	{
+	case Action::IMPOSSIBLE:
+		return false;
+
+	case Action::MAIN_ACTION:
 		for (int i = 0; i < 3; i++) {
-			if (instance->boardUI->getSelectedGemmes(i)==-1 || instance->board.connaitreGemmes(instance->boardUI->getSelectedGemmes(i))==Gemmes::Vide)
-				possible = false;
+			instance->board.prendreGemme(posTab[i]);
 		}
-		if (possible) {
+		return true;
+	case Action::ADD_PRIVILEGE:
+		//TODO
+		if (instance->action == Action::MAIN_ACTION) {
 			for (int i = 0; i < 3; i++) {
-				//on les remets dans le bag
-				instance->bag.addGemmes(instance->board.prendreGemme(instance->boardUI->getSelectedGemmes(i)));
+				instance->board.prendreGemme(posTab[i]);
 			}
-			instance->boardUI->setGemmes(instance->board);
 		}
-	}
-	else {
-		if (instance->boardUI->getSelectedGemmes(0) != -1) {
-			instance->bag.addGemmes(instance->board.prendreGemme(instance->boardUI->getSelectedGemmes(0)));
-			instance->boardUI->setGemmes(instance->board);
-		}
+		//TODO LE PRIVILEGE
+		return true;
 	}
 }

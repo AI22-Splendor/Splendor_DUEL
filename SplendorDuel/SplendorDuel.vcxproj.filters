@@ -33,6 +33,12 @@
     <Filter Include="Resource Files\img">
       <UniqueIdentifier>{93505e64-0e3d-45e0-9d2d-6c5c2c8a645a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{876bd585-795f-4b1f-9cfe-cda5fca5c4c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{242c5c80-c8bc-43f1-adb5-972cd7b5af29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -41,9 +47,6 @@
     <QtUic Include="SplendorDuel.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="SplendorDuel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bag.h">
@@ -73,8 +76,23 @@
     <ClInclude Include="Gemmes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StyleDecorator.h">
+    <ClInclude Include="Action.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Rules.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GemmesContainerGUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="StyleDecorator.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,9 +114,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SplendorDuel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,49 +124,56 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BoardUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="GemmesUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Rules.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="StyleDecorator.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="SplendorDuel.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BoardCompleteUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="BoardUI.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="GemmesUI.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="blanc.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="noir.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
     <Image Include="..\..\..\..\..\Pictures\vert.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="rouge.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="or.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="perle.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="vert.jpg">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="bleu.jpg">
+    <Image Include="noir.png">
       <Filter>Resource Files\img</Filter>
     </Image>
     <Image Include="blanc.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="vert.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="bleu.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="perle.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="or.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="rouge.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="plateau.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="actions.png">
       <Filter>Resource Files\img</Filter>
     </Image>
   </ItemGroup>
@@ -159,5 +181,16 @@
     <ResourceCompile Include="SplendorDuel.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="GemmesUI.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="SplendorDuel.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="BoardCompleteUI.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

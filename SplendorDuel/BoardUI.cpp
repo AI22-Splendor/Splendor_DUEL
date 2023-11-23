@@ -1,17 +1,13 @@
 #include "BoardUI.h"
 
-#include <qwidget.h>
-#include <qgroupbox.h>
-#include <QHBoxLayout>
-#include <qpushbutton.h>
-#include <QVBoxLayout>
-#include <qlabel.h>
+#include "GemmesUI.h"
 #include "Board.h"
 #include "GameHandler.h"
 #include <qpixmap.h>
+#include <qgridlayout.h>
+#include "Image.h"
 
-
-BoardUI::BoardUI(QWidget* parent): QWidget(parent){
+BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent){
 	for (int i = 0; i < 3; i++) {
 		//valeur sentinelle : aucune gemmes select
 		posSelect[i] = -1;
@@ -24,16 +20,18 @@ BoardUI::BoardUI(QWidget* parent): QWidget(parent){
 
 	QGridLayout* grid = new QGridLayout(this);
 	this->setLayout(grid);
-	
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
 		for (int j = 0; j < Board::BOARD_SIDE; j++) {
 			GemmesUI* boutton = new GemmesUI(i, j, this);
-			grid->addWidget(boutton, i, j);
+			grid->addWidget(boutton, i+1, j+1);
 			tabCase[i][j] = boutton;
 		}
 	}
-	grid->setVerticalSpacing(height()/100);
-	grid->setHorizontalSpacing(width()/100);
+	
+	//grid->addWidget(&unboard, 6, 3);
+
+	grid->setContentsMargins(0, 0, 0, 0);
+	grid->setSpacing(0);
 }
 
 void BoardUI::setGemmes(const Board& b) {
@@ -52,10 +50,11 @@ BoardUI::~BoardUI() {
 	delete[] tabCase; 
 }
 
-void BoardUI::hover(const int pos, const bool truple, const bool red){
+void BoardUI::hoverGemmes(const int pos, const bool red){
+	int nb = GameHandler::gemmesToSelect();
 	//la gemme centrale
 	posSelect[0] = pos;
-	if (truple) {
+	if (nb==3) {
 		//on ajoute au tableau les 2 autres gemmes si posible en fonction de la direction
 		selectOtherGemmes(pos);
 	}
@@ -65,14 +64,13 @@ void BoardUI::hover(const int pos, const bool truple, const bool red){
 		posSelect[1] = -1;
 		posSelect[2] = -1;
 	}
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < nb; i++) {
 		if (posSelect[i] != -1) {
 			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(red);
 			if (!red)
 				posSelect[i] = -1;
 		}
 	}
-
 }
 
 void BoardUI::selectOtherGemmes(const int pos) {
@@ -168,15 +166,14 @@ void BoardUI::changeDirection(){
 	}
 	if (posSelect[0] != -1)
 		//on reaffiche la nouvelle disposition en fonction des ancienne gemmes selectionner
-		GameHandler::getInstance().gemmesHover(posSelect[0], true);
+		this->hoverGemmes(posSelect[0], true);
 }
 
 void BoardUI::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
-	painter.setRenderHint(QPainter::Antialiasing, true);
 	//on dessinne maintenant l'image du fond sur le board
-	QPixmap pix("./noir.jpg");
-	painter.drawPixmap(10, 10, width() - 20, height() - 20, pix);
+	QPixmap pix = Image::getPlateau(); 
+	painter.drawPixmap(0, 0, width(), height(), pix);
 }
 
 void BoardUI::resizeEvent(QResizeEvent* event) {
@@ -184,4 +181,25 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 
 	int minS = qMin(width(), height());
 	resize(minS, minS);
+}
+
+void BoardUI::clickGemmes() {
+	if (GameHandler::gemmesToSelect() == 3) {
+		bool possible = true;
+		for (int i = 0; i < 3; i++) {
+			if (posSelect[i] == -1)
+				possible = false;
+		}
+		//si on a bien 3 gemmes et que les règles sont ok
+		if (possible && GameHandler::gemmesPick(posSelect)) {
+			for (int i = 0; i < 3; i++) {
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
+				posSelect[i] = -1;
+			}
+		}
+	}
+	else {
+		//TODO 1 GEMMES
+	}
 }

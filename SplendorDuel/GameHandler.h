@@ -3,11 +3,12 @@
 #include "BoardUI.h"
 #include "Bag.h"
 #include "Board.h"
+#include "Action.h"
 #include "DrawPile.h"
 
 class GameHandler {
 public:
-	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, BoardUI *boardUI);
+	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles);
 	static void destroy();
 	static inline GameHandler& getInstance(){ return *GameHandler::instance; }
 	static bool gameFinished();
@@ -20,22 +21,20 @@ public:
 	/// </summary>
 	/// <param name="pos">sa position</param>
 	/// <param name="isHover">afficher ou ne pas afficher</param>
-	static void gemmesHover(const int pos, bool isHover);
+	static const int gemmesToSelect();
 
-	static void gemmesPick();
+	/// <summary>
+	/// On prend les gemmes exitante si leurs positions existe
+	/// </summary>
+	/// <param name="posTab">tableau de 3 int</param>
+	static bool gemmesPick(const int *posTab);
 private:
-	enum Action {
-		MAIN_ACTION = 1,
-		PICK_GEMMES = 2,
-	};
-
 	static GameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, BoardUI* boardUI) : bag(bag), board(board), drawPiles(drawPiles), action(Action::MAIN_ACTION), boardUI(boardUI) {};
+	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles) : bag(bag), board(board), drawPiles(drawPiles), action(Action::MAIN_ACTION){};
 	GameHandler(const GameHandler&)=delete;
 	~GameHandler(){}
 
-	BoardUI* boardUI;
 	Action action;
 	bool player1Joue = true;;
 	Bag& bag;

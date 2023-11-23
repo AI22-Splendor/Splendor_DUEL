@@ -1,29 +1,27 @@
 #pragma once
-
+#include "GemmesContainerGUI.h"
 #include <qwidget.h>
-#include <QVBoxLayout>
-#include "Board.h"
 #include "qpainter.h"
-
+#include "Board.h"
 #include "GemmesUI.h"
-#include <vector>
-class BoardUI : public QWidget
-{
-	Q_OBJECT
+#include "BoardCompleteUI.h"
 
+class BoardUI: public GemmesContainerGUI
+{
 public:
 	BoardUI(QWidget* parent);
 	~BoardUI();
 	void setGemmes(const Board& b);
-	void hover(const int pos, const bool truple, const bool red);
+	void hoverGemmes(const int pos, const bool red);
 	void changeDirection();
-	const inline int getSelectedGemmes(int num)const { return posSelect[num]; }
+	void clickGemmes();
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	void selectOtherGemmes(const int pos);
 	//tableau à deux dimensions
 	GemmesUI*** tabCase;
+	BoardComplete *unboard;
 
 	enum direction {
 		HORIZONTAL = 0,
@@ -31,6 +29,7 @@ private:
 		DIAGONALED = 2,
 		DIAGONALEL = 3
 	};
+
 	direction direction;
 	int posSelect[3];
 };

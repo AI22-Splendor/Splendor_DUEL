@@ -3,7 +3,7 @@
 #include <QtWidgets/QApplication>
 #include "GameHandler.h"
 #include "GemmesUI.h"
-
+#include "Image.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,5 +17,6 @@ int main(int argc, char *argv[])
     QPushButton b("Quitter", &w);
     QObject::connect(&b, &QPushButton::clicked, &w, &SplendorDuel::close);
     w.show();
+    Image::destroy();
     return a.exec();
 }
