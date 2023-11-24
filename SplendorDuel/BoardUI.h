@@ -4,7 +4,7 @@
 #include "qpainter.h"
 #include "Board.h"
 #include "GemmesUI.h"
-#include "BoardCompleteUI.h"
+#include "RemplirBoardUI.h"
 
 class BoardUI: public GemmesContainerGUI
 {
@@ -21,7 +21,7 @@ private:
 	void selectOtherGemmes(const int pos);
 	//tableau à deux dimensions
 	GemmesUI*** tabCase;
-	BoardComplete *unboard;
+	RemplirBoard *unboard;
 
 	enum direction {
 		HORIZONTAL = 0,

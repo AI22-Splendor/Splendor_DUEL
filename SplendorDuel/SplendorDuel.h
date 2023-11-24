@@ -5,6 +5,7 @@
 #include "BoardUI.h"
 #include "GameHandler.h"
 #include "GemmesContainerGUI.h"
+#include "CompleteBoardUI.h"
 
 class SplendorDuel : public QMainWindow
 {
@@ -20,6 +21,6 @@ public:
     bool close();
 
 private:
-    BoardUI* board;
+    CompleteBoardUI* board;
     Ui::SplendorDuelClass ui;
 };

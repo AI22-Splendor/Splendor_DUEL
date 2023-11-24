@@ -141,8 +141,11 @@
     <ClCompile Include="SplendorDuel.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="BoardCompleteUI.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="CompleteBoardUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="RemplirBoardUI.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +179,9 @@
     <Image Include="actions.png">
       <Filter>Resource Files\img</Filter>
     </Image>
+    <Image Include="remplir.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">
@@ -189,7 +195,10 @@
     <QtMoc Include="SplendorDuel.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="BoardCompleteUI.h">
+    <QtMoc Include="RemplirBoardUI.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="CompleteBoardUI.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

@@ -53,7 +53,7 @@ public:
 
 	private:
 		enum Direction { Right, Down, Left, Up, Repeat };
-		int nextDirection = Up;
+		int nextDirection = Right;
 		std::size_t nextIdx;
 		int steps = 1;
 		int stepRepetitionLeft = 2;

@@ -12,25 +12,34 @@ using namespace std;
 SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *parent):
     QMainWindow(parent)
 {
-    
     setWindowTitle("SplendorDuel");
-    QWidget* w = new QWidget();
-    QGridLayout* grid = new QGridLayout(w);
-    grid->setContentsMargins(0, 0, 0, 0);
-    grid->setSpacing(0);
-
-    board = new BoardUI(w);
     GameHandler::Instanciate(bag, b, drawPiles);
-    board->setGemmes(b);
-    //on y ajoute tous les composant
+    QWidget* main = new QWidget(this);
+    QVBoxLayout* vl=new QVBoxLayout(main);
+    main->setLayout(vl);
+
     
-    grid->addWidget(board, 1, 1);
-    setCentralWidget(w);
+    this->board = new CompleteBoardUI(this, b);
+    /*
+    QWidget* w = new QWidget(main);
+
+    vl->addWidget(new RemplirBoard(this), Qt::AlignCenter | Qt::AlignHCenter);
+    vl->addWidget(board, Qt::AlignCenter | Qt::AlignHCenter);
+    vl->addWidget(new RemplirBoard(this), Qt::AlignCenter | Qt::AlignHCenter);
+
+    vl->setSpacing(0);
+    vl->setContentsMargins(0, 0, 0, 0);
+
+    vl->setStretch(0, 2);
+    vl->setStretch(1, 10);
+    vl->setStretch(2, 2);
+    setCentralWidget(main);*/
+    setCentralWidget(board);
 }
 
 SplendorDuel::~SplendorDuel()
 {
-    
+    delete board;
 }
 
 void SplendorDuel::start() {

@@ -13,6 +13,7 @@ Image::Image() {
 	bleu = QPixmap("./bleu.png");
 	plateau = QPixmap("./plateau.png");
 	underPlat = QPixmap("./actions.png");
+	remplir = QPixmap("./remplir.png");
 }
 
 void Image::destroy(){
@@ -69,4 +70,11 @@ QPixmap Image::getUnderPlateau(){
 		instance = new Image();
 	}
 	return instance->underPlat;
+}
+
+QPixmap Image::getRemplir() {
+	if (instance == nullptr) {
+		instance = new Image();
+	}
+	return instance->remplir;
 }

@@ -28,6 +28,11 @@ public:
 	/// </summary>
 	/// <param name="posTab">tableau de 3 int</param>
 	static bool gemmesPick(const int *posTab);
+
+	/// <summary>
+	/// Remplirle Board Avec le sac
+	/// </summary>
+	static const Board remplirBoard();
 private:
 	static GameHandler* instance;
 

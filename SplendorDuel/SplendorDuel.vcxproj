@@ -104,7 +104,8 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
-    <QtMoc Include="BoardCompleteUI.h" />
+    <QtMoc Include="RemplirBoardUI.h" />
+    <QtMoc Include="CompleteBoardUI.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Rules.h" />
@@ -122,7 +123,8 @@
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="BoardCompleteUI.cpp" />
+    <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="RemplirBoardUI.cpp" />
     <ClCompile Include="BoardUI.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="DrawPile.cpp" />
@@ -146,6 +148,7 @@
     <Image Include="or.png" />
     <Image Include="perle.png" />
     <Image Include="plateau.png" />
+    <Image Include="remplir.png" />
     <Image Include="rouge.png" />
     <Image Include="vert.png" />
   </ItemGroup>

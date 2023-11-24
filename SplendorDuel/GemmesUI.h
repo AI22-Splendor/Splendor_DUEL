@@ -28,11 +28,14 @@ public:
 	/// </summary>
 	/// <param name="g">la gemme</param>
 	void setGemmes(const Gemmes& g);
+
+	void setNb(const int nb);
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	int col;
 	int ligne;
+	int nb;
 	bool selected;
 	Gemmes gem;
 

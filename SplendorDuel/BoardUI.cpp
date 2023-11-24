@@ -28,6 +28,7 @@ BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent){
 		}
 	}
 	
+
 	//grid->addWidget(&unboard, 6, 3);
 
 	grid->setContentsMargins(0, 0, 0, 0);
@@ -48,6 +49,7 @@ BoardUI::~BoardUI() {
 		delete[] tabCase[i];
 	}
 	delete[] tabCase; 
+	delete unboard;
 }
 
 void BoardUI::hoverGemmes(const int pos, const bool red){

@@ -7,6 +7,7 @@ public:
 	static QPixmap getPixmap(const Gemmes g);
 	static QPixmap getPlateau();
 	static QPixmap getUnderPlateau();
+	static QPixmap getRemplir();
 	static void destroy();
 private:
 	Image();
@@ -14,6 +15,7 @@ private:
 	static Image* instance;
 
 	QPixmap blanc;
+	QPixmap remplir;
 	QPixmap noir;
 	QPixmap rouge;
 	QPixmap vert;
