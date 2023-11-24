@@ -12,11 +12,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
    
     SplendorDuel& w = GameFactory::buildNewSplendor();
-
-
-    QPushButton b("Quitter", &w);
-    QObject::connect(&b, &QPushButton::clicked, &w, &SplendorDuel::close);
     w.show();
-    Image::destroy();
     return a.exec();
 }

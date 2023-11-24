@@ -29,7 +29,11 @@ public:
 	/// <param name="g">la gemme</param>
 	void setGemmes(const Gemmes& g);
 
+	inline const Gemmes getGemmes()const { return this->gem; };
+
 	void setNb(const int nb);
+
+	inline const int getNb()const { return nb; };
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);

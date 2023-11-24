@@ -1,5 +1,5 @@
 #include "BoardUI.h"
-
+#include "SplendorDuel.h"
 #include "GemmesUI.h"
 #include "Board.h"
 #include "GameHandler.h"
@@ -27,9 +27,6 @@ BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent){
 			tabCase[i][j] = boutton;
 		}
 	}
-	
-
-	//grid->addWidget(&unboard, 6, 3);
 
 	grid->setContentsMargins(0, 0, 0, 0);
 	grid->setSpacing(0);
@@ -195,6 +192,7 @@ void BoardUI::clickGemmes() {
 		//si on a bien 3 gemmes et que les règles sont ok
 		if (possible && GameHandler::gemmesPick(posSelect)) {
 			for (int i = 0; i < 3; i++) {
+				((SplendorDuel*)this->topLevelWidget())->addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), GameHandler::getPlayerTurn());
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;

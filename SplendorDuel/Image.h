@@ -8,6 +8,7 @@ public:
 	static QPixmap getPlateau();
 	static QPixmap getUnderPlateau();
 	static QPixmap getRemplir();
+	static QPixmap getPlayerGems();
 	static void destroy();
 private:
 	Image();
@@ -23,6 +24,7 @@ private:
 	QPixmap gold;
 	QPixmap bleu;
 	QPixmap plateau;
+	QPixmap playerGems;
 	QPixmap underPlat;
 };
 

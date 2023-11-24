@@ -6,7 +6,7 @@
 
 GemmesUI::GemmesUI(int ligne, int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), QWidget(parent), gem(Gemmes::Vide), nb(0){
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	setMinimumSize(QSize(50, 50));
+	setMinimumSize(QSize(20, 20));
 }
 
 void GemmesUI::setGemmes(const Gemmes& g) {
@@ -105,4 +105,5 @@ void GemmesUI::resizeEvent(QResizeEvent* event) {
 
 void GemmesUI::setNb(const int n) {
 	this->nb = n;
+	this->update();
 }

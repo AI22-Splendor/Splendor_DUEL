@@ -8,6 +8,9 @@
 
 class BoardUI: public GemmesContainerGUI
 {
+
+	Q_OBJECT
+
 public:
 	BoardUI(QWidget* parent);
 	~BoardUI();

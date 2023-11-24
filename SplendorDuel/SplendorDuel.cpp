@@ -6,6 +6,7 @@
 #include <qgridlayout.h>
 #include <iostream>
 #include <qevent.h>
+#include "PlayerGemsUI.h"
 using namespace std;
 
 
@@ -18,14 +19,17 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *pa
     QVBoxLayout* vl=new QVBoxLayout(main);
     main->setLayout(vl);
 
-    
+    ptab = new PlayersUI*[2]();
+    for (int i = 0; i < 2; i++) {
+        ptab[i] = new PlayersUI(this, i + 1);
+    }
     this->board = new CompleteBoardUI(this, b);
-    /*
+    
     QWidget* w = new QWidget(main);
 
-    vl->addWidget(new RemplirBoard(this), Qt::AlignCenter | Qt::AlignHCenter);
+    vl->addWidget(ptab[0], Qt::AlignBottom);
     vl->addWidget(board, Qt::AlignCenter | Qt::AlignHCenter);
-    vl->addWidget(new RemplirBoard(this), Qt::AlignCenter | Qt::AlignHCenter);
+    vl->addWidget(ptab[1], Qt::AlignBottom);
 
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
@@ -33,13 +37,14 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *pa
     vl->setStretch(0, 2);
     vl->setStretch(1, 10);
     vl->setStretch(2, 2);
-    setCentralWidget(main);*/
-    setCentralWidget(board);
+    setCentralWidget(main);
+    //setCentralWidget(board);
 }
 
 SplendorDuel::~SplendorDuel()
 {
     delete board;
+    delete[] ptab;
 }
 
 void SplendorDuel::start() {

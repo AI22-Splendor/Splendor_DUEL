@@ -39,6 +39,18 @@
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{242c5c80-c8bc-43f1-adb5-972cd7b5af29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI\Board">
+      <UniqueIdentifier>{030b5c4d-0d0d-4234-8984-d840dd2d9820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI\Board">
+      <UniqueIdentifier>{a648864c-ff2b-4794-9f39-5e2e8599283a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\Player">
+      <UniqueIdentifier>{6cc92698-6cbe-469f-a312-d6cfccbc2f7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI\Player">
+      <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -78,9 +90,6 @@
     </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoardUI.h">
-      <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Header Files\Util</Filter>
@@ -123,9 +132,6 @@
     <ClCompile Include="Gemmes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoardUI.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="GemmesUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -141,11 +147,20 @@
     <ClCompile Include="SplendorDuel.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="BoardUI.cpp">
+      <Filter>Source Files\UI\Board</Filter>
+    </ClCompile>
     <ClCompile Include="CompleteBoardUI.cpp">
-      <Filter>Source Files\UI</Filter>
+      <Filter>Source Files\UI\Board</Filter>
     </ClCompile>
     <ClCompile Include="RemplirBoardUI.cpp">
-      <Filter>Source Files\UI</Filter>
+      <Filter>Source Files\UI\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGemsUI.cpp">
+      <Filter>Source Files\UI\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayersUI.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +197,9 @@
     <Image Include="remplir.png">
       <Filter>Resource Files\img</Filter>
     </Image>
+    <Image Include="playergemmes.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">
@@ -195,11 +213,20 @@
     <QtMoc Include="SplendorDuel.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="RemplirBoardUI.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
     <QtMoc Include="CompleteBoardUI.h">
-      <Filter>Header Files\UI</Filter>
+      <Filter>Header Files\UI\Board</Filter>
+    </QtMoc>
+    <QtMoc Include="RemplirBoardUI.h">
+      <Filter>Header Files\UI\Board</Filter>
+    </QtMoc>
+    <QtMoc Include="BoardUI.h">
+      <Filter>Header Files\UI\Board</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayerGemsUI.h">
+      <Filter>Header Files\UI\Player</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayersUI.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

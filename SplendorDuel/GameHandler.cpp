@@ -62,3 +62,7 @@ bool GameHandler::gemmesPick(const int *posTab){
 		return true;
 	}
 }
+
+int GameHandler::getPlayerTurn() {
+	return 1;
+}

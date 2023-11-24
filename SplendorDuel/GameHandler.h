@@ -14,7 +14,7 @@ public:
 	static bool gameFinished();
 	static void getWinner();
 	static void nextAction();
-
+	static int getPlayerTurn();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours

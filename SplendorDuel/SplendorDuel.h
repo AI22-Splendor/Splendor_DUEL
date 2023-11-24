@@ -2,10 +2,10 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
-#include "BoardUI.h"
 #include "GameHandler.h"
 #include "GemmesContainerGUI.h"
 #include "CompleteBoardUI.h"
+#include "PlayersUI.h"
 
 class SplendorDuel : public QMainWindow
 {
@@ -16,11 +16,14 @@ public:
     ~SplendorDuel();
 
     void keyPressEvent(QKeyEvent* e);
+    inline void addPlayerGems(const Gemmes g, const int p)const { 
+        ptab[p]->gemsAdd(g); 
+    }
     void start();
-
     bool close();
 
 private:
     CompleteBoardUI* board;
+    PlayersUI** ptab;
     Ui::SplendorDuelClass ui;
 };

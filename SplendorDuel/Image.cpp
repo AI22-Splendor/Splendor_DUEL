@@ -14,6 +14,7 @@ Image::Image() {
 	plateau = QPixmap("./plateau.png");
 	underPlat = QPixmap("./actions.png");
 	remplir = QPixmap("./remplir.png");
+	playerGems = QPixmap("./playergemmes.png");
 }
 
 void Image::destroy(){
@@ -77,4 +78,11 @@ QPixmap Image::getRemplir() {
 		instance = new Image();
 	}
 	return instance->remplir;
+}
+
+QPixmap Image::getPlayerGems() {
+	if (instance == nullptr) {
+		instance = new Image();
+	}
+	return instance->playerGems;
 }

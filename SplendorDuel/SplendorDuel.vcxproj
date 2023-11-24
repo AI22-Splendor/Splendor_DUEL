@@ -108,9 +108,11 @@
     <QtMoc Include="CompleteBoardUI.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
+    <QtMoc Include="PlayerGemsUI.h" />
+    <QtMoc Include="PlayersUI.h" />
     <ClInclude Include="Rules.h" />
     <ClInclude Include="StyleDecorator.h" />
-    <ClInclude Include="BoardUI.h" />
+    <QtMoc Include="BoardUI.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="DrawPile.h" />
     <ClInclude Include="GameFactory.h" />
@@ -124,6 +126,8 @@
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="PlayerGemsUI.cpp" />
+    <ClCompile Include="PlayersUI.cpp" />
     <ClCompile Include="RemplirBoardUI.cpp" />
     <ClCompile Include="BoardUI.cpp" />
     <ClCompile Include="Card.cpp" />
@@ -148,6 +152,7 @@
     <Image Include="or.png" />
     <Image Include="perle.png" />
     <Image Include="plateau.png" />
+    <Image Include="playergemmes.png" />
     <Image Include="remplir.png" />
     <Image Include="rouge.png" />
     <Image Include="vert.png" />
