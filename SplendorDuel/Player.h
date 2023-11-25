@@ -15,13 +15,14 @@ public:
 	string getName() const { return name; }
 
 	unsigned int nbOfGems(Gemmes gem) const { return gems[gem]; }
-	const list<Card*>& getCards() const { return cards; }
+	const list<const Card*>& getCards() const { return cards; }
 
-	bool canAddGem() const;
-	bool addGem(Gemmes gem);
+	bool canAddGems(const unsigned int nbAdd = 1) const;
+	bool addGems(const Gemmes gem, const unsigned int nbAdd = 1);
 	bool removeGem(Gemmes gem);
 	
 	unsigned int getNbCrowns() const;
+	unsigned int getPrestige() const;
 	unsigned int getDiscount(Gemmes gem) const;
 	
 	bool canBuyCard(const Card& card) const;
@@ -30,7 +31,7 @@ public:
 // Protected for future possible AI impl
 protected:
 	string name;
-	list<Card*> cards;
+	list<const Card*> cards;
 	unsigned int gems[NB_GEMMES_PAS_VIDE];
 };
 

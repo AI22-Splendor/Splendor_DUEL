@@ -9,17 +9,17 @@ Player::Player(string name) : name(name) {
 	}
 }
 
-bool Player::canAddGem() const {
+bool Player::canAddGems(const unsigned int nbAdd) const {
 	int sum = 0;
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		sum += gems[i];
 	}
-	return sum < 10;
+	return (sum + nbAdd) < 10;
 }
 
-bool Player::addGem(Gemmes gem) {
-	if (canAddGem()) {
-		gems[gem]++;
+bool Player::addGems(const Gemmes gem, const unsigned int nbAdd) {
+	if (canAddGems(nbAdd)) {
+		gems[gem] += nbAdd;
 		return true;
 	}
 	return false;
@@ -33,15 +33,25 @@ bool Player::removeGem(Gemmes gem) {
 
 unsigned int Player::getNbCrowns() const {
 	unsigned int nbCrowns = 0;
-	list<Card*>::const_iterator it;
+	list<const Card*>::const_iterator it;
 	for (it = cards.cbegin(); it != cards.cend(); it++) {
 		nbCrowns += (*it)->getCrowns();
 	}
 	return nbCrowns;
 }
+
+unsigned int Player::getPrestige() const {
+	unsigned int prestige = 0;
+	list<const Card*>::const_iterator it;
+	for (it = cards.cbegin(); it != cards.cend(); it++) {
+		prestige += (*it)->getPointsPrestige();
+	}
+	return prestige;
+}
+
 unsigned int Player::getDiscount(Gemmes gem) const {
 	unsigned int discount = 0;
-	list<Card*>::const_iterator it;
+	list<const Card*>::const_iterator it;
 	for (it = cards.cbegin(); it != cards.cend(); it++) {
 		if ((*it)->getDiscountType() == gem) {
 			discount += (*it)->getDiscount();
@@ -51,15 +61,20 @@ unsigned int Player::getDiscount(Gemmes gem) const {
 }
 
 bool Player::canBuyCard(const Card& card) const {
-	return card.canBeBought(gems);
+	unsigned int* wallet = new unsigned int[NB_GEMMES_PAS_VIDE];
+	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
+		wallet[i] = gems[i] + getDiscount(static_cast<Gemmes>(i));
+	}
+	return card.canBeBought(wallet);
 }
 
 bool Player::buyCard(const Card& card, Bag& gameBag) {
 	if (!canBuyCard(card)) return false;
 	
 	for (int i = Gemmes::Vert; i < NB_GEMMES_PAIEMENTS; i++) {
-		Gemmes gem= static_cast<Gemmes>(i);
-		int deltaPrice = card.getPriceForGemme(gem) - gems[i];
+		Gemmes gem = static_cast<Gemmes>(i);
+		int effectivePrice = card.getPriceForGemme(gem) - getDiscount(gem);
+ 		int deltaPrice = effectivePrice - gems[i];
 		if (deltaPrice > 0) {
 			gems[i] -= card.getPriceForGemme(gem) - deltaPrice;
 			gems[Gemmes::Or] -= deltaPrice;
@@ -71,6 +86,7 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 			gameBag.addGemmes(gem, card.getPriceForGemme(gem));
 		}
 	}
+	cards.push_back(&card);
 	gameBag.melanger();
 	return true;
 }
