@@ -10,7 +10,7 @@ public:
 
 	//Constructeur
 	//param : la taille du sac
-	Bag(const int& n);
+	Bag(const int n);
 
 	//destructeur
 	inline ~Bag() { delete this->bag; };
@@ -21,9 +21,10 @@ public:
 
 	//Ajouter une Gemme dans le sac
 	//Param : Gemmes g : la couleur de la Gemmes
+	//Param : int nbGemmes : nombre de gemmes a ajouter
 	//return void
 	//throw Exception si le sac est deja rempli
-	void addGemmes(const Gemmes& g);
+	void addGemmes(const Gemmes& g, int nbGemmes = 1);
 
 	//Retire une Gemme du Sac
 	//Prerequis : le Sac dois en contenir une de ce type

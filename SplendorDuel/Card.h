@@ -23,20 +23,21 @@ public:
 	/// </summary>
 	/// <param name="wallet">Le portefeuille actuel du joueur (organisé a partir de l'enum Gemmes)</param>
 	/// <returns>true si la carte peut être achetée, false sinons</returns>
-	bool canBeBought(const int* wallet) const;
+	bool canBeBought(const unsigned int* wallet) const;
+	unsigned int getPriceForGemme(Gemmes gem) const { return cost[gem];  };
 	
 	unsigned int getPointsPrestige() const { return ptsPrestige;  }
-	Gemmes getBonusType() const { return bonusType;  }
-	unsigned int getBonusNombre() const { return nbBonus;  }
+	Gemmes getDiscountType() const { return discountType;  }
+	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
 
 private:
-	int* cost;
+	unsigned int cost[NB_GEMMES_PAIEMENTS];
 	unsigned int level;
 	unsigned int ptsPrestige;
 	// Si le bonus est de type Gemmes::Vide, alors c'est un bonus pour tous les types de Gemmes
-	Gemmes bonusType;
-	unsigned int nbBonus;
+	Gemmes discountType;
+	unsigned int discount;
 	unsigned int crowns;
 	friend ostream& operator<<(ostream& os, const Card card);
 };

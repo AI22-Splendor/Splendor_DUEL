@@ -8,10 +8,9 @@ Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemme
 	}
 	this->level = level;
 	this->ptsPrestige = ptsPrestige;
-	this->bonusType = bonusType;
-	this->nbBonus = nbBonus;
+	this->discountType = bonusType;
+	this->discount = nbBonus;
 	this->crowns = crowns;
-	this->cost = new int[NB_GEMMES_PAIEMENTS];
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
 		this->cost[i] = 0;
 	}
@@ -28,18 +27,18 @@ void Card::setCost(const Gemmes type, const unsigned int price) {
 
 extern const unsigned int NB_GEMMES_PAIEMENTS;
 
-bool Card::canBeBought(const int* wallet) const {
+bool Card::canBeBought(const unsigned int wallet[NB_GEMMES_PAS_VIDE]) const {
 	int nbGold = wallet[Gemmes::Or];
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
 		if (wallet[i] + nbGold < cost[i]) {
 			return false;
 		}
 		int delta = cost[i] - wallet[i];
-		nbGold -= delta;
+		if (delta > 0) nbGold -= delta;
 	}
 	return true;
 }
 
 ostream& operator<<(ostream& os, const Card card) {
-	return os << "Card[" << card.level << "/" << card.ptsPrestige << "P/" << card.bonusType << "x" << card.nbBonus << "/" << card.crowns << "C]";
+	return os << "Card[" << card.level << "/" << card.ptsPrestige << "P/" << card.discountType << "x" << card.discount << "/" << card.crowns << "C]";
 }

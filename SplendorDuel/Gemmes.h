@@ -24,6 +24,7 @@ enum Gemmes
 // Nombre de gemmes permettant de payer un seul type de gemme (le sien)
 // L'or ne permet pas de payer que de l'or donc n'est pas inclus dans de genre de gemmes
 const unsigned int NB_GEMMES_PAIEMENTS = 6; 
+const unsigned int NB_GEMMES_PAS_VIDE = 7; 
 
 const QString gemmesToQstr(const Gemmes& g);
 

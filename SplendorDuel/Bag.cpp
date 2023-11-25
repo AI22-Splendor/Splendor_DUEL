@@ -8,14 +8,14 @@ using namespace std;
 
 //Constructeur
 //param : la taille du sac
-Bag::Bag(const int &n)
+Bag::Bag(const int n)
 {
 	this->bag = new Gemmes[n];
+	this->taille = n;
 	for (int i = 0; i < n; i++)
 	{
 		this->bag[i] = Gemmes::Vide;
 	}
-	this->taille = n;
 }
 
 //connaitre le nombre de Gemmes dans le sac
@@ -30,22 +30,25 @@ int Bag::getNbGemmes() const{
 
 //Ajouter une Gemme dans le sac
 //Param : Gemmes g : la couleur de la Gemmes
+//Param : int nbGemmes : nombre de gemmes a ajouter
 //return void
 //throw Exception si le sac est deja rempli
-void Bag::addGemmes(const Gemmes &g) {
-	if (this->getNbGemmes() == this->taille) {
+void Bag::addGemmes(const Gemmes &g, int nbGemmes) {
+	if ((this->getNbGemmes() + nbGemmes) > this->taille) {
 		//On creer notre Exception:
-		MyException exep("Erreur dans l'ajout d'une gemme, sac deja rempli");
+		MyException exep("Erreur dans l'ajout des gemmes, le sac ne peut pas accepter autant de gemmes");
 		throw exep;
 	}
 
-	//on cherche une place vide
-	for (int i = 0; i < this->getTaille(); i++) {
-		//si vide
-		if (this->bag[i] == Gemmes::Vide) {
-			//on ajoute
-			this->bag[i] = g;
-			return;
+	for (int n = 0; n < nbGemmes; n++) {
+		//on cherche une place vide
+		for (int i = 0; i < this->getTaille(); i++) {
+			//si vide
+			if (this->bag[i] == Gemmes::Vide) {
+				//on ajoute
+				this->bag[i] = g;
+				break;
+			}
 		}
 	}
 }
