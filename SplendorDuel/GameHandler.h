@@ -14,6 +14,11 @@ public:
 	static bool gameFinished();
 	static void getWinner();
 	static void nextAction();
+
+	/// <summary>
+	/// Retourne le tour du player en cour
+	/// </summary>
+	/// <returns>le num du player</returns>
 	static int getPlayerTurn();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
@@ -33,6 +38,7 @@ public:
 	/// Remplirle Board Avec le sac
 	/// </summary>
 	static const Board remplirBoard();
+
 private:
 	static GameHandler* instance;
 

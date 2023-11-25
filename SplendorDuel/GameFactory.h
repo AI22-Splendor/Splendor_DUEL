@@ -37,8 +37,8 @@ public:
 			drawPiles[i]->melanger();
 		}
 
-
-		return *(new SplendorDuel(bag, board, drawPiles));
+		SplendorDuel::instanciate(bag, board, drawPiles);
+		return SplendorDuel::getInstance();
 	}
 private:
 	// IS A TEST, REMOVE

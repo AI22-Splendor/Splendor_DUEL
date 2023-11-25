@@ -111,7 +111,6 @@
     <QtMoc Include="PlayerGemsUI.h" />
     <QtMoc Include="PlayersUI.h" />
     <ClInclude Include="Rules.h" />
-    <ClInclude Include="StyleDecorator.h" />
     <QtMoc Include="BoardUI.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="DrawPile.h" />
@@ -141,7 +140,6 @@
     <ClCompile Include="PrivilegeHandler.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
-    <ClCompile Include="StyleDecorator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\Pictures\vert.jpg" />

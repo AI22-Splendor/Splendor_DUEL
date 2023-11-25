@@ -16,7 +16,3 @@ PlayersUI::~PlayersUI() {
 	QWidget::~QWidget();
 	delete this->pgems;
 }
-
-void PlayersUI::gemsClick() {
-	//TODO
-}

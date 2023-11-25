@@ -7,19 +7,24 @@
 #include <iostream>
 #include <qevent.h>
 #include "PlayerGemsUI.h"
+
+
 using namespace std;
+SplendorDuel* SplendorDuel::instance = nullptr;
 
-
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *parent):
-    QMainWindow(parent)
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles):
+    QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
+    //on instance notre GameHandler
     GameHandler::Instanciate(bag, b, drawPiles);
+
+    //mise en page avec le widget main
     QWidget* main = new QWidget(this);
     QVBoxLayout* vl=new QVBoxLayout(main);
     main->setLayout(vl);
 
-    ptab = new PlayersUI*[2]();
+    this->ptab = new PlayersUI*[2]();
     for (int i = 0; i < 2; i++) {
         ptab[i] = new PlayersUI(this, i + 1);
     }
@@ -27,24 +32,21 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *pa
     
     QWidget* w = new QWidget(main);
 
-    vl->addWidget(ptab[0], Qt::AlignBottom);
-    vl->addWidget(board, Qt::AlignCenter | Qt::AlignHCenter);
-    vl->addWidget(ptab[1], Qt::AlignBottom);
+    vl->addWidget(ptab[0], 2, Qt::AlignBottom);
+    vl->addWidget(board, 10, Qt::AlignCenter);
+    vl->addWidget(ptab[1], 2, Qt::AlignBottom);
 
+    //on supprime les espace par défault
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
-
-    vl->setStretch(0, 2);
-    vl->setStretch(1, 10);
-    vl->setStretch(2, 2);
-    setCentralWidget(main);
-    //setCentralWidget(board);
+    this->setCentralWidget(main);
 }
 
 SplendorDuel::~SplendorDuel()
 {
-    delete board;
-    delete[] ptab;
+    delete instance->board;
+    delete[] instance->ptab;
+    delete SplendorDuel::instance;
 }
 
 void SplendorDuel::start() {
@@ -54,12 +56,12 @@ void SplendorDuel::start() {
 }
 
 bool SplendorDuel::close(){
-    QMainWindow::close();
+    instance->QMainWindow::close();
     return true;
 }
 
 void SplendorDuel::keyPressEvent(QKeyEvent* e) { 
     if (e->key() == Qt::Key_N && e->type()==QEvent::KeyPress && e->isAutoRepeat()== false){
-        board->changeDirection();
+        instance->board->changeDirection();
     }
 };

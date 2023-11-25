@@ -12,6 +12,7 @@ BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent){
 		//valeur sentinelle : aucune gemmes select
 		posSelect[i] = -1;
 	}
+	//direction de base
 	this->direction = direction::HORIZONTAL;
 	tabCase = new GemmesUI **[Board::BOARD_SIDE];
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
@@ -45,11 +46,11 @@ BoardUI::~BoardUI() {
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
 		delete[] tabCase[i];
 	}
-	delete[] tabCase; 
-	delete unboard;
+	delete[] tabCase;
 }
 
 void BoardUI::hoverGemmes(const int pos, const bool red){
+	//on demande au GH le nombre de gemmes a selectionner
 	int nb = GameHandler::gemmesToSelect();
 	//la gemme centrale
 	posSelect[0] = pos;
@@ -58,7 +59,9 @@ void BoardUI::hoverGemmes(const int pos, const bool red){
 		selectOtherGemmes(pos);
 	}
 	else {
-		//On electionne que la Gemmes
+		//Si 1 seul gemmes à selectonner
+		// pas besoin de calculer ses voisines
+		//On selectionne que la Gemmes
 		posSelect[0] = pos;
 		posSelect[1] = -1;
 		posSelect[2] = -1;
@@ -177,12 +180,12 @@ void BoardUI::paintEvent(QPaintEvent* event) {
 
 void BoardUI::resizeEvent(QResizeEvent* event) {
 	QWidget::resizeEvent(event);
-
+	//on force le carrer
 	int minS = qMin(width(), height());
 	resize(minS, minS);
 }
 
-void BoardUI::clickGemmes() {
+void BoardUI::clickGemmes(Gemmes g) {
 	if (GameHandler::gemmesToSelect() == 3) {
 		bool possible = true;
 		for (int i = 0; i < 3; i++) {

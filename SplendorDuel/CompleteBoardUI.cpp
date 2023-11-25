@@ -26,3 +26,6 @@ void CompleteBoardUI::resizeEvent(QResizeEvent* event) {
     remplir.resize(board.width(), remplir.height());
     resize(board.width(), board.height() + remplir.height());
 }
+
+
+CompleteBoardUI::~CompleteBoardUI(){ QWidget::~QWidget(); }

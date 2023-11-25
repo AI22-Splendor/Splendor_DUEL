@@ -4,6 +4,11 @@
 #include "Board.h"
 #include "BoardUI.h"
 #include "RemplirBoardUI.h"
+
+/// <summary>
+/// class de tout notre board (plateau + remplir)
+/// ainsi que les Cartes
+/// </summary>
 class CompleteBoardUI : public QWidget
 {
 	Q_OBJECT
@@ -11,9 +16,11 @@ class CompleteBoardUI : public QWidget
 public:
 
 	CompleteBoardUI(QWidget* parent, Board b);
+	inline ~CompleteBoardUI();
 
-	inline ~CompleteBoardUI() { QWidget::~QWidget(); }
+	//redistribue l'event au bon composant
 	inline void changeDirection(){ board.changeDirection(); };
+	//redistribue l'event de rmeplir le board
 	inline void remplirBoard(Board b) { board.setGemmes(b); };
 private:
 	BoardUI board;

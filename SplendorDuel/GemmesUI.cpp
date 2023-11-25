@@ -4,7 +4,7 @@
 #include <qevent.h>
 #include "Image.h"
 
-GemmesUI::GemmesUI(int ligne, int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), QWidget(parent), gem(Gemmes::Vide), nb(0){
+GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), QWidget(parent), gem(Gemmes::Vide), nb(0){
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
 	setMinimumSize(QSize(20, 20));
 }
@@ -19,7 +19,7 @@ void GemmesUI::isClicked() {
 
 void GemmesUI::mousePressEvent(QMouseEvent* mouse) {
 	if(this->gem != Gemmes::Vide)
-		((GemmesContainerGUI*)this->parentWidget())->clickGemmes();
+		((GemmesContainerGUI*)this->parentWidget())->clickGemmes(this->gem);
 }
 
 void GemmesUI::enterEvent(QEnterEvent* event){
@@ -32,7 +32,7 @@ void GemmesUI::leaveEvent(QEvent* event){
 		((GemmesContainerGUI*)this->parentWidget())->hoverGemmes(ligne * 5 + col, false);
 }
 
-void GemmesUI::hover(bool red) {
+void GemmesUI::hover(const bool red) {
 	if (red)
 		selected = true;
 	else
