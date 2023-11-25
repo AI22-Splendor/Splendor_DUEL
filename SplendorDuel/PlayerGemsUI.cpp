@@ -7,8 +7,8 @@
 PlayerGemsUI::PlayerGemsUI(QWidget* parent): GemmesContainerGUI(parent){
 	this->gem =new GemmesUI*[7]();
 
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	setMinimumSize(20*7, 20);
 	QGridLayout* grid = new QGridLayout(this);
 	this->setLayout(grid);
 	for (int i = 0; i < 7; i++) {
@@ -63,9 +63,9 @@ void PlayerGemsUI::paintEvent(QPaintEvent* event) {
 
 void PlayerGemsUI::resizeEvent(QResizeEvent* event) {
 	QWidget::resizeEvent(event);
-	//on force que les gemmes soit carrer
+	//on force que les gemmes soit carrer ou au moins width > height/2
 	int min = qMin(width() / 7, height());
-	this->resize(min * 7, min);
+	resize(min*7, min);
 	this->update();
 }
 

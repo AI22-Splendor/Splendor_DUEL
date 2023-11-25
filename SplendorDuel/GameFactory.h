@@ -22,27 +22,19 @@ public:
 			if (i < 3) bag.addGemmes(Gemmes::Or);
 			if (i < 2) bag.addGemmes(Gemmes::Perle);
 		}
-		
+
 
 		// TODO : une vraie analyse de comment générer les cartes
 		DrawPile** drawPiles;
-		drawPiles = new DrawPile*[3];
+		drawPiles = new DrawPile * [3];
 		for (int i = 0; i < 3; i++) {
 			drawPiles[i] = new DrawPile(i, 30 - (i * 5));
 			for (int j = 0; j < (30 - (i * 5)); j++) {
-				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j%5 == 0 ? j : 0));
+				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j % 5 == 0 ? j : 0));
 			}
 			drawPiles[i]->melanger();
 		}
 
-		SplendorDuel::instanciate(bag, board, drawPiles);
-		return SplendorDuel::getInstance();
-	}
-private:
-	// IS A TEST, REMOVE
-	static void testBoard(Board& board, Bag& bag) {
-		cout << endl << "======================" << endl;
-		cout << board;
 		Player& player1 = *(new Player("Player 1"));
 		Player& player2 = *(new Player("Player 2"));
 
@@ -71,12 +63,13 @@ private:
 		cout << testCard << endl;
 
 		cout << "Prestige : " << player1.getPrestige()
-			<< " Crowns : " << player1.getNbCrowns() 
+			<< " Crowns : " << player1.getNbCrowns()
 			<< "\n Green discount : " << player1.getDiscount(Gemmes::Vert);
 
 		Board& board = *(new Board);
 		board.remplirBoard(bag);
 
-		return *(new SplendorDuel(bag, board, drawPiles, player1, player2));
+		SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
+		return SplendorDuel::getInstance(); 
 	}
-}; 
+};

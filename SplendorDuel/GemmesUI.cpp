@@ -5,7 +5,7 @@
 #include "Image.h"
 
 GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), QWidget(parent), gem(Gemmes::Vide), nb(0){
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(QSize(20, 20));
 }
 
@@ -87,21 +87,16 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 
 	//on dessinne maintenant l'image au centre
 	painter.drawPixmap(x, y, radius * 2, radius * 2, pix);
-	QFont font = painter.font();
-	font.setPointSize(height()/4);
-	painter.setFont(font);
+	
 	if (this->nb > 0) {
+		QFont font = painter.font();
+		font.setPointSize(height() / 4);
+		painter.setFont(font);
 		painter.setPen(QColor("#ffffff"));
 		painter.drawText(QRect(0, 0, width(), height()), Qt::AlignCenter, QString::number(nb));
 	}
 }
 
-void GemmesUI::resizeEvent(QResizeEvent* event) {
-	// Appelez la fonction de base pour que l'événement soit correctement traité
-	QWidget::resizeEvent(event);
-	// Forcer un nouveau rendu lorsque la taille change
-	update();
-}
 
 void GemmesUI::setNb(const int n) {
 	this->nb = n;

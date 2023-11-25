@@ -6,8 +6,8 @@
 #include "CompleteBoardUI.h"
 
 RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	setMinimumSize(QSize(50, 50));
+	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	setMinimumSize(QSize(50*5, 50));
 	setMouseTracking(true);
 }
 

@@ -38,7 +38,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.6.0_msvc2019_64</QtInstall>
+    <QtInstall>6.5.3_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -106,11 +106,14 @@
     <ClInclude Include="Board.h" />
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
+    <QtMoc Include="CardUI.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
     <QtMoc Include="PlayersUI.h" />
     <ClInclude Include="Player.h" />
+    <QtMoc Include="PlayerNameUI.h" />
+    <QtMoc Include="PlayerCardUI.h" />
     <ClInclude Include="Rules.h" />
     <QtMoc Include="BoardUI.h" />
     <ClInclude Include="Card.h" />
@@ -125,9 +128,12 @@
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CardUI.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCardUI.cpp" />
     <ClCompile Include="PlayerGemsUI.cpp" />
+    <ClCompile Include="PlayerNameUI.cpp" />
     <ClCompile Include="PlayersUI.cpp" />
     <ClCompile Include="RemplirBoardUI.cpp" />
     <ClCompile Include="BoardUI.cpp" />
@@ -148,10 +154,15 @@
     <Image Include="actions.png" />
     <Image Include="blanc.png" />
     <Image Include="bleu.png" />
+    <Image Include="Card1.png" />
+    <Image Include="Card2.png" />
+    <Image Include="Card3.png" />
+    <Image Include="fond.png" />
     <Image Include="noir.png" />
     <Image Include="or.png" />
     <Image Include="perle.png" />
     <Image Include="plateau.png" />
+    <Image Include="playerFond.png" />
     <Image Include="playergemmes.png" />
     <Image Include="remplir.png" />
     <Image Include="rouge.png" />

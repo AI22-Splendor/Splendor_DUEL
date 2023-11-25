@@ -56,7 +56,6 @@ public:
 	inline const int getNb()const { return nb; };
 private:
 	void paintEvent(QPaintEvent* event);
-	void resizeEvent(QResizeEvent* event);
 	int col;
 	int ligne;
 	int nb;

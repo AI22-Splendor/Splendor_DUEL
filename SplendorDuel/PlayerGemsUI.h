@@ -24,7 +24,9 @@ public:
 	/// </summary>
 	/// <param name="g">la gems</param>
 	void gemsSupp(const Gemmes& g);
+
 private:
+	void clickCard() {};
 	void hoverGemmes(const int pos, const bool red) {};
 	void clickGemmes(Gemmes g) { /*TODO*/ };
 	void paintEvent(QPaintEvent* event);

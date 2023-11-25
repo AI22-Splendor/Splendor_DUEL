@@ -8,34 +8,36 @@
 #include <qevent.h>
 #include "PlayerGemsUI.h"
 
-
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles):
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, Player p2):
     QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
-    GameHandler::Instanciate(bag, b, drawPiles);
+    GameHandler::Instanciate(bag, b, drawPiles, p1, p2);
 
     //mise en page avec le widget main
     QWidget* main = new QWidget(this);
-    QVBoxLayout* vl=new QVBoxLayout(main);
+    QGridLayout* vl=new QGridLayout(main);
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    for (int i = 0; i < 2; i++) {
-        ptab[i] = new PlayersUI(this, i + 1);
-    }
-    this->board = new CompleteBoardUI(this, b);
+    ptab[0] = new PlayersUI(main, QString(p1.getName().c_str()), 1);
+    ptab[1] = new PlayersUI(main, QString(p2.getName().c_str()), 2);
+
+    this->board = new CompleteBoardUI(main, b);
     
-    QWidget* w = new QWidget(main);
 
-    vl->addWidget(ptab[0], 2, Qt::AlignBottom);
-    vl->addWidget(board, 10, Qt::AlignCenter);
-    vl->addWidget(ptab[1], 2, Qt::AlignBottom);
+    vl->addWidget(ptab[0],0, 0);
+    vl->addWidget(board, 1, 0);
+    vl->addWidget(ptab[1], 2, 0);
 
+    vl->setColumnStretch(0, 1);
+    vl->setRowStretch(1, 9);
+    vl->setRowStretch(2, 3);
+    vl->setRowStretch(0, 3);
     //on supprime les espace par défault
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
