@@ -4,7 +4,6 @@
 #include "Board.h"
 #include "Bag.h"
 #include "DrawPile.h"
-
 #include <iostream>
 using namespace std;
 

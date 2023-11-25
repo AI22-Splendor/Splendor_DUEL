@@ -28,7 +28,16 @@ Gemmes Board::prendreGemme(const int pos) const {
 
 bool Board::positionPasVide(const int pos) const {
 	if (pos < BOARD_SIZE) {
-		return gems[pos] == Gemmes::Vide;
+		return gems[pos] != Gemmes::Vide;
+	}
+	char* error = new char[35];
+	sprintf(error, "This position is out of the board: %d", pos);
+	throw new MyException(error);
+}
+
+Gemmes const Board::connaitreGemmes(const int pos)const {
+	if (pos < BOARD_SIZE) {
+		return gems[pos];
 	}
 	char* error = new char[35];
 	sprintf(error, "This position is out of the board: %d", pos);

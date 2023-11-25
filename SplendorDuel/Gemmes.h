@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <qstring>
 
 using namespace std;
 
@@ -24,5 +25,6 @@ enum Gemmes
 // L'or ne permet pas de payer que de l'or donc n'est pas inclus dans de genre de gemmes
 const unsigned int NB_GEMMES_PAIEMENTS = 6; 
 
+const QString gemmesToQstr(const Gemmes& g);
 
 ostream& operator<<(ostream& os, const Gemmes& gem);
