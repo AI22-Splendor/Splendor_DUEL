@@ -5,10 +5,11 @@
 #include "Board.h"
 #include "Action.h"
 #include "DrawPile.h"
+#include "Player.h"
 
 class GameHandler {
 public:
-	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles);
+	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player& player1, Player& player2);
 	static void destroy();
 	static inline GameHandler& getInstance(){ return *GameHandler::instance; }
 	static bool gameFinished();
@@ -20,6 +21,7 @@ public:
 	/// </summary>
 	/// <returns>le num du player</returns>
 	static int getPlayerTurn();
+
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
@@ -42,7 +44,8 @@ public:
 private:
 	static GameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles) : bag(bag), board(board), drawPiles(drawPiles), action(Action::MAIN_ACTION){};
+	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player& player1, Player& player2) 
+		: bag(bag), board(board), drawPiles(drawPiles), player1(player1), player2(player2), action(Action::MAIN_ACTION) {}
 	GameHandler(const GameHandler&)=delete;
 	~GameHandler(){}
 
@@ -51,5 +54,7 @@ private:
 	Bag& bag;
 	Board& board;
 	DrawPile** drawPiles;
+	Player& player1;
+	Player& player2;
 };
 

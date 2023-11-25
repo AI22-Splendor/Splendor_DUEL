@@ -6,6 +6,7 @@
 #include "GemmesContainerGUI.h"
 #include "CompleteBoardUI.h"
 #include "PlayersUI.h"
+#include "Player.h"
 
 /// <summary>
 /// Notre fenetre principale

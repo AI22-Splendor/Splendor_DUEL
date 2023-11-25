@@ -38,7 +38,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -110,6 +110,7 @@
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
     <QtMoc Include="PlayersUI.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Rules.h" />
     <QtMoc Include="BoardUI.h" />
     <ClInclude Include="Card.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGemsUI.cpp" />
     <ClCompile Include="PlayersUI.cpp" />
     <ClCompile Include="RemplirBoardUI.cpp" />

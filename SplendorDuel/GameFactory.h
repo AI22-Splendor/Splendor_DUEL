@@ -5,6 +5,7 @@
 #include "Bag.h"
 #include "DrawPile.h"
 #include <iostream>
+#include "Player.h"
 using namespace std;
 
 class GameFactory {
@@ -22,9 +23,6 @@ public:
 			if (i < 2) bag.addGemmes(Gemmes::Perle);
 		}
 		
-		Board& board = *(new Board);
-		board.remplirBoard(bag);
-		cout << board << "\n";
 
 		// TODO : une vraie analyse de comment générer les cartes
 		DrawPile** drawPiles;
@@ -45,43 +43,40 @@ private:
 	static void testBoard(Board& board, Bag& bag) {
 		cout << endl << "======================" << endl;
 		cout << board;
+		Player& player1 = *(new Player("Player 1"));
+		Player& player2 = *(new Player("Player 2"));
 
-		Gemmes gem1 = board.prendreGemme(12);
-		Gemmes gem2 = board.prendreGemme(0);
-		board.prendreGemme(1);
-		cout << endl << "=" << gem1 << "=" << gem2 << "===============" << endl;
-		cout << board;
+		bag.suppGemmes(Gemmes::Or);
+		bag.suppGemmes(Gemmes::Rouge, 3);
+		bag.suppGemmes(Gemmes::Vert, 2);
 
-		bag.addGemmes(gem1);
-		bag.addGemmes(gem2);
+		player1.addGems(Gemmes::Or, 1);
+		player1.addGems(Gemmes::Rouge, 3);
+		player1.addGems(Gemmes::Vert, 2);
+
+		Card testCard = *(new Card(3, 10, Gemmes::Vert, 1, 2));
+		testCard.setCost(Gemmes::Rouge, 3);
+		testCard.setCost(Gemmes::Vert, 2);
+		cout << player1.canBuyCard(testCard) << endl;
+
+		testCard.setCost(Gemmes::Vert, 3);
+		cout << player1.canBuyCard(testCard) << endl;
+
+		testCard.setCost(Gemmes::Rouge, 4);
+		cout << player1.canBuyCard(testCard) << endl;
+
+		testCard.setCost(Gemmes::Rouge, 3);
+		cout << player1.buyCard(testCard, bag);
+
+		cout << testCard << endl;
+
+		cout << "Prestige : " << player1.getPrestige()
+			<< " Crowns : " << player1.getNbCrowns() 
+			<< "\n Green discount : " << player1.getDiscount(Gemmes::Vert);
+
+		Board& board = *(new Board);
 		board.remplirBoard(bag);
-		cout << endl << "======================" << endl;
-		cout << board;
-	}
 
-	static void testDrawPile(DrawPile& drawPile) {
-		cout << drawPile << endl;
-
-		drawPile.melanger();
-
-		cout << "=Melange======================" << endl;
-		cout << drawPile << endl;
-
-		Card* c1 = drawPile.piocher();
-		Card* c2 = drawPile.piocher();
-		Card* c3 = drawPile.piocher();
-		cout << "=3 cartes piochees============" << endl;
-		cout << *c1 << " - " << *c2 << " - " << *c3 << endl;
-		cout << drawPile << endl;
-
-		cout << "=2 cartes remises=============" << endl;
-		cout << *c1 << endl;
-		drawPile.deposer(c2);
-		drawPile.deposer(c3);
-		cout << drawPile << endl;
-
-		cout << "=Melange======================" << endl;
-		drawPile.melanger();
-		cout << drawPile << endl;
+		return *(new SplendorDuel(bag, board, drawPiles, player1, player2));
 	}
 }; 

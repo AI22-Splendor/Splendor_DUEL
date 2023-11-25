@@ -8,14 +8,14 @@ using namespace std;
 
 //Constructeur
 //param : la taille du sac
-Bag::Bag(const int &n)
+Bag::Bag(const int n)
 {
 	this->bag = new Gemmes[n];
+	this->taille = n;
 	for (int i = 0; i < n; i++)
 	{
 		this->bag[i] = Gemmes::Vide;
 	}
-	this->taille = n;
 }
 
 //connaitre le nombre de Gemmes dans le sac
@@ -30,42 +30,47 @@ int Bag::getNbGemmes() const{
 
 //Ajouter une Gemme dans le sac
 //Param : Gemmes g : la couleur de la Gemmes
+//Param : int nbGemmes : nombre de gemmes a ajouter
 //return void
 //throw Exception si le sac est deja rempli
-void Bag::addGemmes(const Gemmes &g) {
-	if (this->getNbGemmes() == this->taille) {
+void Bag::addGemmes(const Gemmes &g, unsigned int nbGemmes) {
+	if ((this->getNbGemmes() + nbGemmes) > this->taille) {
 		//On creer notre Exception:
-		MyException exep("Erreur dans l'ajout d'une gemme, sac deja rempli");
+		MyException exep("Erreur dans l'ajout des gemmes, le sac ne peut pas accepter autant de gemmes");
 		throw exep;
 	}
 
-	//on cherche une place vide
+		//on cherche une place vide
 	for (int i = 0; i < this->getTaille(); i++) {
-		//si vide
+			//si vide
 		if (this->bag[i] == Gemmes::Vide) {
 			//on ajoute
 			this->bag[i] = g;
-			return;
+			nbGemmes--;
+			if (nbGemmes == 0) return;
 		}
 	}
 }
 
 //Retire une Gemme du Sac
 //Prerequis : le Sac dois en contenir une de ce type
-//param : le Type de Gemmes a supprimer
+//param : g - le Type de Gemmes a supprimer
+//param : nbGemmes - le nombre de gemmes a supprimer
 //throw Exception si on la possede pas
-void Bag::suppGemmes(const Gemmes &g) {
+void Bag::suppGemmes(const Gemmes g, unsigned int nbGemmes) {
 	//on cherche la gemme
+
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] == g) {
 			this->bag[i] = Gemmes::Vide;
-			return;
+			nbGemmes--;
+			if (nbGemmes == 0) return;
 		}
 	}
 
 	//On creer notre Exception:
 	//car le sac ne contenais pas cette Gemme
-	MyException exep("Erreur dans la suppresion d'une gemme, gemme manquante");
+	MyException exep("Pas assez de gemmes dans le bag pour en supprimer autant");
 	throw exep;
 }
 
