@@ -6,13 +6,14 @@
 #include "GemmesContainerGUI.h"
 #include "CompleteBoardUI.h"
 #include "PlayersUI.h"
+#include "Player.h"
 
 class SplendorDuel : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, QWidget* parent = nullptr);
+    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player& player1, Player& player2, QWidget* parent = nullptr);
     ~SplendorDuel();
 
     void keyPressEvent(QKeyEvent* e);
