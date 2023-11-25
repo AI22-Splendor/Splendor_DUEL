@@ -10,11 +10,11 @@
 using namespace std;
 
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, QWidget *parent):
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player& player1, Player& player2, QWidget *parent):
     QMainWindow(parent)
 {
     setWindowTitle("SplendorDuel");
-    GameHandler::Instanciate(bag, b, drawPiles);
+    GameHandler::Instanciate(bag, b, drawPiles, player1, player2);
     QWidget* main = new QWidget(this);
     QVBoxLayout* vl=new QVBoxLayout(main);
     main->setLayout(vl);
