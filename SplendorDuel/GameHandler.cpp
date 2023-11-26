@@ -15,11 +15,14 @@ void GameHandler::destroy() {
 }
 
 bool GameHandler::gameFinished() {
-	return true;
+	return Rules::playerWon(instance->player1) || Rules::playerWon(instance->player2);
 }
 
-void GameHandler::getWinner() {
-	return;
+const Player& GameHandler::getWinner() {
+	if (gameFinished()) {
+		return Rules::playerWon(instance->player1) ? instance->player1 : instance->player2;
+	}
+	throw new MyException("No player won yet");
 }
 
 void GameHandler::nextAction() {

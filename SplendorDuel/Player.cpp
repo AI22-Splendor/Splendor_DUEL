@@ -40,14 +40,17 @@ unsigned int Player::getNbCrowns() const {
 	return nbCrowns;
 }
 
-unsigned int Player::getPrestige() const {
+unsigned int Player::getPrestige(Gemmes gem) const {
 	unsigned int prestige = 0;
 	list<const Card*>::const_iterator it;
 	for (it = cards.cbegin(); it != cards.cend(); it++) {
-		prestige += (*it)->getPointsPrestige();
+		// Since an empty Gem represents all the types of discount at once
+		// we can use it to calculate the total amount of prestige and type specific prestige 
+		if (gem == Gemmes::Vide || (*it)->getDiscountType() == gem) prestige += (*it)->getPointsPrestige();
 	}
 	return prestige;
 }
+
 
 unsigned int Player::getDiscount(Gemmes gem) const {
 	unsigned int discount = 0;
