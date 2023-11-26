@@ -44,3 +44,11 @@ void PrivilegeHandler::putPrivilegeBackOnBoard(const Player& player) {
 		}
 	}
 }
+
+bool PrivilegeHandler::playerHasPrivilege(const Player& player) {
+	PrivilegePosition playerPos = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
+	for (int i = 0; i < 3; i++) {
+		if (singleton->emplacementsPrivilege[i] == playerPos) return true;
+	}
+	return false;
+}

@@ -40,8 +40,12 @@ public:
 private:
 	static GameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player& player1, Player& player2) 
-		: bag(bag), board(board), drawPiles(drawPiles), player1(player1), player2(player2), action(Action::MAIN_ACTION) {}
+	GameHandler(Bag& bag, Board& board, DrawPile* drawPiles[3], Player& player1, Player& player2)
+		: bag(bag), board(board), drawPiles(drawPiles), player1(player1), player2(player2), action(Action::MAIN_ACTION) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < i + 3; j++) displayedCards[i].push_back(drawPiles[i]->piocher());
+		}
+	}
 	GameHandler(const GameHandler&)=delete;
 	~GameHandler(){}
 
@@ -50,6 +54,7 @@ private:
 	Bag& bag;
 	Board& board;
 	DrawPile** drawPiles;
+	vector<vector<Card*>> displayedCards;
 	Player& player1;
 	Player& player2;
 	friend class PrivilegeHandler;

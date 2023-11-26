@@ -11,7 +11,8 @@ int main(int argc, char *argv[])
     // Before is testing code
     QApplication a(argc, argv);
    
-    SplendorDuel& w = GameFactory::buildNewSplendor();
-    w.show();
+    SplendorDuel& game = GameFactory::buildNewSplendor();
+    game.show();
+    game.start();
     return a.exec();
 }

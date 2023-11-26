@@ -40,6 +40,13 @@ public:
 	/// <returns>la gemme</returns>
 	Gemmes const connaitreGemmes(const int pos)const;
 
+	/// <summary>
+	/// Verifie si une gemme d'un type spécifique est sur le plateau
+	/// </summary>
+	/// <param name="gem">Type de la gemme a trouver</param>
+	/// <return>True si une gemme du type est présente, false sinon</return>
+	bool hasGemOfType(Gemmes gem) const;
+
 	class iterator {
 	public:
 		iterator(const Board& board) : board(board) {
