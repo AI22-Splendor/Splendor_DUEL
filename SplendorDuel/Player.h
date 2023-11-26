@@ -96,6 +96,8 @@ public:
 	/// <returns>True if bought the card correctly, false if not</returns>
 	bool buyCard(const Card& card, Bag& gameBag);
 
+	bool operator==(const Player& player) { return name.compare(player.name) == 0; }
+
 // Protected for future possible AI impl
 protected:
 	string name;

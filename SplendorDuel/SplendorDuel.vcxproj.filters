@@ -51,6 +51,12 @@
     <Filter Include="Header Files\UI\Player">
       <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\CardEffects">
+      <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CardEffects">
+      <UniqueIdentifier>{fbe71395-51b6-41d1-a0c4-2ecc375d3b13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -102,6 +108,18 @@
     </ClInclude>
     <ClInclude Include="StyleDecorator.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEffect.h">
+      <Filter>Header Files\CardEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEffectPlayAgain.h">
+      <Filter>Header Files\CardEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="CardEffectTakePrivilege.h">
+      <Filter>Header Files\CardEffects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +179,18 @@
     </ClCompile>
     <ClCompile Include="PlayersUI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffect.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectPlayAgain.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectTakePrivilege.cpp">
+      <Filter>Source Files\CardEffects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,10 @@ const Player& GameHandler::getWinner() {
 	throw new MyException("No player won yet");
 }
 
+void GameHandler::replayTurn() {
+	return;
+}
+
 void GameHandler::nextAction() {
 	return;
 }
@@ -68,6 +72,6 @@ bool GameHandler::gemmesPick(const int *posTab){
 	}
 }
 
-int GameHandler::getPlayerTurn() {
-	return 1;
+bool GameHandler::isPlayer1Turn() {
+	return !instance->player1Joue;
 }
