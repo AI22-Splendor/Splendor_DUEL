@@ -52,15 +52,16 @@ const int GameHandler::gemmesToSelect() {
 bool GameHandler::gemmesPick(const int *posTab){
 	switch (Rules::isPossibleTakeGems(instance->board, posTab, instance->action))
 	{
-	case Action::IMPOSSIBLE:
-		return false;
-
 	case Action::MAIN_ACTION:
+		cout << "ok";
 		for (int i = 0; i < 3; i++) {
-			if(posTab[i]!=-1)
-		 		instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
+			if (posTab[i] != -1)
+				instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
 		}
 		return true;
+	case Action::IMPOSSIBLE:
+		cout << "impossible";
+		return false;
 	case Action::ADD_PRIVILEGE:
 		//TODO
 		if (instance->action == Action::MAIN_ACTION) {
@@ -75,5 +76,6 @@ bool GameHandler::gemmesPick(const int *posTab){
 }
 
 bool GameHandler::isPlayer1Turn() {
-	return !instance->player1Joue;
+	return true;
+	//return !instance->player1Joue;
 }

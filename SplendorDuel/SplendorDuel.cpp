@@ -1,5 +1,5 @@
 #include "SplendorDuel.h"
-
+#include "Board.h"
 #include "BoardUI.h"
 
 #include "GameHandler.h"
