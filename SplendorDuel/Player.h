@@ -39,7 +39,7 @@ public:
 	/// </summary>
 	/// <param name="nbAdd">Number of gems to add (by default 1)</param>
 	/// <returns>True is the gems can be added, false if not</returns>
-	bool canAddGems(const unsigned int nbAdd = 1) const;
+	int canAddGems(const unsigned int nbAdd = 1) const;
 
 	/// <summary>
 	/// Adds gems to the usér's gems
@@ -95,6 +95,12 @@ public:
 	/// <param name="gameBag">Bag to fill with the removed gems</param>
 	/// <returns>True if bought the card correctly, false if not</returns>
 	bool buyCard(const Card& card, Bag& gameBag);
+
+	/// <summary>
+	/// retourne le nombre de gemmes en possesion du joueur
+	/// </summary>
+	/// <returns></returns>
+	unsigned int getNBGemmes()const;
 
 	bool operator==(const Player& player) { return name.compare(player.name) == 0; }
 

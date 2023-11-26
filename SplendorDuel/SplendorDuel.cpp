@@ -11,7 +11,7 @@
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, Player p2):
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2):
     QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
@@ -24,8 +24,8 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, 
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    ptab[0] = new PlayersUI(main, QString(p1.getName().c_str()), 1);
-    ptab[1] = new PlayersUI(main, QString(p2.getName().c_str()), 2);
+    ptab[0] = new PlayersUI(main, QString(p1->getName().c_str()), 1);
+    ptab[1] = new PlayersUI(main, QString(p2->getName().c_str()), 2);
 
     this->board = new CompleteBoardUI(main, b);
     

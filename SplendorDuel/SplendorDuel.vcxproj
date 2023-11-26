@@ -107,7 +107,7 @@
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
     <QtMoc Include="CardUI.h" />
-    <ClInclude Include="BoardCard.h" />
+    <QtMoc Include="BoardCard.h" />
     <ClInclude Include="CardEffect.h" />
     <ClInclude Include="CardEffectPlayAgain.h" />
     <ClInclude Include="CardEffectTakePrivilege.h" />
