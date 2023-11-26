@@ -64,8 +64,8 @@ void PlayerGemsUI::paintEvent(QPaintEvent* event) {
 void PlayerGemsUI::resizeEvent(QResizeEvent* event) {
 	QWidget::resizeEvent(event);
 	//on force que les gemmes soit carrer ou au moins width > height/2
-	int min = qMin(width() / 7, height());
-	resize(min*7, min);
+	int min = qMin(width() / 7, height()/3*2);
+	resize(min*7, min/2*3);
 	this->update();
 }
 

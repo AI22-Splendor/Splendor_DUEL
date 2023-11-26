@@ -50,14 +50,16 @@ bool GameHandler::gemmesPick(const int *posTab){
 
 	case Action::MAIN_ACTION:
 		for (int i = 0; i < 3; i++) {
-		 	instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
+			if(posTab[i]!=-1)
+		 		instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
 		}
 		return true;
 	case Action::ADD_PRIVILEGE:
 		//TODO
 		if (instance->action == Action::MAIN_ACTION) {
 			for (int i = 0; i < 3; i++) {
-				instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
+				if (posTab[i] != -1)
+					instance->bag.addGemmes(instance->board.prendreGemme(posTab[i]));
 			}
 		}
 		//TODO LE PRIVILEGE

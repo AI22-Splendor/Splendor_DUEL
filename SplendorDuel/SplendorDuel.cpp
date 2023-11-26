@@ -66,4 +66,7 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
     if (e->key() == Qt::Key_N && e->type()==QEvent::KeyPress && e->isAutoRepeat()== false){
         instance->board->changeDirection();
     }
+    if (e->key() == Qt::Key_L && e->type() == QEvent::KeyPress && e->isAutoRepeat() == false) {
+        instance->board->changeNbGemmesTOSelect();
+    }
 };

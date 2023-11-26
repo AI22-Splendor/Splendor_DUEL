@@ -107,6 +107,7 @@
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
     <QtMoc Include="CardUI.h" />
+    <ClInclude Include="BoardCard.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
@@ -128,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="BoardCard.cpp" />
     <ClCompile Include="CardUI.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />

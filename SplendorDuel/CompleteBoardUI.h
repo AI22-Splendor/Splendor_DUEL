@@ -20,6 +20,8 @@ public:
 
 	//redistribue l'event au bon composant
 	inline void changeDirection(){ board.changeDirection(); };
+	//redistribue l'event au bon composant
+	inline void changeNbGemmesTOSelect() { board.changeNbGemmes(); };
 	//redistribue l'event de rmeplir le board
 	inline void remplirBoard(Board b) { board.setGemmes(b); };
 private:

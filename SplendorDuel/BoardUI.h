@@ -38,6 +38,11 @@ public:
 	void changeDirection();
 
 	/// <summary>
+	/// change le nombre de gemmes selectionner
+	/// </summary>
+	void changeNbGemmes();
+
+	/// <summary>
 	/// une gemmes est clicker
 	/// on donne donc l'information au GH avec le tableau des gemmes selectionner et si il les retire (renvoie true)
 	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajouté au Joueur qui joue
@@ -61,7 +66,7 @@ private:
 		DIAGONALED = 2,
 		DIAGONALEL = 3
 	};
-
+	int nbGemmes;
 	direction direction;
 	//tableau des gemmes selectionner
 	int posSelect[3];
