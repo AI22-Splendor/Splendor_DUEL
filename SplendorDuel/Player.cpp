@@ -25,9 +25,9 @@ bool Player::addGems(const Gemmes gem, const unsigned int nbAdd) {
 	return false;
 }
 
-bool Player::removeGem(Gemmes gem) {
-	if (gems[gem] <= 0 || gem == Gemmes::Vide) return false;
-	gems[gem]--;
+bool Player::removeGem(Gemmes gem, const unsigned int nbRemove) {
+	if ((gems[gem] - nbRemove) < 0 || gem == Gemmes::Vide) return false;
+	gems[gem] -= nbRemove;
 	return true;
 }
 

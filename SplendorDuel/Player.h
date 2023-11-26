@@ -54,8 +54,9 @@ public:
 	/// Removes this gem from the player's inventory
 	/// </summary>
 	/// <param name="gem">Gem to remove</param>
+	/// <param name="nbRemove">Number of gems to remove (by default 1)</param>
 	/// <returns>True if the gem was removed, false if not</returns>
-	bool removeGem(Gemmes gem);
+	bool removeGem(Gemmes gem, const unsigned int nbRemove = 1);
 	
 	/// <summary>
 	/// Returns the number of crowns of the player 
