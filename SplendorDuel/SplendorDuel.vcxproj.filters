@@ -51,6 +51,8 @@
     <Filter Include="Header Files\UI\Player">
       <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\img\Card">
+      <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     <Filter Include="Source Files\CardEffects">
       <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
     </Filter>
@@ -201,6 +203,14 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CardEffect.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectPlayAgain.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectTakePrivilege.cpp">
+      <Filter>Source Files\CardEffects</Filter>
     <ClCompile Include="CardEffect.cpp">
       <Filter>Source Files\CardEffects</Filter>
     </ClCompile>

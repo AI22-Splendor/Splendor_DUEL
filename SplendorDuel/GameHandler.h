@@ -54,4 +54,3 @@ private:
 	Player& player2;
 	friend class PrivilegeHandler;
 };
-
