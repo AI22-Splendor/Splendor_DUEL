@@ -169,8 +169,9 @@ void BoardUI::changeDirection(){
 		{
 			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 		}
+		if (i > 0)
+			posSelect[i] = -1;
 	}
-	//TODO BU DIRECTION H -> V quand nbGemme=2
 	if (posSelect[0] != -1)
 		this->hoverGemmes(posSelect[0], true);
 }
