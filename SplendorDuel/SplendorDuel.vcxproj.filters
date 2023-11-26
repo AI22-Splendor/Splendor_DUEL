@@ -51,11 +51,16 @@
     <Filter Include="Header Files\UI\Player">
       <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\img\Card">
+      <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     <Filter Include="Source Files\CardEffects">
       <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\CardEffects">
       <UniqueIdentifier>{fbe71395-51b6-41d1-a0c4-2ecc375d3b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\img\Card">
+      <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,8 +111,11 @@
     <ClInclude Include="GemmesContainerGUI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="StyleDecorator.h">
-      <Filter>Header Files\Util</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoardCard.h">
+      <Filter>Header Files\UI\Board</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
@@ -159,9 +167,6 @@
     <ClCompile Include="Rules.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="StyleDecorator.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="SplendorDuel.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -177,8 +182,23 @@
     <ClCompile Include="PlayerGemsUI.cpp">
       <Filter>Source Files\UI\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayersUI.cpp">
+    <ClCompile Include="CardUI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoardCard.cpp">
+      <Filter>Source Files\UI\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCardUI.cpp">
+      <Filter>Source Files\UI\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerNameUI.cpp">
+      <Filter>Source Files\UI\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayersUI.cpp">
+      <Filter>Source Files\UI\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
@@ -191,12 +211,17 @@
     </ClCompile>
     <ClCompile Include="CardEffectTakePrivilege.cpp">
       <Filter>Source Files\CardEffects</Filter>
+    <ClCompile Include="CardEffect.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectPlayAgain.cpp">
+      <Filter>Source Files\CardEffects</Filter>
+    </ClCompile>
+    <ClCompile Include="CardEffectTakePrivilege.cpp">
+      <Filter>Source Files\CardEffects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Pictures\vert.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="noir.png">
       <Filter>Resource Files\img</Filter>
     </Image>
@@ -230,6 +255,24 @@
     <Image Include="playergemmes.png">
       <Filter>Resource Files\img</Filter>
     </Image>
+    <Image Include="..\..\..\..\..\Pictures\vert.jpg">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="playerFond.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="fond.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="Card3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="Card1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="Card2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">
@@ -255,8 +298,17 @@
     <QtMoc Include="PlayerGemsUI.h">
       <Filter>Header Files\UI\Player</Filter>
     </QtMoc>
-    <QtMoc Include="PlayersUI.h">
+    <QtMoc Include="CardUI.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayersUI.h">
+      <Filter>Header Files\UI\Player</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayerNameUI.h">
+      <Filter>Header Files\UI\Player</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayerCardUI.h">
+      <Filter>Header Files\UI\Player</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

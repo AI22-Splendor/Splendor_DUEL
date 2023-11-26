@@ -1,5 +1,5 @@
 #include "SplendorDuel.h"
-
+#include "Board.h"
 #include "BoardUI.h"
 
 #include "GameHandler.h"
@@ -7,44 +7,48 @@
 #include <iostream>
 #include <qevent.h>
 #include "PlayerGemsUI.h"
+
 using namespace std;
+SplendorDuel* SplendorDuel::instance = nullptr;
 
-
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player& player1, Player& player2, QWidget *parent):
-    QMainWindow(parent)
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, Player p2):
+    QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
-    GameHandler::Instanciate(bag, b, drawPiles, player1, player2);
+    //on instance notre GameHandler
+    GameHandler::Instanciate(bag, b, drawPiles, p1, p2);
+
+    //mise en page avec le widget main
     QWidget* main = new QWidget(this);
-    QVBoxLayout* vl=new QVBoxLayout(main);
+    QGridLayout* vl=new QGridLayout(main);
     main->setLayout(vl);
 
-    ptab = new PlayersUI*[2]();
-    for (int i = 0; i < 2; i++) {
-        ptab[i] = new PlayersUI(this, i + 1);
-    }
-    this->board = new CompleteBoardUI(this, b);
+    this->ptab = new PlayersUI*[2]();
+    ptab[0] = new PlayersUI(main, QString(p1.getName().c_str()), 1);
+    ptab[1] = new PlayersUI(main, QString(p2.getName().c_str()), 2);
+
+    this->board = new CompleteBoardUI(main, b);
     
-    QWidget* w = new QWidget(main);
 
-    vl->addWidget(ptab[0], Qt::AlignBottom);
-    vl->addWidget(board, Qt::AlignCenter | Qt::AlignHCenter);
-    vl->addWidget(ptab[1], Qt::AlignBottom);
+    vl->addWidget(ptab[0],0, 0);
+    vl->addWidget(board, 1, 0);
+    vl->addWidget(ptab[1], 2, 0);
 
+    vl->setColumnStretch(0, 1);
+    vl->setRowStretch(1, 9);
+    vl->setRowStretch(2, 3);
+    vl->setRowStretch(0, 3);
+    //on supprime les espace par défault
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
-
-    vl->setStretch(0, 2);
-    vl->setStretch(1, 10);
-    vl->setStretch(2, 2);
-    setCentralWidget(main);
-    //setCentralWidget(board);
+    this->setCentralWidget(main);
 }
 
 SplendorDuel::~SplendorDuel()
 {
-    delete board;
-    delete[] ptab;
+    delete instance->board;
+    delete[] instance->ptab;
+    delete SplendorDuel::instance;
 }
 
 void SplendorDuel::start() {
@@ -54,12 +58,15 @@ void SplendorDuel::start() {
 }
 
 bool SplendorDuel::close(){
-    QMainWindow::close();
+    instance->QMainWindow::close();
     return true;
 }
 
 void SplendorDuel::keyPressEvent(QKeyEvent* e) { 
     if (e->key() == Qt::Key_N && e->type()==QEvent::KeyPress && e->isAutoRepeat()== false){
-        board->changeDirection();
+        instance->board->changeDirection();
+    }
+    if (e->key() == Qt::Key_L && e->type() == QEvent::KeyPress && e->isAutoRepeat() == false) {
+        instance->board->changeNbGemmesTOSelect();
     }
 };
