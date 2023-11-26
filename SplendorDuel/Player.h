@@ -54,8 +54,9 @@ public:
 	/// Removes this gem from the player's inventory
 	/// </summary>
 	/// <param name="gem">Gem to remove</param>
+	/// <param name="nbRemove">Number of gems to remove (by default 1)</param>
 	/// <returns>True if the gem was removed, false if not</returns>
-	bool removeGem(Gemmes gem);
+	bool removeGem(Gemmes gem, const unsigned int nbRemove = 1);
 	
 	/// <summary>
 	/// Returns the number of crowns of the player 
@@ -63,11 +64,13 @@ public:
 	/// <returns>The number of crowns of the player</returns>
 	unsigned int getNbCrowns() const;
 
+
 	/// <summary>
-	/// Returns the number of prestige of the player 
+	/// Returns the number of prestige of the player for a gem type (the multi discount gem type included in all of them)
 	/// </summary>
-	/// <returns>The number of prestige of the player</returns>
-	unsigned int getPrestige() const;
+	/// <param name=gem>Gem type to investigate (by default Gemmes::Vide), if nothing is entered, we count the sum for all the gems</param>
+	/// <returns>The number of prestige of the player for the specific gem type</returns>
+	unsigned int getPrestige(Gemmes gem = Gemmes::Vide) const;
 
 	/// <summary>
 	/// Returns the total discount on a type of gem
@@ -92,6 +95,8 @@ public:
 	/// <param name="gameBag">Bag to fill with the removed gems</param>
 	/// <returns>True if bought the card correctly, false if not</returns>
 	bool buyCard(const Card& card, Bag& gameBag);
+
+	bool operator==(const Player& player) { return name.compare(player.name) == 0; }
 
 // Protected for future possible AI impl
 protected:

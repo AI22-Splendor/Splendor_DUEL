@@ -1,4 +1,5 @@
 #pragma once
+#include "Player.h"
 
 
 class PrivilegeHandler {
@@ -10,7 +11,8 @@ public:
 
 	static PrivilegeHandler* getInstance();
 
-
+	static void givePlayerPrivilege(const Player& player);
+	static void putPrivilegeBackOnBoard(const Player& player);
 private:
 	// On empêche la construction du singleton
 	PrivilegeHandler() {}
@@ -18,6 +20,6 @@ private:
 	static PrivilegeHandler* singleton;
 	enum PrivilegePosition { Board = 1, Player1 = 2, Player2 = 3 };
 
-	PrivilegePosition* emplacementsPrivilege = new PrivilegePosition[3];
+	PrivilegePosition emplacementsPrivilege[3];
 };
 
