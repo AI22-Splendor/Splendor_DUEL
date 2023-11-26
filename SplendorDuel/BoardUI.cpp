@@ -208,8 +208,13 @@ void BoardUI::clickGemmes(Gemmes g) {
 	//si les règles sont ok
 	if (GameHandler::gemmesPick(posSelect)) {
 		for (int i = 0; i < 3; i++) {
-			if (posSelect[i] != -1) {
-				((SplendorDuel*)this->topLevelWidget())->addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), GameHandler::getPlayerTurn());
+			if (posSelect[i] == -1)
+				possible = false;
+		}
+		//si on a bien 3 gemmes et que les règles sont ok
+		if (possible && GameHandler::gemmesPick(posSelect)) {
+			for (int i = 0; i < 3; i++) {
+				((SplendorDuel*)this->topLevelWidget())->addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), GameHandler::isPlayer1Turn() ? 0 : 1);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;

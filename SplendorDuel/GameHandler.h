@@ -6,6 +6,7 @@
 #include "Action.h"
 #include "DrawPile.h"
 #include "Player.h"
+#include "CardEffect.h"
 
 class GameHandler {
 public:
@@ -13,9 +14,10 @@ public:
 	static void destroy();
 	static inline GameHandler& getInstance() { return *GameHandler::instance; }
 	static bool gameFinished();
-	static void getWinner();
+	static const Player& getWinner();
+	static void replayTurn();
 	static void nextAction();
-	static int getPlayerTurn();
+	static bool isPlayer1Turn();
 
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
@@ -32,7 +34,7 @@ public:
 	static bool gemmesPick(const int* posTab);
 
 	/// <summary>
-	/// Remplirle Board Avec le sac
+	/// Remplir le Board Avec le sac
 	/// </summary>
 	static const Board remplirBoard();
 private:
@@ -44,10 +46,12 @@ private:
 	~GameHandler() {}
 
 	Action action;
-	bool player1Joue = true;;
+	bool player1Joue = true;
 	Bag& bag;
 	Board& board;
 	DrawPile** drawPiles;
 	Player& player1;
 	Player& player2;
+
+	friend class PrivilegeHandler;
 };
