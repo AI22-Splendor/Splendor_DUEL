@@ -15,10 +15,17 @@ void GameHandler::destroy() {
 }
 
 bool GameHandler::gameFinished() {
-	return true;
+	return Rules::playerWon(instance->player1) || Rules::playerWon(instance->player2);
 }
 
-void GameHandler::getWinner() {
+const Player& GameHandler::getWinner() {
+	if (gameFinished()) {
+		return Rules::playerWon(instance->player1) ? instance->player1 : instance->player2;
+	}
+	throw new MyException("No player won yet");
+}
+
+void GameHandler::replayTurn() {
 	return;
 }
 
@@ -65,6 +72,6 @@ bool GameHandler::gemmesPick(const int *posTab){
 	}
 }
 
-int GameHandler::getPlayerTurn() {
-	return 1;
+bool GameHandler::isPlayer1Turn() {
+	return !instance->player1Joue;
 }

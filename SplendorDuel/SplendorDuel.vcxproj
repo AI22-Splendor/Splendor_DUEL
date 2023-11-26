@@ -106,6 +106,9 @@
     <ClInclude Include="Board.h" />
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
+    <ClInclude Include="CardEffect.h" />
+    <ClInclude Include="CardEffectPlayAgain.h" />
+    <ClInclude Include="CardEffectTakePrivilege.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
@@ -126,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CardEffect.cpp" />
+    <ClCompile Include="CardEffectPlayAgain.cpp" />
+    <ClCompile Include="CardEffectTakePrivilege.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerGemsUI.cpp" />
