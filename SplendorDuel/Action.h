@@ -10,6 +10,6 @@ enum Action {
 	FILL_BOARD = 3,
 	ADD_PRIVILEGE = 4,
 	BUY_CARD = 5,
-	
+	SUPP_GEMS = 6,
 	IMPOSSIBLE = 10,
 };

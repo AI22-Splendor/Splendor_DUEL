@@ -12,13 +12,13 @@ PlayerCardUI::PlayerCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
 
 	for (int i = 0; i < 6; i++) {
 		if (i == 5) {
-			CardUI* c = new CardUI(this, QString());
-			c->ajouterCarte("./Card2.png");
-			c->ajouterCarte("./Card3.png");
+			CardUI* c = new CardUI(this, QString("./res/Card1.png"));
+			c->ajouterCarte("./res/Card2.png");
+			c->ajouterCarte("./res/Card3.png");
 			g->addWidget(c, 0, i);
 		}
 		else {
-			g->addWidget(new CardUI(this, QString()), 0, i);
+			g->addWidget(new CardUI(this, QString("./res/1.png")), 0, i);
 		}
 	}
 

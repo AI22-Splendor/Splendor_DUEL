@@ -107,7 +107,7 @@
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
     <QtMoc Include="CardUI.h" />
-    <ClInclude Include="BoardCard.h" />
+    <QtMoc Include="BoardCard.h" />
     <ClInclude Include="CardEffect.h" />
     <ClInclude Include="CardEffectPlayAgain.h" />
     <ClInclude Include="CardEffectTakePrivilege.h" />
@@ -158,23 +158,25 @@
     <ClCompile Include="SplendorDuel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Pictures\vert.jpg" />
-    <Image Include="actions.png" />
-    <Image Include="blanc.png" />
-    <Image Include="bleu.png" />
-    <Image Include="Card1.png" />
-    <Image Include="Card2.png" />
-    <Image Include="Card3.png" />
-    <Image Include="fond.png" />
-    <Image Include="noir.png" />
-    <Image Include="or.png" />
-    <Image Include="perle.png" />
-    <Image Include="plateau.png" />
-    <Image Include="playerFond.png" />
-    <Image Include="playergemmes.png" />
-    <Image Include="remplir.png" />
-    <Image Include="rouge.png" />
-    <Image Include="vert.png" />
+    <Image Include="res\1.png" />
+    <Image Include="res\2.png" />
+    <Image Include="res\3.png" />
+    <Image Include="res\actions.png" />
+    <Image Include="res\blanc.png" />
+    <Image Include="res\bleu.png" />
+    <Image Include="res\Card1.png" />
+    <Image Include="res\Card2.png" />
+    <Image Include="res\Card3.png" />
+    <Image Include="res\fond.png" />
+    <Image Include="res\noir.png" />
+    <Image Include="res\or.png" />
+    <Image Include="res\perle.png" />
+    <Image Include="res\plateau.png" />
+    <Image Include="res\playerFond.png" />
+    <Image Include="res\playergemmes.png" />
+    <Image Include="res\remplir.png" />
+    <Image Include="res\rouge.png" />
+    <Image Include="res\vert.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc" />

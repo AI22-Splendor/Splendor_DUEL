@@ -1,10 +1,11 @@
 #include "PlayerGemsUI.h"
 #include <qpainter.h>
 #include <qpixmap.h>
+#include "GameHandler.h"
 #include "Image.h"
 #include <qgridlayout.h>
 
-PlayerGemsUI::PlayerGemsUI(QWidget* parent): GemmesContainerGUI(parent){
+PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum): GemmesContainerGUI(parent), pnum(pnum){
 	this->gem =new GemmesUI*[7]();
 
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -37,7 +38,6 @@ PlayerGemsUI::PlayerGemsUI(QWidget* parent): GemmesContainerGUI(parent){
 				boutton->setGemmes(Gemmes::Or);
 				break;
 			}
-			boutton->setNb(4);
 			grid->addWidget(boutton, 1, i + 1);
 			gem[i] = boutton;
 	}
@@ -75,4 +75,12 @@ void PlayerGemsUI::gemsAdd(const Gemmes& g) {
 
 void PlayerGemsUI::gemsSupp(const Gemmes& g) {
 	gem[g]->setNb(gem[g]->getNb() - 1);
+}
+
+void PlayerGemsUI::clickGemmes(Gemmes g) {
+	if (this->pnum == 1 && GameHandler::isPlayer1Turn() || this->pnum == 2 && !GameHandler::isPlayer1Turn()) {
+		if (GameHandler::suppPlayerGems(g)) {
+			this->gemsSupp(g);
+		}
+	}
 }

@@ -7,11 +7,12 @@
 #include <iostream>
 #include <qevent.h>
 #include "PlayerGemsUI.h"
+#include "BoardCard.h"
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, Player p2):
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2):
     QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
@@ -24,14 +25,21 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player p1, 
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    ptab[0] = new PlayersUI(main, QString(p1.getName().c_str()), 1);
-    ptab[1] = new PlayersUI(main, QString(p2.getName().c_str()), 2);
+    ptab[0] = new PlayersUI(main, QString(p1->getName().c_str()), 1);
+    ptab[1] = new PlayersUI(main, QString(p2->getName().c_str()), 2);
+    QWidget* com = new QWidget(main);
 
     this->board = new CompleteBoardUI(main, b);
-    
+    QHBoxLayout* hbox = new QHBoxLayout();
+    com->setLayout(hbox);
+    hbox->setSpacing(0);
+    hbox->setContentsMargins(0, 0, 0, 0);
+    //lezs persos
+    hbox->addWidget(board);
+    hbox->addWidget(new BoardCardUI(main));
 
     vl->addWidget(ptab[0],0, 0);
-    vl->addWidget(board, 1, 0);
+    vl->addWidget(com, 1, 0);
     vl->addWidget(ptab[1], 2, 0);
 
     vl->setColumnStretch(0, 1);
