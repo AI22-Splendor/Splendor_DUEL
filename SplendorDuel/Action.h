@@ -14,5 +14,6 @@ enum Action {
 	RESERV_CARD = 4,
 	BUY_CARD = 5,
 	
+	ADD_PRIVILEGE = 9,
 	IMPOSSIBLE = 10,
 };
