@@ -266,6 +266,42 @@
     <Image Include="res\2.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
+    <Image Include="res\0.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Blanc2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">

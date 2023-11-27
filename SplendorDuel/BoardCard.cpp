@@ -17,6 +17,12 @@ BoardCardUI::BoardCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
 		s.append(QString(".png"));
 		CardUI* c = new CardUI(this, s);
 		g->addWidget(c, i, 0);
+		for (int i = 0; i < 11; i++) {
+			QString s = "./res/Blanc";
+			s.append(QString::number(i));
+			s.append(QString(".png"));
+			c->ajouterCarte(s);
+		}
 	}
 	for (int i = 0; i < 3; i++) {
 		CardUI* c = new CardUI(this, QString("./res/Card1.png"));

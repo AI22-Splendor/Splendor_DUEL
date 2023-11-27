@@ -158,11 +158,23 @@
     <ClCompile Include="SplendorDuel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\0.png" />
     <Image Include="res\1.png" />
     <Image Include="res\2.png" />
     <Image Include="res\3.png" />
     <Image Include="res\actions.png" />
     <Image Include="res\blanc.png" />
+    <Image Include="res\Blanc1.png" />
+    <Image Include="res\Blanc10.png" />
+    <Image Include="res\Blanc11.png" />
+    <Image Include="res\Blanc2.png" />
+    <Image Include="res\Blanc3.png" />
+    <Image Include="res\Blanc4.png" />
+    <Image Include="res\Blanc5.png" />
+    <Image Include="res\Blanc6.png" />
+    <Image Include="res\Blanc7.png" />
+    <Image Include="res\Blanc8.png" />
+    <Image Include="res\Blanc9.png" />
     <Image Include="res\bleu.png" />
     <Image Include="res\Card1.png" />
     <Image Include="res\Card2.png" />
