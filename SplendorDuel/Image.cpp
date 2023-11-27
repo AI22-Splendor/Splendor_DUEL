@@ -4,17 +4,17 @@
 Image* Image::instance = nullptr;
 
 Image::Image() {
-	blanc = QPixmap("./blanc.png");
-	noir = QPixmap("./noir.png");
-	vert = QPixmap("./vert.png");
-	rouge = QPixmap("./rouge.png");
-	perle = QPixmap("./perle.png");
-	gold = QPixmap("./or.png");
-	bleu = QPixmap("./bleu.png");
-	plateau = QPixmap("./plateau.png");
-	underPlat = QPixmap("./actions.png");
-	remplir = QPixmap("./remplir.png");
-	playerGems = QPixmap("./playergemmes.png");
+	blanc = QPixmap("./res/blanc.png");
+	noir = QPixmap("./res/noir.png");
+	vert = QPixmap("./res/vert.png");
+	rouge = QPixmap("./res/rouge.png");
+	perle = QPixmap("./res/perle.png");
+	gold = QPixmap("./res/or.png");
+	bleu = QPixmap("./res/bleu.png");
+	plateau = QPixmap("./res/plateau.png");
+	underPlat = QPixmap("./res/actions.png");
+	remplir = QPixmap("./res/remplir.png");
+	playerGems = QPixmap("./res/playergemmes.png");
 }
 
 void Image::destroy(){

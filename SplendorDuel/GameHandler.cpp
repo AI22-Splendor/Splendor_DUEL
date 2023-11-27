@@ -54,33 +54,23 @@ const int GameHandler::gemmesToSelect() {
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
-	switch (Rules::isPossibleTakeGems(instance->board, posTab, instance->action))
+	if (Rules::isPossibleTakeGems(instance->board, posTab))
 	{
-	case Action::ADD_PRIVILEGE:
-		//TODO LE PRIVILEGE
-
-	case (Action::MAIN_ACTION || Action::ADD_PRIVILEGE):
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
 				//on ajoute la gemme au joueur
 				if (isPlayer1Turn()) {
 					instance->player1.addGems(instance->board.prendreGemme(posTab[i]), 1);
-					if (instance->player1.getNBGemmes()>10) {
-						instance->action = Action::SUPP_GEMS;
-					}
 				}
 				else {
 					instance->player2.addGems(instance->board.prendreGemme(posTab[i]), 1);
-					if (instance->player2.getNBGemmes() > 10) {
-						instance->action = Action::SUPP_GEMS;
-					}
 				}
 			}
 		}
 		GameHandler::nextAction();
 		return true;
-
-	case Action::IMPOSSIBLE:
+	}
+	else {
 		return false;
 	}
 }

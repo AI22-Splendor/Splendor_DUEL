@@ -67,7 +67,7 @@ private:
 
     void keyPressEvent(QKeyEvent* e);
     void paintEvent(QPaintEvent* event) {
-        QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./fond.png"));
+        QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/fond.png"));
     }
 
     //notre board
