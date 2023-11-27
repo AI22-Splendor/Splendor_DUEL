@@ -7,11 +7,12 @@
 #include <qgridlayout.h>
 #include "Image.h"
 
-BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent){
+BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent), nbGemmes(3){
 	for (int i = 0; i < 3; i++) {
 		//valeur sentinelle : aucune gemmes select
 		posSelect[i] = -1;
 	}
+	//direction de base
 	this->direction = direction::HORIZONTAL;
 	tabCase = new GemmesUI **[Board::BOARD_SIDE];
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
@@ -45,20 +46,22 @@ BoardUI::~BoardUI() {
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
 		delete[] tabCase[i];
 	}
-	delete[] tabCase; 
-	delete unboard;
+	delete[] tabCase;
 }
 
 void BoardUI::hoverGemmes(const int pos, const bool red){
+	//on demande au GH le nombre de gemmes a selectionner
 	int nb = GameHandler::gemmesToSelect();
 	//la gemme centrale
 	posSelect[0] = pos;
-	if (nb==3) {
+	if (nb>1 && this->nbGemmes>1) {
 		//on ajoute au tableau les 2 autres gemmes si posible en fonction de la direction
 		selectOtherGemmes(pos);
 	}
 	else {
-		//On electionne que la Gemmes
+		//Si 1 seul gemmes à selectonner
+		// pas besoin de calculer ses voisines
+		//On selectionne que la Gemmes
 		posSelect[0] = pos;
 		posSelect[1] = -1;
 		posSelect[2] = -1;
@@ -77,29 +80,31 @@ void BoardUI::selectOtherGemmes(const int pos) {
 	{
 	case BoardUI::HORIZONTAL:
 		//si col pas tout a gauche
-		if ((pos % 5) != 0) {
+		if ((pos % 5) != 0 && tabCase[pos/5][pos%5-1]->getGemmes()!=Gemmes::Vide) {
 			posSelect[1] = pos - 1;
 		}else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite
-		if ((pos % 5) < Board::BOARD_SIDE - 1) {
-			posSelect[2] = pos + 1;
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5][pos % 5 +1]->getGemmes() != Gemmes::Vide) {
+			if (nbGemmes > 2 || posSelect[1] == -1)
+				posSelect[2] = pos + 1;
 		}else {
 			posSelect[2] = -1;
 		}
 		break;
 	case BoardUI::VERTICALE:
 		//si pas tout en haut
-		if ((pos / 5) != 0) {
+		if ((pos / 5) != 0 && tabCase[pos / 5 -1][pos % 5]->getGemmes() != Gemmes::Vide) {
 			posSelect[1] = pos - 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout en bas
-		if ((pos / 5) < Board::BOARD_SIDE - 1) {
-			posSelect[2] = pos + 5;
+		if ((pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5 +1][pos % 5]->getGemmes() != Gemmes::Vide) {
+			if (nbGemmes > 2 || posSelect[1] == -1)
+				posSelect[2] = pos + 5;
 		}
 		else {
 			posSelect[2] = -1;
@@ -107,15 +112,16 @@ void BoardUI::selectOtherGemmes(const int pos) {
 		break;
 	case BoardUI::DIAGONALED:
 		//si pas tout a gauche et en bas
-		if ((pos % 5) != 0 && (pos / 5) < Board::BOARD_SIDE-1) {
+		if ((pos % 5) != 0 && (pos / 5) < Board::BOARD_SIDE-1 && tabCase[pos / 5+1][pos % 5-1]->getGemmes() != Gemmes::Vide) {
 			posSelect[1] = pos - 1 + 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite et en haut
-		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos/5) > 0) {
-			posSelect[2] = pos + 1 -5;
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos/5) > 0 && tabCase[pos / 5-1][pos % 5+1]->getGemmes() != Gemmes::Vide) {
+			if (nbGemmes > 2 || posSelect[1] == -1)
+				posSelect[2] = pos + 1 - 5;
 		}
 		else {
 			posSelect[2] = -1;
@@ -123,15 +129,16 @@ void BoardUI::selectOtherGemmes(const int pos) {
 		break;
 	case BoardUI::DIAGONALEL:
 		//si pas tout a gauvhe et en haut
-		if ((pos % 5) != 0 && (pos / 5) > 0) {
+		if ((pos % 5) != 0 && (pos / 5) > 0 && tabCase[pos / 5-1][pos % 5-1]->getGemmes() != Gemmes::Vide) {
 			posSelect[1] = pos - 1 - 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite et en bas
-		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos / 5) < Board::BOARD_SIDE - 1) {
-			posSelect[2] = pos + 1 + 5;
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5+1][pos % 5+1]->getGemmes() != Gemmes::Vide) {
+			if (nbGemmes > 2 || posSelect[1] == -1)
+				posSelect[2] = pos + 1 + 5;
 		}
 		else {
 			posSelect[2] = -1;
@@ -168,6 +175,21 @@ void BoardUI::changeDirection(){
 		this->hoverGemmes(posSelect[0], true);
 }
 
+void BoardUI::changeNbGemmes() {
+	this->nbGemmes++;
+	if (this->nbGemmes == 4)
+		this->nbGemmes = 1;
+	//on remet les cases en noir
+	for (int i = 0; i < 3; i++) {
+		if (posSelect[i] != -1)
+		{
+			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
+		}
+	}
+	if (posSelect[0] != -1)
+		this->hoverGemmes(posSelect[0], true);
+}
+
 void BoardUI::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
 	//on dessinne maintenant l'image du fond sur le board
@@ -177,29 +199,27 @@ void BoardUI::paintEvent(QPaintEvent* event) {
 
 void BoardUI::resizeEvent(QResizeEvent* event) {
 	QWidget::resizeEvent(event);
-
+	//on force le carrer
 	int minS = qMin(width(), height());
 	resize(minS, minS);
 }
 
-void BoardUI::clickGemmes() {
-	if (GameHandler::gemmesToSelect() == 3) {
-		bool possible = true;
+void BoardUI::clickGemmes(Gemmes g) {
+	//si les règles sont ok
+	if (GameHandler::gemmesPick(posSelect)) {
 		for (int i = 0; i < 3; i++) {
-			if (posSelect[i] == -1)
-				possible = false;
-		}
-		//si on a bien 3 gemmes et que les règles sont ok
-		if (possible && GameHandler::gemmesPick(posSelect)) {
-			for (int i = 0; i < 3; i++) {
-				((SplendorDuel*)this->topLevelWidget())->addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), GameHandler::isPlayer1Turn() ? 0 : 1);
+			if (posSelect[i] != -1) {
+				int pturn;
+				if (GameHandler::isPlayer1Turn())
+					pturn = 1;
+				else {
+					pturn = 2;
+				}
+				SplendorDuel::addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), pturn);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;
 			}
 		}
-	}
-	else {
-		//TODO 1 GEMMES
 	}
 }

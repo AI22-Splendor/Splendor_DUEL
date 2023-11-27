@@ -6,8 +6,8 @@
 #include "CompleteBoardUI.h"
 
 RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
-	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-	setMinimumSize(QSize(50, 50));
+	setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+	setMinimumSize(QSize(50*5, 50));
 	setMouseTracking(true);
 }
 
@@ -46,9 +46,13 @@ void RemplirBoard::paintEvent(QPaintEvent* event) {
 	QPixmap pix = Image::getUnderPlateau();
 	painter.drawPixmap(0, 0, width(), height(), pix);
 	//si hover on fait grossir l'image de remplir
+	QPixmap x = Image::getRemplir();
+
 	if (hover) {
-		QPixmap x = Image::getRemplir();
 		painter.drawPixmap(width()/2-height()/2, 0, height(), height(), x);
+	}
+	else {
+		painter.drawPixmap(width() / 2- height() / 10 * 4, height() / 8, height()/10*8, height()/8*6, x);
 	}
 }
 

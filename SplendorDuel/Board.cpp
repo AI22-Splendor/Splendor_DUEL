@@ -27,7 +27,7 @@ Gemmes Board::prendreGemme(const int pos) const {
 }
 
 bool Board::positionPasVide(const int pos) const {
-	if (pos < BOARD_SIZE) {
+	if (pos < BOARD_SIZE && pos>=0) {
 		return gems[pos] != Gemmes::Vide;
 	}
 	char* error = new char[35];

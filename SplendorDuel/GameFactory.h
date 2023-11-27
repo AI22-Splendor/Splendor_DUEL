@@ -22,14 +22,14 @@ public:
 			if (i < 3) bag.addGemmes(Gemmes::Or);
 			if (i < 2) bag.addGemmes(Gemmes::Perle);
 		}
-		
+
 
 		// TODO : une vraie analyse de comment générer les cartes
 		DrawPile* drawPiles[3];
 		for (int i = 0; i < 3; i++) {
 			drawPiles[i] = new DrawPile(i, 30 - (i * 5));
 			for (int j = 0; j < (30 - (i * 5)); j++) {
-				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j%5 == 0 ? j : 0));
+				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j % 5 == 0 ? j : 0));
 			}
 			drawPiles[i]->melanger();
 		}
@@ -63,7 +63,7 @@ public:
 		cout << testCard << endl;
 
 		cout << "Prestige : " << player1.getPrestige()
-			<< " Crowns : " << player1.getNbCrowns() 
+			<< " Crowns : " << player1.getNbCrowns()
 			<< "\n Green discount : " << player1.getDiscount(Gemmes::Vert);
 		// FIN TEST PLAYER
 
@@ -71,6 +71,7 @@ public:
 		Board& board = *(new Board);
 		board.remplirBoard(bag);
 
-		return *(new SplendorDuel(bag, board, drawPiles, player1, player2));
+		SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
+		return SplendorDuel::getInstance(); 
 	}
-}; 
+};
