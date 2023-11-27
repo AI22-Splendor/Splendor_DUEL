@@ -2,8 +2,6 @@
 #include <qgridlayout.h>
 #include <qlabel.h>
 #include "CardUI.h"
-#include "PlayerNameUI.h"
-#include "PlayerCardUI.h"
 
 PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -13,9 +11,10 @@ PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 
 	setLayout(grid);
 	pgems = new PlayerGemsUI(this, nb);
-	PlayerCardUI* pcard = new PlayerCardUI(this);
+	this->pcard = new PlayerCardUI(this);
+	this->name = new PlayerNameUI(pname, this);
 	if (nb == 1) {
-		grid->addWidget(new PlayerNameUI(pname, this), 1);
+		grid->addWidget(name, 1);
 		grid->addWidget(pgems, 8);
 		grid->addWidget(new QWidget(this), 3);
 		grid->addWidget(pcard, 8);
@@ -25,7 +24,7 @@ PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 		grid->addWidget(pcard, 8);
 		grid->addWidget(new QWidget(this), 3);
 		grid->addWidget(pgems, 8);
-		grid->addWidget(new PlayerNameUI(pname, this), 1);
+		grid->addWidget(name, 1);
 	}
 
 	grid->setContentsMargins(0, 0, 0, 0);
@@ -35,4 +34,6 @@ PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 PlayersUI::~PlayersUI() {
 	QWidget::~QWidget();
 	delete this->pgems;
+	delete this->pcard;
+	delete this->name;
 }

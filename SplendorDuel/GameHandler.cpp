@@ -100,18 +100,13 @@ bool GameHandler::gemmesPick(const int *posTab){
 
 bool GameHandler::isPlayer1Turn() {
 	//return true;
-	return !instance->player1Joue;
+	return instance->player1Joue;
 }
 
 bool GameHandler::suppPlayerGems(Gemmes g) {
 	if (isPlayer1Turn()) {
 		if (instance->player1.removeGem(g, 1)) {
 			instance->bag.addGemmes(g);
-			if (instance->player1.getNBGemmes() <= 10) {
-				instance->action = Action::MAIN_ACTION;
-				instance->nextAction();
-				return true;
-			}
 		}
 		else {
 			return false;
@@ -120,14 +115,10 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 	else {
 		if (instance->player2.removeGem(g, 1)) {
 			instance->bag.addGemmes(g);
-			if (instance->player2.getNBGemmes() <= 10) {
-				instance->action = Action::MAIN_ACTION;
-				instance->nextAction();
-				return true;
-			}
 		}
 		else {
 			return false;
 		}
 	}
+	return true;
 }

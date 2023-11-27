@@ -10,10 +10,15 @@ public:
 		setMinimumSize(QSize(20, 20));
 	}
 	inline ~PlayerNameUI() { QWidget::~QWidget(); };
+	inline void setTour(bool b) {
+		if (b != tour) { tour = b; update(); }
+	}
+
+
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
-
+	bool tour;
 	QString name;
 };
 

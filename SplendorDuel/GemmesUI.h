@@ -2,6 +2,7 @@
 #include "GemmesUI.h"
 #include <qwidget.h>
 #include "Gemmes.h"
+#include <qtimer.h>
 #include "GemmesContainerGUI.h"
 
 /// <summary>
@@ -50,6 +51,11 @@ public:
 	void setNb(const int nb);
 
 	/// <summary>
+	/// affiche que l'action est pas possible en entourant en rouge
+	/// </summary>
+	void showErr();
+
+	/// <summary>
 	/// retourne le nombre
 	/// </summary>
 	/// <returns>le nombre</returns>
@@ -63,10 +69,13 @@ private:
 	//savoir si elle est survoler
 	bool selected;
 	Gemmes gem;
+	bool err;
+	int nbErr;
 
 	void mousePressEvent(QMouseEvent* mouse);
 	void enterEvent(QEnterEvent* event);
 	void leaveEvent(QEvent* event);
 	void isClicked();
+	void timerEvent(QTimerEvent* event);
 };
 

@@ -2,6 +2,8 @@
 #include <qwidget.h>
 // Ajoutez la déclaration avant (forward declaration)
 #include "PlayerGemsUI.h"
+#include "PlayerCardUI.h"
+#include "PlayerNameUI.h"
 #include <qpainter.h>
 #include "Gemmes.h"
 
@@ -30,6 +32,11 @@ public:
 	/// </summary>
 	/// <param name="g">la gems</param>
 	inline void gemsSupp(const Gemmes& g) { pgems->gemsSupp(g); };
+
+	inline void changePtour(bool b) {
+		name->setTour(b);
+	};
+
 private:
 	void paintEvent(QPaintEvent* event) {
 		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/playerFond.png"));
@@ -37,4 +44,6 @@ private:
 	//son numéro de joeur
 	//ses gemmes
 	PlayerGemsUI* pgems;
+	PlayerCardUI* pcard;
+	PlayerNameUI* name;
 };

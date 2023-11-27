@@ -44,6 +44,8 @@ public:
 	/// detruit notre singleton
 	/// </summary>
 	static void destroy();
+
+	static QPixmap getCarteVide();
 private:
 	Image();
 	~Image();
@@ -60,5 +62,6 @@ private:
 	QPixmap plateau;
 	QPixmap playerGems;
 	QPixmap underPlat;
+	QPixmap cartvide;
 };
 

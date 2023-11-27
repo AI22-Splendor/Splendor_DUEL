@@ -6,6 +6,7 @@ using namespace std;
 Player::Player(string name) : name(name) {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		gems[i] = 0;
+		cout <<"gems =" << gems[i] << "\n";
 	}
 }
 
@@ -24,7 +25,8 @@ bool Player::addGems(const Gemmes gem, const unsigned int nbAdd) {
 }
 
 bool Player::removeGem(Gemmes gem, const unsigned int nbRemove) {
-	if ((gems[gem] - nbRemove) < 0 || gem == Gemmes::Vide) return false;
+	if ((gems[gem] < nbRemove) || gem == Gemmes::Vide)
+		return false;
 	gems[gem] -= nbRemove;
 	cout << getName() << " :" << this->getNBGemmes() << "\n";
 	return true;

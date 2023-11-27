@@ -2,6 +2,7 @@
 #include <qwidget.h>
 #include "GemmesUI.h"
 #include "Card.h"
+#include <qtimer.h>
 #include "qlist.h"
 
 /// <summary>
@@ -12,10 +13,11 @@ class CardUI : public QWidget
 {
 	Q_OBJECT
 public:
-	CardUI(QWidget* parent, QString pix);
-	void ajouterCarte(QString s);
-	void supprimerCarte(QString s);
+	CardUI(QWidget* parent);
+	void ajouterCarte(Card* s);
+	void supprimerCarte(Card* s);
 	~CardUI();
+	void showErr();
 
 private:
 	void mousePressEvent(QMouseEvent* mouse);
@@ -23,10 +25,13 @@ private:
 	void leaveEvent(QEvent* event);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
-	
+	void timerEvent(QTimerEvent* event);
+
+	bool err;
+	int nbErr;
 	int totalReduc;
 	int nbCard;
 	bool selected;
-	QList<QString> pathList;
+	QList<Card*> cardList;
 };
 

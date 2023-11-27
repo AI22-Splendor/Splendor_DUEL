@@ -27,7 +27,9 @@ public:
 
 private:
 	void clickCard() {};
-	void hoverGemmes(const int pos, const bool red) {};
+	void hoverGemmes(const int pos, const bool red) {
+		this->gem[pos]->hover(red);
+	};
 	void clickGemmes(Gemmes g);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);

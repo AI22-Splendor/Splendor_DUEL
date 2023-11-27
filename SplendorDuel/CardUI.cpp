@@ -3,12 +3,12 @@
 #include "GemmesContainerGUI.h"
 #include "Image.h"
 #include "MyException.h"
+#include <qevent.h>
 
-CardUI::CardUI(QWidget* parent, QString pix)
-    : selected(false), nbCard(0), QWidget(parent), pathList(), totalReduc(0) {
+CardUI::CardUI(QWidget* parent)
+    : selected(false), nbCard(0), QWidget(parent), cardList(), totalReduc(0), err(false), nbErr(0) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(QSize(20, 30));
-    pathList.append(pix);
 }
 
 CardUI::~CardUI() {}
@@ -36,22 +36,35 @@ void CardUI::leaveEvent(QEvent* event) {
 
 void CardUI::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    int diff = (nbCard > 0) ? static_cast<float>(width()) / 6 / nbCard : 0;
+    int diff = (nbCard > 0) ? static_cast<float>(width()) / 4 / nbCard : 0;
+    if (this->err == true) {
+        QColor c(Qt::red);
+        c.setAlpha(99);
+        painter.setBrush(c);
+        painter.drawRect(0, 0, width(), height());
+    }
 
-    painter.drawPixmap(0, 0, width(), height(), Image::getPlayerGems());
+    if (cardList.size() == 0) {
+        if (selected) {
+            painter.drawPixmap(0, 0, width(), height(), Image::getCarteVide());
+        }
+        else {
+            painter.drawPixmap(width() / 5, height() / 6, width() / 5 * 3, height() / 6 * 4, Image::getCarteVide());
+        }
+    }
 
     if (!selected) {
         int i = 0;
-        for (const QString& s : pathList) {
-            QPixmap pix(s);
+        for (const Card* c : cardList) {
+            QPixmap pix("");
             painter.drawPixmap(width() / 5, height() / 6 + diff * i, width() / 5 * 3, height() / 6 * 4 - diff * nbCard, pix);
             i++;
         }
     }
     else {
         int i = 0;
-        for (const QString& s : pathList) {
-            QPixmap pix(s);
+        for (const Card* c : cardList) {
+            QPixmap pix("");
             painter.drawPixmap(0, diff * i, width(), height() - diff * nbCard, pix);
             if (i == nbCard && totalReduc>0) {
                 painter.setPen(QColor("#ffffff"));
@@ -80,24 +93,39 @@ void CardUI::resizeEvent(QResizeEvent* event) {
     update();
 }
 
-void CardUI::ajouterCarte(QString s) {
-    if (!pathList.contains(s)) {
-        pathList.append(s);
-        nbCard++;
-        update();
-    }
-    else {
-        throw MyException("Erreur : le chemin est déjà présent dans la liste");
-    }
+void CardUI::ajouterCarte(Card* s) {
+    cardList.append(s);
+    nbCard++;
+    totalReduc += s->getDiscount();
+    update();
 }
 
-void CardUI::supprimerCarte(QString s) {
-    if (pathList.contains(s)) {
-        pathList.removeAll(s);
+void CardUI::supprimerCarte(Card* s) {
+    if (cardList.contains(s)) {
+        cardList.removeAll(s);
         nbCard--;
+        totalReduc -= s->getDiscount();
         update();
     }
     else {
         throw MyException("Erreur : le chemin est introuvable dans la liste");
+    }
+}
+
+void CardUI::showErr() {
+    this->err = true;
+    this->update();
+    startTimer(150);
+}
+
+void CardUI::timerEvent(QTimerEvent* event) {
+    if (nbErr == 5) {
+        this->killTimer(event->timerId());
+        nbErr = 0;
+    }
+    else {
+        nbErr++;
+        this->err = !err;
+        this->update();
     }
 }

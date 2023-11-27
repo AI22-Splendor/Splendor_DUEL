@@ -211,7 +211,7 @@ void BoardUI::clickGemmes(Gemmes g) {
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
 				int pturn;
-				if (GameHandler::isPlayer1Turn())
+				if (!GameHandler::isPlayer1Turn())
 					pturn = 0;
 				else {
 					pturn = 1;
@@ -220,6 +220,14 @@ void BoardUI::clickGemmes(Gemmes g) {
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;
+			}
+		}
+		SplendorDuel::changePtour();
+	}
+	else {
+		for (int i = 0; i < 3; i++) {
+			if (posSelect[i] != -1) {
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->showErr();
 			}
 		}
 	}

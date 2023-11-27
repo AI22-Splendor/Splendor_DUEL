@@ -24,9 +24,9 @@ class PlayerCardUI : public GemmesContainerGUI
 private:
 	void hoverGemmes(const int pos, const bool red) {};
 	void clickGemmes(Gemmes g) { /*TODO*/ };
-	void clickCard() { /*TODO*/ }
-	void paintEvent(QPaintEvent* event){}
-	void resizeEvent(QResizeEvent* event){}
+	void clickCard() { this->cards[0]->showErr(); }
+	void paintEvent(QPaintEvent* event);
+	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;
 };
 

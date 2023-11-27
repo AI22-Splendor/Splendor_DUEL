@@ -4,7 +4,7 @@
 #include <qevent.h>
 #include "Image.h"
 
-GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), QWidget(parent), gem(Gemmes::Vide), nb(0){
+GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), nbErr(0), QWidget(parent), gem(Gemmes::Vide), nb(0), err(false) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(QSize(20, 20));
 }
@@ -46,6 +46,15 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 	//si la gemme est vide on ne peint pas la gemme
 	if (gem == Gemmes::Vide)
 		return;
+
+	if (this->err == true) {
+		QColor c(Qt::red);
+		c.setAlpha(99);
+		painter.setBrush(c);
+		painter.drawRect(0, 0, width(), height());
+	}
+
+
 	QPixmap pix= Image::getPixmap(gem);
 	//on peint la gemmes
 	switch (gem)
@@ -101,4 +110,22 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 void GemmesUI::setNb(const int n) {
 	this->nb = n;
 	this->update();
+}
+
+void GemmesUI::showErr() {
+	err = true;
+	this->update();
+	startTimer(150);
+}
+
+void GemmesUI::timerEvent(QTimerEvent* event) {
+	if (nbErr == 5) {
+		this->killTimer(event->timerId());
+		nbErr = 0;
+	}
+	else {
+		nbErr++;
+		this->err = !err;
+		this->update();
+	}
 }

@@ -4,8 +4,19 @@
 
 void PlayerNameUI::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
-	//painter.drawPixmap(0, 0, width(), height(), QPixmap("./fond.png"));
 
+	//si c'est son tour
+	if (tour) {
+		QColor c("#ffff66");
+		c.setAlpha(99);
+		painter.setBrush(c);
+	}
+	else {
+		QColor c("#454545");
+		c.setAlpha(99);
+		painter.setBrush(c);
+	}
+	painter.drawRect(0, 0, width(), height());
 	QFont font = painter.font();
 	font.setPointSize(width() / name.length());
 	painter.setFont(font);

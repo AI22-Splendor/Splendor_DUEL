@@ -51,6 +51,8 @@ public:
     /// <returns></returns>
     static bool close();
 
+    static void changePtour();
+
 private:
     //le singleton
     static SplendorDuel* instance;

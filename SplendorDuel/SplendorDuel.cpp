@@ -50,6 +50,13 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
     this->setCentralWidget(main);
+
+    if (GameHandler::isPlayer1Turn()) {
+        ptab[1]->changePtour(false);
+    }
+    else {
+        ptab[0]->changePtour(false);
+    }
 }
 
 SplendorDuel::~SplendorDuel()
@@ -78,3 +85,13 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
         instance->board->changeNbGemmesTOSelect();
     }
 };
+
+void SplendorDuel::changePtour() {
+    if (GameHandler::isPlayer1Turn()) {
+        instance->ptab[0]->changePtour(true);
+        instance->ptab[1]->changePtour(false);
+    }else{
+        instance->ptab[0]->changePtour(false);
+        instance->ptab[1]->changePtour(true);
+    }
+}

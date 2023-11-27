@@ -13,7 +13,7 @@ PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum): GemmesContainerGUI(parent
 	QGridLayout* grid = new QGridLayout(this);
 	this->setLayout(grid);
 	for (int i = 0; i < 7; i++) {
-			GemmesUI* boutton = new GemmesUI(i, -1, this);
+			GemmesUI* boutton = new GemmesUI(0, i, this);
 			switch (i)
 			{
 			case 0:
