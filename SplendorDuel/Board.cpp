@@ -35,13 +35,20 @@ bool Board::positionPasVide(const int pos) const {
 	throw new MyException(error);
 }
 
-Gemmes const Board::connaitreGemmes(const int pos)const {
+Gemmes const Board::connaitreGemmes(const int pos) const {
 	if (pos < BOARD_SIZE) {
 		return gems[pos];
 	}
 	char* error = new char[35];
 	sprintf(error, "This position is out of the board: %d", pos);
 	throw new MyException(error);
+}
+
+bool Board::hasGemOfType(Gemmes gem) const {
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		if (gems[i] == gem) return true;
+	}
+	return false;
 }
 
 Gemmes* Board::iterator::getNext() {

@@ -1,6 +1,7 @@
 #include "GameHandler.h"
 #include "Rules.h"
 #include "Player.h"
+#include "PrivilegeHandler.h"
 
 GameHandler* GameHandler::instance = nullptr;
 
@@ -30,8 +31,30 @@ void GameHandler::replayTurn() {
 }
 
 void GameHandler::nextAction() {
+	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
+	
+	list<Action> possibleOptionalActions;
+	if (PrivilegeHandler::playerHasPrivilege(currentPlayer)) possibleOptionalActions.push_back(Action::USE_PRIVILEGE);
+	if (instance->bag.getNbGemmes() > 0) possibleOptionalActions.push_back(Action::FILL_BOARD);
+
+	list<Action> possibleMandatoryActions;
+	possibleMandatoryActions.push_back(Action::PICK_GEMMES);
+	if (instance->board.hasGemOfType(Gemmes::Or)) possibleMandatoryActions.push_back(Action::RESERV_CARD);
+	bool canBuyCard = false;
+	for (int i = 0; i < 3; i++) {
+		vector<Card*>::const_iterator it = instance->displayedCards[i].cbegin();
+		for (; it != instance->displayedCards[i].cend(); it++) {
+			if (currentPlayer.canBuyCard(*(*it))) {
+				canBuyCard = true;
+				possibleMandatoryActions.push_back(Action::BUY_CARD);
+				break;
+			}
+		}
+		if (canBuyCard) break;
+	}
+
 	//on change de joueur
-	if (instance->action != Action::SUPP_GEMS && instance->action != Action::PICK_GEMMES) {
+	if (instance->action != Action::PICK_GEMMES) {
 		instance->player1Joue = !instance->player1Joue;
 		cout << "next p";
 	}
@@ -81,8 +104,6 @@ bool GameHandler::isPlayer1Turn() {
 }
 
 bool GameHandler::suppPlayerGems(Gemmes g) {
-	if (instance->action != Action::SUPP_GEMS)
-		return false;
 	if (isPlayer1Turn()) {
 		if (instance->player1.removeGem(g, 1)) {
 			instance->bag.addGemmes(g);
