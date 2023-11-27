@@ -5,7 +5,7 @@
 #include "Image.h"
 #include <qgridlayout.h>
 
-PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum): GemmesContainerGUI(parent), pnum(pnum){
+PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum) : GemmesContainerGUI(parent), pnum(pnum), selected(-1){
 	this->gem =new GemmesUI*[7]();
 
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -82,5 +82,20 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 		if (GameHandler::suppPlayerGems(g)) {
 			this->gemsSupp(g);
 		}
+		else {
+			if (selected != -1) {
+				gem[selected]->showErr();
+			}
+		}
+	}
+	else {
+		if (selected != -1) {
+			gem[selected]->showErr();
+		}
 	}
 }
+
+void PlayerGemsUI::hoverGemmes(const int pos, const bool red) {
+	this->gem[pos]->hover(red);
+	selected = pos;
+};
