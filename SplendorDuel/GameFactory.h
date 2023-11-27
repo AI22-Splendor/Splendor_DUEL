@@ -25,8 +25,7 @@ public:
 
 
 		// TODO : une vraie analyse de comment générer les cartes
-		DrawPile** drawPiles;
-		drawPiles = new DrawPile * [3];
+		DrawPile* drawPiles[3];
 		for (int i = 0; i < 3; i++) {
 			drawPiles[i] = new DrawPile(i, 30 - (i * 5));
 			for (int j = 0; j < (30 - (i * 5)); j++) {
