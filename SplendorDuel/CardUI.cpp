@@ -5,10 +5,10 @@
 #include "MyException.h"
 
 CardUI::CardUI(QWidget* parent, QString pix)
-    : selected(false), nbCard(0), QWidget(parent), pathList() {
+    : selected(false), nbCard(0), QWidget(parent), pathList(), totalReduc(0) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(QSize(20, 30));
-    pathList.append("./Card1.png");
+    pathList.append(pix);
 }
 
 CardUI::~CardUI() {}
@@ -53,7 +53,7 @@ void CardUI::paintEvent(QPaintEvent* event) {
         for (const QString& s : pathList) {
             QPixmap pix(s);
             painter.drawPixmap(0, diff * i, width(), height() - diff * nbCard, pix);
-            if (i == nbCard) {
+            if (i == nbCard && totalReduc>0) {
                 painter.setPen(QColor("#ffffff"));
                 // Configurer la police et la taille du texte
                 QFont font = painter.font();
@@ -64,7 +64,7 @@ void CardUI::paintEvent(QPaintEvent* event) {
                 QRect textRect = painter.boundingRect(rect(), Qt::AlignTop | Qt::AlignRight, QString::number(4));
 
                 // Dessiner le texte dans le coin en haut à droite
-                painter.drawText(QRect(width()/4*3, diff * nbCard, textRect.width(), textRect.height()), QString::number(4));
+                painter.drawText(QRect(width()/4*3, diff * nbCard, textRect.width(), textRect.height()), QString::number(totalReduc));
 
             }
             i++;

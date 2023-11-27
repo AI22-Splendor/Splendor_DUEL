@@ -10,7 +10,7 @@
 
 class GameHandler {
 public:
-	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player& player1, Player& player2);
+	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
 	static void destroy();
 	static inline GameHandler& getInstance() { return *GameHandler::instance; }
 	static bool gameFinished();
@@ -18,6 +18,7 @@ public:
 	static void replayTurn();
 	static void nextAction();
 	static bool isPlayer1Turn();
+	static bool suppPlayerGems(Gemmes g);
 
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
@@ -40,8 +41,8 @@ public:
 private:
 	static GameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile* drawPiles[3], Player& player1, Player& player2)
-		: bag(bag), board(board), drawPiles(drawPiles), player1(player1), player2(player2), action(Action::MAIN_ACTION) {
+	GameHandler(Bag& bag, Board& board, DrawPile* drawPiles[3], Player* player1, Player* player2)
+		: bag(bag), board(board), drawPiles(drawPiles), player1(*player1), player2(*player2), action(Action::MAIN_ACTION) {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < i + 3; j++) displayedCards[i].push_back(drawPiles[i]->piocher());
@@ -51,7 +52,7 @@ private:
 	~GameHandler(){}
 
 	Action action;
-	bool player1Joue = true;
+	bool player1Joue;
 	Bag& bag;
 	Board& board;
 	DrawPile** drawPiles;

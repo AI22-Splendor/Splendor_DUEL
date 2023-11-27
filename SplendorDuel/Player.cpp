@@ -9,25 +9,24 @@ Player::Player(string name) : name(name) {
 	}
 }
 
-bool Player::canAddGems(const unsigned int nbAdd) const {
+int Player::canAddGems(const unsigned int nbAdd) const {
 	int sum = 0;
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		sum += gems[i];
 	}
-	return (sum + nbAdd) < 10;
+	return (sum + nbAdd);
 }
 
 bool Player::addGems(const Gemmes gem, const unsigned int nbAdd) {
-	if (canAddGems(nbAdd)) {
-		gems[gem] += nbAdd;
-		return true;
-	}
-	return false;
+	gems[gem] += nbAdd;
+	cout <<getName() <<" :" << this->getNBGemmes() << "\n";
+	return true;
 }
 
 bool Player::removeGem(Gemmes gem, const unsigned int nbRemove) {
 	if ((gems[gem] - nbRemove) < 0 || gem == Gemmes::Vide) return false;
 	gems[gem] -= nbRemove;
+	cout << getName() << " :" << this->getNBGemmes() << "\n";
 	return true;
 }
 
@@ -92,4 +91,12 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 	cards.push_back(&card);
 	gameBag.melanger();
 	return true;
+}
+
+unsigned int Player::getNBGemmes()const {
+	int sum = 0;
+	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
+		sum += gems[i];
+	}
+	return (sum);
 }

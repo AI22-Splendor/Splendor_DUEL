@@ -169,9 +169,10 @@ void BoardUI::changeDirection(){
 		{
 			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 		}
+		if (i > 0)
+			posSelect[i] = -1;
 	}
 	if (posSelect[0] != -1)
-		//on reaffiche la nouvelle disposition en fonction des ancienne gemmes selectionner
 		this->hoverGemmes(posSelect[0], true);
 }
 
@@ -211,9 +212,9 @@ void BoardUI::clickGemmes(Gemmes g) {
 			if (posSelect[i] != -1) {
 				int pturn;
 				if (GameHandler::isPlayer1Turn())
-					pturn = 1;
+					pturn = 0;
 				else {
-					pturn = 2;
+					pturn = 1;
 				}
 				SplendorDuel::addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), pturn);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);

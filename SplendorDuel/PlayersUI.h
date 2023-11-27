@@ -32,7 +32,7 @@ public:
 	inline void gemsSupp(const Gemmes& g) { pgems->gemsSupp(g); };
 private:
 	void paintEvent(QPaintEvent* event) {
-		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./playerFond.png"));
+		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/playerFond.png"));
 	}
 	//son numéro de joeur
 	//ses gemmes

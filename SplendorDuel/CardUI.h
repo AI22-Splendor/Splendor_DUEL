@@ -24,6 +24,7 @@ private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	
+	int totalReduc;
 	int nbCard;
 	bool selected;
 	QList<QString> pathList;

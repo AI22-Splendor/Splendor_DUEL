@@ -34,39 +34,8 @@ public:
 			drawPiles[i]->melanger();
 		}
 
-		Player& player1 = *(new Player("Player 1"));
-		Player& player2 = *(new Player("Player 2"));
-
-		// DEBUT TEST PLAYER
-		bag.suppGemmes(Gemmes::Or);
-		bag.suppGemmes(Gemmes::Rouge, 3);
-		bag.suppGemmes(Gemmes::Vert, 2);
-
-		player1.addGems(Gemmes::Or, 1);
-		player1.addGems(Gemmes::Rouge, 3);
-		player1.addGems(Gemmes::Vert, 2);
-
-		Card testCard = *(new Card(3, 10, Gemmes::Vert, 1, 2));
-		testCard.setCost(Gemmes::Rouge, 3);
-		testCard.setCost(Gemmes::Vert, 2);
-		cout << player1.canBuyCard(testCard) << endl;
-
-		testCard.setCost(Gemmes::Vert, 3);
-		cout << player1.canBuyCard(testCard) << endl;
-
-		testCard.setCost(Gemmes::Rouge, 4);
-		cout << player1.canBuyCard(testCard) << endl;
-
-		testCard.setCost(Gemmes::Rouge, 3);
-		cout << player1.buyCard(testCard, bag);
-
-		cout << testCard << endl;
-
-		cout << "Prestige : " << player1.getPrestige()
-			<< " Crowns : " << player1.getNbCrowns()
-			<< "\n Green discount : " << player1.getDiscount(Gemmes::Vert);
-		// FIN TEST PLAYER
-
+		Player* player1 = (new Player("Player 1"));
+		Player* player2 = (new Player("Player 2"));
 
 		Board& board = *(new Board);
 		board.remplirBoard(bag);

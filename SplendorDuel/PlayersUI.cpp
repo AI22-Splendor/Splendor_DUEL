@@ -12,7 +12,7 @@ PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 	this->setLayout(grid);
 
 	setLayout(grid);
-	pgems = new PlayerGemsUI(this);
+	pgems = new PlayerGemsUI(this, nb);
 	PlayerCardUI* pcard = new PlayerCardUI(this);
 	if (nb == 1) {
 		grid->addWidget(new PlayerNameUI(pname, this), 1);

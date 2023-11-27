@@ -23,7 +23,7 @@ public:
     /// <param name="bag">le sac</param>
     /// <param name="board">le board</param>
     /// <param name="drawPiles">les cartes</param>
-    static inline void instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player p1, Player p2){
+    static inline void instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2){
         if (SplendorDuel::instance == nullptr)
             SplendorDuel::instance = new SplendorDuel(bag, board, drawPiles, p1, p2);
     }
@@ -62,12 +62,12 @@ private:
     /// <param name="bag">le sac du futur gameHandler</param>
     /// <param name="board">le board avec lequel initialiser notre UI et le GH</param>
     /// <param name="drawPiles">les carte avec lesquels initialisé notre UI et le GH</param>
-    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player p1, Player p2);
+    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2);
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
     void paintEvent(QPaintEvent* event) {
-        QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./fond.png"));
+        QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/fond.png"));
     }
 
     //notre board

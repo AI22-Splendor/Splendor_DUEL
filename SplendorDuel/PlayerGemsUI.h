@@ -10,7 +10,7 @@ class PlayerGemsUI : public GemmesContainerGUI
 {
 	Q_OBJECT
 public:
-	PlayerGemsUI(QWidget* parent);
+	PlayerGemsUI(QWidget* parent, int pnum);
 	~PlayerGemsUI();
 
 	/// <summary>
@@ -28,9 +28,10 @@ public:
 private:
 	void clickCard() {};
 	void hoverGemmes(const int pos, const bool red) {};
-	void clickGemmes(Gemmes g) { /*TODO*/ };
+	void clickGemmes(Gemmes g);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	GemmesUI** gem;
+	const int pnum;
 };
 

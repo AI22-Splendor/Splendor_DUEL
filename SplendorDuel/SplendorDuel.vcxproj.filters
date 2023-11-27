@@ -51,8 +51,6 @@
     <Filter Include="Header Files\UI\Player">
       <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\img\Card">
-      <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     <Filter Include="Source Files\CardEffects">
       <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
     </Filter>
@@ -113,9 +111,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoardCard.h">
-      <Filter>Header Files\UI\Board</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
@@ -182,9 +177,6 @@
     <ClCompile Include="PlayerGemsUI.cpp">
       <Filter>Source Files\UI\Player</Filter>
     </ClCompile>
-    <ClCompile Include="CardUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -211,66 +203,67 @@
     </ClCompile>
     <ClCompile Include="CardEffectTakePrivilege.cpp">
       <Filter>Source Files\CardEffects</Filter>
-    <ClCompile Include="CardEffect.cpp">
-      <Filter>Source Files\CardEffects</Filter>
     </ClCompile>
-    <ClCompile Include="CardEffectPlayAgain.cpp">
-      <Filter>Source Files\CardEffects</Filter>
-    </ClCompile>
-    <ClCompile Include="CardEffectTakePrivilege.cpp">
-      <Filter>Source Files\CardEffects</Filter>
+    <ClCompile Include="CardUI.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="noir.png">
+    <Image Include="res\remplir.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="blanc.png">
+    <Image Include="res\rouge.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="vert.png">
+    <Image Include="res\vert.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="bleu.png">
+    <Image Include="res\actions.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="perle.png">
+    <Image Include="res\blanc.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="or.png">
+    <Image Include="res\bleu.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="rouge.png">
+    <Image Include="res\fond.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="plateau.png">
+    <Image Include="res\noir.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="actions.png">
+    <Image Include="res\or.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="remplir.png">
+    <Image Include="res\perle.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="playergemmes.png">
+    <Image Include="res\plateau.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="..\..\..\..\..\Pictures\vert.jpg">
+    <Image Include="res\playerFond.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="playerFond.png">
+    <Image Include="res\playergemmes.png">
       <Filter>Resource Files\img</Filter>
     </Image>
-    <Image Include="fond.png">
-      <Filter>Resource Files\img</Filter>
-    </Image>
-    <Image Include="Card3.png">
+    <Image Include="res\1.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
-    <Image Include="Card1.png">
+    <Image Include="res\3.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
-    <Image Include="Card2.png">
+    <Image Include="res\Card3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Card1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Card2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\2.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
   </ItemGroup>
@@ -309,6 +302,9 @@
     </QtMoc>
     <QtMoc Include="PlayerCardUI.h">
       <Filter>Header Files\UI\Player</Filter>
+    </QtMoc>
+    <QtMoc Include="BoardCard.h">
+      <Filter>Header Files\UI\Board</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>
