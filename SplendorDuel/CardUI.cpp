@@ -120,8 +120,10 @@ void CardUI::showErr() {
 
 void CardUI::timerEvent(QTimerEvent* event) {
     if (nbErr == 5) {
+        this->err = false;
         this->killTimer(event->timerId());
         nbErr = 0;
+        update();
     }
     else {
         nbErr++;

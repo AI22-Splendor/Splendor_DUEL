@@ -120,8 +120,10 @@ void GemmesUI::showErr() {
 
 void GemmesUI::timerEvent(QTimerEvent* event) {
 	if (nbErr == 5) {
+		err = false;
 		this->killTimer(event->timerId());
 		nbErr = 0;
+		update();
 	}
 	else {
 		nbErr++;
