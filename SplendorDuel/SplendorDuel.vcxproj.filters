@@ -60,6 +60,12 @@
     <Filter Include="Resource Files\img\Card">
       <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libs">
+      <UniqueIdentifier>{b41f4f7c-35b2-4cd7-879d-9f985bdffe86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libs\rapidxml-1.13">
+      <UniqueIdentifier>{e1a613e3-f99d-4f8a-9b7b-a54002df6d4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -123,6 +129,21 @@
     </ClInclude>
     <ClInclude Include="CardEffectTakePrivilege.h">
       <Filter>Header Files\CardEffects</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlReader.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_utils.hpp">
+      <Filter>Source Files\libs\rapidxml-1.13</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml.hpp">
+      <Filter>Source Files\libs\rapidxml-1.13</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_iterators.hpp">
+      <Filter>Source Files\libs\rapidxml-1.13</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp">
+      <Filter>Source Files\libs\rapidxml-1.13</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="PersonnageBoardUI.cpp">
       <Filter>Source Files\UI\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlReader.cpp">
+      <Filter>Source Files\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +334,186 @@
     </Image>
     <Image Include="res\points.png">
       <Filter>Resource Files\img</Filter>
+    </Image>
+    <Image Include="res\Vert1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Vert11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Rouge11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Bleu11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noir11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor4.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor5.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor6.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor7.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor8.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor9.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor10.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor11.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\NoColor12.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noble1.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noble2.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noble3.png">
+      <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\Noble4.png">
+      <Filter>Resource Files\img\Card</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

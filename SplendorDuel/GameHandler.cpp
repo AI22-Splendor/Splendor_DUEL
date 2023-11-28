@@ -5,7 +5,7 @@
 
 GameHandler* GameHandler::instance = nullptr;
 
-void GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2) {
+void GameHandler::Instanciate(Bag& bag, Board& board, vector<DrawPile*> drawPiles, Player* player1, Player* player2) {
 	if(GameHandler::instance == nullptr)
 		GameHandler::instance = new GameHandler(bag, board, drawPiles, player1, player2);
 }

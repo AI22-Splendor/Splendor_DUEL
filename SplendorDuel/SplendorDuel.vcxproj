@@ -70,6 +70,10 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies);$(Qt_LIBS_)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
@@ -104,6 +108,11 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml.hpp" />
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_iterators.hpp" />
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp" />
+    <ClInclude Include="libs\rapidxml-1.13\rapidxml_utils.hpp" />
+    <ClInclude Include="XmlReader.h" />
     <QtMoc Include="RemplirBoardUI.h" />
     <QtMoc Include="CompleteBoardUI.h" />
     <QtMoc Include="CardUI.h" />
@@ -160,6 +169,7 @@
     <ClCompile Include="PrivilegeHandler.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
+    <ClCompile Include="XmlReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\0.png" />
@@ -180,11 +190,49 @@
     <Image Include="res\Blanc8.png" />
     <Image Include="res\Blanc9.png" />
     <Image Include="res\bleu.png" />
+    <Image Include="res\Bleu1.png" />
+    <Image Include="res\Bleu10.png" />
+    <Image Include="res\Bleu11.png" />
+    <Image Include="res\Bleu2.png" />
+    <Image Include="res\Bleu3.png" />
+    <Image Include="res\Bleu4.png" />
+    <Image Include="res\Bleu5.png" />
+    <Image Include="res\Bleu6.png" />
+    <Image Include="res\Bleu7.png" />
+    <Image Include="res\Bleu8.png" />
+    <Image Include="res\Bleu9.png" />
     <Image Include="res\Card1.png" />
     <Image Include="res\Card2.png" />
     <Image Include="res\Card3.png" />
     <Image Include="res\fond.png" />
+    <Image Include="res\Noble1.png" />
+    <Image Include="res\Noble2.png" />
+    <Image Include="res\Noble3.png" />
+    <Image Include="res\Noble4.png" />
+    <Image Include="res\NoColor1.png" />
+    <Image Include="res\NoColor10.png" />
+    <Image Include="res\NoColor11.png" />
+    <Image Include="res\NoColor12.png" />
+    <Image Include="res\NoColor2.png" />
+    <Image Include="res\NoColor3.png" />
+    <Image Include="res\NoColor4.png" />
+    <Image Include="res\NoColor5.png" />
+    <Image Include="res\NoColor6.png" />
+    <Image Include="res\NoColor7.png" />
+    <Image Include="res\NoColor8.png" />
+    <Image Include="res\NoColor9.png" />
     <Image Include="res\noir.png" />
+    <Image Include="res\Noir1.png" />
+    <Image Include="res\Noir10.png" />
+    <Image Include="res\Noir11.png" />
+    <Image Include="res\Noir2.png" />
+    <Image Include="res\Noir3.png" />
+    <Image Include="res\Noir4.png" />
+    <Image Include="res\Noir5.png" />
+    <Image Include="res\Noir6.png" />
+    <Image Include="res\Noir7.png" />
+    <Image Include="res\Noir8.png" />
+    <Image Include="res\Noir9.png" />
     <Image Include="res\or.png" />
     <Image Include="res\perle.png" />
     <Image Include="res\plateau.png" />
@@ -193,7 +241,29 @@
     <Image Include="res\points.png" />
     <Image Include="res\remplir.png" />
     <Image Include="res\rouge.png" />
+    <Image Include="res\Rouge1.png" />
+    <Image Include="res\Rouge10.png" />
+    <Image Include="res\Rouge11.png" />
+    <Image Include="res\Rouge2.png" />
+    <Image Include="res\Rouge3.png" />
+    <Image Include="res\Rouge4.png" />
+    <Image Include="res\Rouge5.png" />
+    <Image Include="res\Rouge6.png" />
+    <Image Include="res\Rouge7.png" />
+    <Image Include="res\Rouge8.png" />
+    <Image Include="res\Rouge9.png" />
     <Image Include="res\vert.png" />
+    <Image Include="res\Vert1.png" />
+    <Image Include="res\Vert10.png" />
+    <Image Include="res\Vert11.png" />
+    <Image Include="res\Vert2.png" />
+    <Image Include="res\Vert3.png" />
+    <Image Include="res\Vert4.png" />
+    <Image Include="res\Vert5.png" />
+    <Image Include="res\Vert6.png" />
+    <Image Include="res\Vert7.png" />
+    <Image Include="res\Vert8.png" />
+    <Image Include="res\Vert9.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc" />

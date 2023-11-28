@@ -12,7 +12,7 @@
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2):
+SplendorDuel::SplendorDuel(Bag& bag, Board& b, vector<DrawPile*> drawPiles, Player* p1, Player* p2) :
     QMainWindow(nullptr)
 {
     setWindowTitle("SplendorDuel");
