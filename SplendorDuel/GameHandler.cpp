@@ -31,11 +31,18 @@ void GameHandler::replayTurn() {
 }
 
 void GameHandler::nextAction() {
-	//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
+	if(instance->action==Action::MAIN_ACTION)
+	//si il a pas encore fait son action principale
 	if (instance->mainActionIsDone == false)
 		return;
+	//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
 	if((isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) || (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)))
 		return;
+	if (instance->replay) {
+		instance->replay = false;
+		instance->mainActionIsDone = false;
+		return;
+	}
 	instance->mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
 	
@@ -78,9 +85,13 @@ const int GameHandler::gemmesToSelect() {
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
-	if (Rules::isPossibleTakeGems(instance->board, posTab) && instance->mainActionIsDone==false)
+	if (Rules::isPossibleTakeGems(instance->board, posTab, instance->action) && instance->mainActionIsDone==false)
 	{
-		instance->mainActionIsDone = true;
+		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
+		// c'est donc la dernière action de son tour
+		if (instance->action != Action::USE_PRIVILEGE)
+			instance->mainActionIsDone = true;
+		instance->action = Action::MAIN_ACTION;
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
 				//on ajoute la gemme au joueur
@@ -104,26 +115,78 @@ bool GameHandler::isPlayer1Turn() {
 	return instance->player1Joue;
 }
 
-bool GameHandler::suppPlayerGems(Gemmes g) {
-	if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
-		if (instance->player1.removeGem(g, 1)) {
-			instance->bag.addGemmes(g);
+int GameHandler::suppPlayerGems(Gemmes g) {
+	int retour = 0;
+	if (instance->action == Action::MAIN_ACTION) {
+		if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
+			if (instance->player1.removeGem(g, 1)) {
+				instance->bag.addGemmes(g);
+			}
+			else {
+				return -1;
+			}
+		}
+		else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)) {
+			if (instance->player2.removeGem(g, 1)) {
+				instance->bag.addGemmes(g);
+			}
+			else {
+				return -1;
+			}
 		}
 		else {
-			return false;
+			return -1;
 		}
 	}
-	else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)){
-		if (instance->player2.removeGem(g, 1)) {
-			instance->bag.addGemmes(g);
+	//action de voler une gemmes de l'autre joeur
+	else if (instance->action == Action::STEAL_GEMMES) {
+		//on vole pas l'Or!
+		if (g == Gemmes::Or)
+			return -1;
+		if (isPlayer1Turn()) {
+			if (instance->player2.removeGem(g, 1)) {
+				instance->bag.addGemmes(g);
+				instance->player1.addGems(g, 1);
+				retour = 1;
+				instance->action = Action::MAIN_ACTION;
+			}
 		}
-		else {
-			return false;
+		else{
+			if (instance->player1.removeGem(g, 1)) {
+				instance->bag.addGemmes(g);
+				instance->player2.addGems(g, 1);
+				instance->action = Action::MAIN_ACTION;
+				retour = 1;
+			}
 		}
-	}
-	else {
-		return false;
 	}
 	GameHandler::nextAction();
+	return retour;
+}
+
+bool GameHandler::reservCard(Card c) {
+	//TODO
+	// ne pas oublié de vérif que le jouer n'a pas déjà 3 cartes réserver et qu'il y a 
+	// au moins 1 or sur le plateau
+	//MEtre l'action sur RESERV_CARD 
+	// et ne pas modifier mainActionIsDone, c'est prendre l'or qui terminera l'action principale
+	return true;
+}
+bool GameHandler::buyCard(Card c) {
+	//TODO
+	// vérifier qu'il peux l'acheter
+	// supprimer les gemmes
+	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
+	// si replay : instance->replay=true;
+	// si c'est un perso on fait juste l'effet sinon :
+	//mettre mainActionIsDone a true sauf si il va devoir prendre une gemme (action = PICK_GEMMES)
+	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
+	GameHandler::nextAction();
+	return true;
+}
+
+bool GameHandler::usePrivilege() {
+	//vérfier que le joeur peux
+	//mettre l'ation sur use_PRIVILEGE
 	return true;
 }

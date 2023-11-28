@@ -18,7 +18,10 @@ public:
 	static void replayTurn();
 	static void nextAction();
 	static bool isPlayer1Turn();
-	static bool suppPlayerGems(Gemmes g);
+	static int suppPlayerGems(Gemmes g);
+	static bool reservCard(Card c);
+	static bool buyCard(Card c);
+	static bool usePrivilege();
 
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
@@ -52,6 +55,7 @@ private:
 	~GameHandler(){}
 
 	bool mainActionIsDone;
+	bool replay;
 	Action action;
 	bool player1Joue;
 	Bag& bag;
