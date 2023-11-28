@@ -102,3 +102,7 @@ QPixmap Image::getPlayersPoints() {
 	}
 	return instance->ppoints;
 }
+
+QPixmap& Image::getImageFromSrc(const QString src) {
+	return *(new QPixmap(src));
+}

@@ -52,6 +52,8 @@ public:
 	static void destroy();
 
 	static QPixmap getCarteVide();
+
+	static QPixmap& getImageFromSrc(const QString src);
 private:
 	Image();
 	~Image();
