@@ -2,18 +2,12 @@
 #include "GemmesContainerGUI.h"
 #include "CardUI.h"
 #include "Card.h"
-class BoardCardUI : public GemmesContainerGUI
+class PersonnageBoardUI : public GemmesContainerGUI
 {
 	Q_OBJECT
 public:
-	BoardCardUI(QWidget* parent);
-	~BoardCardUI();
-
-	/// <summary>
-	/// Ajoute la carte dans la main du joeur
-	/// </summary>
-	/// <param name="g">la carte</param>
-	void addCarte(const Gemmes& g, Card c) {}
+	PersonnageBoardUI(QWidget* parent);
+	~PersonnageBoardUI();
 
 	/// <summary>
 	/// suppprime la card de la main du joueur
@@ -27,6 +21,6 @@ private:
 	void clickCard() { /*TODO*/ }
 	void paintEvent(QPaintEvent* event) {}
 	void resizeEvent(QResizeEvent* event) {}
-	CardUI*** cards;
+	CardUI** cards;
 };
 

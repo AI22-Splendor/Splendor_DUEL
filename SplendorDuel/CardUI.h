@@ -4,6 +4,7 @@
 #include "Card.h"
 #include <qtimer.h>
 #include "qlist.h"
+#include "GemmesContainerGUI.h"
 
 /// <summary>
 /// Le tableau des gemmes du joueurs
@@ -13,7 +14,7 @@ class CardUI : public QWidget
 {
 	Q_OBJECT
 public:
-	CardUI(QWidget* parent);
+	CardUI(GemmesContainerGUI* parent);
 	void ajouterCarte(Card* s);
 	void supprimerCarte(Card* s);
 	~CardUI();

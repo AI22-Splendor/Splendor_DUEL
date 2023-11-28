@@ -207,6 +207,12 @@
     <ClCompile Include="CardUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerPoints.cpp">
+      <Filter>Source Files\UI\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonnageBoardUI.cpp">
+      <Filter>Source Files\UI\Board</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\remplir.png">
@@ -302,6 +308,9 @@
     <Image Include="res\Blanc2.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
+    <Image Include="res\points.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">
@@ -327,9 +336,6 @@
     <QtMoc Include="PlayerGemsUI.h">
       <Filter>Header Files\UI\Player</Filter>
     </QtMoc>
-    <QtMoc Include="CardUI.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="PlayersUI.h">
       <Filter>Header Files\UI\Player</Filter>
     </QtMoc>
@@ -341,6 +347,15 @@
     </QtMoc>
     <QtMoc Include="BoardCard.h">
       <Filter>Header Files\UI\Board</Filter>
+    </QtMoc>
+    <QtMoc Include="PlayerPoints.h">
+      <Filter>Header Files\UI\Player</Filter>
+    </QtMoc>
+    <QtMoc Include="PersonnageBoardUI.h">
+      <Filter>Header Files\UI\Board</Filter>
+    </QtMoc>
+    <QtMoc Include="CardUI.h">
+      <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

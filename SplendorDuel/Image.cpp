@@ -16,6 +16,7 @@ Image::Image() {
 	remplir = QPixmap("./res/remplir.png");
 	playerGems = QPixmap("./res/playergemmes.png");
 	cartvide = QPixmap("./res/0.png");
+	ppoints= QPixmap("./res/points.png");
 }
 
 void Image::destroy(){
@@ -93,4 +94,11 @@ QPixmap Image::getCarteVide() {
 		instance = new Image();
 	}
 	return instance->cartvide;
+}
+
+QPixmap Image::getPlayersPoints() {
+	if (instance == nullptr) {
+		instance = new Image();
+	}
+	return instance->ppoints;
 }

@@ -20,6 +20,7 @@ public:
 	/// <returns>l'action à faire, par défault l'action demandé</returns>
 	static bool isPossibleTakeGems(const Board b, const int* posTab);
 	static bool playerWon(const Player& player);
+	static bool playerHaveToSuppGems(const Player& player);
 private:
 	//on supprime le constructeur et le destructeur
 	Rules()= delete;

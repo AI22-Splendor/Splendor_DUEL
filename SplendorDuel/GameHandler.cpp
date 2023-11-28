@@ -31,6 +31,12 @@ void GameHandler::replayTurn() {
 }
 
 void GameHandler::nextAction() {
+	//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
+	if (instance->mainActionIsDone == false)
+		return;
+	if((isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) || (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)))
+		return;
+	instance->mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
 	
 	list<Action> possibleOptionalActions;
@@ -52,12 +58,7 @@ void GameHandler::nextAction() {
 		}
 		if (canBuyCard) break;
 	}
-
-	//on change de joueur
-	if (instance->action != Action::PICK_GEMMES) {
-		instance->player1Joue = !instance->player1Joue;
-		cout << "next p";
-	}
+	instance->player1Joue = !instance->player1Joue;
 }
 
 const Board GameHandler::remplirBoard() {
@@ -77,8 +78,9 @@ const int GameHandler::gemmesToSelect() {
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
-	if (Rules::isPossibleTakeGems(instance->board, posTab))
+	if (Rules::isPossibleTakeGems(instance->board, posTab) && instance->mainActionIsDone==false)
 	{
+		instance->mainActionIsDone = true;
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
 				//on ajoute la gemme au joueur
@@ -99,12 +101,11 @@ bool GameHandler::gemmesPick(const int *posTab){
 }
 
 bool GameHandler::isPlayer1Turn() {
-	//return true;
 	return instance->player1Joue;
 }
 
 bool GameHandler::suppPlayerGems(Gemmes g) {
-	if (isPlayer1Turn()) {
+	if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
 		if (instance->player1.removeGem(g, 1)) {
 			instance->bag.addGemmes(g);
 		}
@@ -112,7 +113,7 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 			return false;
 		}
 	}
-	else {
+	else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)){
 		if (instance->player2.removeGem(g, 1)) {
 			instance->bag.addGemmes(g);
 		}
@@ -120,5 +121,9 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 			return false;
 		}
 	}
+	else {
+		return false;
+	}
+	GameHandler::nextAction();
 	return true;
 }
