@@ -27,6 +27,7 @@ public:
 	bool canBeBought(const unsigned int* wallet) const;
 	unsigned int getPriceForGemme(Gemmes gem) const { return cost[gem];  };
 	
+	unsigned int getLevel() const { return level;  }
 	unsigned int getPointsPrestige() const { return ptsPrestige;  }
 	Gemmes getDiscountType() const { return discountType;  }
 	unsigned int getDiscount() const { return discount;  }
