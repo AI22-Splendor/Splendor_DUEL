@@ -1,6 +1,7 @@
 #include "Card.h"
 
-Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonusType, const unsigned int nbBonus, const unsigned int crowns) {
+Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonusType, const unsigned int nbBonus, 
+	const unsigned int crowns, const string imageSrc) {
 	if (1 > level && level > 3) {
 		char* error = new char[35];
 		sprintf(error, "%d is not a valid level (1-3)\n", level);
@@ -14,6 +15,7 @@ Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemme
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
 		this->cost[i] = 0;
 	}
+	this->imageSrc = QString(imageSrc.c_str());
 }
 
 void Card::setCost(const Gemmes type, const unsigned int price) {
