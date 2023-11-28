@@ -12,7 +12,6 @@ CompleteBoardUI::CompleteBoardUI(QWidget* parent, Board b):QWidget(parent), boar
 
     board.setGemmes(b);
     //on y ajoute tous les composant
-    
     grid->addWidget(&remplir);
     grid->addWidget(&board);
 

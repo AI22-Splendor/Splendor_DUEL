@@ -27,13 +27,12 @@ public:
 
 private:
 	void clickCard() {};
-	void hoverGemmes(const int pos, const bool red) {
-		this->gem[pos]->hover(red);
-	};
+	void hoverGemmes(const int pos, const bool red);
 	void clickGemmes(Gemmes g);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	GemmesUI** gem;
 	const int pnum;
+	int selected;
 };
 

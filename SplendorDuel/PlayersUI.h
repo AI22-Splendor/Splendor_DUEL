@@ -5,6 +5,7 @@
 #include "PlayerCardUI.h"
 #include "PlayerNameUI.h"
 #include <qpainter.h>
+#include "PlayerPoints.h"
 #include "Gemmes.h"
 
 /// <summary>
@@ -46,4 +47,5 @@ private:
 	PlayerGemsUI* pgems;
 	PlayerCardUI* pcard;
 	PlayerNameUI* name;
+	PlayerPoints* points;
 };

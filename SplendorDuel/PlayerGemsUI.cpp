@@ -4,8 +4,9 @@
 #include "GameHandler.h"
 #include "Image.h"
 #include <qgridlayout.h>
+#include "SplendorDuel.h"
 
-PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum): GemmesContainerGUI(parent), pnum(pnum){
+PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum) : GemmesContainerGUI(parent), pnum(pnum), selected(-1){
 	this->gem =new GemmesUI*[7]();
 
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -81,6 +82,22 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 	if (this->pnum == 1 && GameHandler::isPlayer1Turn() || this->pnum == 2 && !GameHandler::isPlayer1Turn()) {
 		if (GameHandler::suppPlayerGems(g)) {
 			this->gemsSupp(g);
+			SplendorDuel::changePtour();
+		}
+		else {
+			if (selected != -1) {
+				gem[selected]->showErr();
+			}
+		}
+	}
+	else {
+		if (selected != -1) {
+			gem[selected]->showErr();
 		}
 	}
 }
+
+void PlayerGemsUI::hoverGemmes(const int pos, const bool red) {
+	this->gem[pos]->hover(red);
+	selected = pos;
+};

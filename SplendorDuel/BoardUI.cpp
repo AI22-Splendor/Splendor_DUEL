@@ -206,16 +206,16 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 }
 
 void BoardUI::clickGemmes(Gemmes g) {
+	int pturn;
+	if (GameHandler::isPlayer1Turn())
+		pturn = 0;
+	else {
+		pturn = 1;
+	}
 	//si les règles sont ok
 	if (GameHandler::gemmesPick(posSelect)) {
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
-				int pturn;
-				if (!GameHandler::isPlayer1Turn())
-					pturn = 0;
-				else {
-					pturn = 1;
-				}
 				SplendorDuel::addPlayerGems(tabCase[posSelect[i] / 5][posSelect[i] % 5]->getGemmes(), pturn);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);

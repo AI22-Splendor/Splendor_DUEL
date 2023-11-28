@@ -93,7 +93,6 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 	// Calculez les coordonnées du coin supérieur gauche du rectangle englobant le cercle
 	int x = width() / 2 - radius;
 	int y = height() / 2 - radius;
-
 	//on dessinne maintenant l'image au centre
 	painter.drawPixmap(x, y, radius * 2, radius * 2, pix);
 	

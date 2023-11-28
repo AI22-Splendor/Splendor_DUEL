@@ -1,7 +1,7 @@
 #include "SplendorDuel.h"
 #include "Board.h"
 #include "BoardUI.h"
-
+#include "PersonnageBoardUI.h"
 #include "GameHandler.h"
 #include <qgridlayout.h>
 #include <iostream>
@@ -29,14 +29,15 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     ptab[1] = new PlayersUI(main, QString(p2->getName().c_str()), 2);
     QWidget* com = new QWidget(main);
 
-    this->board = new CompleteBoardUI(main, b);
+    this->board = new CompleteBoardUI(com, b);
     QHBoxLayout* hbox = new QHBoxLayout();
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
     //lezs persos
+    hbox->addWidget(new PersonnageBoardUI(com));
     hbox->addWidget(board);
-    hbox->addWidget(new BoardCardUI(main));
+    hbox->addWidget(new BoardCardUI(com));
 
     vl->addWidget(ptab[0],0, 0);
     vl->addWidget(com, 1, 0);

@@ -13,16 +13,17 @@ PlayersUI::PlayersUI(QWidget* parent, QString pname, int nb) : QWidget(parent){
 	pgems = new PlayerGemsUI(this, nb);
 	this->pcard = new PlayerCardUI(this);
 	this->name = new PlayerNameUI(pname, this);
+	this->points = new PlayerPoints(this);
 	if (nb == 1) {
 		grid->addWidget(name, 1);
 		grid->addWidget(pgems, 8);
-		grid->addWidget(new QWidget(this), 3);
+		grid->addWidget(points, 3);
 		grid->addWidget(pcard, 8);
 	}
 		
 	if (nb == 2) {
 		grid->addWidget(pcard, 8);
-		grid->addWidget(new QWidget(this), 3);
+		grid->addWidget(points, 3);
 		grid->addWidget(pgems, 8);
 		grid->addWidget(name, 1);
 	}

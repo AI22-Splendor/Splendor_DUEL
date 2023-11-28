@@ -115,9 +115,11 @@
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
     <QtMoc Include="PlayersUI.h" />
+    <QtMoc Include="PersonnageBoardUI.h" />
     <ClInclude Include="Player.h" />
     <QtMoc Include="PlayerNameUI.h" />
     <QtMoc Include="PlayerCardUI.h" />
+    <QtMoc Include="PlayerPoints.h" />
     <ClInclude Include="Rules.h" />
     <QtMoc Include="BoardUI.h" />
     <ClInclude Include="Card.h" />
@@ -138,10 +140,12 @@
     <ClCompile Include="CardEffectPlayAgain.cpp" />
     <ClCompile Include="CardEffectTakePrivilege.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="PersonnageBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCardUI.cpp" />
     <ClCompile Include="PlayerGemsUI.cpp" />
     <ClCompile Include="PlayerNameUI.cpp" />
+    <ClCompile Include="PlayerPoints.cpp" />
     <ClCompile Include="PlayersUI.cpp" />
     <ClCompile Include="RemplirBoardUI.cpp" />
     <ClCompile Include="BoardUI.cpp" />
@@ -186,6 +190,7 @@
     <Image Include="res\plateau.png" />
     <Image Include="res\playerFond.png" />
     <Image Include="res\playergemmes.png" />
+    <Image Include="res\points.png" />
     <Image Include="res\remplir.png" />
     <Image Include="res\rouge.png" />
     <Image Include="res\vert.png" />

@@ -41,6 +41,12 @@ public:
 	static QPixmap getPlayerGems();
 
 	/// <summary>
+	/// retourne le fond des points des joueurs
+	/// </summary>
+	/// <returns>l'image</returns>
+	static QPixmap getPlayersPoints();
+
+	/// <summary>
 	/// detruit notre singleton
 	/// </summary>
 	static void destroy();
@@ -63,5 +69,6 @@ private:
 	QPixmap playerGems;
 	QPixmap underPlat;
 	QPixmap cartvide;
+	QPixmap ppoints;
 };
 

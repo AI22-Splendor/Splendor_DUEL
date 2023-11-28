@@ -5,7 +5,7 @@
 #include "MyException.h"
 #include <qevent.h>
 
-CardUI::CardUI(QWidget* parent)
+CardUI::CardUI(GemmesContainerGUI* parent)
     : selected(false), nbCard(0), QWidget(parent), cardList(), totalReduc(0), err(false), nbErr(0) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(QSize(20, 30));
