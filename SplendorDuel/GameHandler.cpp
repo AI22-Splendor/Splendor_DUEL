@@ -5,7 +5,7 @@
 
 GameHandler* GameHandler::instance = nullptr;
 
-void GameHandler::Instanciate(Bag& bag, Board& board, vector<DrawPile*> drawPiles, Player* player1, Player* player2) {
+void GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2) {
 	if(GameHandler::instance == nullptr)
 		GameHandler::instance = new GameHandler(bag, board, drawPiles, player1, player2);
 }
@@ -178,10 +178,10 @@ bool GameHandler::reservCard(const Card* c) {
 int GameHandler::buyCard(const Card* c, const int position) {
 	//Coriger canBuyCard
 	if (isPlayer1Turn && instance->player1.canBuyCard(*c)) {
-		//instance->player1.buyCard(*c, instance->bag);
+		instance->player1.buyCard(*c, instance->bag);
 	}
 	else if(!isPlayer1Turn && instance->player2.canBuyCard(*c)) {
-		//instance->player2.buyCard(*c, instance->bag);
+		instance->player2.buyCard(*c, instance->bag);
 	}
 	else {
 		return -1;
