@@ -2,6 +2,8 @@
 #include <qgridlayout.h>
 #include <qpainter.h>
 #include "Image.h"
+#include "GameHandler.h"
+#include "SplendorDuel.h"
 
 PlayerCardUI::PlayerCardUI(QWidget* parent) : CardContainersGUI(parent) {
 	this->cards = new CardUI * [6]();
@@ -63,5 +65,13 @@ void PlayerCardUI::addCarte(const Card* c) {
 	case Gemmes::Vide:
 		this->cards[5]->ajouterCarte(c);
 		break;
+	}
+}
+
+void PlayerCardUI::clickCard(int col, int ligne, const Card* c) {
+	Card* cd = GameHandler::asignCard(c);
+	if (cd!=nullptr) {
+		this->cards[col]->ajouterCarte(cd);
+		SplendorDuel::changePtour();
 	}
 }

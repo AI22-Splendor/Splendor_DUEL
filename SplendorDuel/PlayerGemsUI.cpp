@@ -70,12 +70,14 @@ void PlayerGemsUI::resizeEvent(QResizeEvent* event) {
 	this->update();
 }
 
-void PlayerGemsUI::gemsAdd(const Gemmes& g) {
-	gem[g]->setNb(gem[g]->getNb() + 1);
+void PlayerGemsUI::bigError() {
+	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
+		this->gem[i]->showErr();
+	}
 }
 
-void PlayerGemsUI::gemsSupp(const Gemmes& g) {
-	gem[g]->setNb(gem[g]->getNb() - 1);
+void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
+	this->gem[g]->setNb(nb);
 }
 
 void PlayerGemsUI::clickGemmes(Gemmes g) {
@@ -83,10 +85,10 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 	if (this->pnum == 1 && GameHandler::isPlayer1Turn() || this->pnum == 2 && !GameHandler::isPlayer1Turn()) {
 		int n=GameHandler::suppPlayerGems(g);
 		if ( n>-1) {
-			this->gemsSupp(g);
+			this->gem[g]->setNb(gem[g]->getNb()-1);
 			SplendorDuel::changePtour();
 			if (n == 1) {
-				SplendorDuel::addPlayerGems(g, pnum);
+				SplendorDuel::refreshPlayersGems(pnum);
 			}
 		}
 		else {

@@ -56,14 +56,16 @@ void BoardCardUI::clickDCard(int col, int ligne, const Card* c) {
 
 void BoardCardUI::clickCard(int col, int ligne, const Card* c) {
 	int pturn = GameHandler::isPlayer1Turn() ? 0: 1;
-	if (GameHandler::buyCard(c, col)) {
+	int n = GameHandler::buyCard(c, col);
+	if (n>=0) {
 		this->cards[ligne][col]->supprimerCarte(c);
-		cout << c->getLevel() << "\n";
 		this->cards[ligne][col]->ajouterCarte(GameHandler::getDisplayedCard(c->getLevel(), col));
-		SplendorDuel::addPlayerCard(c, pturn);
+		if(n>0)
+			SplendorDuel::addPlayerCard(c, pturn);
 		SplendorDuel::changePtour();
+		SplendorDuel::refreshPlayersGems(pturn);
 	}
-	else {
+	else{
 		this->cards[ligne][col]->showErr();
 	}
 }

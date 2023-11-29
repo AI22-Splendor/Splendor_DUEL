@@ -20,8 +20,8 @@ public:
 	static bool isPlayer1Turn();
 	static int suppPlayerGems(Gemmes g);
 	static bool reservCard(const Card* c);
-	static bool buyCard(const Card* c,const int position);
-	static bool asignCard(Card* c);
+	static int buyCard(const Card* c,const int position);
+	static Card* asignCard(const Card* c);
 	static bool usePrivilege();
 	static Card* getDisplayedCard(int rareter, int pos);
 

@@ -6,6 +6,7 @@
 #include "PlayerNameUI.h"
 #include <qpainter.h>
 #include "PlayerPoints.h"
+#include "Player.h"
 #include "Gemmes.h"
 
 /// <summary>
@@ -20,19 +21,13 @@ public:
 	/// </summary>
 	/// <param name="parent">le widget parent</param>
 	/// <param name="player">son numéro</param>
-	PlayersUI(QWidget* parent, QString pname, int nb);
+	PlayersUI(QWidget* parent, Player* p, int nb);
 	~PlayersUI();
 
-	/// <summary>
-	/// ajoute 1 a la gems
+
+	/// refresh les gemmes du joueurs
 	/// </summary>
-	/// <param name="g">la gems</param>
-	inline void gemsAdd(const Gemmes& g) { pgems->gemsAdd(g); };
-	/// <summary>
-	/// retire 1 a la gems
-	/// </summary>
-	/// <param name="g">la gems</param>
-	inline void gemsSupp(const Gemmes& g) { pgems->gemsSupp(g); };
+	void setGemmes();
 
 	/// <summary>
 	/// retire 1 a la gems
@@ -50,6 +45,7 @@ private:
 	}
 	//son numéro de joeur
 	//ses gemmes
+	Player* p;
 	PlayerGemsUI* pgems;
 	PlayerCardUI* pcard;
 	PlayerNameUI* name;

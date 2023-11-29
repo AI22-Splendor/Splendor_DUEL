@@ -175,7 +175,7 @@ bool GameHandler::reservCard(const Card* c) {
 	return true;
 }
 
-bool GameHandler::buyCard(const Card* c, const int position) {
+int GameHandler::buyCard(const Card* c, const int position) {
 	//Coriger canBuyCard
 	if (isPlayer1Turn && instance->player1.canBuyCard(*c)) {
 		//instance->player1.buyCard(*c, instance->bag);
@@ -184,27 +184,29 @@ bool GameHandler::buyCard(const Card* c, const int position) {
 		//instance->player2.buyCard(*c, instance->bag);
 	}
 	else {
-		return false;
+		return -1;
 	}
 	//je gère pas les actions pour l'instant
 	instance->mainActionIsDone = true;
 	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
 
+	//si la carte doit être assigné, la retenir et retourner 0
 	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
 	// si replay : instance->replay=true;
 	// si c'est un perso on fait juste l'effet sinon :
 	//mettre mainActionIsDone a true sauf si il va devoir prendre une gemme (action = PICK_GEMMES)
 	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
 	GameHandler::nextAction();
-	return true;
+	return 1;
 }
 
-bool GameHandler::asignCard(Card* c) {
+Card* GameHandler::asignCard(const Card* c) {
 	//TODO
 	// vérifier que le joeur possède un carte de ce type
 	// l'assinger de cette couleur
+	//retourner la carte qui devais être assigné
 	GameHandler::nextAction();
-	return true;
+	return nullptr;
 }
 
 bool GameHandler::usePrivilege() {
