@@ -9,6 +9,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>4</rouge>
@@ -27,6 +28,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>2</level>
 			<cost>
 				<vert>6</vert>
 				<rouge>2</rouge>
@@ -45,6 +47,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>3</rouge>
@@ -63,6 +66,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>1</rouge>
@@ -81,6 +85,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -99,6 +104,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -117,6 +123,7 @@
 			<crowns>0</crowns>
 			<discount>2</discount>
 			<discountType>0</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>5</rouge>
@@ -135,6 +142,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -153,6 +161,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>1</level>
 			<cost>
 				<vert>4</vert>
 				<rouge>0</rouge>
@@ -171,6 +180,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -189,6 +199,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>0</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>3</rouge>
@@ -208,6 +219,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -226,6 +238,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>0</level>
 			<cost>
 				<vert>1</vert>
 				<rouge>0</rouge>
@@ -244,6 +257,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -262,6 +276,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -280,6 +295,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>1</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -298,6 +314,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>1</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>4</rouge>
@@ -316,6 +333,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>2</level>
 			<cost>
 				<vert>3</vert>
 				<rouge>0</rouge>
@@ -334,6 +352,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -352,6 +371,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -370,6 +390,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>1</discountType>
+			<level>2</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>6</rouge>
@@ -388,6 +409,7 @@
 			<crowns>0</crowns>
 			<discount>2</discount>
 			<discountType>1</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -407,6 +429,7 @@
 			<crowns>0</crowns>
 			<discount>2</discount>
 			<discountType>2</discountType>
+			<level>1</level>
 			<cost>
 				<vert>5</vert>
 				<rouge>2</rouge>
@@ -425,6 +448,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -443,6 +467,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>1</level>
 			<cost>
 				<vert>4</vert>
 				<rouge>0</rouge>
@@ -461,6 +486,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -479,6 +505,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>0</level>
 			<cost>
 				<vert>1</vert>
 				<rouge>1</rouge>
@@ -497,6 +524,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -515,6 +543,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>2</rouge>
@@ -533,6 +562,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -551,6 +581,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>2</level>
 			<cost>
 				<vert>3</vert>
 				<rouge>0</rouge>
@@ -569,6 +600,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>2</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -587,6 +619,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>2</discountType>
+			<level>0</level>
 			<cost>
 				<vert>3</vert>
 				<rouge>0</rouge>
@@ -606,6 +639,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>2</rouge>
@@ -624,6 +658,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -642,6 +677,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>0</level>
 			<cost>
 				<vert>1</vert>
 				<rouge>1</rouge>
@@ -660,6 +696,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -678,24 +715,7 @@
 			<crowns>0</crowns>
 			<discount>2</discount>
 			<discountType>3</discountType>
-			<cost>
-				<vert>0</vert>
-				<rouge>0</rouge>
-				<bleu>2</bleu>
-				<noir>0</noir>
-				<blanc>5</blanc>
-				<perle>0</perle>
-			</cost>
-			<effects>
-				<effect>0</effect>
-			</effects>
-		</card>
-		<card>
-			<image>./res/Noir5.png</image>
-			<prestige>1</prestige>
-			<crowns>0</crowns>
-			<discount>2</discount>
-			<discountType>3</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -714,6 +734,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -732,6 +753,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>2</level>
 			<cost>
 				<vert>5</vert>
 				<rouge>3</rouge>
@@ -750,6 +772,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -768,6 +791,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>0</level>
 			<cost>
 				<vert>3</vert>
 				<rouge>0</rouge>
@@ -786,6 +810,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>1</level>
 			<cost>
 				<vert>3</vert>
 				<rouge>0</rouge>
@@ -804,6 +829,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>3</discountType>
+			<level>1</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>2</rouge>
@@ -823,6 +849,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>3</rouge>
@@ -841,6 +868,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>3</rouge>
@@ -859,6 +887,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -877,6 +906,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>1</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>2</rouge>
@@ -895,6 +925,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>5</rouge>
@@ -913,6 +944,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -931,6 +963,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -949,6 +982,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>0</level>
 			<cost>
 				<vert>1</vert>
 				<rouge>1</rouge>
@@ -967,6 +1001,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -985,6 +1020,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>4</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -1003,6 +1039,7 @@
 			<crowns>0</crowns>
 			<discount>2</discount>
 			<discountType>4</discountType>
+			<level>1</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -1022,6 +1059,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>0</level>
 			<cost>
 				<vert>2</vert>
 				<rouge>0</rouge>
@@ -1040,6 +1078,7 @@
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -1058,6 +1097,7 @@
 			<crowns>3</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -1076,6 +1116,7 @@
 			<crowns>1</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -1094,6 +1135,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>2</rouge>
@@ -1112,6 +1154,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -1130,6 +1173,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>1</level>
 			<cost>
 				<vert>6</vert>
 				<rouge>0</rouge>
@@ -1148,6 +1192,7 @@
 			<crowns>0</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>8</rouge>
@@ -1163,29 +1208,12 @@
 			</effects>
 		</card>
 		<card>
-			<image>./res/NoColor8.png</image>
-			<prestige>0</prestige>
-			<crowns>2</crowns>
-			<discount>1</discount>
-			<discountType>7</discountType>
-			<cost>
-				<vert>6</vert>
-				<rouge>0</rouge>
-				<bleu>0</bleu>
-				<noir>0</noir>
-				<blanc>0</blanc>
-				<perle>1</perle>
-			</cost>
-			<effects>
-				<effect>5</effect>
-			</effects>
-		</card>
-		<card>
 			<image>./res/NoColor9.png</image>
 			<prestige>0</prestige>
 			<crowns>2</crowns>
 			<discount>1</discount>
 			<discountType>7</discountType>
+			<level>1</level>
 			<cost>
 				<vert>6</vert>
 				<rouge>0</rouge>
@@ -1204,6 +1232,7 @@
 			<crowns>0</crowns>
 			<discount>0</discount>
 			<discountType>7</discountType>
+			<level>0</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>4</rouge>
@@ -1222,6 +1251,7 @@
 			<crowns>0</crowns>
 			<discount>0</discount>
 			<discountType>7</discountType>
+			<level>2</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>
@@ -1240,6 +1270,7 @@
 			<crowns>0</crowns>
 			<discount>0</discount>
 			<discountType>7</discountType>
+			<level>1</level>
 			<cost>
 				<vert>0</vert>
 				<rouge>0</rouge>

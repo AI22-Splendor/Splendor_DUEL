@@ -29,8 +29,8 @@ public:
 		// TODO : une vraie analyse de comment générer les cartes
 		vector<DrawPile*> drawPiles;
 		drawPiles.push_back(new DrawPile(0, 30));
-		drawPiles.push_back(new DrawPile(1, 22));
-		drawPiles.push_back(new DrawPile(2, 15));
+		drawPiles.push_back(new DrawPile(1, 24));
+		drawPiles.push_back(new DrawPile(2, 13));
 
 		list<Card*> cards = XmlReader::getCardsFromXml();
 		list<Card*>::iterator it;
