@@ -18,7 +18,7 @@ public:
 	static void replayTurn();
 	static void nextAction();
 	static bool isPlayer1Turn();
-	static int suppPlayerGems(Gemmes g);
+	static bool suppPlayerGems(Gemmes g);
 	static bool reservCard(const Card* c);
 	static int buyCard(const Card* c,const int position);
 	static Card* asignCard(const Card* c);
@@ -50,7 +50,9 @@ private:
 		: bag(bag), player1Joue(true), replay(false), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
-			for (int j = 0; j < 5- i; j++) displayedCards[i].push_back(drawPiles[i]->piocher());
+			for (int j = 0; j < 5 - i; j++) {
+				displayedCards[i].push_back(drawPiles[i]->piocher()); 
+			}
 		}
 	}
 	GameHandler(const GameHandler&)=delete;

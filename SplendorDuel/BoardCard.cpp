@@ -55,6 +55,10 @@ void BoardCardUI::clickDCard(int col, int ligne, const Card* c) {
 }
 
 void BoardCardUI::clickCard(int col, int ligne, const Card* c) {
+	if (c == nullptr) {
+		cout << "Carte null";
+		return;
+	}
 	int pturn = GameHandler::isPlayer1Turn() ? 0: 1;
 	int n = GameHandler::buyCard(c, col);
 	if (n>=0) {
