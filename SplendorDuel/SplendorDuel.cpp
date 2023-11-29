@@ -67,6 +67,12 @@ SplendorDuel::~SplendorDuel()
     delete SplendorDuel::instance;
 }
 
+void SplendorDuel::addPlayerCard(const Card* c, int ptrun) {
+    if (ptrun< 0 || ptrun>1)
+        return;
+    instance->ptab[ptrun]->ajouterCarte(c);
+}
+
 void SplendorDuel::start() {
     while (!GameHandler::getInstance().gameFinished()) {
         GameHandler::getInstance().nextAction();

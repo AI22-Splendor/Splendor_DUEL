@@ -54,7 +54,6 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 		painter.drawRect(0, 0, width(), height());
 	}
 
-
 	QPixmap pix= Image::getPixmap(gem);
 	//on peint la gemmes
 	switch (gem)

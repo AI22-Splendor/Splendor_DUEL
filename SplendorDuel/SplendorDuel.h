@@ -40,6 +40,8 @@ public:
         instance->ptab[p]->gemsAdd(g); 
     }
 
+    static void addPlayerCard(const Card* c, int pturn);
+
     /// <summary>
     /// lance le jeu
     /// </summary>

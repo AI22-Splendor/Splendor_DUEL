@@ -31,7 +31,8 @@ void GameHandler::replayTurn() {
 }
 
 void GameHandler::nextAction() {
-	if(instance->action==Action::MAIN_ACTION)
+	if (instance->action != Action::MAIN_ACTION)
+		return;
 	//si il a pas encore fait son action principale
 	if (instance->mainActionIsDone == false)
 		return;
@@ -89,8 +90,9 @@ bool GameHandler::gemmesPick(const int *posTab){
 	{
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
-		if (instance->action != Action::USE_PRIVILEGE)
+		if (instance->action != Action::USE_PRIVILEGE) {
 			instance->mainActionIsDone = true;
+		}
 		instance->action = Action::MAIN_ACTION;
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
@@ -164,7 +166,7 @@ int GameHandler::suppPlayerGems(Gemmes g) {
 	return retour;
 }
 
-bool GameHandler::reservCard(Card c) {
+bool GameHandler::reservCard(const Card* c) {
 	//TODO
 	// ne pas oublié de vérif que le jouer n'a pas déjà 3 cartes réserver et qu'il y a 
 	// au moins 1 or sur le plateau
@@ -172,10 +174,22 @@ bool GameHandler::reservCard(Card c) {
 	// et ne pas modifier mainActionIsDone, c'est prendre l'or qui terminera l'action principale
 	return true;
 }
-bool GameHandler::buyCard(Card c) {
-	//TODO
-	// vérifier qu'il peux l'acheter
-	// supprimer les gemmes
+
+bool GameHandler::buyCard(const Card* c, const int position) {
+	//Coriger canBuyCard
+	if (isPlayer1Turn && instance->player1.canBuyCard(*c)) {
+		//instance->player1.buyCard(*c, instance->bag);
+	}
+	else if(!isPlayer1Turn && instance->player2.canBuyCard(*c)) {
+		//instance->player2.buyCard(*c, instance->bag);
+	}
+	else {
+		return false;
+	}
+	//je gère pas les actions pour l'instant
+	instance->mainActionIsDone = true;
+	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
+
 	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
 	// si replay : instance->replay=true;
 	// si c'est un perso on fait juste l'effet sinon :
@@ -185,8 +199,28 @@ bool GameHandler::buyCard(Card c) {
 	return true;
 }
 
+bool GameHandler::asignCard(Card* c) {
+	//TODO
+	// vérifier que le joeur possède un carte de ce type
+	// l'assinger de cette couleur
+	GameHandler::nextAction();
+	return true;
+}
+
 bool GameHandler::usePrivilege() {
 	//vérfier que le joeur peux
 	//mettre l'ation sur use_PRIVILEGE
 	return true;
+}
+
+Card* GameHandler::getDisplayedCard(int rareter, int pos) {
+	if (rareter < 4 && rareter >= 0) {
+		if (rareter == 0 && pos < 5 && pos >= 0)
+			return instance->displayedCards[0][pos];
+		if (rareter == 1 && pos < 4 && pos >= 0)
+			return instance->displayedCards[rareter][pos];
+		if (rareter == 2 && pos < 3 && pos >= 0)
+			return instance->displayedCards[2][pos];
+	}
+	return nullptr;
 }

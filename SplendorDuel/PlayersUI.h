@@ -34,6 +34,12 @@ public:
 	/// <param name="g">la gems</param>
 	inline void gemsSupp(const Gemmes& g) { pgems->gemsSupp(g); };
 
+	/// <summary>
+	/// retire 1 a la gems
+	/// </summary>
+	/// <param name="g">la gems</param>
+	void ajouterCarte(const Card* c);
+
 	inline void changePtour(bool b) {
 		name->setTour(b);
 	};

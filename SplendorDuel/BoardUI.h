@@ -51,7 +51,6 @@ public:
 	void clickGemmes(Gemmes g);
 	
 private:
-	void clickCard() {};
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	void selectOtherGemmes(const int pos);

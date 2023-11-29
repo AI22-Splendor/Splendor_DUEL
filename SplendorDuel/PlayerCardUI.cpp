@@ -3,7 +3,7 @@
 #include <qpainter.h>
 #include "Image.h"
 
-PlayerCardUI::PlayerCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
+PlayerCardUI::PlayerCardUI(QWidget* parent) : CardContainersGUI(parent) {
 	this->cards = new CardUI * [6]();
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(20 * 6, 30);
@@ -13,7 +13,7 @@ PlayerCardUI::PlayerCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
 	g->setSpacing(0);
 
 	for (int i = 0; i < 6; i++) {
-		CardUI* c = new CardUI(this);
+		CardUI* c = new CardUI(this, 0, i, true);
 		g->addWidget(c, 0, i);
 		cards[i] = c;
 	}
@@ -40,4 +40,28 @@ void PlayerCardUI::resizeEvent(QResizeEvent* event) {
 	int min = qMin(width() / 6, height() / 3 * 2);
 	resize(min * 6, min / 2 * 3);
 	this->update();
+}
+
+void PlayerCardUI::addCarte(const Card* c) {
+	switch (c->getDiscountType())
+	{
+	case Gemmes::Blanc:
+		this->cards[Blanc]->ajouterCarte(c);
+		break;
+	case Gemmes::Noir:
+		this->cards[Noir]->ajouterCarte(c);
+		break;
+	case Gemmes::Vert:
+		this->cards[Vert]->ajouterCarte(c);
+		break;
+	case Gemmes::Rouge:
+		this->cards[Rouge]->ajouterCarte(c);
+		break;
+	case Gemmes::Bleu:
+		this->cards[Bleu]->ajouterCarte(c);
+		break;
+	case Gemmes::Vide:
+		this->cards[5]->ajouterCarte(c);
+		break;
+	}
 }

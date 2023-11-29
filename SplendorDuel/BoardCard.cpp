@@ -1,7 +1,9 @@
 #include "BoardCard.h"
 #include <qgridlayout.h>
+#include "GameHandler.h"
+#include "SplendorDuel.h"
 
-BoardCardUI::BoardCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
+BoardCardUI::BoardCardUI(QWidget* parent) : CardContainersGUI(parent) {
 	this->cards = new CardUI **[3]();
 	this->cards[0] = new CardUI *[3]();
 	this->cards[1] = new CardUI * [4]();
@@ -12,22 +14,28 @@ BoardCardUI::BoardCardUI(QWidget* parent) : GemmesContainerGUI(parent) {
 	QGridLayout* g = new QGridLayout(this);
 	this->setLayout(g);
 	for (int i = 0; i < 3; i++) {
-		CardUI* c = new CardUI(this);
-		g->addWidget(c, i, 0);
+		//CardUI* c = new CardUI(this);
+		//g->addWidget(c, i, 0);
 	}
 	for (int i = 0; i < 3; i++) {
-		CardUI* c = new CardUI(this);
+		CardUI* c = new CardUI(this, 0, i);
 		g->addWidget(c, 0, i+3);
+		c->ajouterCarte(GameHandler::getDisplayedCard(2, i));
+		cards[0][i] = c;
 	}
 
 	for (int i = 0; i < 4; i++) {
-		CardUI* c = new CardUI(this);
+		CardUI* c = new CardUI(this, 1, i);
 		g->addWidget(c, 1, i+2);
+		c->ajouterCarte(GameHandler::getDisplayedCard(1, i));
+		cards[1][i] = c;
 	}
 
 	for (int i = 0; i < 5; i++) {
-		CardUI* c = new CardUI(this);
+		CardUI* c = new CardUI(this, 2, i);
 		g->addWidget(c, 2, i+1);
+		c->ajouterCarte(GameHandler::getDisplayedCard(0, i));
+		cards[2][i] = c;
 	}
 
 	g->setContentsMargins(0, 0, 0, 0);
@@ -40,4 +48,22 @@ BoardCardUI::~BoardCardUI() {
 	}
 	delete[] cards;
 	QWidget::~QWidget();
+}
+
+void BoardCardUI::clickDCard(int col, int ligne, const Card* c) {
+	
+}
+
+void BoardCardUI::clickCard(int col, int ligne, const Card* c) {
+	int pturn = GameHandler::isPlayer1Turn() ? 0: 1;
+	if (GameHandler::buyCard(c, col)) {
+		this->cards[ligne][col]->supprimerCarte(c);
+		cout << c->getLevel() << "\n";
+		this->cards[ligne][col]->ajouterCarte(GameHandler::getDisplayedCard(c->getLevel(), col));
+		SplendorDuel::addPlayerCard(c, pturn);
+		SplendorDuel::changePtour();
+	}
+	else {
+		this->cards[ligne][col]->showErr();
+	}
 }

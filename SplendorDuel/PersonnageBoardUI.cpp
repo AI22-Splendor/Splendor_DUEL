@@ -1,6 +1,6 @@
 #include "PersonnageBoardUI.h"
 #include <qgridlayout.h>
-PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): GemmesContainerGUI(parent) {
+PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainersGUI(parent) {
 	cards = new CardUI*[4];
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	QGridLayout* grid = new QGridLayout();
