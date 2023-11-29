@@ -6,6 +6,8 @@
 #include "DrawPile.h"
 #include <iostream>
 #include "Player.h"
+#include "XmlReader.h"
+
 using namespace std;
 
 class GameFactory {
@@ -25,12 +27,17 @@ public:
 
 
 		// TODO : une vraie analyse de comment générer les cartes
-		DrawPile* drawPiles[3];
+		vector<DrawPile*> drawPiles;
+		drawPiles.push_back(new DrawPile(0, 30));
+		drawPiles.push_back(new DrawPile(1, 22));
+		drawPiles.push_back(new DrawPile(2, 15));
+
+		list<Card*> cards = XmlReader::getCardsFromXml();
+		list<Card*>::iterator it;
+		for (it = cards.begin(); it != cards.end(); it++) {
+			drawPiles[(*it)->getLevel()]->deposer(*it);
+		}
 		for (int i = 0; i < 3; i++) {
-			drawPiles[i] = new DrawPile(i, 30 - (i * 5));
-			for (int j = 0; j < (30 - (i * 5)); j++) {
-				drawPiles[i]->deposer(new Card(i, i + j, Gemmes::Rouge, j, j % 5 == 0 ? j : 0));
-			}
 			drawPiles[i]->melanger();
 		}
 

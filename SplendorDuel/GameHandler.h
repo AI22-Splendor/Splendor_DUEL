@@ -10,7 +10,7 @@
 
 class GameHandler {
 public:
-	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
+	static void Instanciate(Bag& bag, Board& board, vector<DrawPile*> drawPiles, Player* player1, Player* player2);
 	static void destroy();
 	static inline GameHandler& getInstance() { return *GameHandler::instance; }
 	static bool gameFinished();
@@ -44,8 +44,8 @@ public:
 private:
 	static GameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile* drawPiles[3], Player* player1, Player* player2)
-		: bag(bag), player1Joue(true), board(board), replay(false), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
+	GameHandler(Bag& bag, Board& board, vector<DrawPile*> drawPiles, Player* player1, Player* player2)
+		: bag(bag), player1Joue(true), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < i + 3; j++) displayedCards[i].push_back(drawPiles[i]->piocher());
@@ -60,7 +60,7 @@ private:
 	bool player1Joue;
 	Bag& bag;
 	Board& board;
-	DrawPile** drawPiles;
+	vector<DrawPile*> drawPiles;
 	vector<vector<Card*>> displayedCards;
 	Player& player1;
 	Player& player2;
