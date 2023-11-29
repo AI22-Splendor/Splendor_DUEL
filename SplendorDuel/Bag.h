@@ -24,7 +24,7 @@ public:
 	//Param : int nbGemmes : nombre de gemmes a ajouter
 	//return void
 	//throw Exception si le sac est deja rempli
-	void addGemmes(const Gemmes& g, unsigned int nbGemmes = 1);
+	void addGemmes(const Gemmes g, unsigned int nbGemmes = 1);
 
 	//Retire une Gemme du Sac
 	//Prerequis : le Sac dois en contenir une de ce type
