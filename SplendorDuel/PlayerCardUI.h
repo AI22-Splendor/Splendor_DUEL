@@ -15,15 +15,9 @@ class PlayerCardUI : public CardContainersGUI
 		/// <param name="g">la carte</param>
 		void addCarte(const Card* c);
 
-		/// <summary>
-		/// suppprime la card de la main du joueur
-		/// </summary>
-		/// <param name="g">la carte param>
-		void suppCarte(Card* c){}
-
 private:
-	void clickDCard(int col, int ligne, const Card* c) {}
-	void clickCard(int col, int ligne, const Card* c) {}
+	void clickDCard(int col, int ligne, const Card* c){}
+	void clickCard(int col, int ligne, const Card* c);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;

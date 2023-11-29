@@ -30,14 +30,13 @@ public:
 
     static inline SplendorDuel& getInstance() { return *SplendorDuel::instance; };
     
-    
     /// <summary>
-    /// On ajoute au joueur une Gemmes
-    /// </summary>
-    /// <param name="g">la couleur de la gemme</param>
-    /// <param name="p">sa position (de 0 à 6)</param>
-    static inline void addPlayerGems(const Gemmes g, const int p){ 
-        instance->ptab[p]->gemsAdd(g); 
+   /// On ajoute au joueur une Gemmes
+   /// </summary>
+   /// <param name="g">la couleur de la gemme</param>
+   /// <param name="p">sa position (de 0 à 6)</param>
+    static inline void refreshPlayersGems(const int p) {
+        instance->ptab[p]->setGemmes();
     }
 
     static void addPlayerCard(const Card* c, int pturn);

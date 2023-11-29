@@ -70,24 +70,21 @@ void PlayerGemsUI::resizeEvent(QResizeEvent* event) {
 	this->update();
 }
 
-void PlayerGemsUI::gemsAdd(const Gemmes& g) {
-	gem[g]->setNb(gem[g]->getNb() + 1);
+void PlayerGemsUI::bigError() {
+	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
+		this->gem[i]->showErr();
+	}
 }
 
-void PlayerGemsUI::gemsSupp(const Gemmes& g) {
-	gem[g]->setNb(gem[g]->getNb() - 1);
+void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
+	this->gem[g]->setNb(nb);
 }
 
 void PlayerGemsUI::clickGemmes(Gemmes g) {
-	int pnum = GameHandler::isPlayer1Turn ? 1 : 2;
-	if (this->pnum == 1 && GameHandler::isPlayer1Turn() || this->pnum == 2 && !GameHandler::isPlayer1Turn()) {
-		int n=GameHandler::suppPlayerGems(g);
-		if ( n>-1) {
-			this->gemsSupp(g);
+	int pnum = GameHandler::isPlayer1Turn() ? 0 : 1;
+		if (GameHandler::suppPlayerGems(g)) {
 			SplendorDuel::changePtour();
-			if (n == 1) {
-				SplendorDuel::addPlayerGems(g, pnum);
-			}
+			SplendorDuel::refreshPlayersGems(pnum);
 		}
 		else {
 			if (selected != -1) {
@@ -95,12 +92,6 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 			}
 		}
 	}
-	else {
-		if (selected != -1) {
-			gem[selected]->showErr();
-		}
-	}
-}
 
 void PlayerGemsUI::hoverGemmes(const int pos, const bool red) {
 	this->gem[pos]->hover(red);

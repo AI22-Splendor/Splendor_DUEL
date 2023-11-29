@@ -27,7 +27,7 @@ public:
 	/// </summary>
 	/// <param name="gem">Type of the gem</param>
 	/// <returns>The number of gems that the player currently has</returns>
-	unsigned int nbOfGems(Gemmes gem) const { return gems[gem]; }
+	unsigned int nbOfGems(const Gemmes gem) const { return gems[gem]; }
 
 	/// <summary>
 	/// Retursn a list of the currently owned cards of the player

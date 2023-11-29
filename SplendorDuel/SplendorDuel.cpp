@@ -25,8 +25,8 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    ptab[0] = new PlayersUI(main, QString(p1->getName().c_str()), 1);
-    ptab[1] = new PlayersUI(main, QString(p2->getName().c_str()), 2);
+    ptab[0] = new PlayersUI(main, p1, 1);
+    ptab[1] = new PlayersUI(main, p2, 2);
     QWidget* com = new QWidget(main);
 
     this->board = new CompleteBoardUI(com, b);

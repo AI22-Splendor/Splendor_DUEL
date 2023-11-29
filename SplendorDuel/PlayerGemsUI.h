@@ -12,18 +12,8 @@ class PlayerGemsUI : public GemmesContainerGUI
 public:
 	PlayerGemsUI(QWidget* parent, int pnum);
 	~PlayerGemsUI();
-
-	/// <summary>
-	/// Ajoute une gemmes à la Gemmes donné
-	/// </summary>
-	/// <param name="g">la gemme</param>
-	void gemsAdd(const Gemmes& g);
-
-	/// <summary>
-	/// retire 1 a la gems
-	/// </summary>
-	/// <param name="g">la gems</param>
-	void gemsSupp(const Gemmes& g);
+	void bigError();
+	void setGems(const Gemmes g, const int nb);
 
 private:
 	void clickCard() {};

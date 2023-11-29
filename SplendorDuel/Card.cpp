@@ -29,14 +29,16 @@ void Card::setCost(const Gemmes type, const unsigned int price) {
 
 extern const unsigned int NB_GEMMES_PAIEMENTS;
 
-bool Card::canBeBought(const unsigned int wallet[NB_GEMMES_PAS_VIDE]) const {
+bool Card::canBeBought(const unsigned int* wallet) const {
 	int nbGold = wallet[Gemmes::Or];
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
-		if (wallet[i] + nbGold < cost[i]) {
-			return false;
+		if (cost[i] > wallet[i]) {
+			int delta = cost[i] - wallet[i];
+			nbGold -= delta;
 		}
-		int delta = cost[i] - wallet[i];
-		if (delta > 0) nbGold -= delta;
+	}
+	if (nbGold < 0) {
+		return false;
 	}
 	return true;
 }

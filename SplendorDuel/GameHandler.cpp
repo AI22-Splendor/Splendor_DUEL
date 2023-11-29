@@ -58,7 +58,7 @@ void GameHandler::nextAction() {
 	for (int i = 0; i < 3; i++) {
 		vector<Card*>::const_iterator it = instance->displayedCards[i].cbegin();
 		for (; it != instance->displayedCards[i].cend(); it++) {
-			if (currentPlayer.canBuyCard(*(*it))) {
+			if ((*it)!=nullptr && currentPlayer.canBuyCard(*(*it))) {
 				canBuyCard = true;
 				possibleMandatoryActions.push_back(Action::BUY_CARD);
 				break;
@@ -117,15 +117,14 @@ bool GameHandler::isPlayer1Turn() {
 	return instance->player1Joue;
 }
 
-int GameHandler::suppPlayerGems(Gemmes g) {
-	int retour = 0;
+bool GameHandler::suppPlayerGems(Gemmes g) {
 	if (instance->action == Action::MAIN_ACTION) {
 		if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
 			if (instance->player1.removeGem(g, 1)) {
 				instance->bag.addGemmes(g);
 			}
 			else {
-				return -1;
+				return false;
 			}
 		}
 		else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)) {
@@ -133,23 +132,22 @@ int GameHandler::suppPlayerGems(Gemmes g) {
 				instance->bag.addGemmes(g);
 			}
 			else {
-				return -1;
+				return false;
 			}
 		}
 		else {
-			return -1;
+			return false;
 		}
 	}
 	//action de voler une gemmes de l'autre joeur
 	else if (instance->action == Action::STEAL_GEMMES) {
 		//on vole pas l'Or!
 		if (g == Gemmes::Or)
-			return -1;
+			return false;
 		if (isPlayer1Turn()) {
 			if (instance->player2.removeGem(g, 1)) {
 				instance->bag.addGemmes(g);
 				instance->player1.addGems(g, 1);
-				retour = 1;
 				instance->action = Action::MAIN_ACTION;
 			}
 		}
@@ -158,12 +156,11 @@ int GameHandler::suppPlayerGems(Gemmes g) {
 				instance->bag.addGemmes(g);
 				instance->player2.addGems(g, 1);
 				instance->action = Action::MAIN_ACTION;
-				retour = 1;
 			}
 		}
 	}
 	GameHandler::nextAction();
-	return retour;
+	return true;
 }
 
 bool GameHandler::reservCard(const Card* c) {
@@ -175,36 +172,40 @@ bool GameHandler::reservCard(const Card* c) {
 	return true;
 }
 
-bool GameHandler::buyCard(const Card* c, const int position) {
+int GameHandler::buyCard(const Card* c, const int position) {
+	if (instance->mainActionIsDone)
+		return -1;
 	//Coriger canBuyCard
-	if (isPlayer1Turn && instance->player1.canBuyCard(*c)) {
+	if (isPlayer1Turn() && instance->player1.canBuyCard(*c)) {
 		instance->player1.buyCard(*c, instance->bag);
 	}
-	else if(!isPlayer1Turn && instance->player2.canBuyCard(*c)) {
+	else if(!isPlayer1Turn() && instance->player2.canBuyCard(*c)) {
 		instance->player2.buyCard(*c, instance->bag);
 	}
 	else {
-		return false;
+		return -1;
 	}
 	//je gère pas les actions pour l'instant
 	instance->mainActionIsDone = true;
 	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
 
+	//si la carte doit être assigné, la retenir et retourner 0
 	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
 	// si replay : instance->replay=true;
 	// si c'est un perso on fait juste l'effet sinon :
 	//mettre mainActionIsDone a true sauf si il va devoir prendre une gemme (action = PICK_GEMMES)
 	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
 	GameHandler::nextAction();
-	return true;
+	return 1;
 }
 
-bool GameHandler::asignCard(Card* c) {
+Card* GameHandler::asignCard(const Card* c) {
 	//TODO
 	// vérifier que le joeur possède un carte de ce type
 	// l'assinger de cette couleur
+	//retourner la carte qui devais être assigné
 	GameHandler::nextAction();
-	return true;
+	return nullptr;
 }
 
 bool GameHandler::usePrivilege() {
@@ -214,13 +215,13 @@ bool GameHandler::usePrivilege() {
 }
 
 Card* GameHandler::getDisplayedCard(int rareter, int pos) {
-	if (rareter < 4 && rareter >= 0) {
+	if (rareter < 3 && rareter >= 0) {
 		if (rareter == 0 && pos < 5 && pos >= 0)
-			return instance->displayedCards[0][pos];
+			return instance->displayedCards[rareter][pos];
 		if (rareter == 1 && pos < 4 && pos >= 0)
 			return instance->displayedCards[rareter][pos];
 		if (rareter == 2 && pos < 3 && pos >= 0)
-			return instance->displayedCards[2][pos];
+			return instance->displayedCards[rareter][pos];
 	}
 	return nullptr;
 }
