@@ -6,7 +6,6 @@ using namespace std;
 Player::Player(string name) : name(name) {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		gems[i] = 0;
-		cout <<"gems =" << gems[i] << "\n";
 	}
 }
 
@@ -20,7 +19,6 @@ int Player::canAddGems(const unsigned int nbAdd) const {
 
 bool Player::addGems(const Gemmes gem, const unsigned int nbAdd) {
 	gems[gem] += nbAdd;
-	cout <<getName() <<" :" << this->getNBGemmes() << "\n";
 	return true;
 }
 
@@ -28,7 +26,6 @@ bool Player::removeGem(Gemmes gem, const unsigned int nbRemove) {
 	if ((gems[gem] < nbRemove) || gem == Gemmes::Vide)
 		return false;
 	gems[gem] -= nbRemove;
-	cout << getName() << " :" << this->getNBGemmes() << "\n";
 	return true;
 }
 
@@ -45,8 +42,7 @@ unsigned int Player::getPrestige(Gemmes gem) const {
 	unsigned int prestige = 0;
 	list<const Card*>::const_iterator it;
 	for (it = cards.cbegin(); it != cards.cend(); it++) {
-		// Since an empty Gem represents all the types of discount at once
-		// we can use it to calculate the total amount of prestige and type specific prestige 
+		// An empty Gem as a parameter calculates the total of prestige 
 		if (gem == Gemmes::Vide || (*it)->getDiscountType() == gem) prestige += (*it)->getPointsPrestige();
 	}
 	return prestige;
@@ -78,6 +74,8 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 	for (int i = Gemmes::Vert; i < NB_GEMMES_PAIEMENTS; i++) {
 		Gemmes gem = static_cast<Gemmes>(i);
 		int effectivePrice = card.getPriceForGemme(gem) - getDiscount(gem);
+		// If discounts exceed the price 
+		if (effectivePrice < 0) effectivePrice = 0;
  		int deltaPrice = effectivePrice - gems[i];
 		if (deltaPrice > 0) {
 			gems[i] -= effectivePrice - deltaPrice;
