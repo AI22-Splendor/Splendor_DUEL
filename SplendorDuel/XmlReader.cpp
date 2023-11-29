@@ -24,8 +24,8 @@ list<Card*> XmlReader::getCardsFromXml() {
 		sscanf(card_node->first_node("discount")->value(), "%u", &nbBonus);
 		unsigned int crowns;
 		sscanf(card_node->first_node("crowns")->value(), "%u", &crowns);
-		unsigned int level = cpt < 30 ? 0 : (cpt < 52 ? 1 : 2);
-		// sscanf(card_node->first_node("level")->value(), "%u", &crowns);
+		unsigned int level;
+		sscanf(card_node->first_node("level")->value(), "%u", &level);
 
 		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
 			// TODO
