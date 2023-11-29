@@ -38,3 +38,7 @@ PlayersUI::~PlayersUI() {
 	delete this->pcard;
 	delete this->name;
 }
+
+void PlayersUI::ajouterCarte(const Card* c) {
+	pcard->addCarte(c);
+}

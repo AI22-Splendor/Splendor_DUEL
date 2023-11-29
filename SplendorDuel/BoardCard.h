@@ -2,7 +2,7 @@
 #include "GemmesContainerGUI.h"
 #include "CardUI.h"
 #include "Card.h"
-class BoardCardUI : public GemmesContainerGUI
+class BoardCardUI : public CardContainersGUI
 {
 	Q_OBJECT
 public:
@@ -22,9 +22,8 @@ public:
 	void suppCarte(const Gemmes& g, Card c) {}
 
 private:
-	void hoverGemmes(const int pos, const bool red) {};
-	void clickGemmes(Gemmes g) {};
-	void clickCard() { /*TODO*/ }
+	void clickDCard(int col, int ligne, const Card* c);
+	void clickCard(int col, int ligne, const Card* c);
 	void paintEvent(QPaintEvent* event) {}
 	void resizeEvent(QResizeEvent* event) {}
 	CardUI*** cards;

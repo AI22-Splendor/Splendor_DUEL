@@ -4,7 +4,7 @@
 #include "Card.h"
 #include <qtimer.h>
 #include "qlist.h"
-#include "GemmesContainerGUI.h"
+#include "CardContainersGUI.h"
 
 /// <summary>
 /// Le tableau des gemmes du joueurs
@@ -14,9 +14,10 @@ class CardUI : public QWidget
 {
 	Q_OBJECT
 public:
-	CardUI(GemmesContainerGUI* parent);
-	void ajouterCarte(Card* s);
-	void supprimerCarte(Card* s);
+	CardUI(CardContainersGUI* parent, int linge=-1, int col=-1, bool details=false);
+	void ajouterCarte(const Card* s);
+	void supprimerCarte(const Card* s);
+	bool isVide();
 	~CardUI();
 	void showErr();
 
@@ -28,11 +29,13 @@ private:
 	void resizeEvent(QResizeEvent* event);
 	void timerEvent(QTimerEvent* event);
 
+	bool showDetails;
+	int col, ligne;
 	bool err;
 	int nbErr;
 	int totalReduc;
 	int nbCard;
 	bool selected;
-	QList<Card*> cardList;
+	QList<const Card*> cardList;
 };
 

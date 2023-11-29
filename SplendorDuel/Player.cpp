@@ -80,14 +80,14 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 		int effectivePrice = card.getPriceForGemme(gem) - getDiscount(gem);
  		int deltaPrice = effectivePrice - gems[i];
 		if (deltaPrice > 0) {
-			gems[i] -= card.getPriceForGemme(gem) - deltaPrice;
+			gems[i] -= effectivePrice - deltaPrice;
 			gems[Gemmes::Or] -= deltaPrice;
-			gameBag.addGemmes(gem, card.getPriceForGemme(gem) - deltaPrice);
+			gameBag.addGemmes(gem, effectivePrice- deltaPrice);
 			gameBag.addGemmes(Gemmes::Or, deltaPrice);
 		}
 		else {
-			gems[i] -= card.getPriceForGemme(gem);
-			gameBag.addGemmes(gem, card.getPriceForGemme(gem));
+			gems[i] -= effectivePrice;
+			gameBag.addGemmes(gem, effectivePrice);
 		}
 	}
 	cards.push_back(&card);

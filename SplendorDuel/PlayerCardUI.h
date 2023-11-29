@@ -1,8 +1,8 @@
 #pragma once
-#include "GemmesContainerGUI.h"
+#include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
-class PlayerCardUI : public GemmesContainerGUI
+class PlayerCardUI : public CardContainersGUI
 {
 		Q_OBJECT
 	public:
@@ -13,18 +13,17 @@ class PlayerCardUI : public GemmesContainerGUI
 		/// Ajoute la carte dans la main du joeur
 		/// </summary>
 		/// <param name="g">la carte</param>
-		void addCarte(const Gemmes& g, Card c){}
+		void addCarte(const Card* c);
 
 		/// <summary>
 		/// suppprime la card de la main du joueur
 		/// </summary>
 		/// <param name="g">la carte param>
-		void suppCarte(const Gemmes& g, Card c){}
+		void suppCarte(Card* c){}
 
 private:
-	void hoverGemmes(const int pos, const bool red) {};
-	void clickGemmes(Gemmes g) {};
-	void clickCard() {};
+	void clickDCard(int col, int ligne, const Card* c) {}
+	void clickCard(int col, int ligne, const Card* c) {}
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;
