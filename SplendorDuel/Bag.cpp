@@ -33,7 +33,8 @@ int Bag::getNbGemmes() const{
 //Param : int nbGemmes : nombre de gemmes a ajouter
 //return void
 //throw Exception si le sac est deja rempli
-void Bag::addGemmes(const Gemmes g, unsigned int nbGemmes) {
+void Bag::addGemmes(const Gemmes g, int nbGemmes) {
+	cout << "Nb Gemmes actu: " << this->getNbGemmes() << " a ajouter: " << nbGemmes << " taillemax: " << this->taille << endl;
 	if ((this->getNbGemmes() + nbGemmes) > this->taille) {
 		//On creer notre Exception:
 		MyException exep("Erreur dans l'ajout des gemmes, le sac ne peut pas accepter autant de gemmes");
@@ -41,13 +42,12 @@ void Bag::addGemmes(const Gemmes g, unsigned int nbGemmes) {
 	}
 
 		//on cherche une place vide
-	for (int i = 0; i < this->getTaille(); i++) {
+	for (int i = 0; i < this->getTaille() && nbGemmes > 0; i++) {
 			//si vide
 		if (this->bag[i] == Gemmes::Vide) {
 			//on ajoute
 			this->bag[i] = g;
 			nbGemmes--;
-			if (nbGemmes == 0) return;
 		}
 	}
 }
