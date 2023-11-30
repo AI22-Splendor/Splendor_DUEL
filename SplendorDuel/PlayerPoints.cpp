@@ -62,7 +62,7 @@ void PlayerPoints::resizeEvent(QResizeEvent* event) {
     this->layout()->setContentsMargins(0, (height() / 3), 0, 0);
 }
 
-void PlayerPoints::clickCard(int col, int ligne, const Card* c) {
+void PlayerPoints::clickCard(int col, int ligne, Card* c) {
     int pturn = GameHandler::isPlayer1Turn() ? 0 : 1;
     int n = GameHandler::buyCard(c, col);
     if (n >= 0) {
@@ -82,7 +82,7 @@ void PlayerPoints::clickCard(int col, int ligne, const Card* c) {
     }
 }
 
-void PlayerPoints::addCard(const Card* c) {
+void PlayerPoints::addCard(Card* c) {
     for (int i = 0; i < 3; i++) {
         if (card[i] == nullptr) {
             card[i]= new CardUI(this, 1, i);

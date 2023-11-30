@@ -13,11 +13,11 @@ class PlayerCardUI : public CardContainersGUI
 		/// Ajoute la carte dans la main du joeur
 		/// </summary>
 		/// <param name="g">la carte</param>
-		void addCarte(const Card* c);
+		void addCarte(Card* c);
 
 private:
-	void clickDCard(int col, int ligne, const Card* c){}
-	void clickCard(int col, int ligne, const Card* c);
+	void clickDCard(int col, int ligne, Card* c){}
+	void clickCard(int col, int ligne, Card* c);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;

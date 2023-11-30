@@ -33,7 +33,7 @@ public:
 	/// retire 1 a la gems
 	/// </summary>
 	/// <param name="g">la gems</param>
-	void ajouterCarte(const Card* c);
+	void ajouterCarte(Card* c);
 
 	inline void changePtour(bool b) {
 		name->setTour(b);
@@ -46,7 +46,7 @@ public:
 			points->setPoints(p->getPrestige(g));
 	}
 
-	inline void reservCard(const Card* c) { this->points->addCard(c); };
+	inline void reservCard(Card* c) { this->points->addCard(c); };
 
 private:
 	void paintEvent(QPaintEvent* event) {

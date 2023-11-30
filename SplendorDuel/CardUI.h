@@ -15,8 +15,8 @@ class CardUI : public QWidget
 	Q_OBJECT
 public:
 	CardUI(CardContainersGUI* parent, int linge=-1, int col=-1, bool details=false);
-	void ajouterCarte(const Card* s);
-	void supprimerCarte(const Card* s);
+	void ajouterCarte(Card* s);
+	void supprimerCarte(Card* s);
 	bool isVide();
 	~CardUI();
 	void showErr();
@@ -36,6 +36,6 @@ private:
 	int totalReduc, totalPoints;
 	int nbCard;
 	bool selected;
-	QList<const Card*> cardList;
+	QList<Card*> cardList;
 };
 

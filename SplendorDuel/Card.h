@@ -32,6 +32,7 @@ public:
 	Gemmes getDiscountType() const { return discountType;  }
 	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
+	inline void setDiscountType(const Gemmes g) { discountType = g; }
 
 	QString getImageSrc() const { return imageSrc; }
 

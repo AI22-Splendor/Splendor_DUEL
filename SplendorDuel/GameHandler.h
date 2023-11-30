@@ -19,9 +19,9 @@ public:
 	static void nextAction();
 	static bool isPlayer1Turn();
 	static bool suppPlayerGems(Gemmes g);
-	static bool reservCard(const Card* c);
-	static int buyCard(const Card* c,const int position);
-	static Card* asignCard(const Card* c);
+	static bool reservCard(const Card* c, const int position);
+	static int buyCard(Card* c,const int position);
+	static Card* asignCard(Card* c);
 	static bool usePrivilege();
 	static Card* getDisplayedCard(int rareter, int pos);
 
@@ -47,7 +47,7 @@ private:
 	static GameHandler* instance;
 
 	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), player1Joue(true), replay(false), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
+		: bag(bag), toAsign(nullptr), player1Joue(true), replay(false), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -68,5 +68,6 @@ private:
 	vector<vector<Card*>> displayedCards;
 	Player& player1;
 	Player& player2;
+	Card* toAsign;
 	friend class PrivilegeHandler;
 };

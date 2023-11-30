@@ -7,6 +7,7 @@
 #include <iostream>
 #include <qevent.h>
 #include "PlayerGemsUI.h"
+#include "PrivilegeBoardUI.h"
 #include "BoardCard.h"
 
 using namespace std;
@@ -34,8 +35,9 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
-    //lezs persos
+
     hbox->addWidget(new PersonnageBoardUI(com));
+    hbox->addWidget(new PrivilegeBoardUI(com));
     hbox->addWidget(board);
     hbox->addWidget(new BoardCardUI(com));
 
@@ -67,7 +69,7 @@ SplendorDuel::~SplendorDuel()
     delete SplendorDuel::instance;
 }
 
-void SplendorDuel::addPlayerCard(const Card* c, int ptrun) {
+void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
     if (ptrun< 0 || ptrun>1)
         return;
     instance->ptab[ptrun]->ajouterCarte(c);
