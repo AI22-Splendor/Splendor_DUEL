@@ -31,9 +31,11 @@ extern const unsigned int NB_GEMMES_PAIEMENTS;
 
 bool Card::canBeBought(const unsigned int* wallet) const {
 	int nbGold = wallet[Gemmes::Or];
+	cout << "nb gold: " << nbGold << "\n";
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
 		if (cost[i] > wallet[i]) {
 			int delta = cost[i] - wallet[i];
+			cout << i << " : " << wallet[i] <<"cost :"<< cost[i] <<"\n";
 			nbGold -= delta;
 		}
 	}

@@ -1,6 +1,8 @@
 #include "CompleteBoardUI.h"
 #include <qgridlayout.h>
 #include <qevent.h>
+#include "Image.h"
+#include <qpainter.h>
 
 CompleteBoardUI::CompleteBoardUI(QWidget* parent, Board b):QWidget(parent), board(this), remplir(this) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -24,6 +26,5 @@ void CompleteBoardUI::resizeEvent(QResizeEvent* event) {
     remplir.resize(board.width(), remplir.height());
     resize(board.width(), board.height() + remplir.height());
 }
-
 
 CompleteBoardUI::~CompleteBoardUI(){ QWidget::~QWidget(); }

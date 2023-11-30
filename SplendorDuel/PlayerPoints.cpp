@@ -71,6 +71,7 @@ void PlayerPoints::clickCard(int col, int ligne, Card* c) {
         card[col]->supprimerCarte(c);
         card[col] = nullptr;
         this->layout()->update();
+        GameHandler::playerBuyReservCard(pturn);
         if (n > 0)
             SplendorDuel::addPlayerCard(c, pturn);
         SplendorDuel::changePtour();

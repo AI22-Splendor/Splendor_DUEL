@@ -2,6 +2,8 @@
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
+#include "Image.h"
+#include <qpainter.h>
 class PersonnageBoardUI : public CardContainersGUI
 {
 	Q_OBJECT
@@ -18,8 +20,6 @@ public:
 private:
 	void clickDCard(int col, int ligne, Card* c) {}
 	void clickCard(int col, int ligne, Card* c) {}
-	void paintEvent(QPaintEvent* event) {}
-	void resizeEvent(QResizeEvent* event) {}
 	CardUI** cards;
 };
 

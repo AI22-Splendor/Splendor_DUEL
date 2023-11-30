@@ -47,7 +47,6 @@ void RemplirBoard::paintEvent(QPaintEvent* event) {
 	painter.drawPixmap(0, 0, width(), height(), pix);
 	//si hover on fait grossir l'image de remplir
 	QPixmap x = Image::getRemplir();
-
 	if (hover) {
 		painter.drawPixmap(width()/2-height()/2, 0, height(), height(), x);
 	}

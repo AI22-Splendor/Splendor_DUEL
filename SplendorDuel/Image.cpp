@@ -17,6 +17,7 @@ Image::Image() {
 	playerGems = QPixmap("./res/playergemmes.png");
 	cartvide = QPixmap("./res/0.png");
 	ppoints= QPixmap("./res/points.png");
+	fond= QPixmap("./res/fond.png");
 }
 
 void Image::destroy(){
@@ -101,6 +102,13 @@ QPixmap Image::getPlayersPoints() {
 		instance = new Image();
 	}
 	return instance->ppoints;
+}
+
+QPixmap Image::getFond() {
+	if (instance == nullptr) {
+		instance = new Image();
+	}
+	return instance->fond;
 }
 
 QPixmap& Image::getImageFromSrc(const QString src) {

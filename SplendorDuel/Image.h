@@ -17,6 +17,13 @@ public:
 	static QPixmap getPixmap(const Gemmes g);
 
 	/// <summary>
+	/// retourne l'image de la gemmes donné
+	/// </summary>
+	/// <param name="g">la gemme</param>
+	/// <returns>l'image</returns>
+	static QPixmap getFond();
+
+	/// <summary>
 	/// retourn l'image du plateau
 	/// </summary>
 	/// <returns> retourne l'image du plateau</returns>
@@ -71,6 +78,7 @@ private:
 	QPixmap playerGems;
 	QPixmap underPlat;
 	QPixmap cartvide;
+	QPixmap fond;
 	QPixmap ppoints;
 };
 

@@ -50,6 +50,7 @@ void GameHandler::nextAction() {
 	instance->mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
 	
+	/*
 	list<Action> possibleOptionalActions;
 	if (PrivilegeHandler::playerHasPrivilege(currentPlayer)) possibleOptionalActions.push_back(Action::USE_PRIVILEGE);
 	if (instance->bag.getNbGemmes() > 0) possibleOptionalActions.push_back(Action::FILL_BOARD);
@@ -68,7 +69,7 @@ void GameHandler::nextAction() {
 			}
 		}
 		if (canBuyCard) break;
-	}
+	}*/
 	instance->player1Joue = !instance->player1Joue;
 }
 
@@ -172,11 +173,11 @@ bool GameHandler::reservCard(const Card* c, const int position) {
 	if (instance->mainActionIsDone || !instance->board.hasGemOfType(Gemmes::Or))
 		return false;
 	//si il peux reserver
-	if (isPlayer1Turn() && Rules::playerCanReservCard(instance->player1)) {
-		//rers
+	if (isPlayer1Turn() && instance->player1.getNbCarteReserver()<3) {
+		instance->player1.adCarteReserver(1);
 	}
-	else if (!isPlayer1Turn() && Rules::playerCanReservCard(instance->player2)) {
-		//reserv
+	else if (!isPlayer1Turn() && instance->player2.getNbCarteReserver() < 3) {
+		instance->player1.adCarteReserver(1);
 	}
 	else {
 		return -1;
@@ -201,9 +202,6 @@ int GameHandler::buyCard(Card* c, const int position) {
 		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player1)) {
 			instance->toAsign = c;
 		}
-		else {
-			return -1;
-		}
 		instance->player1.buyCard(*c, instance->bag);
 	}
 	else if(!isPlayer1Turn() && instance->player2.canBuyCard(*c)) {
@@ -211,9 +209,6 @@ int GameHandler::buyCard(Card* c, const int position) {
 		//on vérifie que le jouer pourra l'assigné
 		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player2)) {
 			instance->toAsign = c;
-		}
-		else {
-			return -1;
 		}
 		instance->player2.buyCard(*c, instance->bag);
 	}
@@ -263,4 +258,13 @@ Card* GameHandler::getDisplayedCard(int rareter, int pos) {
 			return instance->displayedCards[rareter][pos];
 	}
 	return nullptr;
+}
+
+void GameHandler::playerBuyReservCard(int pnum) {
+	if (pnum == 0) {
+		instance->player1.adCarteReserver(-1);
+	}
+	if (pnum == 1) {
+		instance->player2.adCarteReserver(-1);
+	}
 }

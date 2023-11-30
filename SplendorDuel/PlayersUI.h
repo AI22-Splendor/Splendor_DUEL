@@ -8,11 +8,12 @@
 #include "PlayerPoints.h"
 #include "Player.h"
 #include "Gemmes.h"
+#include "BackgroundWidgetUI.h"
 
 /// <summary>
 /// class du joeur (Gemmes + carte + points, privilège, ...)
 /// </summary>
-class PlayersUI : public QWidget
+class PlayersUI : public BackgroundWidgetUI
 {
 	Q_OBJECT
 public:
@@ -49,9 +50,6 @@ public:
 	inline void reservCard(Card* c) { this->points->addCard(c); };
 
 private:
-	void paintEvent(QPaintEvent* event) {
-		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/playerFond.png"));
-	}
 	//son numéro de joeur
 	//ses gemmes
 	Player* p;

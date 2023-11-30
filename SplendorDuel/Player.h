@@ -102,10 +102,14 @@ public:
 	/// <returns></returns>
 	unsigned int getNBGemmes()const;
 
+	inline int getNbCarteReserver() { return nbCarteReserver; }
+	inline void adCarteReserver(const int nb) { nbCarteReserver += nb; }
+
 	bool operator==(const Player& player) { return name.compare(player.name) == 0; }
 
 // Protected for future possible AI impl
 protected:
+	int nbCarteReserver;
 	string name;
 	list<const Card*> cards;
 	unsigned int gems[NB_GEMMES_PAS_VIDE];
