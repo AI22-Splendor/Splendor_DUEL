@@ -39,7 +39,7 @@ PlayersUI::~PlayersUI() {
 	delete this->name;
 }
 
-void PlayersUI::ajouterCarte(const Card* c) {
+void PlayersUI::ajouterCarte(Card* c) {
 	pcard->addCarte(c);
 }
 

@@ -118,7 +118,7 @@ void CardUI::resizeEvent(QResizeEvent* event) {
     update();
 }
 
-void CardUI::ajouterCarte(const Card* s) {
+void CardUI::ajouterCarte(Card* s) {
     if (s == nullptr)
         return;
     cardList.append(s);
@@ -128,7 +128,7 @@ void CardUI::ajouterCarte(const Card* s) {
     update();
 }
 
-void CardUI::supprimerCarte(const Card* s) {
+void CardUI::supprimerCarte(Card* s) {
     if (cardList.contains(s)) {
         cardList.removeAll(s);
         nbCard--;

@@ -145,6 +145,12 @@
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp">
       <Filter>Source Files\libs\rapidxml-1.13</Filter>
     </ClInclude>
+    <ClInclude Include="CardContainersGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivilegeBoardUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameHandler.cpp">
@@ -236,6 +242,9 @@
     </ClCompile>
     <ClCompile Include="XmlReader.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivilegeBoardUI.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

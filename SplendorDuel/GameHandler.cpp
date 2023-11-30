@@ -44,6 +44,9 @@ void GameHandler::nextAction() {
 		instance->mainActionIsDone = false;
 		return;
 	}
+	//si il a pas assigné sa carte on bloque
+	if (instance->toAsign != nullptr)
+		return;
 	instance->mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
 	
@@ -86,7 +89,9 @@ const int GameHandler::gemmesToSelect() {
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
-	if (Rules::isPossibleTakeGems(instance->board, posTab, instance->action) && instance->mainActionIsDone==false)
+	if (instance->action == Action::MAIN_ACTION && instance->mainActionIsDone == true)
+		return false;
+	if (Rules::isPossibleTakeGems(instance->board, posTab, instance->action))
 	{
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
@@ -163,7 +168,22 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 	return true;
 }
 
-bool GameHandler::reservCard(const Card* c) {
+bool GameHandler::reservCard(const Card* c, const int position) {
+	if (instance->mainActionIsDone)
+		return false;
+	//si il peux reserver
+	if (isPlayer1Turn() && Rules::playerCanReservCard(instance->player1)) {
+		//rers
+	}
+	else if (!isPlayer1Turn() && Rules::playerCanReservCard(instance->player2)) {
+		//reserv
+	}
+	else {
+		return -1;
+	}
+	instance->action = Action::RESERV_CARD;
+	instance->mainActionIsDone = true;
+	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
 	//TODO
 	// ne pas oublié de vérif que le jouer n'a pas déjà 3 cartes réserver et qu'il y a 
 	// au moins 1 or sur le plateau
@@ -172,14 +192,29 @@ bool GameHandler::reservCard(const Card* c) {
 	return true;
 }
 
-int GameHandler::buyCard(const Card* c, const int position) {
+int GameHandler::buyCard(Card* c, const int position) {
 	if (instance->mainActionIsDone)
 		return -1;
-	//Coriger canBuyCard
 	if (isPlayer1Turn() && instance->player1.canBuyCard(*c)) {
+		//si la carte doit être assigné
+		//on vérifie que le jouer pourra l'assigné
+		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player1)) {
+			instance->toAsign = c;
+		}
+		else {
+			return -1;
+		}
 		instance->player1.buyCard(*c, instance->bag);
 	}
 	else if(!isPlayer1Turn() && instance->player2.canBuyCard(*c)) {
+		//si la carte doit être assigné
+		//on vérifie que le jouer pourra l'assigné
+		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player2)) {
+			instance->toAsign = c;
+		}
+		else {
+			return -1;
+		}
 		instance->player2.buyCard(*c, instance->bag);
 	}
 	else {
@@ -196,16 +231,20 @@ int GameHandler::buyCard(const Card* c, const int position) {
 	//mettre mainActionIsDone a true sauf si il va devoir prendre une gemme (action = PICK_GEMMES)
 	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
 	GameHandler::nextAction();
+	//si carte doit etre assigné
+	if (c->getDiscountType() == Gemmes::Vide)
+		return 0;
 	return 1;
 }
 
-Card* GameHandler::asignCard(const Card* c) {
-	//TODO
-	// vérifier que le joeur possède un carte de ce type
-	// l'assinger de cette couleur
-	//retourner la carte qui devais être assigné
+Card* GameHandler::asignCard(Card* c) {
+	if (instance->toAsign == nullptr || c->getDiscountType() == Gemmes::Vide)
+		return nullptr;
+	instance->toAsign->setDiscountType(c->getDiscountType());
+	Card* ret = instance->toAsign;
+	instance->toAsign = nullptr;
 	GameHandler::nextAction();
-	return nullptr;
+	return ret;
 }
 
 bool GameHandler::usePrivilege() {

@@ -22,10 +22,8 @@ public:
 	void suppCarte(const Gemmes& g, Card c) {}
 
 private:
-	void clickDCard(int col, int ligne, const Card* c);
-	void clickCard(int col, int ligne, const Card* c);
-	void paintEvent(QPaintEvent* event) {}
-	void resizeEvent(QResizeEvent* event) {}
+	void clickDCard(int col, int ligne, Card* c);
+	void clickCard(int col, int ligne, Card* c);
 	CardUI*** cards;
 };
 

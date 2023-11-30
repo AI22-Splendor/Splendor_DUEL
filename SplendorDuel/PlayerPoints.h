@@ -13,11 +13,11 @@ public:
 	void addCouronne(const int nb);
 	void addPrestiges(const int nb);
 	void setPoints(const int nb);
-	void addCard(const Card* c);
+	void addCard(Card* c);
 	inline const int getPoints()const { return nbPoints; };
 private:
-	void clickDCard(int col, int ligne, const Card* c){}
-	void clickCard(int col, int ligne, const Card* c);
+	void clickDCard(int col, int ligne, Card* c){}
+	void clickCard(int col, int ligne, Card* c);
 	int nbPoints, nbCourronne, nbPrestiges;
 	CardUI** card;
 	void paintEvent(QPaintEvent* event);

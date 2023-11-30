@@ -10,6 +10,6 @@ class CardContainersGUI : public QWidget
 {
 public:
 	CardContainersGUI(QWidget* parent) : QWidget(parent) {}
-	virtual void clickDCard(int col, int ligne, const Card* c) = 0;
-	virtual void clickCard(int col, int ligne, const Card* c) = 0;
+	virtual void clickDCard(int col, int ligne, Card* c) = 0;
+	virtual void clickCard(int col, int ligne, Card* c) = 0;
 };

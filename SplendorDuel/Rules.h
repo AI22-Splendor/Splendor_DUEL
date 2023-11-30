@@ -21,6 +21,8 @@ public:
 	static bool isPossibleTakeGems(const Board b, const int* posTab, Action action);
 	static bool playerWon(const Player& player);
 	static bool playerHaveToSuppGems(const Player& player);
+	static bool playerCanReservCard(const Player& player) { return true; }
+	static bool playerCanBuyCardAsign(const Player& player) { return true; }
 private:
 	//on supprime le constructeur et le destructeur
 	Rules()= delete;

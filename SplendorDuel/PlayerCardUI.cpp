@@ -43,7 +43,7 @@ void PlayerCardUI::resizeEvent(QResizeEvent* event) {
 	this->update();
 }
 
-void PlayerCardUI::addCarte(const Card* c) {
+void PlayerCardUI::addCarte(Card* c) {
 	switch (c->getDiscountType())
 	{
 	case Gemmes::Blanc:
@@ -67,10 +67,12 @@ void PlayerCardUI::addCarte(const Card* c) {
 	}
 }
 
-void PlayerCardUI::clickCard(int col, int ligne, const Card* c) {
+void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
+	int ptur = GameHandler::isPlayer1Turn() ? 0 : 1;
 	Card* cd = GameHandler::asignCard(c);
 	if (cd!=nullptr) {
 		this->cards[col]->ajouterCarte(cd);
 		SplendorDuel::changePtour();
+		SplendorDuel::refreshPlayersGems(ptur);
 	}
 }

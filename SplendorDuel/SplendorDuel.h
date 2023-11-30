@@ -39,9 +39,9 @@ public:
         instance->ptab[p]->setGemmes();
     }
 
-    static void addPlayerCard(const Card* c, int pturn);
+    static void addPlayerCard(Card* c, int pturn);
 
-    static void reservCard(const Card* c, int pturn) {
+    static void reservCard(Card* c, int pturn) {
         instance->ptab[pturn]->reservCard(c);
     }
 
@@ -74,7 +74,7 @@ private:
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
-    void paintEvent(QPaintEvent* event) {
+    inline void paintEvent(QPaintEvent* event) {
         QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/fond.png"));
     }
 
