@@ -3,7 +3,7 @@
 #include <qlabel.h>
 #include "CardUI.h"
 
-PlayersUI::PlayersUI(QWidget* parent, Player* p, int nb) : QWidget(parent), p(p) {
+PlayersUI::PlayersUI(QWidget* parent, Player* p, int nb) : BackgroundWidgetUI(parent, QPixmap("./res/playerFond.png")), p(p) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(20*7 + 20*6 +20, 40);
 	QHBoxLayout* grid = new QHBoxLayout(this);

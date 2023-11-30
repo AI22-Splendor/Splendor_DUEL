@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="BackgroundWidgetUI.h" />
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CardContainersGUI.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="PrivilegeHandler.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackgroundWidgetUI.cpp" />
     <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BoardCard.cpp" />

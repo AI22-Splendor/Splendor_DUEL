@@ -151,6 +151,9 @@
     <ClInclude Include="PrivilegeBoardUI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="BackgroundWidgetUI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameHandler.cpp">
@@ -244,6 +247,9 @@
       <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="PrivilegeBoardUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundWidgetUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,6 +2,8 @@
 #include <qgridlayout.h>
 #include "GameHandler.h"
 #include "SplendorDuel.h"
+#include "Image.h"
+#include <qpainter.h>
 
 BoardCardUI::BoardCardUI(QWidget* parent) : CardContainersGUI(parent) {
 	this->cards = new CardUI **[3]();
@@ -52,11 +54,9 @@ BoardCardUI::~BoardCardUI() {
 
 void BoardCardUI::clickDCard(int col, int ligne, Card* c) {
 	if (c == nullptr) {
-		cout << "Carte null";
 		return;
 	}
 	int pturn = GameHandler::isPlayer1Turn() ? 0 : 1;
-	int n = GameHandler::buyCard(c, col);
 	if (GameHandler::reservCard(c, col)) {
 		this->cards[ligne][col]->supprimerCarte(c);
 		this->cards[ligne][col]->ajouterCarte(GameHandler::getDisplayedCard(c->getLevel(), col));

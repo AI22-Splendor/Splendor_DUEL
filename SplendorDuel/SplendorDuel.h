@@ -74,10 +74,6 @@ private:
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
-    inline void paintEvent(QPaintEvent* event) {
-        QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/fond.png"));
-    }
-
     //notre board
     CompleteBoardUI* board;
     //nos joueurs

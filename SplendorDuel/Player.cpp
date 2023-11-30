@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Player::Player(string name) : name(name) {
+Player::Player(string name) : name(name), nbCarteReserver(0) {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		gems[i] = 0;
 	}

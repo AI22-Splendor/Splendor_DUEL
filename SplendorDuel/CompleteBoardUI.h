@@ -28,7 +28,6 @@ private:
 	BoardUI board;
 	RemplirBoard remplir;
 
-	
 	void resizeEvent(QResizeEvent* event);
 };
 

@@ -24,6 +24,7 @@ public:
 	static Card* asignCard(Card* c);
 	static bool usePrivilege();
 	static Card* getDisplayedCard(int rareter, int pos);
+	static void playerBuyReservCard(int pnum);
 
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours

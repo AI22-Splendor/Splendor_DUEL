@@ -5,10 +5,12 @@
 #include "GameHandler.h"
 #include <qgridlayout.h>
 #include <iostream>
+#include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
 #include "PrivilegeBoardUI.h"
 #include "BoardCard.h"
+#include "BackgroundWidgetUI.h"
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
@@ -21,14 +23,14 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     GameHandler::Instanciate(bag, b, drawPiles, p1, p2);
 
     //mise en page avec le widget main
-    QWidget* main = new QWidget(this);
+    QWidget* main = new BackgroundWidgetUI(this, QPixmap("./res/playerFond.png"));
     QGridLayout* vl=new QGridLayout(main);
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
     ptab[0] = new PlayersUI(main, p1, 1);
     ptab[1] = new PlayersUI(main, p2, 2);
-    QWidget* com = new QWidget(main);
+    QWidget* com = new BackgroundWidgetUI(main, Image::getFond());
 
     this->board = new CompleteBoardUI(com, b);
     QHBoxLayout* hbox = new QHBoxLayout();
