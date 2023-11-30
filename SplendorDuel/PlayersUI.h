@@ -39,6 +39,13 @@ public:
 		name->setTour(b);
 	};
 
+	inline void addCouronne(const int nb) { points->addCouronne(nb); }
+	inline void addPrestiges(const int nb) { points->addPrestiges(nb); }
+	inline void setPoints(const Gemmes g) { 
+		if (p->getPrestige(g) > points->getPoints())
+			points->setPoints(p->getPrestige(g));
+	}
+
 private:
 	void paintEvent(QPaintEvent* event) {
 		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/playerFond.png"));

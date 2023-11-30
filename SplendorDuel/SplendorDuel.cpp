@@ -71,6 +71,9 @@ void SplendorDuel::addPlayerCard(const Card* c, int ptrun) {
     if (ptrun< 0 || ptrun>1)
         return;
     instance->ptab[ptrun]->ajouterCarte(c);
+    instance->ptab[ptrun]->addCouronne(c->getCrowns());
+    instance->ptab[ptrun]->addPrestiges(c->getPointsPrestige());
+    instance->ptab[ptrun]->setPoints(c->getDiscountType());
 }
 
 void SplendorDuel::start() {
