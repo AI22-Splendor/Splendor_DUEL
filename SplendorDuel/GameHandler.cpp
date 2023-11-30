@@ -169,7 +169,7 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 }
 
 bool GameHandler::reservCard(const Card* c, const int position) {
-	if (instance->mainActionIsDone)
+	if (instance->mainActionIsDone || !instance->board.hasGemOfType(Gemmes::Or))
 		return false;
 	//si il peux reserver
 	if (isPlayer1Turn() && Rules::playerCanReservCard(instance->player1)) {
