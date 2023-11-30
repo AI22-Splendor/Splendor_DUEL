@@ -19,7 +19,7 @@ void CardUI::mousePressEvent(QMouseEvent* mouse) {
         if (!cardList.isEmpty() && mouse->button() == Qt::LeftButton) {
             parentGem->clickCard(this->col, this->ligne, this->cardList.at(cardList.size() - 1));
         }
-        else if (mouse->button() == Qt::RightButton) {
+        else if (!cardList.isEmpty() && mouse->button() == Qt::RightButton) {
             parentGem->clickDCard(this->col, this->ligne, this->cardList.at(cardList.size() - 1));
         }
     }

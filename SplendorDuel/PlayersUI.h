@@ -46,6 +46,8 @@ public:
 			points->setPoints(p->getPrestige(g));
 	}
 
+	inline void reservCard(const Card* c) { this->points->addCard(c); };
+
 private:
 	void paintEvent(QPaintEvent* event) {
 		QPainter(this).drawPixmap(0, 0, width(), height(), QPixmap("./res/playerFond.png"));

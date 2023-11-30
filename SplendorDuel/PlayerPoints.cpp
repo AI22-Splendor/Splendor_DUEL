@@ -1,13 +1,21 @@
 #include "PlayerPoints.h"
 #include <qpainter.h>
 #include "Image.h"
+#include "GameHandler.h"
+#include "SplendorDuel.h"
 
-
-PlayerPoints::PlayerPoints(QWidget* parent) : QWidget(parent), nbCourronne(0), nbPoints(0), nbPrestiges(0) {
+PlayerPoints::PlayerPoints(QWidget* parent) : CardContainersGUI(parent), nbCourronne(0), nbPoints(0), nbPrestiges(0) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QGridLayout* grid = new QGridLayout(this);
+    card = new CardUI*[3]();
+    this->setLayout(grid);
+    grid->setSpacing(0);
+    
+    grid->setAlignment(Qt::AlignBottom);
+    grid->setContentsMargins(0, (height()/3), 0, 0);
 }
 PlayerPoints::~PlayerPoints() {
-
+    delete[] card;
 }
 
 void PlayerPoints::paintEvent(QPaintEvent* event) {
@@ -48,4 +56,39 @@ void PlayerPoints::addPrestiges(const int nb) {
 void PlayerPoints::setPoints(const int nb) {
     nbPoints = nb;
     update();
+}
+
+void PlayerPoints::resizeEvent(QResizeEvent* event) {
+    this->layout()->setContentsMargins(0, (height() / 3), 0, 0);
+}
+
+void PlayerPoints::clickCard(int col, int ligne, const Card* c) {
+    int pturn = GameHandler::isPlayer1Turn() ? 0 : 1;
+    int n = GameHandler::buyCard(c, col);
+    if (n >= 0) {
+        ((QGridLayout*)this->layout())->removeWidget(card[col]);
+        card[col]->deleteLater();
+        card[col]->supprimerCarte(c);
+        card[col] = nullptr;
+        this->layout()->update();
+        if (n > 0)
+            SplendorDuel::addPlayerCard(c, pturn);
+        SplendorDuel::changePtour();
+        SplendorDuel::refreshPlayersGems(pturn);
+        update();
+    }
+    else {
+        card[col]->showErr();
+    }
+}
+
+void PlayerPoints::addCard(const Card* c) {
+    for (int i = 0; i < 3; i++) {
+        if (card[i] == nullptr) {
+            card[i]= new CardUI(this, 1, i);
+            card[i]->ajouterCarte(c);
+            ((QGridLayout*)this->layout())->addWidget(card[i], 0, i);
+            return;
+        }
+    }
 }
