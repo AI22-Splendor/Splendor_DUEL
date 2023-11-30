@@ -6,7 +6,7 @@
 #include <qevent.h>
 
 CardUI::CardUI(CardContainersGUI* parent, int ligne, int col, bool details)
-    :col(col), ligne(ligne), showDetails(details), selected(false), nbCard(0), QWidget(parent), cardList(), totalReduc(0), err(false), nbErr(0) {
+    :col(col), ligne(ligne), showDetails(details), selected(false), nbCard(0), QWidget(parent), cardList(), totalReduc(0), totalPoints(0), err(false), nbErr(0) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(QSize(20, 30));
 }
@@ -19,7 +19,7 @@ void CardUI::mousePressEvent(QMouseEvent* mouse) {
         if (!cardList.isEmpty() && mouse->button() == Qt::LeftButton) {
             parentGem->clickCard(this->col, this->ligne, this->cardList.at(cardList.size() - 1));
         }
-        else if (mouse->button() == Qt::RightButton) {
+        else if (!cardList.isEmpty() && mouse->button() == Qt::RightButton) {
             parentGem->clickDCard(this->col, this->ligne, this->cardList.at(cardList.size() - 1));
         }
     }
@@ -41,7 +41,6 @@ void CardUI::leaveEvent(QEvent* event) {
 
 void CardUI::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
-    int diff = (nbCard > 1) ? static_cast<float>(width()) / 4 / nbCard : 0;
     if (cardList.size() == 0) {
         if (selected) {
             painter.drawPixmap(0, 0, width(), height(), Image::getCarteVide());
@@ -49,42 +48,58 @@ void CardUI::paintEvent(QPaintEvent* event) {
         else {
             painter.drawPixmap(width() / 5, height() / 6, width() / 5 * 3, height() / 6 * 4, Image::getCarteVide());
         }
+        return;
     }
 
     if (!selected) {
-        int i = 0;
+        QRect rect(width() / 5, height() / 5, width() / 5 * 3, height() / 5 * 3);
+        int cardSpaceBetwin = rect.height() / (nbCard*2);
+        int i = 1;
         for (const Card* c : cardList) {
             QPixmap pix= Image::getImageFromSrc(c->getImageSrc());
-            painter.drawPixmap(width() / 5, height() / 6 + diff * i, width() / 5 * 3, height() / 6 * 4 - diff * nbCard, pix);
+            painter.drawPixmap(rect.left(), rect.top()+cardSpaceBetwin*(i-1), rect.width(), rect.height()- cardSpaceBetwin*(nbCard-1), pix);
             i++;
         }
         if (this->err == true) {
             QColor c(Qt::red);
             c.setAlpha(99);
             painter.setBrush(c);
-            painter.drawRect(width() / 5, height() / 6, width() / 5 * 3, height() / 6 * 4);
+            painter.drawRect(rect);
         }
     }
     else {
-        int i = 1;
-        for (const Card* c : cardList) {
-            QPixmap pix = Image::getImageFromSrc(c->getImageSrc());
-            painter.drawPixmap(0, diff * i, width(), height() - diff * nbCard, pix);
-            if (i == nbCard && totalReduc>0 && showDetails) {
+        //si on survol on montre que la dernière ajouté au paquet
+        QPixmap pix = Image::getImageFromSrc(cardList.at(nbCard-1)->getImageSrc());
+        painter.drawPixmap(0, 0, width(), height(), pix);
+
+        //si l'utilisateur le veux et que le nombre de points ou de reduc de la pile >0
+        //on affiche le détails des réduction de ce paquet de cartes
+        if ((totalReduc > 0 || totalPoints>0) && showDetails) {
+            // Configurer la police et la taille du texte
+            painter.setRenderHint(QPainter::TextAntialiasing);
+            painter.setBackgroundMode(Qt::TransparentMode);
+            QFont font = painter.font();
+            font.setBold(true);
+            font.setPointSize(width() / 5);  // Utiliser un quart de la largeur pour la taille du texte
+            painter.setFont(font);
+
+            // Obtenir la taille du texte rendu
+            QRect textRect = painter.boundingRect(rect(), Qt::AlignTop | Qt::AlignRight, QString::number(totalReduc));
+            painter.setBrush(QColor(pix.toImage().pixel(62, 0)));
+            // Dessiner le texte dans le coin en haut à droite
+            if (totalReduc > 0) {
                 painter.setPen(QColor("#ffffff"));
-                // Configurer la police et la taille du texte
-                QFont font = painter.font();
-                font.setPointSize(width() / 5);  // Utiliser un quart de la largeur pour la taille du texte
-                painter.setFont(font);
-
-                // Obtenir la taille du texte rendu
-                QRect textRect = painter.boundingRect(rect(), Qt::AlignTop | Qt::AlignRight, QString::number(totalReduc));
-
-                // Dessiner le texte dans le coin en haut à droite
-                painter.drawText(QRect(width()/4*3, diff * nbCard, textRect.width(), textRect.height()), QString::number(totalReduc));
-
+                painter.drawText(QRect(width() - width()/10- textRect.width(), height() / 40, textRect.width(), textRect.height()), QString::number(totalReduc));
             }
-            i++;
+            // Obtenir la taille du texte rendu
+            textRect = painter.boundingRect(rect(), Qt::AlignTop | Qt::AlignLeft, QString::number(totalPoints));
+            // Dessiner le texte dans le coin en haut à gauche
+            if (totalPoints > 0) {
+                painter.setPen(Qt::NoPen);
+                painter.drawRect(QRect(width() / 15, 0, textRect.width(), textRect.height()));
+                painter.setPen(QColor("#ffffff"));
+                painter.drawText(QRect(width() / 15, 0, textRect.width(), textRect.height()), QString::number(totalPoints));
+            }
         }
         if (this->err == true) {
             QColor c(Qt::red);
@@ -109,6 +124,7 @@ void CardUI::ajouterCarte(const Card* s) {
     cardList.append(s);
     nbCard++;
     totalReduc += s->getDiscount();
+    totalPoints += s->getPointsPrestige();
     update();
 }
 
@@ -117,6 +133,7 @@ void CardUI::supprimerCarte(const Card* s) {
         cardList.removeAll(s);
         nbCard--;
         totalReduc -= s->getDiscount();
+        totalPoints -= s->getPointsPrestige();
         update();
     }
     else {

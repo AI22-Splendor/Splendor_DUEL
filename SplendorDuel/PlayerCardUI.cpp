@@ -19,7 +19,6 @@ PlayerCardUI::PlayerCardUI(QWidget* parent) : CardContainersGUI(parent) {
 		g->addWidget(c, 0, i);
 		cards[i] = c;
 	}
-
 }
 
 PlayerCardUI::~PlayerCardUI() {

@@ -41,6 +41,10 @@ public:
 
     static void addPlayerCard(const Card* c, int pturn);
 
+    static void reservCard(const Card* c, int pturn) {
+        instance->ptab[pturn]->reservCard(c);
+    }
+
     /// <summary>
     /// lance le jeu
     /// </summary>

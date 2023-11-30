@@ -33,7 +33,7 @@ private:
 	int col, ligne;
 	bool err;
 	int nbErr;
-	int totalReduc;
+	int totalReduc, totalPoints;
 	int nbCard;
 	bool selected;
 	QList<const Card*> cardList;
