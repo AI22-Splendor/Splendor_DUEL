@@ -31,9 +31,8 @@ bool Player::removeGem(Gemmes gem, const unsigned int nbRemove) {
 
 unsigned int Player::getNbCrowns() const {
 	unsigned int nbCrowns = 0;
-	list<const Card*>::const_iterator it;
-	for (it = cards.cbegin(); it != cards.cend(); it++) {
-		nbCrowns += (*it)->getCrowns();
+	for (const Card* c: cards) {
+		nbCrowns += c->getCrowns();
 	}
 	return nbCrowns;
 }

@@ -98,6 +98,7 @@ bool Rules::canBuyNoble(const Player& player) {
 		nobleTab[total] = player.getName();
 		return true;
 	}else {
+		cout << "Pcrow:" << player.getNbCrowns() << " price: " << price << "\n";
 		return false;
 	}
 }

@@ -201,8 +201,9 @@ int GameHandler::buyCard(Card* c, const int position) {
 	if (mainActionIsDone)
 		return -1;
 	Player& p = player1Joue ? player1 : player2;
-	if (c->getEffect().contains(Action::ASSIGN_CARD) && Rules::playerCanBuyCardAsign(p))
+	if (c->getEffect().contains(Action::ASSIGN_CARD) && !Rules::playerCanBuyCardAsign(p)) {
 		return -1;
+	}
 	if (p.canBuyCard(*c)) {
 		if(c->getEffect().contains(Action::ASSIGN_CARD)){
 			toAsign = c;
