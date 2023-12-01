@@ -6,7 +6,7 @@ class PlayerCardUI : public CardContainersGUI
 {
 		Q_OBJECT
 	public:
-		PlayerCardUI(QWidget* parent);
+		PlayerCardUI(QWidget* parent, int pnum);
 		~PlayerCardUI();
 
 		/// <summary>
@@ -21,5 +21,6 @@ private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;
+	int pnum;
 };
 

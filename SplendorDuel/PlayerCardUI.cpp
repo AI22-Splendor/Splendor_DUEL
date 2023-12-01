@@ -5,7 +5,7 @@
 #include "GameHandler.h"
 #include "SplendorDuel.h"
 
-PlayerCardUI::PlayerCardUI(QWidget* parent) : CardContainersGUI(parent) {
+PlayerCardUI::PlayerCardUI(QWidget* parent, int pnum) : pnum(pnum), CardContainersGUI(parent) {
 	this->cards = new CardUI * [6]();
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(20 * 6, 30);
@@ -69,10 +69,17 @@ void PlayerCardUI::addCarte(Card* c) {
 
 void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
 	int ptur = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+	if (ptur != pnum) {
+		this->cards[col]->showErr();
+		return;
+	}
 	Card* cd = GameHandler::getInstance().asignCard(c);
 	if (cd!=nullptr) {
 		SplendorDuel::addPlayerCard(cd, ptur);
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPlayersGems(ptur);
+	}
+	else {
+		this->cards[col]->showErr();
 	}
 }

@@ -18,7 +18,7 @@ public:
 	void replayTurn();
 	void nextAction();
 	bool isPlayer1Turn();
-	bool suppPlayerGems(Gemmes g);
+	bool suppPlayerGems(Gemmes g, int p);
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
 	Card* asignCard(Card* c);

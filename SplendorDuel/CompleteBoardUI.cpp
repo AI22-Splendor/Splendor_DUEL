@@ -23,8 +23,7 @@ CompleteBoardUI::CompleteBoardUI(QWidget* parent, Board b):QWidget(parent), boar
 
 void CompleteBoardUI::resizeEvent(QResizeEvent* event) {
     QWidget::resizeEvent(event);
-    remplir.resize(board.width(), remplir.height());
-    resize(board.width(), board.height() + remplir.height());
+    remplir.setMaximumWidth(board.width());
 }
 
 CompleteBoardUI::~CompleteBoardUI(){ QWidget::~QWidget(); }

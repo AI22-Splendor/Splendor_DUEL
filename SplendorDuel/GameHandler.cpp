@@ -128,7 +128,7 @@ bool GameHandler::isPlayer1Turn() {
 	return player1Joue;
 }
 
-bool GameHandler::suppPlayerGems(Gemmes g) {
+bool GameHandler::suppPlayerGems(Gemmes g, int p) {
 	if (isPlayer1Turn() && Rules::playerHaveToSuppGems(player1)) {
 		if (player1.removeGem(g, 1)) {
 			bag.addGemmes(g);
@@ -147,6 +147,8 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 	}
 	//action de voler une gemmes de l'autre joeur
 	else if (action.contains(Action::STEAL_GEMMES)){
+		if ((isPlayer1Turn() && p == 1) || (!isPlayer1Turn() && p == 2))
+			return false;
 		//on vole pas l'Or!
 		if (g == Gemmes::Or)
 			return false;
@@ -181,10 +183,10 @@ bool GameHandler::reservCard(const Card* c, const int position) {
 		player1.adCarteReserver(1);
 	}
 	else if (!isPlayer1Turn() && player2.getNbCarteReserver() < 3) {
-		player1.adCarteReserver(1);
+		player2.adCarteReserver(1);
 	}
 	else {
-		return -1;
+		return false;
 	}
 	action.append(Action::RESERV_CARD);
 	mainActionIsDone = true;
