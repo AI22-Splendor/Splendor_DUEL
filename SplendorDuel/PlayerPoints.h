@@ -7,7 +7,7 @@ class PlayerPoints : public CardContainersGUI
 	Q_OBJECT
 
 public:
-	PlayerPoints(QWidget* parent);
+	PlayerPoints(QWidget* parent, int pnum);
 	~PlayerPoints();
 
 	void addCouronne(const int nb);
@@ -20,6 +20,7 @@ private:
 	void clickCard(int col, int ligne, Card* c);
 	int nbPoints, nbCourronne, nbPrestiges;
 	CardUI** card;
+	int pnum;
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 };
