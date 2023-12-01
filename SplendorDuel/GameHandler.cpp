@@ -155,11 +155,17 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 				instance->player1.addGems(g, 1);
 				instance->action.removeAll( Action::STEAL_GEMMES);
 			}
+			else {
+				return false;
+			}
 		}
 		else{
 			if (instance->player1.removeGem(g, 1)) {
 				instance->player2.addGems(g, 1);
 				instance->action.removeAll(Action::STEAL_GEMMES);
+			}
+			else {
+				return false;
 			}
 		}
 	}
