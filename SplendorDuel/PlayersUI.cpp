@@ -11,10 +11,10 @@ PlayersUI::PlayersUI(QWidget* parent, Player* p, int nb) : BackgroundWidgetUI(pa
 
 	setLayout(grid);
 	pgems = new PlayerGemsUI(this, nb);
-	this->pcard = new PlayerCardUI(this);
 	this->name = new PlayerNameUI(QString(p->getName().c_str()), this);
 	
 	if (nb == 1) {
+		this->pcard = new PlayerCardUI(this, 0);
 		this->points = new PlayerPoints(this, 0);
 		grid->addWidget(name, 1);
 		grid->addWidget(pgems, 8);
@@ -23,6 +23,7 @@ PlayersUI::PlayersUI(QWidget* parent, Player* p, int nb) : BackgroundWidgetUI(pa
 	}
 		
 	if (nb == 2) {
+		this->pcard = new PlayerCardUI(this, 1);
 		this->points = new PlayerPoints(this, 1);
 		grid->addWidget(pcard, 8);
 		grid->addWidget(points, 3);

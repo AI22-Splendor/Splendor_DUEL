@@ -18,6 +18,7 @@ SplendorDuel* SplendorDuel::instance = nullptr;
 SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2) :
     QMainWindow(nullptr)
 {
+    this->setWindowState(Qt::WindowMaximized);
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
     GameHandler::Instanciate(bag, b, drawPiles, p1, p2);
