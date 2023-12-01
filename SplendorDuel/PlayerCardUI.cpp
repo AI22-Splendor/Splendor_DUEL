@@ -68,8 +68,8 @@ void PlayerCardUI::addCarte(Card* c) {
 }
 
 void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
-	int ptur = GameHandler::isPlayer1Turn() ? 0 : 1;
-	Card* cd = GameHandler::asignCard(c);
+	int ptur = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+	Card* cd = GameHandler::getInstance().asignCard(c);
 	if (cd!=nullptr) {
 		SplendorDuel::addPlayerCard(cd, ptur);
 		SplendorDuel::changePtour();

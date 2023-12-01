@@ -22,21 +22,21 @@ BoardCardUI::BoardCardUI(QWidget* parent) : CardContainersGUI(parent) {
 	for (int i = 0; i < 3; i++) {
 		CardUI* c = new CardUI(this, 0, i);
 		g->addWidget(c, 0, i+3);
-		c->ajouterCarte(GameHandler::getDisplayedCard(2, i));
+		c->ajouterCarte(GameHandler::getInstance().getDisplayedCard(2, i));
 		cards[0][i] = c;
 	}
 
 	for (int i = 0; i < 4; i++) {
 		CardUI* c = new CardUI(this, 1, i);
 		g->addWidget(c, 1, i+2);
-		c->ajouterCarte(GameHandler::getDisplayedCard(1, i));
+		c->ajouterCarte(GameHandler::getInstance().getDisplayedCard(1, i));
 		cards[1][i] = c;
 	}
 
 	for (int i = 0; i < 5; i++) {
 		CardUI* c = new CardUI(this, 2, i);
 		g->addWidget(c, 2, i+1);
-		c->ajouterCarte(GameHandler::getDisplayedCard(0, i));
+		c->ajouterCarte(GameHandler::getInstance().getDisplayedCard(0, i));
 		cards[2][i] = c;
 	}
 
@@ -56,10 +56,10 @@ void BoardCardUI::clickDCard(int col, int ligne, Card* c) {
 	if (c == nullptr) {
 		return;
 	}
-	int pturn = GameHandler::isPlayer1Turn() ? 0 : 1;
-	if (GameHandler::reservCard(c, col)) {
+	int pturn = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+	if (GameHandler::getInstance().reservCard(c, col)) {
 		this->cards[ligne][col]->supprimerCarte(c);
-		this->cards[ligne][col]->ajouterCarte(GameHandler::getDisplayedCard(c->getLevel(), col));
+		this->cards[ligne][col]->ajouterCarte(GameHandler::getInstance().getDisplayedCard(c->getLevel(), col));
 		SplendorDuel::reservCard(c, pturn);
 	}
 	else {
@@ -72,11 +72,11 @@ void BoardCardUI::clickCard(int col, int ligne, Card* c) {
 		cout << "Carte null";
 		return;
 	}
-	int pturn = GameHandler::isPlayer1Turn() ? 0: 1;
-	int n = GameHandler::buyCard(c, col);
+	int pturn = GameHandler::getInstance().isPlayer1Turn() ? 0: 1;
+	int n = GameHandler::getInstance().buyCard(c, col);
 	if (n>=0) {
 		this->cards[ligne][col]->supprimerCarte(c);
-		this->cards[ligne][col]->ajouterCarte(GameHandler::getDisplayedCard(c->getLevel(), col));
+		this->cards[ligne][col]->ajouterCarte(GameHandler::getInstance().getDisplayedCard(c->getLevel(), col));
 		if(n>0)
 			SplendorDuel::addPlayerCard(c, pturn);
 		SplendorDuel::changePtour();

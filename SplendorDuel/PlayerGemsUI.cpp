@@ -81,7 +81,7 @@ void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
 }
 
 void PlayerGemsUI::clickGemmes(Gemmes g) {
-		if (GameHandler::suppPlayerGems(g)) {
+		if (GameHandler::getInstance().suppPlayerGems(g)) {
 			SplendorDuel::changePtour();
 			SplendorDuel::refreshPlayersGems(0);
 			SplendorDuel::refreshPlayersGems(1);
