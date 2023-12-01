@@ -201,6 +201,9 @@ int GameHandler::buyCard(Card* c, const int position) {
 		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(instance->player1)) {
 			instance->toAsign = c;
 		}
+		else if (c->getEffect().contains(Action::ASIGN_CARD)) {
+			return -1;
+		}
 		instance->player1.buyCard(*c, instance->bag);
 	}
 	else if(!isPlayer1Turn() && instance->player2.canBuyCard(*c)) {
@@ -208,6 +211,9 @@ int GameHandler::buyCard(Card* c, const int position) {
 		//on vérifie que le jouer pourra l'assigné
 		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(instance->player2)) {
 			instance->toAsign = c;
+		}
+		else if (c->getEffect().contains(Action::ASIGN_CARD)) {
+			return -1;
 		}
 		instance->player2.buyCard(*c, instance->bag);
 	}
