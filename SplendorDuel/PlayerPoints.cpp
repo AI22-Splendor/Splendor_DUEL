@@ -4,7 +4,7 @@
 #include "GameHandler.h"
 #include "SplendorDuel.h"
 
-PlayerPoints::PlayerPoints(QWidget* parent) : CardContainersGUI(parent), nbCourronne(0), nbPoints(0), nbPrestiges(0) {
+PlayerPoints::PlayerPoints(QWidget* parent, int pnum) : pnum(pnum), CardContainersGUI(parent), nbCourronne(0), nbPoints(0), nbPrestiges(0) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     QGridLayout* grid = new QGridLayout(this);
     card = new CardUI*[3]();
@@ -64,6 +64,10 @@ void PlayerPoints::resizeEvent(QResizeEvent* event) {
 
 void PlayerPoints::clickCard(int col, int ligne, Card* c) {
     int pturn = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+    if (pturn != this->pnum) {
+        card[col]->showErr();
+        return;
+    }
     int n = GameHandler::getInstance().buyCard(c, col);
     if (n >= 0) {
         ((QGridLayout*)this->layout())->removeWidget(card[col]);

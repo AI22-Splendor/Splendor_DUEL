@@ -155,11 +155,17 @@ bool GameHandler::suppPlayerGems(Gemmes g) {
 				player1.addGems(g, 1);
 				action.removeAll( Action::STEAL_GEMMES);
 			}
+			else {
+				return false;
+			}
 		}
 		else{
 			if (player1.removeGem(g, 1)) {
 				player2.addGems(g, 1);
 				action.removeAll(Action::STEAL_GEMMES);
+			}
+			else {
+				return false;
 			}
 		}
 	}
@@ -195,7 +201,7 @@ int GameHandler::buyCard(Card* c, const int position) {
 		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(player1)) {
 			toAsign = c;
 		}
-		player1.buyCard(*c, bag);
+		instance->player1.buyCard(*c, instance->bag);
 	}
 	else if(!isPlayer1Turn() && player2.canBuyCard(*c)) {
 		//si la carte doit être assigné
@@ -203,7 +209,10 @@ int GameHandler::buyCard(Card* c, const int position) {
 		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(player2)) {
 			toAsign = c;
 		}
-		player2.buyCard(*c, bag);
+		else if (c->getEffect().contains(Action::ASIGN_CARD)) {
+			return -1;
+		}
+		instance->player2.buyCard(*c, instance->bag);
 	}
 	else {
 		return -1;
