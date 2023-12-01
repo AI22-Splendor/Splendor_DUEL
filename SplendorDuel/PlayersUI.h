@@ -43,7 +43,7 @@ public:
 	inline void addCouronne(const int nb) { points->addCouronne(nb); }
 	inline void addPrestiges(const int nb) { points->addPrestiges(nb); }
 	inline void setPoints(const Gemmes g) { 
-		if (p->getPrestige(g) > points->getPoints())
+		if (p->getPrestige(g) > points->getPoints() && g!=Gemmes::Vide)
 			points->setPoints(p->getPrestige(g));
 	}
 

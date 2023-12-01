@@ -4,6 +4,7 @@
 #include "Bag.h"
 #include "Board.h"
 #include "Action.h"
+#include <qlist.h>
 #include "DrawPile.h"
 #include "Player.h"
 #include "CardEffect.h"
@@ -48,7 +49,7 @@ private:
 	static GameHandler* instance;
 
 	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), toAsign(nullptr), player1Joue(true), replay(false), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action(Action::MAIN_ACTION) {
+		: bag(bag), typeToPick(Gemmes::Vide), toAsign(nullptr), player1Joue(true), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action() {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -60,8 +61,7 @@ private:
 	~GameHandler(){}
 
 	bool mainActionIsDone;
-	bool replay;
-	Action action;
+	QList<Action> action;
 	bool player1Joue;
 	Bag& bag;
 	Board& board;
@@ -70,5 +70,6 @@ private:
 	Player& player1;
 	Player& player2;
 	Card* toAsign;
+	Gemmes typeToPick;
 	friend class PrivilegeHandler;
 };

@@ -31,21 +31,22 @@ void GameHandler::replayTurn() {
 }
 
 void GameHandler::nextAction() {
-	if (instance->action != Action::MAIN_ACTION)
-		return;
 	//si il a pas encore fait son action principale
 	if (instance->mainActionIsDone == false)
 		return;
 	//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
 	if((isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) || (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)))
 		return;
-	if (instance->replay) {
-		instance->replay = false;
+	if (instance->action.contains(Action::REPLAY)) {
+		instance->action.removeAll(Action::REPLAY);
 		instance->mainActionIsDone = false;
 		return;
 	}
 	//si il a pas assigné sa carte on bloque
 	if (instance->toAsign != nullptr)
+		return;
+	//si il a pas finit toutes ses actions a faire
+	if (instance->action.size() > 0)
 		return;
 	instance->mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? instance->player1 : instance->player2;
@@ -74,7 +75,8 @@ void GameHandler::nextAction() {
 }
 
 const Board GameHandler::remplirBoard() {
-	if (instance->action == Action::MAIN_ACTION && instance->bag.getNbGemmes() != 0) {
+	//TODO vérifier dans les règles
+	if (instance->action.size()==0 && instance->bag.getNbGemmes() != 0) {
 		instance->board.remplirBoard(instance->bag);
 		return instance->board;
 	}
@@ -84,22 +86,25 @@ const Board GameHandler::remplirBoard() {
 }
 
 const int GameHandler::gemmesToSelect() {
-	if (instance->action == Action::MAIN_ACTION)
+	if (instance->action.size()==0)
 		return 3;
 	return 1;
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
-	if (instance->action == Action::MAIN_ACTION && instance->mainActionIsDone == true)
+	if (instance->action.size()==0 && instance->mainActionIsDone == true)
 		return false;
-	if (Rules::isPossibleTakeGems(instance->board, posTab, instance->action))
+	Action a = Rules::isPossibleTakeGems(instance->board, posTab, instance->action, instance->typeToPick);
+	if (a!=Action::IMPOSSIBLE)
 	{
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
-		if (instance->action != Action::USE_PRIVILEGE) {
+		if (instance->action.size()==0) {
 			instance->mainActionIsDone = true;
 		}
-		instance->action = Action::MAIN_ACTION;
+		else {
+			instance->action.removeAll(a);
+		}
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
 				//on ajoute la gemme au joueur
@@ -124,44 +129,37 @@ bool GameHandler::isPlayer1Turn() {
 }
 
 bool GameHandler::suppPlayerGems(Gemmes g) {
-	if (instance->action == Action::MAIN_ACTION) {
-		if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
-			if (instance->player1.removeGem(g, 1)) {
-				instance->bag.addGemmes(g);
-			}
-			else {
-				return false;
-			}
+	if (isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player1)) {
+		if (instance->player1.removeGem(g, 1)) {
+			instance->bag.addGemmes(g);
 		}
-		else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)) {
-			if (instance->player2.removeGem(g, 1)) {
-				instance->bag.addGemmes(g);
-			}
-			else {
-				return false;
-			}
+		else {
+			return false;
+		}
+	}
+	else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(instance->player2)) {
+		if (instance->player2.removeGem(g, 1)) {
+			instance->bag.addGemmes(g);
 		}
 		else {
 			return false;
 		}
 	}
 	//action de voler une gemmes de l'autre joeur
-	else if (instance->action == Action::STEAL_GEMMES) {
+	else if (instance->action.contains(Action::STEAL_GEMMES)){
 		//on vole pas l'Or!
 		if (g == Gemmes::Or)
 			return false;
 		if (isPlayer1Turn()) {
 			if (instance->player2.removeGem(g, 1)) {
-				instance->bag.addGemmes(g);
 				instance->player1.addGems(g, 1);
-				instance->action = Action::MAIN_ACTION;
+				instance->action.removeAll( Action::STEAL_GEMMES);
 			}
 		}
 		else{
 			if (instance->player1.removeGem(g, 1)) {
-				instance->bag.addGemmes(g);
 				instance->player2.addGems(g, 1);
-				instance->action = Action::MAIN_ACTION;
+				instance->action.removeAll(Action::STEAL_GEMMES);
 			}
 		}
 	}
@@ -182,14 +180,9 @@ bool GameHandler::reservCard(const Card* c, const int position) {
 	else {
 		return -1;
 	}
-	instance->action = Action::RESERV_CARD;
+	instance->action.append(Action::RESERV_CARD);
 	instance->mainActionIsDone = true;
 	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
-	//TODO
-	// ne pas oublié de vérif que le jouer n'a pas déjà 3 cartes réserver et qu'il y a 
-	// au moins 1 or sur le plateau
-	//MEtre l'action sur RESERV_CARD 
-	// et ne pas modifier mainActionIsDone, c'est prendre l'or qui terminera l'action principale
 	return true;
 }
 
@@ -199,7 +192,7 @@ int GameHandler::buyCard(Card* c, const int position) {
 	if (isPlayer1Turn() && instance->player1.canBuyCard(*c)) {
 		//si la carte doit être assigné
 		//on vérifie que le jouer pourra l'assigné
-		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player1)) {
+		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(instance->player1)) {
 			instance->toAsign = c;
 		}
 		instance->player1.buyCard(*c, instance->bag);
@@ -207,7 +200,7 @@ int GameHandler::buyCard(Card* c, const int position) {
 	else if(!isPlayer1Turn() && instance->player2.canBuyCard(*c)) {
 		//si la carte doit être assigné
 		//on vérifie que le jouer pourra l'assigné
-		if (c->getDiscountType() == Gemmes::Vide && Rules::playerCanBuyCardAsign(instance->player2)) {
+		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(instance->player2)) {
 			instance->toAsign = c;
 		}
 		instance->player2.buyCard(*c, instance->bag);
@@ -218,8 +211,20 @@ int GameHandler::buyCard(Card* c, const int position) {
 	//je gère pas les actions pour l'instant
 	instance->mainActionIsDone = true;
 	instance->displayedCards[c->getLevel()][position] = instance->drawPiles[c->getLevel()]->piocher();
-
-	//si la carte doit être assigné, la retenir et retourner 0
+	
+	//on ajoute tous les effets de la carte
+	for (Action a : c->getEffect()) {
+		if (a == Action::PICK_GEMMES) {
+			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
+			if (instance->board.hasGemOfType(c->getDiscountType())) {
+				instance->action.append(a);
+				instance->typeToPick = c->getDiscountType();
+			}
+		}
+		else {
+			instance->action.append(a);
+		}
+	}
 	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
 	// si replay : instance->replay=true;
 	// si c'est un perso on fait juste l'effet sinon :
@@ -227,16 +232,18 @@ int GameHandler::buyCard(Card* c, const int position) {
 	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
 	GameHandler::nextAction();
 	//si carte doit etre assigné
-	if (c->getDiscountType() == Gemmes::Vide)
+	if (instance->action.contains(Action::ASIGN_CARD))
 		return 0;
 	return 1;
 }
 
 Card* GameHandler::asignCard(Card* c) {
-	if (instance->toAsign == nullptr || c->getDiscountType() == Gemmes::Vide)
+	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
+	if (instance->toAsign == nullptr || c->getDiscountType() == Gemmes::Vide || !instance->action.contains(Action::ASIGN_CARD))
 		return nullptr;
 	instance->toAsign->setDiscountType(c->getDiscountType());
 	Card* ret = instance->toAsign;
+	instance->action.removeAll(Action::ASIGN_CARD);
 	instance->toAsign = nullptr;
 	GameHandler::nextAction();
 	return ret;
@@ -244,7 +251,7 @@ Card* GameHandler::asignCard(Card* c) {
 
 bool GameHandler::usePrivilege() {
 	//vérfier que le joeur peux
-	//mettre l'ation sur use_PRIVILEGE
+	instance->action.append(Action::USE_PRIVILEGE);
 	return true;
 }
 

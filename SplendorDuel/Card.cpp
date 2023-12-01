@@ -1,7 +1,7 @@
 #include "Card.h"
 
 Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonusType, const unsigned int nbBonus, 
-	const unsigned int crowns, const string imageSrc) {
+	const unsigned int crowns, const string imageSrc, const QList<Action> action): effect(action) {
 	if (1 > level && level > 3) {
 		char* error = new char[35];
 		sprintf(error, "%d is not a valid level (1-3)\n", level);
