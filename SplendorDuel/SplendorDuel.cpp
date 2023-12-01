@@ -21,7 +21,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     this->setWindowState(Qt::WindowMaximized);
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
-    GameHandler::Instanciate(bag, b, drawPiles, p1, p2);
+    GameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
 
     //mise en page avec le widget main
     QWidget* main = new BackgroundWidgetUI(this, QPixmap("./res/playerFond.png"));
@@ -57,7 +57,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     vl->setContentsMargins(0, 0, 0, 0);
     this->setCentralWidget(main);
 
-    if (GameHandler::isPlayer1Turn()) {
+    if (GameHandler::getInstance().isPlayer1Turn()) {
         ptab[1]->changePtour(false);
     }
     else {
@@ -82,8 +82,8 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
 }
 
 void SplendorDuel::start() {
-    while (!GameHandler::getInstance().gameFinished()) {
-        GameHandler::getInstance().nextAction();
+    while (!GameHandler::getInstance().getInstance().gameFinished()) {
+        GameHandler::getInstance().getInstance().nextAction();
     }
 }
 
@@ -102,7 +102,7 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
 };
 
 void SplendorDuel::changePtour() {
-    if (GameHandler::isPlayer1Turn()) {
+    if (GameHandler::getInstance().isPlayer1Turn()) {
         instance->ptab[0]->changePtour(true);
         instance->ptab[1]->changePtour(false);
     }else{

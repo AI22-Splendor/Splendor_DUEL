@@ -38,7 +38,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -120,9 +120,6 @@
     <QtMoc Include="CompleteBoardUI.h" />
     <QtMoc Include="CardUI.h" />
     <QtMoc Include="BoardCard.h" />
-    <ClInclude Include="CardEffect.h" />
-    <ClInclude Include="CardEffectPlayAgain.h" />
-    <ClInclude Include="CardEffectTakePrivilege.h" />
     <ClInclude Include="GemmesContainerGUI.h" />
     <ClInclude Include="Image.h" />
     <QtMoc Include="PlayerGemsUI.h" />
@@ -149,9 +146,6 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BoardCard.cpp" />
     <ClCompile Include="CardUI.cpp" />
-    <ClCompile Include="CardEffect.cpp" />
-    <ClCompile Include="CardEffectPlayAgain.cpp" />
-    <ClCompile Include="CardEffectTakePrivilege.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
     <ClCompile Include="PersonnageBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -206,9 +200,6 @@
     <Image Include="res\Bleu7.png" />
     <Image Include="res\Bleu8.png" />
     <Image Include="res\Bleu9.png" />
-    <Image Include="res\Card1.png" />
-    <Image Include="res\Card2.png" />
-    <Image Include="res\Card3.png" />
     <Image Include="res\fond.png" />
     <Image Include="res\Noble1.png" />
     <Image Include="res\Noble2.png" />
