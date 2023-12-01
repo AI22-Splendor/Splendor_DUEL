@@ -121,15 +121,6 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CardEffect.h">
-      <Filter>Header Files\CardEffects</Filter>
-    </ClInclude>
-    <ClInclude Include="CardEffectPlayAgain.h">
-      <Filter>Header Files\CardEffects</Filter>
-    </ClInclude>
-    <ClInclude Include="CardEffectTakePrivilege.h">
-      <Filter>Header Files\CardEffects</Filter>
-    </ClInclude>
     <ClInclude Include="XmlReader.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -225,15 +216,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CardEffect.cpp">
-      <Filter>Source Files\CardEffects</Filter>
-    </ClCompile>
-    <ClCompile Include="CardEffectPlayAgain.cpp">
-      <Filter>Source Files\CardEffects</Filter>
-    </ClCompile>
-    <ClCompile Include="CardEffectTakePrivilege.cpp">
-      <Filter>Source Files\CardEffects</Filter>
-    </ClCompile>
     <ClCompile Include="CardUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -250,6 +232,9 @@
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundWidgetUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivilegeUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -297,15 +282,6 @@
       <Filter>Resource Files\img\Card</Filter>
     </Image>
     <Image Include="res\3.png">
-      <Filter>Resource Files\img\Card</Filter>
-    </Image>
-    <Image Include="res\Card3.png">
-      <Filter>Resource Files\img\Card</Filter>
-    </Image>
-    <Image Include="res\Card1.png">
-      <Filter>Resource Files\img\Card</Filter>
-    </Image>
-    <Image Include="res\Card2.png">
       <Filter>Resource Files\img\Card</Filter>
     </Image>
     <Image Include="res\2.png">
@@ -574,6 +550,9 @@
       <Filter>Header Files\UI\Board</Filter>
     </QtMoc>
     <QtMoc Include="CardUI.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="PrivilegeUI.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

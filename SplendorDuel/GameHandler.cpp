@@ -265,6 +265,16 @@ Card* GameHandler::getDisplayedCard(int rareter, int pos) {
 	return nullptr;
 }
 
+bool GameHandler::playPrivilege() {
+	Player current = player1Joue ? player1 : player2;
+	if (PrivilegeHandler::getInstance()->playerHasPrivilege(current)) {
+		PrivilegeHandler::getInstance()->putPrivilegeBackOnBoard(current);
+		action.append(Action::USE_PRIVILEGE);
+		return true;
+	}
+	return false;
+}
+
 void GameHandler::playerBuyReservCard(int pnum) {
 	if (pnum == 0) {
 		player1.adCarteReserver(-1);

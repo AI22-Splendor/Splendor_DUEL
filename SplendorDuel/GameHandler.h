@@ -28,6 +28,7 @@ public:
 	void playerBuyReservCard(int pnum);
 	void addCurrentPlayerPrivilege();
 	bool buyNoble(const Card* c);
+	bool playPrivilege();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
