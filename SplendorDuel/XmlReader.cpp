@@ -1,5 +1,6 @@
 #include "XmlReader.h"
-
+#include <qlist.h>
+#include "Action.h"
 using namespace rapidxml;
 
 list<Card*> XmlReader::getCardsFromXml() {
@@ -27,11 +28,16 @@ list<Card*> XmlReader::getCardsFromXml() {
 		unsigned int level;
 		sscanf(card_node->first_node("level")->value(), "%u", &level);
 
+		QList<Action> effect{};
 		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
-			// TODO
+			unsigned int action;
+			sscanf(effect_node->value(), "%u", &action);
+			if (action > 0) {
+				effect.append(static_cast<Action>(action));
+			}
 		}
 
-		Card* card = new Card(level, prestige, static_cast<Gemmes>(bonus), nbBonus, crowns, imageSrc);
+		Card* card = new Card(level, prestige, static_cast<Gemmes>(bonus), nbBonus, crowns, imageSrc, effect);
 
 		xml_node<>* cost_node = card_node->first_node("cost");
 

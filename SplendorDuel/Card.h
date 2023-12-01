@@ -2,7 +2,8 @@
 
 #include "Gemmes.h"
 #include "MyException.h"
-
+#include <qlist.h>
+#include "Action.h"
 extern const unsigned int NB_GEMMES_PAIEMENTS;
 
 class Card {
@@ -11,8 +12,8 @@ public:
 	* Le niveau de la carte doit être compris entre 1 et 3 (inclus)
 	* 
 	*/
-	Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonus, const unsigned int nbBonus = 1, 
-		const unsigned int crowns = 0, const string imageSrc = "./res/blanc1.png");
+	Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonus, const unsigned int nbBonus = 1,
+		const unsigned int crowns = 0, const string imageSrc = "./res/blanc1.png", const QList<Action> action = QList<Action>{});
 
 	/**
 	* Definit le prix de la carte pour la gemme donnée
@@ -33,7 +34,7 @@ public:
 	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
 	inline void setDiscountType(const Gemmes g) { discountType = g; }
-
+	inline QList<Action> getEffect() { return effect; };
 	QString getImageSrc() const { return imageSrc; }
 
 private:
@@ -45,6 +46,7 @@ private:
 	unsigned int discount;
 	unsigned int crowns;
 	QString imageSrc;
+	QList<Action> effect;
 	friend ostream& operator<<(ostream& os, const Card card);
 };
 

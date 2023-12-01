@@ -81,10 +81,10 @@ void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
 }
 
 void PlayerGemsUI::clickGemmes(Gemmes g) {
-	int pnum = GameHandler::isPlayer1Turn() ? 0 : 1;
 		if (GameHandler::suppPlayerGems(g)) {
 			SplendorDuel::changePtour();
-			SplendorDuel::refreshPlayersGems(pnum);
+			SplendorDuel::refreshPlayersGems(0);
+			SplendorDuel::refreshPlayersGems(1);
 		}
 		else {
 			if (selected != -1) {

@@ -5,17 +5,18 @@
 /// Impossible = pas possible de faire l'action
 /// </summary>
 enum Action {
-	MAIN_ACTION = 0,
+	MAIN_ACTION = -1,
+	REPLAY = 1,
 	// OPTIONAL ACTIONS
-	USE_PRIVILEGE = 1,
+	USE_PRIVILEGE = 0,
+	FILL_BOARD = 1,
 	// MANDATORY ACTIONS
-	FILL_BOARD = 2,
-
+	
 	PICK_GEMMES = 3,
-	RESERV_CARD = 4,
-	BUY_CARD = 5,
-	STEAL_GEMMES = 6,
-
-	ADD_PRIVILEGE = 9,
-	IMPOSSIBLE = 10,
+	ASIGN_CARD = 5,
+	STEAL_GEMMES = 4,
+	ADD_PRIVILEGE = 2,
+	RESERV_CARD = 6,
+	//RETURN FUNCTION OPTIONS
+	IMPOSSIBLE = -2,
 };
