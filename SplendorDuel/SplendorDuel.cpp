@@ -56,13 +56,6 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
     this->setCentralWidget(main);
-
-    if (GameHandler::getInstance().isPlayer1Turn()) {
-        ptab[1]->changePtour(false);
-    }
-    else {
-        ptab[0]->changePtour(false);
-    }
 }
 
 SplendorDuel::~SplendorDuel()

@@ -2,12 +2,17 @@
 #include "Rules.h"
 #include "Player.h"
 #include "PrivilegeHandler.h"
+#include <math.h>
 
 GameHandler* GameHandler::instance = nullptr;
 
-void GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2) {
-	if(GameHandler::instance == nullptr)
+GameHandler* GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2) {
+	if (GameHandler::instance == nullptr){
 		GameHandler::instance = new GameHandler(bag, board, drawPiles, player1, player2);
+		GameHandler::instance->player1Joue = (rand () % 2);
+		PrivilegeHandler::getInstance()->givePlayerPrivilege(GameHandler::instance->player1Joue ? GameHandler::instance->player2 : GameHandler::instance->player1);
+	}
+	return GameHandler::instance;
 }
 
 void GameHandler::destroy() {
@@ -38,7 +43,7 @@ void GameHandler::nextAction() {
 	if((isPlayer1Turn() && Rules::playerHaveToSuppGems(player1)) || (!isPlayer1Turn() && Rules::playerHaveToSuppGems(player2)))
 		return;
 	if (action.contains(Action::REPLAY)) {
-		action.removeAll(Action::REPLAY);
+		action.removeOne(Action::REPLAY);
 		mainActionIsDone = false;
 		return;
 	}
@@ -76,17 +81,15 @@ void GameHandler::nextAction() {
 
 const Board GameHandler::remplirBoard() {
 	//TODO vérifier dans les règles
-	if (action.size()==0 && bag.getNbGemmes() != 0) {
+	if (bag.getNbGemmes() != 0) {
 		board.remplirBoard(bag);
-		return board;
+		this->addCurrentPlayerPrivilege();
 	}
-	else {
-		return board;
-	}
+	return board;
 }
 
 const int GameHandler::gemmesToSelect() {
-	if (action.size()==0)
+	if (action.size()==0 || (action.size() == 1 && action.at(0)==Action::REPLAY))
 		return 3;
 	return 1;
 }
@@ -99,11 +102,11 @@ bool GameHandler::gemmesPick(const int *posTab){
 	{
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
-		if (action.size()==0) {
+		if (action.size() == 0 || (action.size() == 1 && action.contains(Action::REPLAY))) {
 			mainActionIsDone = true;
 		}
 		else {
-			action.removeAll(a);
+			action.removeOne(a);
 		}
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
@@ -155,7 +158,7 @@ bool GameHandler::suppPlayerGems(Gemmes g, int p) {
 		if (isPlayer1Turn()) {
 			if (player2.removeGem(g, 1)) {
 				player1.addGems(g, 1);
-				action.removeAll( Action::STEAL_GEMMES);
+				action.removeOne( Action::STEAL_GEMMES);
 			}
 			else {
 				return false;
@@ -164,7 +167,7 @@ bool GameHandler::suppPlayerGems(Gemmes g, int p) {
 		else{
 			if (player1.removeGem(g, 1)) {
 				player2.addGems(g, 1);
-				action.removeAll(Action::STEAL_GEMMES);
+				action.removeOne(Action::STEAL_GEMMES);
 			}
 			else {
 				return false;
@@ -197,24 +200,14 @@ bool GameHandler::reservCard(const Card* c, const int position) {
 int GameHandler::buyCard(Card* c, const int position) {
 	if (mainActionIsDone)
 		return -1;
-	if (isPlayer1Turn() && player1.canBuyCard(*c)) {
-		//si la carte doit être assigné
-		//on vérifie que le jouer pourra l'assigné
-		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(player1)) {
+	Player& p = player1Joue ? player1 : player2;
+	if (c->getEffect().contains(Action::ASSIGN_CARD) && Rules::playerCanBuyCardAsign(p))
+		return -1;
+	if (p.canBuyCard(*c)) {
+		if(c->getEffect().contains(Action::ASSIGN_CARD)){
 			toAsign = c;
 		}
-		instance->player1.buyCard(*c, instance->bag);
-	}
-	else if(!isPlayer1Turn() && player2.canBuyCard(*c)) {
-		//si la carte doit être assigné
-		//on vérifie que le jouer pourra l'assigné
-		if (c->getEffect().contains(Action::ASIGN_CARD) && Rules::playerCanBuyCardAsign(player2)) {
-			toAsign = c;
-		}
-		else if (c->getEffect().contains(Action::ASIGN_CARD)) {
-			return -1;
-		}
-		instance->player2.buyCard(*c, instance->bag);
+		p.buyCard(*c, bag);
 	}
 	else {
 		return -1;
@@ -224,45 +217,38 @@ int GameHandler::buyCard(Card* c, const int position) {
 	displayedCards[c->getLevel()][position] = drawPiles[c->getLevel()]->piocher();
 	
 	//on ajoute tous les effets de la carte
-	for (Action a : c->getEffect()) {
-		if (a == Action::PICK_GEMMES) {
-			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
-			if (board.hasGemOfType(c->getDiscountType())) {
-				action.append(a);
-				typeToPick = c->getDiscountType();
-			}
-		}
-		else {
-			action.append(a);
-		}
-	}
-	// faire l'effet de la carte (rejouer, ajjout de privile, action=STEAL_GEMMES)
-	// si replay : replay=true;
-	// si c'est un perso on fait juste l'effet sinon :
-	//mettre mainActionIsDone a true sauf si il va devoir prendre une gemme (action = PICK_GEMMES)
-	//si ce cas la, vérifier que la couleur est présente sur le plateau, sinon pas d'effet
+	addAction(c);
 	GameHandler::nextAction();
 	//si carte doit etre assigné
-	if (action.contains(Action::ASIGN_CARD))
+	if (action.contains(Action::ASSIGN_CARD))
 		return 0;
 	return 1;
 }
 
 Card* GameHandler::asignCard(Card* c) {
 	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
-	if (toAsign == nullptr || c->getDiscountType() == Gemmes::Vide || !action.contains(Action::ASIGN_CARD))
+	if (toAsign == nullptr || c->getDiscountType() == Gemmes::Vide || !action.contains(Action::ASSIGN_CARD))
 		return nullptr;
 	toAsign->setDiscountType(c->getDiscountType());
 	Card* ret = toAsign;
-	action.removeAll(Action::ASIGN_CARD);
+	action.removeOne(Action::ASSIGN_CARD);
 	toAsign = nullptr;
 	GameHandler::nextAction();
 	return ret;
 }
 
+void GameHandler::addCurrentPlayerPrivilege(){
+	Player& currentPlayer = player1Joue ? player1 : player2;
+	PrivilegeHandler::getInstance()->givePlayerPrivilege(currentPlayer);
+}
+
 bool GameHandler::usePrivilege() {
-	//vérfier que le joeur peux
+	Player& currentPlayer = player1Joue ? player1 : player2;
+	if (!PrivilegeHandler::getInstance()->playerHasPrivilege(currentPlayer)) {
+		return false;
+	}
 	action.append(Action::USE_PRIVILEGE);
+	PrivilegeHandler::getInstance()->putPrivilegeBackOnBoard(currentPlayer);
 	return true;
 }
 
@@ -284,5 +270,38 @@ void GameHandler::playerBuyReservCard(int pnum) {
 	}
 	if (pnum == 1) {
 		player2.adCarteReserver(-1);
+	}
+}
+
+bool GameHandler::buyNoble(const Card* c) {
+	Player current = this->player1Joue ? player1 : player2;
+	if (Rules::canBuyNoble(current)) {
+		addAction(c);
+		return true;
+	}
+	return false;
+}
+
+void GameHandler::addAction(const Card* c) {
+	Player current = player1Joue ? player1 : player2;
+	Player next = player1Joue ? player2 : player1;
+	for (Action ac : c->getEffect()) {
+		if (ac == ADD_PRIVILEGE) {
+			addCurrentPlayerPrivilege();
+		}else if (ac == STEAL_GEMMES) {
+			if (next.getNBGemmes() > 0 && (next.nbOfGems(Gemmes::Or) != next.getNBGemmes())) {
+				action.append(ac);
+			}
+		}
+		else if (ac == Action::PICK_GEMMES) {
+			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
+			if (board.hasGemOfType(c->getDiscountType())) {
+				action.append(ac);
+				typeToPick = c->getDiscountType();
+			}
+		}
+		else {
+			action.append(ac);
+		}
 	}
 }

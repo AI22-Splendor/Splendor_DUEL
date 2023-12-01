@@ -1,7 +1,7 @@
 #include "Rules.h"
 
 Action Rules::isPossibleTakeGems(const Board b, const int* posTab, QList<Action> action, Gemmes g) {
-	if (action.size()==0) {
+	if (action.size()==0 || (action.size()==1 && action.contains(Action::REPLAY))) {
 		int nbPerles = 0;
 		//GEmmes pas vide et pas d'or et compte le nombre de perle
 		for (int i = 0; i < 3; i++) {
@@ -16,11 +16,11 @@ Action Rules::isPossibleTakeGems(const Board b, const int* posTab, QList<Action>
 		}
 		//Si 3 gemmes pareils
 		if ((posTab[1] != -1 && posTab[2] != -1) && (b.connaitreGemmes(posTab[0]) == b.connaitreGemmes(posTab[1])) && (b.connaitreGemmes(posTab[1]) == b.connaitreGemmes(posTab[2]))) {
-			//TODO ADD PRIVI AU GH
+			GameHandler::getInstance().addCurrentPlayerPrivilege();
 		}
 		//si 2 perle piochées
-		if (nbPerles >= 2) {
-			//TODO ADD PRIVI AU GH
+		else if (nbPerles >= 2) {
+			GameHandler::getInstance().addCurrentPlayerPrivilege();
 		}
 		//on peut et pas d'action spéciale
 		return Action::MAIN_ACTION;
@@ -75,4 +75,29 @@ bool Rules::playerCanBuyCardAsign(const Player& player) {
 			return true;
 	}
 	return false;
+}
+
+bool Rules::canBuyNoble(const Player& player) {
+	static std::string* nobleTab = new std::string[4]();
+	int nb = 0, total = 0, price = 3;
+	for (int i = 0; i < 4; i++) {
+		if (nobleTab[i] == player.getName()) {
+			nb++;
+		}
+		if (!nobleTab[i].empty())
+			total++;
+	}
+	if (nb == 2)
+		return false;
+	if (total == 4)
+		return false;
+	if (nb == 1)
+		price= 6;
+	if (player.getNbCrowns() >= price) {
+		cout << total << "\n";
+		nobleTab[total] = player.getName();
+		return true;
+	}else {
+		return false;
+	}
 }

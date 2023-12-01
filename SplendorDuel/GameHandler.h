@@ -7,10 +7,11 @@
 #include <qlist.h>
 #include "DrawPile.h"
 #include "Player.h"
+#include <random>
 
 class GameHandler {
 public:
-	static void Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
+	static GameHandler* Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
 	static void destroy();
 	static inline GameHandler& getInstance() { return *GameHandler::instance; }
 	bool gameFinished();
@@ -25,7 +26,8 @@ public:
 	bool usePrivilege();
 	Card* getDisplayedCard(int rareter, int pos);
 	void playerBuyReservCard(int pnum);
-
+	void addCurrentPlayerPrivilege();
+	bool buyNoble(const Card* c);
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
@@ -48,7 +50,7 @@ private:
 	static GameHandler* instance;
 
 	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), typeToPick(Gemmes::Vide), toAsign(nullptr), player1Joue(true), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action() {
+		: bag(bag), typeToPick(Gemmes::Vide), toAsign(nullptr), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action() {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -58,6 +60,7 @@ private:
 	}
 	GameHandler(const GameHandler&)=delete;
 	~GameHandler(){}
+	void addAction(const Card* c);
 
 	bool mainActionIsDone;
 	QList<Action> action;
