@@ -17,13 +17,13 @@ void PrivilegeUI::mousePressEvent(QMouseEvent* event) {
 void PrivilegeUI::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
 	if (hover) {
-		painter.drawPixmap(0, 0, width(), height(), Image::getPixmap(Gemmes::Blanc));
+		//painter.drawPixmap(0, 0, width(), height(), Image::getPixmap(Gemmes::Blanc));
 	}
 	else if (havePrivilege) {
-		painter.drawPixmap(width() / 5, height() / 5, width() / 5 * 3, height() / 5 * 3, Image::getPixmap(Gemmes::Blanc));
+		//painter.drawPixmap(width() / 5, height() / 5, width() / 5 * 3, height() / 5 * 3, Image::getPixmap(Gemmes::Blanc));
 	}
 	else {
-		painter.drawPixmap(width()/5, height()/5, width()/5*3, height()/5*3, Image::getPixmap(Gemmes::Blanc));
+		//painter.drawPixmap(width()/5, height()/5, width()/5*3, height()/5*3, Image::getPixmap(Gemmes::Blanc));
 		QColor color(Qt::black);
 		color.setAlpha(99);
 	}
