@@ -1,6 +1,7 @@
 #include "PrivilegeBoardUI.h"
 #include <qpainter.h>
 #include <qgridlayout.h>
+#include "PrivilegeUI.h"
 
 PrivilegeBoardUI::PrivilegeBoardUI(QWidget* parent): QWidget(parent) {
 	setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
@@ -11,7 +12,7 @@ PrivilegeBoardUI::PrivilegeBoardUI(QWidget* parent): QWidget(parent) {
 	vlayout->setContentsMargins(0, 0, 0, 0);
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
-			vlayout->addWidget(new QWidget(this));
+			vlayout->addWidget(new PrivilegeUI(this));
 		}
 	}
 }

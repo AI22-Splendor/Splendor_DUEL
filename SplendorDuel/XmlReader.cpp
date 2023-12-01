@@ -61,3 +61,32 @@ list<Card*> XmlReader::getCardsFromXml() {
 
 	return cards;
 }
+
+list<Card*> XmlReader::getNoblesFromXml() {
+	list<Card*> cards{};
+
+	file<> xmlFile("./res/cards.xml");
+	xml_document<> xml;
+	xml.parse<0>(xmlFile.data());
+
+	xml_node<>* root_node = xml.first_node("data")->first_node("nobles");
+	// Iterate over the brewerys
+	for (xml_node<>* card_node = root_node->first_node("noble"); card_node; card_node = card_node->next_sibling()) {
+		string imageSrc = card_node->first_node("image")->value();
+		unsigned int prestige;
+		sscanf(card_node->first_node("prestige")->value(), "%u", &prestige);
+
+		QList<Action> effect{};
+		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
+			unsigned int action;
+			sscanf(effect_node->value(), "%u", &action);
+			if (action > 0) {
+				effect.append(static_cast<Action>(action));
+			}
+		}
+
+		Card* card = new Card(0, prestige, static_cast<Gemmes>(0), 0, 0, imageSrc, effect);
+		cards.push_back(card);
+	}
+	return cards;
+}

@@ -34,7 +34,7 @@ public:
 	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
 	inline void setDiscountType(const Gemmes g) { discountType = g; }
-	inline QList<Action> getEffect() { return effect; };
+	inline const QList<Action> getEffect() const { return effect; };
 	QString getImageSrc() const { return imageSrc; }
 
 private:

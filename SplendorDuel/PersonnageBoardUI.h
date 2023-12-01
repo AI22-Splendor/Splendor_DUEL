@@ -4,6 +4,7 @@
 #include "Card.h"
 #include "Image.h"
 #include <qpainter.h>
+#include "GameHandler.h"
 class PersonnageBoardUI : public CardContainersGUI
 {
 	Q_OBJECT
@@ -19,7 +20,7 @@ public:
 
 private:
 	void clickDCard(int col, int ligne, Card* c) {}
-	void clickCard(int col, int ligne, Card* c) {}
+	void clickCard(int col, int ligne, Card* c);
 	CardUI** cards;
 };
 
