@@ -63,15 +63,15 @@ void PlayerPoints::resizeEvent(QResizeEvent* event) {
 }
 
 void PlayerPoints::clickCard(int col, int ligne, Card* c) {
-    int pturn = GameHandler::isPlayer1Turn() ? 0 : 1;
-    int n = GameHandler::buyCard(c, col);
+    int pturn = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+    int n = GameHandler::getInstance().buyCard(c, col);
     if (n >= 0) {
         ((QGridLayout*)this->layout())->removeWidget(card[col]);
         card[col]->deleteLater();
         card[col]->supprimerCarte(c);
         card[col] = nullptr;
         this->layout()->update();
-        GameHandler::playerBuyReservCard(pturn);
+        GameHandler::getInstance().playerBuyReservCard(pturn);
         if (n > 0)
             SplendorDuel::addPlayerCard(c, pturn);
         SplendorDuel::changePtour();

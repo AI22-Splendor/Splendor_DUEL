@@ -51,7 +51,7 @@ BoardUI::~BoardUI() {
 
 void BoardUI::hoverGemmes(const int pos, const bool red){
 	//on demande au GH le nombre de gemmes a selectionner
-	int nb = GameHandler::gemmesToSelect();
+	int nb = GameHandler::getInstance().getInstance().gemmesToSelect();
 	//la gemme centrale
 	posSelect[0] = pos;
 	if (nb>1 && this->nbGemmes>1) {
@@ -207,13 +207,13 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 
 void BoardUI::clickGemmes(Gemmes g) {
 	int pturn;
-	if (GameHandler::isPlayer1Turn())
+	if (GameHandler::getInstance().getInstance().isPlayer1Turn())
 		pturn = 0;
 	else {
 		pturn = 1;
 	}
 	//si les règles sont ok
-	if (GameHandler::gemmesPick(posSelect)) {
+	if (GameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
 				SplendorDuel::refreshPlayersGems(pturn);
