@@ -22,7 +22,7 @@ public:
 	static Action isPossibleTakeGems(const Board b, const int* posTab, QList<Action> action, Gemmes g);
 	static bool playerWon(const Player& player);
 	static bool playerHaveToSuppGems(const Player& player);
-	static bool canBuyNoble(const Player& player);
+	static bool canBuyNoble(const Card& noble, const Player& player);
 	static bool playerCanBuyCardAsign(const Player& player);
 private:
 	//on supprime le constructeur et le destructeur

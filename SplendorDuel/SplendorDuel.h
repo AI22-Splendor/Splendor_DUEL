@@ -48,11 +48,6 @@ public:
     }
 
     /// <summary>
-    /// lance le jeu
-    /// </summary>
-    static void start();
-
-    /// <summary>
     /// ferme le jeu
     /// </summary>
     /// <returns></returns>

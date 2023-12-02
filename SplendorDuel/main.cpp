@@ -13,6 +13,6 @@ int main(int argc, char *argv[])
    
     SplendorDuel& game = GameFactory::buildNewSplendor();
     game.show();
-    // game.start();
+    //game.start();
     return a.exec();
 }

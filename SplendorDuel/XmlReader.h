@@ -9,6 +9,6 @@ class XmlReader {
 public:
 	static list<Card*> getCardsFromXml();
 
-	static list<Card*> getNoblesFromXml();
+	static vector<Card*> getNoblesFromXml();
 };
 

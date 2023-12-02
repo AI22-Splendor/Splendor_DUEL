@@ -1,4 +1,5 @@
 #include "Rules.h"
+#include "NobleHandler.h"
 
 Action Rules::isPossibleTakeGems(const Board b, const int* posTab, QList<Action> action, Gemmes g) {
 	if (action.size()==0 || (action.size()==1 && action.contains(Action::REPLAY))) {
@@ -77,28 +78,6 @@ bool Rules::playerCanBuyCardAsign(const Player& player) {
 	return false;
 }
 
-bool Rules::canBuyNoble(const Player& player) {
-	static std::string* nobleTab = new std::string[4]();
-	int nb = 0, total = 0, price = 3;
-	for (int i = 0; i < 4; i++) {
-		if (nobleTab[i] == player.getName()) {
-			nb++;
-		}
-		if (!nobleTab[i].empty())
-			total++;
-	}
-	if (nb == 2)
-		return false;
-	if (total == 4)
-		return false;
-	if (nb == 1)
-		price= 6;
-	if (player.getNbCrowns() >= price) {
-		cout << total << "\n";
-		nobleTab[total] = player.getName();
-		return true;
-	}else {
-		cout << "Pcrow:" << player.getNbCrowns() << " price: " << price << "\n";
-		return false;
-	}
+bool Rules::canBuyNoble(const Card& noble, const Player& player) {
+	return NobleHandler::getInstance()->playerCanBuyNoble(noble, player);
 }

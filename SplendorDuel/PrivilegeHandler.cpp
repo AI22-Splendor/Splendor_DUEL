@@ -21,15 +21,15 @@ void PrivilegeHandler::givePlayerPrivilege(const Player& player) {
 	PrivilegePosition otherPlayer = creditedPlayer == PrivilegePosition::Player1 ? PrivilegePosition::Player2 : PrivilegePosition::Player1;
 	// We check if we can find an unowned privilege
 	for (int i = 0; i < 3; i++) {
-		if (getInstance()->emplacementsPrivilege[i] == PrivilegePosition::Board) {
-			getInstance()->emplacementsPrivilege[i] = creditedPlayer;
+		if (emplacementsPrivilege[i] == PrivilegePosition::Board) {
+			emplacementsPrivilege[i] = creditedPlayer;
 			return;
 		}
 	}
 	// If no privilege available, we take one from the other player
 	for (int i = 0; i < 3; i++) {
-		if (getInstance()->emplacementsPrivilege[i] == otherPlayer) {
-			getInstance()->emplacementsPrivilege[i] = creditedPlayer;
+		if (emplacementsPrivilege[i] == otherPlayer) {
+			emplacementsPrivilege[i] = creditedPlayer;
 			return;
 		}
 	}
@@ -38,8 +38,8 @@ void PrivilegeHandler::givePlayerPrivilege(const Player& player) {
 void PrivilegeHandler::putPrivilegeBackOnBoard(const Player& player) {
 	PrivilegePosition debitedPlayer = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
 	for (int i = 0; i < 3; i++) {
-		if (getInstance()->emplacementsPrivilege[i] == debitedPlayer) {
-			getInstance()->emplacementsPrivilege[i] = PrivilegePosition::Board;
+		if (emplacementsPrivilege[i] == debitedPlayer) {
+			emplacementsPrivilege[i] = PrivilegePosition::Board;
 			return;
 		}
 	}
@@ -48,7 +48,7 @@ void PrivilegeHandler::putPrivilegeBackOnBoard(const Player& player) {
 bool PrivilegeHandler::playerHasPrivilege(const Player& player) {
 	PrivilegePosition playerPos = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
 	for (int i = 0; i < 3; i++) {
-		if (getInstance()->emplacementsPrivilege[i] == playerPos) {
+		if (emplacementsPrivilege[i] == playerPos) {
 			return true;
 		}
 	}

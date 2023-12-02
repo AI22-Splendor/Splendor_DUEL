@@ -74,12 +74,6 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
     instance->ptab[ptrun]->setPoints(c->getDiscountType());
 }
 
-void SplendorDuel::start() {
-    while (!GameHandler::getInstance().getInstance().gameFinished()) {
-        GameHandler::getInstance().getInstance().nextAction();
-    }
-}
-
 bool SplendorDuel::close(){
     instance->QMainWindow::close();
     return true;
@@ -95,11 +89,18 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
 };
 
 void SplendorDuel::changePtour() {
-    if (GameHandler::getInstance().isPlayer1Turn()) {
-        instance->ptab[0]->changePtour(true);
-        instance->ptab[1]->changePtour(false);
-    }else{
-        instance->ptab[0]->changePtour(false);
-        instance->ptab[1]->changePtour(true);
+    if (!GameHandler::getInstance().gameFinished()) {
+        if (GameHandler::getInstance().isPlayer1Turn()) {
+            instance->ptab[0]->changePtour(true);
+            instance->ptab[1]->changePtour(false);
+        }
+        else {
+            instance->ptab[0]->changePtour(false);
+            instance->ptab[1]->changePtour(true);
+        }
+    }
+    else {
+        cout << "Winner is : " << GameHandler::getInstance().getWinner().getName() << endl;
+        instance->close();
     }
 }
