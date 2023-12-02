@@ -35,8 +35,7 @@ unsigned int Player::getNbCrowns() const {
 	for (const Card* c: cards) {
 		nbCrowns += c->getCrowns();
 	}
-	return 3;
-	// return nbCrowns;
+	return nbCrowns;
 }
 
 unsigned int Player::getPrestige(Gemmes gem) const {
