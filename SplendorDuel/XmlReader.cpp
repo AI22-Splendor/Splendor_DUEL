@@ -62,8 +62,8 @@ list<Card*> XmlReader::getCardsFromXml() {
 	return cards;
 }
 
-list<Card*> XmlReader::getNoblesFromXml() {
-	list<Card*> cards{};
+vector<Card*> XmlReader::getNoblesFromXml() {
+	vector<Card*> cards{};
 
 	file<> xmlFile("./res/cards.xml");
 	xml_document<> xml;

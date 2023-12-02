@@ -40,14 +40,14 @@ public:
 		name->setTour(b);
 	};
 
-	inline void addCouronne(const int nb) { points->addCouronne(nb); }
-	inline void addPrestiges(const int nb) { points->addPrestiges(nb); }
+	inline void addCouronne(const int nb) { points->updateCouronne(nb); }
+	inline void addPrestiges(const int nb) { points->udpdatePrestiges(nb); }
 	inline void setPoints(const Gemmes g) { 
 		if (p->getPrestige(g) > points->getPoints() && g!=Gemmes::Vide)
-			points->setPoints(p->getPrestige(g));
+			points->updatePoints(p->getPrestige(g));
 	}
 
-	inline void reservCard(Card* c) { this->points->addCard(c); };
+	inline void reservCard(Card* c) { this->points->updateCard(c); };
 
 private:
 	//son numéro de joeur

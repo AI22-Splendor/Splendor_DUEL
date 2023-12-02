@@ -1,11 +1,14 @@
 #include "PersonnageBoardUI.h"
 #include <qgridlayout.h>
 #include "XmlReader.h"
+#include "NobleHandler.h"
+
 PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainersGUI(parent) {
 	cards = new CardUI*[4]();
-	list<Card*> l = XmlReader::getNoblesFromXml();
+	// TODO CHANGER
+	vector<Card*> nobles = NobleHandler::getInstance()->getNobleCards();
 	int i = 0;
-	for (Card* c:l) {
+	for (Card* c: nobles) {
 		cards[i] = new CardUI(this, 0, i);
 		cards[i]->ajouterCarte(c);
 		i++;

@@ -34,8 +34,24 @@ public:
 	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
 	inline void setDiscountType(const Gemmes g) { discountType = g; }
-	inline const QList<Action> getEffect() const { return effect; };
+	inline const QList<Action> getEffect() const { return effects; };
 	QString getImageSrc() const { return imageSrc; }
+
+	inline bool operator==(const Card& card) { 
+		if (effects.size() != card.effects.size()) return false;
+		for (int i = 0; i < effects.size(); i++) {
+			if (effects[i] != card.effects[i]) return false;
+		}
+		for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
+			if (cost[i] != card.cost[i]) return false;
+		}
+		return card.discountType == discountType
+			&& card.discount == discount
+			&& card.crowns == crowns
+			&& card.ptsPrestige == ptsPrestige
+			&& card.level == level
+			&& card.imageSrc.compare(imageSrc) == 0;
+	}
 
 private:
 	unsigned int cost[NB_GEMMES_PAIEMENTS];
@@ -46,7 +62,7 @@ private:
 	unsigned int discount;
 	unsigned int crowns;
 	QString imageSrc;
-	QList<Action> effect;
+	QList<Action> effects;
 	friend ostream& operator<<(ostream& os, const Card card);
 };
 

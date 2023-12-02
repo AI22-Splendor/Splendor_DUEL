@@ -12,9 +12,9 @@ public:
 
 	static PrivilegeHandler* getInstance();
 
-	static void givePlayerPrivilege(const Player& player);
-	static void putPrivilegeBackOnBoard(const Player& player);
-	static bool playerHasPrivilege(const Player& player);
+	void givePlayerPrivilege(const Player& player);
+	void putPrivilegeBackOnBoard(const Player& player);
+	bool playerHasPrivilege(const Player& player);
 private:
 	// On empêche la construction du singleton
 	PrivilegeHandler() {}

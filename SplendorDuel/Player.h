@@ -30,7 +30,7 @@ public:
 	unsigned int nbOfGems(const Gemmes gem) const { return gems[gem]; }
 
 	/// <summary>
-	/// Retursn a list of the currently owned cards of the player
+	/// Returns a list of the currently owned cards of the player
 	/// </summary>
 	const list<const Card*>& getCards() const { return cards; }
 
@@ -100,7 +100,13 @@ public:
 	/// retourne le nombre de gemmes en possesion du joueur
 	/// </summary>
 	/// <returns></returns>
-	unsigned int getNBGemmes()const;
+	unsigned int getNBGemmes() const;
+
+	/// <summary>
+	/// Returns the value of the highest prestige count between all gems
+	/// </summary>
+	/// <returns>the value of the highest prestige count between all gems</returns>
+	unsigned int getHighestGemPrestigeCount() const;
 
 	inline int getNbCarteReserver() { return nbCarteReserver; }
 	inline void adCarteReserver(const int nb) { nbCarteReserver += nb; }

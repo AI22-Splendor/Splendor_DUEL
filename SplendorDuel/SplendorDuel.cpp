@@ -74,12 +74,6 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
     instance->ptab[ptrun]->setPoints(c->getDiscountType());
 }
 
-void SplendorDuel::start() {
-    while (!GameHandler::getInstance().getInstance().gameFinished()) {
-        GameHandler::getInstance().getInstance().nextAction();
-    }
-}
-
 bool SplendorDuel::close(){
     instance->QMainWindow::close();
     return true;

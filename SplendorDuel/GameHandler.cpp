@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "PrivilegeHandler.h"
 #include <math.h>
+#include "NobleHandler.h"
 
 GameHandler* GameHandler::instance = nullptr;
 
@@ -56,26 +57,6 @@ void GameHandler::nextAction() {
 	mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? player1 : player2;
 	
-	/*
-	list<Action> possibleOptionalActions;
-	if (PrivilegeHandler::playerHasPrivilege(currentPlayer)) possibleOptionalActions.push_back(Action::USE_PRIVILEGE);
-	if (bag.getNbGemmes() > 0) possibleOptionalActions.push_back(Action::FILL_BOARD);
-
-	list<Action> possibleMandatoryActions;
-	possibleMandatoryActions.push_back(Action::PICK_GEMMES);
-	if (board.hasGemOfType(Gemmes::Or)) possibleMandatoryActions.push_back(Action::RESERV_CARD);
-	bool canBuyCard = false;
-	for (int i = 0; i < 3; i++) {
-		vector<Card*>::const_iterator it = displayedCards[i].cbegin();
-		for (; it != displayedCards[i].cend(); it++) {
-			if ((*it)!=nullptr && currentPlayer.canBuyCard(*(*it))) {
-				canBuyCard = true;
-				possibleMandatoryActions.push_back(Action::BUY_CARD);
-				break;
-			}
-		}
-		if (canBuyCard) break;
-	}*/
 	player1Joue = !player1Joue;
 }
 
@@ -284,10 +265,11 @@ void GameHandler::playerBuyReservCard(int pnum) {
 	}
 }
 
-bool GameHandler::buyNoble(const Card* c) {
-	Player current = this->player1Joue ? player1 : player2;
-	if (Rules::canBuyNoble(current)) {
-		addAction(c);
+bool GameHandler::buyNoble(const Card* noble) {
+	Player currentPlayer = this->player1Joue ? player1 : player2;
+	if (Rules::canBuyNoble(*noble, currentPlayer)) {
+		NobleHandler::getInstance()->givePlayerNoble(*noble, currentPlayer);
+		addAction(noble);
 		return true;
 	}
 	return false;

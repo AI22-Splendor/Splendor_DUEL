@@ -27,8 +27,9 @@ public:
 	Card* getDisplayedCard(int rareter, int pos);
 	void playerBuyReservCard(int pnum);
 	void addCurrentPlayerPrivilege();
-	bool buyNoble(const Card* c);
+	bool buyNoble(const Card* noble);
 	bool playPrivilege();
+
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
@@ -74,5 +75,7 @@ private:
 	Player& player2;
 	Card* toAsign;
 	Gemmes typeToPick;
+
 	friend class PrivilegeHandler;
+	friend class NobleHandler;
 };

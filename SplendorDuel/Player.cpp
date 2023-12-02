@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <list>
+#include "NobleHandler.h"
 
 using namespace std;
 
@@ -34,7 +35,8 @@ unsigned int Player::getNbCrowns() const {
 	for (const Card* c: cards) {
 		nbCrowns += c->getCrowns();
 	}
-	return nbCrowns;
+	return 3;
+	// return nbCrowns;
 }
 
 unsigned int Player::getPrestige(Gemmes gem) const {
@@ -44,6 +46,7 @@ unsigned int Player::getPrestige(Gemmes gem) const {
 		// An empty Gem as a parameter calculates the total of prestige 
 		if (gem == Gemmes::Vide || (*it)->getDiscountType() == gem) prestige += (*it)->getPointsPrestige();
 	}
+	if (gem == Gemmes::Vide) prestige += NobleHandler::getInstance()->getNoblePrestigePlayer(*this);
 	return prestige;
 }
 
@@ -92,10 +95,19 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 	return true;
 }
 
-unsigned int Player::getNBGemmes()const {
+unsigned int Player::getNBGemmes() const {
 	int sum = 0;
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		sum += gems[i];
 	}
 	return (sum);
+}
+
+unsigned int Player::getHighestGemPrestigeCount() const {
+	int max = 0;
+	for (int i = 0; i < NB_GEMMES_PAIEMENTS - 1; i++) {
+		int prestige = getPrestige(static_cast<Gemmes>(i));
+		if (prestige > max) max = prestige;
+	}
+	return max;
 }

@@ -4,7 +4,7 @@
 #include "GameHandler.h"
 #include "SplendorDuel.h"
 
-PlayerPoints::PlayerPoints(QWidget* parent, int pnum) : pnum(pnum), CardContainersGUI(parent), nbCourronne(0), nbPoints(0), nbPrestiges(0) {
+PlayerPoints::PlayerPoints(QWidget* parent, Player& player, int pnum) : player(player), pnum(pnum), CardContainersGUI(parent) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     QGridLayout* grid = new QGridLayout(this);
     card = new CardUI*[3]();
@@ -32,29 +32,26 @@ void PlayerPoints::paintEvent(QPaintEvent* event) {
     painter.setPen(QColor("#ffffff"));
 
     // Obtenir la taille du texte rendu
-    QRect textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(nbPrestiges));
-    painter.drawText(QRect(width() * 0.21 -textRect.width(), 0, textRect.width(), textRect.height()), QString::number(nbPrestiges));
+    QRect textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(player.getPrestige()));
+    painter.drawText(QRect(width() * 0.21 -textRect.width(), 0, textRect.width(), textRect.height()), QString::number(player.getPrestige()));
 
-    textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(nbCourronne));
-    painter.drawText(QRect(width() * 0.47 -textRect.width(), height() / 40, textRect.width(), textRect.height()), QString::number(nbCourronne));
+    textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(player.getNbCrowns()));
+    painter.drawText(QRect(width() * 0.47 -textRect.width(), height() / 40, textRect.width(), textRect.height()), QString::number(player.getNbCrowns()));
 
-    textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(nbPoints));
-    painter.drawText(QRect(width()*0.86 - textRect.width(), height() / 40, textRect.width(), textRect.height()), QString::number(nbPoints));
+    textRect = painter.boundingRect(rect(), Qt::AlignTop, QString::number(player.getHighestGemPrestigeCount()));
+    painter.drawText(QRect(width()*0.86 - textRect.width(), height() / 40, textRect.width(), textRect.height()), QString::number(player.getHighestGemPrestigeCount()));
 }
 
 
-void PlayerPoints::addCouronne(const int nb) {
-    nbCourronne+=nb;
+void PlayerPoints::updateCouronne(const int nb) {
     update();
 }
 
-void PlayerPoints::addPrestiges(const int nb) {
-    nbPrestiges+=nb;
+void PlayerPoints::udpdatePrestiges(const int nb) {
     update();
 }
 
-void PlayerPoints::setPoints(const int nb) {
-    nbPoints = nb;
+void PlayerPoints::updatePoints(const int nb) {
     update();
 }
 
@@ -87,7 +84,7 @@ void PlayerPoints::clickCard(int col, int ligne, Card* c) {
     }
 }
 
-void PlayerPoints::addCard(Card* c) {
+void PlayerPoints::updateCard(Card* c) {
     for (int i = 0; i < 3; i++) {
         if (card[i] == nullptr) {
             card[i]= new CardUI(this, 1, i);
