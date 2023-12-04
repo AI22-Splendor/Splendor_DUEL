@@ -1,0 +1,74 @@
+<!-- language: {fr} -->
+<!-- EMessage type: { 
+		##effect
+		USE_PRIVILEGE = 7,
+		REPLAY = 1,
+		PICK_GEMMES = 3,
+		STEAL_GEMMES = 4,
+		ASSIGN_CARD = 5,
+		RESERV_CARD = 6,
+		
+		##errir
+		SUPP_GEMS=7
+ -->
+<data>
+	<fr>
+		<!-- Vert -->
+		<SUPP_GEMS>
+			<message>
+			Vous avez trop de gemmes, supprimez en une avant passer votre tour
+			</message>
+			<color>
+			#ff0000
+			</color>
+		</SUPP_GEMS>
+		<USE_PRIVILEGE>
+			<message>
+				Utilisation d'un privilège: choisissez un gemmes à garder (sauf Or)
+			</message>
+			<color>
+				#ffffff
+			</color>
+		</USE_PRIVILEGE>
+		<REPLAY>
+			<message>
+				Vous pourrez rejouer après ce tour
+			</message>
+			<color>
+				#00ff00
+			</color>
+		</REPLAY>
+		<PICK_GEMMES>
+			<message>
+				Piochez la gemmes que vous voulez sur le plateau de la courleur de la carte acheté
+			</message>
+			<color>
+				#00ff00
+			</color>
+		</PICK_GEMMES>
+		<STEAL_GEMMES>
+			<message>
+				Volez une gemmes à votre adversaire (sauf Or)
+			</message>
+			<color>
+				#00ff00
+			</color>
+		</STEAL_GEMMES>
+		<ASSIGN_CARD>
+			<message>
+				Assigné la cartes acheté à la couleur de votre choix
+			</message>
+			<color>
+				#ffffff
+			</color>
+		</ASSIGN_CARD>
+		<RESERV_CARD>
+			<message>
+				Prennez 1 d'Or sur le plateau
+			</message>
+			<color>
+				#00ff00
+			</color>
+		</RESERV_CARD>
+	</fr>
+</data>

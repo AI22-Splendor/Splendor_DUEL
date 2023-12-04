@@ -562,4 +562,9 @@
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\message.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>
