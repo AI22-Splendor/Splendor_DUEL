@@ -148,6 +148,9 @@
     <ClInclude Include="NobleHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InformationMessageUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameHandler.cpp">
@@ -241,6 +244,9 @@
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="NobleHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InformationMessageUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -511,6 +517,9 @@
     </Image>
     <Image Include="res\Noble4.png">
       <Filter>Resource Files\img\Card</Filter>
+    </Image>
+    <Image Include="res\privilege.png">
+      <Filter>Resource Files\img</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

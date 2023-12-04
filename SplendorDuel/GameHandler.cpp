@@ -16,6 +16,15 @@ GameHandler* GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPil
 	return GameHandler::instance;
 }
 
+Action GameHandler::getLastAction() {
+	if (action.size() > 0) {
+		return action.at(action.size() - 1);
+	}
+	else {
+		return Action::MAIN_ACTION;
+	}
+}
+
 void GameHandler::destroy() {
 	delete GameHandler::instance;
 	GameHandler::instance = nullptr;

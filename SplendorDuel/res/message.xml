@@ -16,7 +16,7 @@
 		<!-- Vert -->
 		<SUPP_GEMS>
 			<message>
-			Vous avez trop de gemmes, supprimez en une avant passer votre tour
+			Vous avez trop de gemmes, supprimez en une avant de continuer
 			</message>
 			<color>
 			#ff0000

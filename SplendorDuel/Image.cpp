@@ -18,6 +18,7 @@ Image::Image() {
 	cartvide = QPixmap("./res/0.png");
 	ppoints= QPixmap("./res/points.png");
 	fond= QPixmap("./res/fond.png");
+	Privilege = QPixmap("./res/privilege.png");
 }
 
 void Image::destroy(){
@@ -113,4 +114,11 @@ QPixmap Image::getFond() {
 
 QPixmap& Image::getImageFromSrc(const QString src) {
 	return *(new QPixmap(src));
+}
+
+QPixmap Image::getPrivilege() {
+	if (instance == nullptr) {
+		instance = new Image();
+	}
+	return instance->Privilege;
 }

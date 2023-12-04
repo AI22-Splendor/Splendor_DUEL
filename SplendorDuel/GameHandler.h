@@ -29,7 +29,7 @@ public:
 	bool playPrivilege();
 	int getPlayerNbPrivilege(int pnum);
 	void addOtherPlayerPrivilege();
-
+	Action getLastAction();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours

@@ -54,6 +54,12 @@ public:
 	static QPixmap getPlayersPoints();
 
 	/// <summary>
+	/// retourne les privilèeges
+	/// </summary>
+	/// <returns>l'image</returns>
+	static QPixmap getPrivilege();
+
+	/// <summary>
 	/// detruit notre singleton
 	/// </summary>
 	static void destroy();
@@ -80,5 +86,6 @@ private:
 	QPixmap cartvide;
 	QPixmap fond;
 	QPixmap ppoints;
+	QPixmap Privilege;
 };
 
