@@ -54,3 +54,14 @@ bool PrivilegeHandler::playerHasPrivilege(const Player& player) {
 	}
 	return false;
 }
+
+int PrivilegeHandler::getPlayerPrivilege(const Player& player) {
+	PrivilegePosition playerPos = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
+	int nb = 0;
+	for (int i = 0; i < 3; i++) {
+		if (emplacementsPrivilege[i] == playerPos) {
+			nb++;
+		}
+	}
+	return nb;
+}

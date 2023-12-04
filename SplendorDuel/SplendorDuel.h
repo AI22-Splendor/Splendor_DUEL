@@ -6,6 +6,7 @@
 #include "GemmesContainerGUI.h"
 #include "CompleteBoardUI.h"
 #include "PlayersUI.h"
+#include "PrivilegeBoardUI.h"
 #include "Player.h"
 
 /// <summary>
@@ -27,6 +28,7 @@ public:
         if (SplendorDuel::instance == nullptr) {
             SplendorDuel::instance = new SplendorDuel(bag, board, drawPiles, p1, p2);
             SplendorDuel::instance->changePtour();
+            SplendorDuel::instance->privilege->refreshPrivilege();
         }
     }
 
@@ -53,6 +55,10 @@ public:
     /// <returns></returns>
     static bool close();
 
+    static void refreshPrivilege() {
+        instance->privilege->refreshPrivilege();
+    }
+
     static void changePtour();
 
 private:
@@ -75,5 +81,7 @@ private:
     CompleteBoardUI* board;
     //nos joueurs
     PlayersUI** ptab;
+    //nos privilege
+    PrivilegeBoardUI* privilege;
     Ui::SplendorDuelClass ui;
 };

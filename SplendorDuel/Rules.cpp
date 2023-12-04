@@ -17,11 +17,11 @@ Action Rules::isPossibleTakeGems(const Board b, const int* posTab, QList<Action>
 		}
 		//Si 3 gemmes pareils
 		if ((posTab[1] != -1 && posTab[2] != -1) && (b.connaitreGemmes(posTab[0]) == b.connaitreGemmes(posTab[1])) && (b.connaitreGemmes(posTab[1]) == b.connaitreGemmes(posTab[2]))) {
-			GameHandler::getInstance().addCurrentPlayerPrivilege();
+			GameHandler::getInstance().addOtherPlayerPrivilege();
 		}
 		//si 2 perle piochées
 		else if (nbPerles >= 2) {
-			GameHandler::getInstance().addCurrentPlayerPrivilege();
+			GameHandler::getInstance().addOtherPlayerPrivilege();
 		}
 		//on peut et pas d'action spéciale
 		return Action::MAIN_ACTION;

@@ -16,7 +16,6 @@ public:
 	static inline GameHandler& getInstance() { return *GameHandler::instance; }
 	bool gameFinished();
 	const Player& getWinner();
-	void replayTurn();
 	void nextAction();
 	bool isPlayer1Turn();
 	bool suppPlayerGems(Gemmes g, int p);
@@ -26,10 +25,11 @@ public:
 	bool usePrivilege();
 	Card* getDisplayedCard(int rareter, int pos);
 	void playerBuyReservCard(int pnum);
-	void addCurrentPlayerPrivilege();
 	bool buyNoble(const Card* noble);
 	bool playPrivilege();
-
+	int getPlayerNbPrivilege(int pnum);
+	void addOtherPlayerPrivilege();
+	Action getLastAction();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours

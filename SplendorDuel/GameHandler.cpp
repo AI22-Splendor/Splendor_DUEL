@@ -11,9 +11,18 @@ GameHandler* GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPil
 	if (GameHandler::instance == nullptr){
 		GameHandler::instance = new GameHandler(bag, board, drawPiles, player1, player2);
 		GameHandler::instance->player1Joue = (rand () % 2);
-		PrivilegeHandler::getInstance()->givePlayerPrivilege(GameHandler::instance->player1Joue ? GameHandler::instance->player2 : GameHandler::instance->player1);
+		GameHandler::instance->addOtherPlayerPrivilege();
 	}
 	return GameHandler::instance;
+}
+
+Action GameHandler::getLastAction() {
+	if (action.size() > 0) {
+		return action.at(action.size() - 1);
+	}
+	else {
+		return Action::MAIN_ACTION;
+	}
 }
 
 void GameHandler::destroy() {
@@ -32,31 +41,20 @@ const Player& GameHandler::getWinner() {
 	throw new MyException("No player won yet");
 }
 
-void GameHandler::replayTurn() {
-	return;
-}
-
 void GameHandler::nextAction() {
 	//si il a pas encore fait son action principale
 	if (mainActionIsDone == false)
-		return;
-	//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
-	if((isPlayer1Turn() && Rules::playerHaveToSuppGems(player1)) || (!isPlayer1Turn() && Rules::playerHaveToSuppGems(player2)))
 		return;
 	if (action.contains(Action::REPLAY)) {
 		action.removeOne(Action::REPLAY);
 		mainActionIsDone = false;
 		return;
 	}
-	//si il a pas assigné sa carte on bloque
-	if (toAsign != nullptr)
-		return;
 	//si il a pas finit toutes ses actions a faire
 	if (action.size() > 0)
 		return;
 	mainActionIsDone = false;
 	Player& currentPlayer = isPlayer1Turn() ? player1 : player2;
-	
 	player1Joue = !player1Joue;
 }
 
@@ -64,7 +62,7 @@ const Board GameHandler::remplirBoard() {
 	//TODO vérifier dans les règles
 	if (bag.getNbGemmes() != 0) {
 		board.remplirBoard(bag);
-		this->addCurrentPlayerPrivilege();
+		addOtherPlayerPrivilege();
 	}
 	return board;
 }
@@ -76,7 +74,10 @@ const int GameHandler::gemmesToSelect() {
 }
 
 bool GameHandler::gemmesPick(const int *posTab){
+	Player& current = isPlayer1Turn() ? player1 : player2;
 	if (action.size()==0 && mainActionIsDone == true)
+		return false;
+	if (action.contains(Action::SUPP_GEMS))
 		return false;
 	Action a = Rules::isPossibleTakeGems(board, posTab, action, typeToPick);
 	if (a!=Action::IMPOSSIBLE)
@@ -92,20 +93,16 @@ bool GameHandler::gemmesPick(const int *posTab){
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
 				//on ajoute la gemme au joueur
-				if (isPlayer1Turn()) {
-					player1.addGems(board.prendreGemme(posTab[i]), 1);
-				}
-				else {
-					player2.addGems(board.prendreGemme(posTab[i]), 1);
-				}
+				current.addGems(board.prendreGemme(posTab[i]), 1);
 			}
 		}
+		//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
+		if (Rules::playerHaveToSuppGems(current))
+			action.append(Action::SUPP_GEMS);
 		GameHandler::nextAction();
 		return true;
 	}
-	else {
-		return false;
-	}
+	return false;
 }
 
 bool GameHandler::isPlayer1Turn() {
@@ -113,16 +110,9 @@ bool GameHandler::isPlayer1Turn() {
 }
 
 bool GameHandler::suppPlayerGems(Gemmes g, int p) {
-	if (isPlayer1Turn() && Rules::playerHaveToSuppGems(player1)) {
-		if (player1.removeGem(g, 1)) {
-			bag.addGemmes(g);
-		}
-		else {
-			return false;
-		}
-	}
-	else if (!isPlayer1Turn() && Rules::playerHaveToSuppGems(player2)) {
-		if (player2.removeGem(g, 1)) {
+	Player& current = player1Joue ? player1 : player2;
+	if (action.contains(Action::SUPP_GEMS)) {
+		if (current.removeGem(g, 1)) {
 			bag.addGemmes(g);
 		}
 		else {
@@ -136,24 +126,22 @@ bool GameHandler::suppPlayerGems(Gemmes g, int p) {
 		//on vole pas l'Or!
 		if (g == Gemmes::Or)
 			return false;
-		if (isPlayer1Turn()) {
-			if (player2.removeGem(g, 1)) {
-				player1.addGems(g, 1);
-				action.removeOne( Action::STEAL_GEMMES);
-			}
-			else {
-				return false;
-			}
+		Player other = player1Joue ? player2 : player1;
+		if (other.removeGem(g, 1)) {
+			current.addGems(g, 1);
+			action.removeOne( Action::STEAL_GEMMES);
 		}
-		else{
-			if (player1.removeGem(g, 1)) {
-				player2.addGems(g, 1);
-				action.removeOne(Action::STEAL_GEMMES);
-			}
-			else {
-				return false;
-			}
+		else {
+			return false;
 		}
+	}
+	else {
+		return false;
+	}
+	if (Rules::playerHaveToSuppGems(current))
+		action.append(Action::SUPP_GEMS);
+	else {
+		action.removeAll(Action::SUPP_GEMS);
 	}
 	GameHandler::nextAction();
 	return true;
@@ -161,6 +149,8 @@ bool GameHandler::suppPlayerGems(Gemmes g, int p) {
 
 bool GameHandler::reservCard(const Card* c, const int position) {
 	if (mainActionIsDone || !board.hasGemOfType(Gemmes::Or))
+		return false;
+	if (action.contains(Action::SUPP_GEMS))
 		return false;
 	//si il peux reserver
 	if (isPlayer1Turn() && player1.getNbCarteReserver()<3) {
@@ -180,6 +170,8 @@ bool GameHandler::reservCard(const Card* c, const int position) {
 
 int GameHandler::buyCard(Card* c, const int position) {
 	if (mainActionIsDone)
+		return -1;
+	if (action.contains(Action::SUPP_GEMS))
 		return -1;
 	Player& p = player1Joue ? player1 : player2;
 	if (c->getEffect().contains(Action::ASSIGN_CARD) && !Rules::playerCanBuyCardAsign(p)) {
@@ -219,8 +211,8 @@ Card* GameHandler::asignCard(Card* c) {
 	return ret;
 }
 
-void GameHandler::addCurrentPlayerPrivilege(){
-	Player& currentPlayer = player1Joue ? player1 : player2;
+void GameHandler::addOtherPlayerPrivilege() {
+	Player& currentPlayer = player1Joue ? player2 : player1;
 	PrivilegeHandler::getInstance()->givePlayerPrivilege(currentPlayer);
 }
 
@@ -280,7 +272,7 @@ void GameHandler::addAction(const Card* c) {
 	Player next = player1Joue ? player2 : player1;
 	for (Action ac : c->getEffect()) {
 		if (ac == ADD_PRIVILEGE) {
-			addCurrentPlayerPrivilege();
+			PrivilegeHandler::getInstance()->givePlayerPrivilege(current);
 		}else if (ac == STEAL_GEMMES) {
 			if (next.getNBGemmes() > 0 && (next.nbOfGems(Gemmes::Or) != next.getNBGemmes())) {
 				action.append(ac);
@@ -296,5 +288,14 @@ void GameHandler::addAction(const Card* c) {
 		else {
 			action.append(ac);
 		}
+	}
+}
+
+int GameHandler::getPlayerNbPrivilege(int pnum) {
+	if (pnum == 0) {
+		return PrivilegeHandler::getInstance()->getPlayerPrivilege(player1);
+	}
+	else if(pnum == 1) {
+		return PrivilegeHandler::getInstance()->getPlayerPrivilege(player2);
 	}
 }
