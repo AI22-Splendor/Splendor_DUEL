@@ -11,7 +11,7 @@ GameHandler* GameHandler::Instanciate(Bag& bag, Board& board, DrawPile** drawPil
 	if (GameHandler::instance == nullptr){
 		GameHandler::instance = new GameHandler(bag, board, drawPiles, player1, player2);
 		GameHandler::instance->player1Joue = (rand () % 2);
-		PrivilegeHandler::getInstance()->givePlayerPrivilege(GameHandler::instance->player1Joue ? GameHandler::instance->player2 : GameHandler::instance->player1);
+		GameHandler::instance->addOtherPlayerPrivilege();
 	}
 	return GameHandler::instance;
 }
@@ -64,7 +64,7 @@ const Board GameHandler::remplirBoard() {
 	//TODO vérifier dans les règles
 	if (bag.getNbGemmes() != 0) {
 		board.remplirBoard(bag);
-		this->addCurrentPlayerPrivilege();
+		addOtherPlayerPrivilege();
 	}
 	return board;
 }
@@ -224,6 +224,11 @@ void GameHandler::addCurrentPlayerPrivilege(){
 	PrivilegeHandler::getInstance()->givePlayerPrivilege(currentPlayer);
 }
 
+void GameHandler::addOtherPlayerPrivilege() {
+	Player& currentPlayer = player1Joue ? player2 : player1;
+	PrivilegeHandler::getInstance()->givePlayerPrivilege(currentPlayer);
+}
+
 bool GameHandler::usePrivilege() {
 	Player& currentPlayer = player1Joue ? player1 : player2;
 	if (!PrivilegeHandler::getInstance()->playerHasPrivilege(currentPlayer)) {
@@ -296,5 +301,14 @@ void GameHandler::addAction(const Card* c) {
 		else {
 			action.append(ac);
 		}
+	}
+}
+
+int GameHandler::getPlayerNbPrivilege(int pnum) {
+	if (pnum == 0) {
+		return PrivilegeHandler::getInstance()->getPlayerPrivilege(player1);
+	}
+	else if(pnum == 1) {
+		return PrivilegeHandler::getInstance()->getPlayerPrivilege(player2);
 	}
 }

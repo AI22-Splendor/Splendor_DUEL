@@ -8,7 +8,6 @@
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
-#include "PrivilegeBoardUI.h"
 #include "BoardCard.h"
 #include "BackgroundWidgetUI.h"
 
@@ -32,6 +31,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     ptab[0] = new PlayersUI(main, p1, 1);
     ptab[1] = new PlayersUI(main, p2, 2);
     QWidget* com = new BackgroundWidgetUI(main, Image::getFond());
+    privilege = new PrivilegeBoardUI(com);
 
     this->board = new CompleteBoardUI(com, b);
     QHBoxLayout* hbox = new QHBoxLayout();
@@ -40,7 +40,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     hbox->setContentsMargins(0, 0, 0, 0);
 
     hbox->addWidget(new PersonnageBoardUI(com));
-    hbox->addWidget(new PrivilegeBoardUI(com));
+    hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
     hbox->addWidget(new BoardCardUI(com));
 

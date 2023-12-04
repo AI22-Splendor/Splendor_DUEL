@@ -12,6 +12,7 @@ public:
 
 	static PrivilegeHandler* getInstance();
 
+	int getPlayerPrivilege(const Player& player);
 	void givePlayerPrivilege(const Player& player);
 	void putPrivilegeBackOnBoard(const Player& player);
 	bool playerHasPrivilege(const Player& player);

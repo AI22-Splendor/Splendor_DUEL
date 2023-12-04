@@ -29,6 +29,8 @@ public:
 	void addCurrentPlayerPrivilege();
 	bool buyNoble(const Card* noble);
 	bool playPrivilege();
+	int getPlayerNbPrivilege(int pnum);
+	void addOtherPlayerPrivilege();
 
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours

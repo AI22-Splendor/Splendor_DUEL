@@ -4,6 +4,7 @@
 #include "Image.h"
 #include "GameHandler.h"
 #include "CompleteBoardUI.h"
+#include "SplendorDuel.h"
 
 RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -14,8 +15,10 @@ RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
 
 
 void RemplirBoard::mousePressEvent(QMouseEvent* mouse) {
-	if(hover)
+	if (hover) {
 		((CompleteBoardUI*)parentWidget())->remplirBoard(GameHandler::getInstance().remplirBoard());
+		SplendorDuel::refreshPrivilege();
+	}
 }
 
 void RemplirBoard::leaveEvent(QEvent* event) {

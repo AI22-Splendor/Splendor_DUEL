@@ -223,6 +223,7 @@ void BoardUI::clickGemmes(Gemmes g) {
 			}
 		}
 		SplendorDuel::changePtour();
+		SplendorDuel::refreshPrivilege();
 	}
 	else {
 		for (int i = 0; i < 3; i++) {
