@@ -10,6 +10,7 @@
 #include "PlayerGemsUI.h"
 #include "BoardCard.h"
 #include "BackgroundWidgetUI.h"
+#include "NobleHandler.h"
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
@@ -76,6 +77,8 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
 
 bool SplendorDuel::close(){
     instance->QMainWindow::close();
+    SingletonGameHandler::destroy();
+    SingletonNobleHandler::destroy();
     return true;
 }
 

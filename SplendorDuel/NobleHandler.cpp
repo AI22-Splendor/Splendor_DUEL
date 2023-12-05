@@ -17,6 +17,10 @@ SingletonNobleHandler* SingletonNobleHandler::getInstance() {
 	return singleton;
 }
 
+void SingletonNobleHandler::destroy() {
+	delete singleton;
+}
+
 bool SingletonNobleHandler::playerCanBuyNoble(const Card& noble, const Player& player) const {
 	int nobleIdx = getNobleIdxFromCard(noble);
 	cout << nobleIdx << endl;

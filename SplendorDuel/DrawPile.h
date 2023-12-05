@@ -11,6 +11,9 @@ public:
 		pile = new Card*[taille];
 		for (int i = 0; i < taille; i++) pile[i] = nullptr;
 	}
+	~DrawPile() {
+		delete pile;
+	}
 
 	bool estVide() const;
 

@@ -16,6 +16,7 @@ public:
 	void operator=(const SingletonNobleHandler&) = delete;
 
 	static SingletonNobleHandler* getInstance();
+	static void destroy();
 
 	bool playerCanBuyNoble(const Card& noble, const Player& player) const;
 	bool givePlayerNoble(const Card& noble, const Player& player);
@@ -26,6 +27,11 @@ public:
 private:
 	// On empêche la construction du singleton
 	SingletonNobleHandler() {  }
+	~SingletonNobleHandler() {
+		for (vector<Card*>::iterator it = noblesCards.begin(); it != noblesCards.end(); it++) {
+			delete (*it);
+		}
+	}
 
 	static SingletonNobleHandler* singleton;
 

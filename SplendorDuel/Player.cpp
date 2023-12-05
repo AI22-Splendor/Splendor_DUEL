@@ -10,6 +10,12 @@ Player::Player(string name) : name(name), nbCarteReserver(0) {
 	}
 }
 
+Player::~Player() {
+	for (list<const Card*>::iterator it = cards.begin(); it != cards.end(); it++) {
+		delete (*it);
+	}
+}
+
 int Player::canAddGems(const unsigned int nbAdd) const {
 	int sum = 0;
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {

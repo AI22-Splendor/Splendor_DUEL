@@ -17,6 +17,11 @@ public:
 	Player(string name);
 
 	/// <summary>
+	/// Destroys a player
+	/// </summary>
+	~Player();
+
+	/// <summary>
 	/// Returns the name of the player
 	/// </summary>
 	/// <returns>Name of the player</returns>
