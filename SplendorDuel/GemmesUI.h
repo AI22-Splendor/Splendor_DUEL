@@ -37,12 +37,12 @@ public:
 	/// Modifie la gemmes affiché sur le plateau
 	/// </summary>
 	/// <param name="g">la gemme</param>
-	void setGemmes(const Gemmes& g);
+	void setGemmes(const EnumGemmes& g);
 
 	/// <summary>
 	/// retourne la gemmes contenue
 	/// </summary>
-	inline const Gemmes getGemmes()const { return this->gem; };
+	inline const EnumGemmes getGemmes()const { return this->gem; };
 
 	/// <summary>
 	/// change le nombre a afficher
@@ -68,7 +68,7 @@ private:
 
 	//savoir si elle est survoler
 	bool selected;
-	Gemmes gem;
+	EnumGemmes gem;
 	bool err;
 	int nbErr;
 

@@ -5,15 +5,17 @@
 #include "XmlReader.h"
 #include "GameHandler.h"
 
-class NobleHandler {
+class SingletonNobleHandler {
 public:
-	enum NoblePosition { Board = 1, Player1 = 2, Player2 = 3 };
-	// On supprime la recopie (singleton)
-	NobleHandler(NobleHandler& copie) = delete;
-	// On supprime l'opérateur d'affectation (singleton)
-	void operator=(const NobleHandler&) = delete;
+	// Représente la position d'une carte dans le jeu (sur le plateau, detenu par un joueur)
+	enum EnumNoblePosition { Board = 1, Player1 = 2, Player2 = 3 };
 
-	static NobleHandler* getInstance();
+	// On supprime la recopie (singleton)
+	SingletonNobleHandler(SingletonNobleHandler& copie) = delete;
+	// On supprime l'opérateur d'affectation (singleton)
+	void operator=(const SingletonNobleHandler&) = delete;
+
+	static SingletonNobleHandler* getInstance();
 
 	bool playerCanBuyNoble(const Card& noble, const Player& player) const;
 	bool givePlayerNoble(const Card& noble, const Player& player);
@@ -23,17 +25,17 @@ public:
 
 private:
 	// On empêche la construction du singleton
-	NobleHandler() {  }
+	SingletonNobleHandler() {  }
 
-	static NobleHandler* singleton;
+	static SingletonNobleHandler* singleton;
 
-	inline NoblePosition getNoblePositionFromPlayer(const Player& player) const {
-		return GameHandler::getInstance().player1 == player ? NoblePosition::Player1 : NoblePosition::Player2;
+	inline EnumNoblePosition getNoblePositionFromPlayer(const Player& player) const {
+		return *SingletonGameHandler::getInstance().player1 == player ? EnumNoblePosition::Player1 : EnumNoblePosition::Player2;
 	}
 	
 	int getNobleIdxFromCard(const Card& noble) const;
 
 	vector<Card*> noblesCards;
-	vector<NoblePosition> noblePosition;
+	vector<EnumNoblePosition> noblePosition;
 };
 

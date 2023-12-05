@@ -15,9 +15,9 @@ public:
 	static const unsigned int BOARD_SIZE = BOARD_SIDE * BOARD_SIDE;
 
 	Board() {
-		gems = new Gemmes[BOARD_SIZE];
+		gems = new EnumGemmes[BOARD_SIZE];
 		for (int i = 0; i < BOARD_SIZE; i++) {
-			gems[i] = Gemmes::Vide;
+			gems[i] = EnumGemmes::Vide;
 		}
 	}
 	/**
@@ -27,7 +27,7 @@ public:
 	/**
 	* Retire une gemme a une position donnée sur le plateau et la renvoie
 	*/
-	Gemmes prendreGemme(const int pos) const;
+	EnumGemmes prendreGemme(const int pos) const;
 	/**
 	* True si la position n'est pas vide, faux sinon
 	*/
@@ -38,14 +38,14 @@ public:
 	/// </summary>
 	/// <param name="pos">la position de la gemme dans le plateau (de droite a gauche de haut en bas)</param>
 	/// <returns>la gemme</returns>
-	Gemmes const connaitreGemmes(const int pos)const;
+	EnumGemmes const connaitreGemmes(const int pos)const;
 
 	/// <summary>
 	/// Verifie si une gemme d'un type spécifique est sur le plateau
 	/// </summary>
 	/// <param name="gem">Type de la gemme a trouver</param>
 	/// <return>True si une gemme du type est présente, false sinon</return>
-	bool hasGemOfType(Gemmes gem) const;
+	bool hasGemOfType(EnumGemmes gem) const;
 
 	class iterator {
 	public:
@@ -56,7 +56,7 @@ public:
 		bool hasNext() const {
 			return stepsTaken < BOARD_SIZE;
 		}
-		Gemmes* getNext();
+		EnumGemmes* getNext();
 
 	private:
 		enum Direction { Right, Down, Left, Up, Repeat };
@@ -72,7 +72,7 @@ public:
 
 	iterator getIterator() const { return iterator(*this); }
 private:
-	Gemmes* gems;
+	EnumGemmes* gems;
 
 	friend class Board::iterator;
 	friend ostream& operator<<(ostream& os, const Board board);

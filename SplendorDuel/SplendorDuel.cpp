@@ -14,13 +14,13 @@
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2) :
+SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1, Player* p2) :
     QMainWindow(nullptr)
 {
     this->setWindowState(Qt::WindowMaximized);
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
-    GameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
+    SingletonGameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
 
     //mise en page avec le widget main
     QWidget* main = new BackgroundWidgetUI(this, QPixmap("./res/playerFond.png"));
@@ -33,7 +33,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     QWidget* com = new BackgroundWidgetUI(main, Image::getFond());
     privilege = new PrivilegeBoardUI(com);
 
-    this->board = new CompleteBoardUI(com, b);
+    this->board = new CompleteBoardUI(com, *b);
     QHBoxLayout* hbox = new QHBoxLayout();
     com->setLayout(hbox);
     hbox->setSpacing(0);
@@ -89,8 +89,8 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
 };
 
 void SplendorDuel::changePtour() {
-    if (!GameHandler::getInstance().gameFinished()) {
-        if (GameHandler::getInstance().isPlayer1Turn()) {
+    if (!SingletonGameHandler::getInstance().gameFinished()) {
+        if (SingletonGameHandler::getInstance().isPlayer1Turn()) {
             instance->ptab[0]->changePtour(true);
             instance->ptab[1]->changePtour(false);
         }
@@ -100,7 +100,7 @@ void SplendorDuel::changePtour() {
         }
     }
     else {
-        cout << "Winner is : " << GameHandler::getInstance().getWinner().getName() << endl;
+        cout << "Winner is : " << SingletonGameHandler::getInstance().getWinner().getName() << endl;
         instance->close();
     }
 }

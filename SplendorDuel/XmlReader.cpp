@@ -28,32 +28,32 @@ list<Card*> XmlReader::getCardsFromXml() {
 		unsigned int level;
 		sscanf(card_node->first_node("level")->value(), "%u", &level);
 
-		QList<Action> effect{};
+		QList<EnumAction> effect{};
 		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
 			unsigned int action;
 			sscanf(effect_node->value(), "%u", &action);
 			if (action > 0) {
-				effect.append(static_cast<Action>(action));
+				effect.append(static_cast<EnumAction>(action));
 			}
 		}
 
-		Card* card = new Card(level, prestige, static_cast<Gemmes>(bonus), nbBonus, crowns, imageSrc, effect);
+		Card* card = new Card(level, prestige, static_cast<EnumGemmes>(bonus), nbBonus, crowns, imageSrc, effect);
 
 		xml_node<>* cost_node = card_node->first_node("cost");
 
 		unsigned int cost;
 		sscanf(cost_node->first_node("vert")->value(), "%u", &cost);
-		card->setCost(Gemmes::Vert, cost);
+		card->setCost(EnumGemmes::Vert, cost);
 		sscanf(cost_node->first_node("rouge")->value(), "%u", &cost);
-		card->setCost(Gemmes::Rouge, cost);
+		card->setCost(EnumGemmes::Rouge, cost);
 		sscanf(cost_node->first_node("bleu")->value(), "%u", &cost);
-		card->setCost(Gemmes::Bleu, cost);
+		card->setCost(EnumGemmes::Bleu, cost);
 		sscanf(cost_node->first_node("noir")->value(), "%u", &cost);
-		card->setCost(Gemmes::Noir, cost);
+		card->setCost(EnumGemmes::Noir, cost);
 		sscanf(cost_node->first_node("blanc")->value(), "%u", &cost);
-		card->setCost(Gemmes::Blanc, cost);
+		card->setCost(EnumGemmes::Blanc, cost);
 		sscanf(cost_node->first_node("perle")->value(), "%u", &cost);
-		card->setCost(Gemmes::Perle, cost);
+		card->setCost(EnumGemmes::Perle, cost);
 
 		cards.push_back(card);
 		cpt++;
@@ -76,16 +76,16 @@ vector<Card*> XmlReader::getNoblesFromXml() {
 		unsigned int prestige;
 		sscanf(card_node->first_node("prestige")->value(), "%u", &prestige);
 
-		QList<Action> effect{};
+		QList<EnumAction> effect{};
 		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
 			unsigned int action;
 			sscanf(effect_node->value(), "%u", &action);
 			if (action > 0) {
-				effect.append(static_cast<Action>(action));
+				effect.append(static_cast<EnumAction>(action));
 			}
 		}
 
-		Card* card = new Card(0, prestige, static_cast<Gemmes>(0), 0, 0, imageSrc, effect);
+		Card* card = new Card(0, prestige, static_cast<EnumGemmes>(0), 0, 0, imageSrc, effect);
 		cards.push_back(card);
 	}
 	return cards;

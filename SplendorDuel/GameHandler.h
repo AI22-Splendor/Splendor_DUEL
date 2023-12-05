@@ -9,16 +9,16 @@
 #include "Player.h"
 #include <random>
 
-class GameHandler {
+class SingletonGameHandler {
 public:
-	static GameHandler* Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
+	static SingletonGameHandler* Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2);
 	static void destroy();
-	static inline GameHandler& getInstance() { return *GameHandler::instance; }
+	static inline SingletonGameHandler& getInstance() { return *SingletonGameHandler::instance; }
 	bool gameFinished();
 	const Player& getWinner();
 	void nextAction();
 	bool isPlayer1Turn();
-	bool suppPlayerGems(Gemmes g, int p);
+	bool suppPlayerGems(EnumGemmes g, int p);
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
 	Card* asignCard(Card* c);
@@ -29,7 +29,8 @@ public:
 	bool playPrivilege();
 	int getPlayerNbPrivilege(int pnum);
 	void addOtherPlayerPrivilege();
-	Action getLastAction();
+	EnumAction getLastAction();
+
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
@@ -47,12 +48,12 @@ public:
 	/// <summary>
 	/// Remplir le Board Avec le sac
 	/// </summary>
-	const Board remplirBoard();
+	const Board& remplirBoard();
 private:
-	static GameHandler* instance;
+	static SingletonGameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), typeToPick(Gemmes::Vide), toAsign(nullptr), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action() {
+	SingletonGameHandler(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2)
+		: bag(bag), typeToPick(EnumGemmes::Vide), toAssign(nullptr), board(board), drawPiles(drawPiles), player1(player1), mainActionIsDone(false), player2(player2), action() {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -60,22 +61,37 @@ private:
 			}
 		}
 	}
-	GameHandler(const GameHandler&)=delete;
-	~GameHandler(){}
+	SingletonGameHandler(const SingletonGameHandler&)=delete;
+	
 	void addAction(const Card* c);
 
+	
+	~SingletonGameHandler(){
+		delete bag;
+		delete board;
+		delete drawPiles;
+		delete player1;
+		delete player2;
+		delete toAssign;
+		for (vector<vector<Card*>>::iterator it = displayedCards.begin(); it != displayedCards.end(); it++) {
+			for (vector<Card*>::iterator it2 = it->begin(); it2 != it->end(); it2++) {
+				delete (*it2);
+			}
+		}
+	}
+
 	bool mainActionIsDone;
-	QList<Action> action;
+	QList<EnumAction> action;
 	bool player1Joue;
-	Bag& bag;
-	Board& board;
+	Bag* bag;
+	Board* board;
 	DrawPile** drawPiles;
 	vector<vector<Card*>> displayedCards;
-	Player& player1;
-	Player& player2;
-	Card* toAsign;
-	Gemmes typeToPick;
+	Player* player1;
+	Player* player2;
+	Card* toAssign;
+	EnumGemmes typeToPick;
 
-	friend class PrivilegeHandler;
-	friend class NobleHandler;
+	friend class SingletonPrivilegeHandler;
+	friend class SingletonNobleHandler;
 };

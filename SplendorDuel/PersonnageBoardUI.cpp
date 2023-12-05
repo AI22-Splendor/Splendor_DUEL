@@ -6,7 +6,7 @@
 PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainersGUI(parent) {
 	cards = new CardUI*[4]();
 	// TODO CHANGER
-	vector<Card*> nobles = NobleHandler::getInstance()->getNobleCards();
+	vector<Card*> nobles = SingletonNobleHandler::getInstance()->getNobleCards();
 	int i = 0;
 	for (Card* c: nobles) {
 		cards[i] = new CardUI(this, 0, i);
@@ -31,7 +31,7 @@ PersonnageBoardUI::~PersonnageBoardUI() {
 }
 
 void PersonnageBoardUI::clickCard(int col, int ligne, Card* c) {
-	if (GameHandler::getInstance().buyNoble(c)) {
+	if (SingletonGameHandler::getInstance().buyNoble(c)) {
 		cards[col]->supprimerCarte(c);
 		cards[col] = nullptr;
 	}

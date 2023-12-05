@@ -16,7 +16,7 @@ RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
 
 void RemplirBoard::mousePressEvent(QMouseEvent* mouse) {
 	if (hover) {
-		((CompleteBoardUI*)parentWidget())->remplirBoard(GameHandler::getInstance().remplirBoard());
+		((CompleteBoardUI*)parentWidget())->remplirBoard(SingletonGameHandler::getInstance().remplirBoard());
 		SplendorDuel::refreshPrivilege();
 	}
 }

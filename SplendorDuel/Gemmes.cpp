@@ -1,45 +1,45 @@
 #include "Gemmes.h"
 #include <qstring.h>
 
-ostream& operator<<(ostream& os, const Gemmes& gem) {
+ostream& operator<<(ostream& os, const EnumGemmes& gem) {
 	 switch (gem) {
-	 case Gemmes::Vert:
+	 case EnumGemmes::Vert:
 		 os << "Ve"; break;
-	 case Gemmes::Rouge:
+	 case EnumGemmes::Rouge:
 		 os << "Ro"; break;
-	 case Gemmes::Bleu:
+	 case EnumGemmes::Bleu:
 		 os << "Bu"; break;
-	 case Gemmes::Noir:
+	 case EnumGemmes::Noir:
 		 os << "No"; break;
-	 case Gemmes::Blanc:
+	 case EnumGemmes::Blanc:
 		 os << "Bc"; break;
-	 case Gemmes::Or:
+	 case EnumGemmes::Or:
 		 os << "Or"; break;
-	 case Gemmes::Perle:
+	 case EnumGemmes::Perle:
 		 os << "Pe"; break;
-	 case Gemmes::Vide:
+	 case EnumGemmes::Vide:
 		 os << "xx"; break;
 	 }
 	 return os;
 }
 
-const QString gemmesToQstr(const Gemmes& g){
+const QString gemmesToQstr(const EnumGemmes& g){
 	switch (g) {
-	case Gemmes::Blanc:
+	case EnumGemmes::Blanc:
 		return QString{ "blanc" };
-	case Gemmes::Vert:
+	case EnumGemmes::Vert:
 		return QString{ "vert" };
-	case Gemmes::Bleu:
+	case EnumGemmes::Bleu:
 		return QString{ "bleu" };
-	case Gemmes::Or:
+	case EnumGemmes::Or:
 		return QString{ "or" };
-	case Gemmes::Perle:
+	case EnumGemmes::Perle:
 		return QString{ "perle" };
-	case Gemmes::Noir:
+	case EnumGemmes::Noir:
 		return QString{ "noir" };
-	case Gemmes::Rouge:
+	case EnumGemmes::Rouge:
 		return  QString{"rouge"};
-	case Gemmes::Vide :
+	case EnumGemmes::Vide :
 		return  QString{"vide"};
 	default:
 		return "err";

@@ -2,15 +2,15 @@
 
 SplendorDuel& GameFactory::buildNewSplendor() {
 
-	Bag& bag = *(new Bag(25));
+	Bag* bag = new Bag(25);
 	for (int i = 0; i < 4; i++) {
-		bag.addGemmes(Gemmes::Bleu);
-		bag.addGemmes(Gemmes::Blanc);
-		bag.addGemmes(Gemmes::Rouge);
-		bag.addGemmes(Gemmes::Vert);
-		bag.addGemmes(Gemmes::Noir);
-		if (i < 3) bag.addGemmes(Gemmes::Or);
-		if (i < 2) bag.addGemmes(Gemmes::Perle);
+		bag->addGemmes(EnumGemmes::Bleu);
+		bag->addGemmes(EnumGemmes::Blanc);
+		bag->addGemmes(EnumGemmes::Rouge);
+		bag->addGemmes(EnumGemmes::Vert);
+		bag->addGemmes(EnumGemmes::Noir);
+		if (i < 3) bag->addGemmes(EnumGemmes::Or);
+		if (i < 2) bag->addGemmes(EnumGemmes::Perle);
 	}
 
 	DrawPile** drawPiles = new DrawPile * [3];
@@ -30,8 +30,8 @@ SplendorDuel& GameFactory::buildNewSplendor() {
 	Player* player1 = (new Player("Player 1"));
 	Player* player2 = (new Player("Player 2"));
 
-	Board& board = *(new Board);
-	board.remplirBoard(bag);
+	Board* board = new Board;
+	board->remplirBoard(*bag);
 
 	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
 	return SplendorDuel::getInstance();

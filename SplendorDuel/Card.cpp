@@ -1,7 +1,7 @@
 #include "Card.h"
 
-Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemmes bonusType, const unsigned int nbBonus, 
-	const unsigned int crowns, const string imageSrc, const QList<Action> action): effects(action) {
+Card::Card(const unsigned int level, const unsigned int ptsPrestige, const EnumGemmes bonusType, const unsigned int nbBonus, 
+	const unsigned int crowns, const string imageSrc, const QList<EnumAction> action): effects(action) {
 	if (1 > level && level > 3) {
 		char* error = new char[35];
 		sprintf(error, "%d is not a valid level (1-3)\n", level);
@@ -18,8 +18,8 @@ Card::Card(const unsigned int level, const unsigned int ptsPrestige, const Gemme
 	this->imageSrc = QString(imageSrc.c_str());
 }
 
-void Card::setCost(const Gemmes type, const unsigned int price) {
-	if (type == Gemmes::Vide || type == Gemmes::Or) {
+void Card::setCost(const EnumGemmes type, const unsigned int price) {
+	if (type == EnumGemmes::Vide || type == EnumGemmes::Or) {
 		char* error = new char[35];
 		sprintf(error, "This type cannot have a	cost (%d)\n", type);
 		throw new MyException(error);
@@ -30,7 +30,7 @@ void Card::setCost(const Gemmes type, const unsigned int price) {
 extern const unsigned int NB_GEMMES_PAIEMENTS;
 
 bool Card::canBeBought(const unsigned int* wallet) const {
-	int nbGold = wallet[Gemmes::Or];
+	int nbGold = wallet[EnumGemmes::Or];
 	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
 		if (cost[i] > wallet[i]) {
 			int delta = cost[i] - wallet[i];
