@@ -26,6 +26,6 @@ enum EnumGemmes
 const unsigned int NB_GEMMES_PAIEMENTS = 6; 
 const unsigned int NB_GEMMES_PAS_VIDE = 7; 
 
-const QString gemmesToQstr(const EnumGemmes& g);
+const QString gemmesToQstr(const EnumGemmes g);
 
-ostream& operator<<(ostream& os, const EnumGemmes& gem);
+ostream& operator<<(ostream& os, const EnumGemmes gem);

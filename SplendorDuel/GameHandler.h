@@ -69,7 +69,8 @@ private:
 	~SingletonGameHandler(){
 		delete bag;
 		delete board;
-		delete drawPiles;
+		for (int i = 0; i < 3; i++) delete drawPiles[i];
+		delete[] drawPiles;
 		delete player1;
 		delete player2;
 		delete toAssign;
@@ -87,9 +88,9 @@ private:
 	Board* board;
 	DrawPile** drawPiles;
 	vector<vector<Card*>> displayedCards;
+	Card* toAssign;
 	Player* player1;
 	Player* player2;
-	Card* toAssign;
 	EnumGemmes typeToPick;
 
 	friend class SingletonPrivilegeHandler;

@@ -1,7 +1,7 @@
 #include "Gemmes.h"
 #include <qstring.h>
 
-ostream& operator<<(ostream& os, const EnumGemmes& gem) {
+ostream& operator<<(ostream& os, const EnumGemmes gem) {
 	 switch (gem) {
 	 case EnumGemmes::Vert:
 		 os << "Ve"; break;
@@ -23,7 +23,7 @@ ostream& operator<<(ostream& os, const EnumGemmes& gem) {
 	 return os;
 }
 
-const QString gemmesToQstr(const EnumGemmes& g){
+const QString gemmesToQstr(const EnumGemmes g){
 	switch (g) {
 	case EnumGemmes::Blanc:
 		return QString{ "blanc" };
