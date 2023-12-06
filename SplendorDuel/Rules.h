@@ -19,7 +19,7 @@ public:
 	/// <param name="posTab">la / les positions des gemmes voulant être récupérer</param>
 	/// <param name="action">l'action demander</param>
 	/// <returns>l'action à faire, par défault l'action demandé</returns>
-	static Action isPossibleTakeGems(const Board b, const int* posTab, QList<Action> action, Gemmes g);
+	static EnumAction isPossibleTakeGems(const Board b, const int* posTab, QList<EnumAction> action, EnumGemmes g);
 	static bool playerWon(const Player& player);
 	static bool playerHaveToSuppGems(const Player& player);
 	static bool canBuyNoble(const Card& noble, const Player& player);

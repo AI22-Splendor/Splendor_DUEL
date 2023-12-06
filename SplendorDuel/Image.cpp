@@ -32,32 +32,32 @@ Image::~Image() {
 	instance = nullptr;
 }
 
-QPixmap Image::getPixmap(const Gemmes g) {
+QPixmap Image::getPixmap(const EnumGemmes g) {
 	if (instance == nullptr) {
 		instance = new Image();
 	}
 
 	switch (g)
 	{
-	case Gemmes::Blanc:
+	case EnumGemmes::Blanc:
 		return instance->blanc;
 		break;
-	case Gemmes::Noir:
+	case EnumGemmes::Noir:
 		return instance->noir;
 		break;
-	case Gemmes::Rouge:
+	case EnumGemmes::Rouge:
 		return instance->rouge;
 		break;
-	case Gemmes::Or:
+	case EnumGemmes::Or:
 		return instance->gold;
 		break;
-	case Gemmes::Vert:
+	case EnumGemmes::Vert:
 		return instance->vert;
 		break;
-	case Gemmes::Bleu:
+	case EnumGemmes::Bleu:
 		return instance->bleu;
 		break;
-	case Gemmes::Perle:
+	case EnumGemmes::Perle:
 		return instance->perle;
 		break;
 	}

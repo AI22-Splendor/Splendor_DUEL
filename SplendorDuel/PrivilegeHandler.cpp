@@ -1,27 +1,26 @@
 #include "PrivilegeHandler.h"
-#include "GameHandler.h"
 
-PrivilegeHandler* PrivilegeHandler::singleton = nullptr;
+SingletonPrivilegeHandler* SingletonPrivilegeHandler::singleton = nullptr;
 
-PrivilegeHandler* PrivilegeHandler::getInstance() {
+SingletonPrivilegeHandler* SingletonPrivilegeHandler::getInstance() {
 	if (singleton) {
 		return singleton;
 	}
 	
-	singleton = new PrivilegeHandler();
+	singleton = new SingletonPrivilegeHandler();
 	for (int i = 0; i < 3; i++) {
-		singleton->emplacementsPrivilege[i] = PrivilegePosition::Board;
+		singleton->emplacementsPrivilege[i] = EnumPrivilegePosition::Board;
 	}
 
 	return singleton;
 }
 
-void PrivilegeHandler::givePlayerPrivilege(const Player& player) {
-	PrivilegePosition creditedPlayer = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
-	PrivilegePosition otherPlayer = creditedPlayer == PrivilegePosition::Player1 ? PrivilegePosition::Player2 : PrivilegePosition::Player1;
+void SingletonPrivilegeHandler::givePlayerPrivilege(const Player& player) {
+	EnumPrivilegePosition creditedPlayer = getPrivilegePositionFromPlayer(player);
+	EnumPrivilegePosition otherPlayer = creditedPlayer == EnumPrivilegePosition::Player1 ? EnumPrivilegePosition::Player2 : EnumPrivilegePosition::Player1;
 	// We check if we can find an unowned privilege
 	for (int i = 0; i < 3; i++) {
-		if (emplacementsPrivilege[i] == PrivilegePosition::Board) {
+		if (emplacementsPrivilege[i] == EnumPrivilegePosition::Board) {
 			emplacementsPrivilege[i] = creditedPlayer;
 			return;
 		}
@@ -35,18 +34,18 @@ void PrivilegeHandler::givePlayerPrivilege(const Player& player) {
 	}
 }
 
-void PrivilegeHandler::putPrivilegeBackOnBoard(const Player& player) {
-	PrivilegePosition debitedPlayer = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
+void SingletonPrivilegeHandler::putPrivilegeBackOnBoard(const Player& player) {
+	EnumPrivilegePosition debitedPlayer = getPrivilegePositionFromPlayer(player);
 	for (int i = 0; i < 3; i++) {
 		if (emplacementsPrivilege[i] == debitedPlayer) {
-			emplacementsPrivilege[i] = PrivilegePosition::Board;
+			emplacementsPrivilege[i] = EnumPrivilegePosition::Board;
 			return;
 		}
 	}
 }
 
-bool PrivilegeHandler::playerHasPrivilege(const Player& player) {
-	PrivilegePosition playerPos = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
+bool SingletonPrivilegeHandler::playerHasPrivilege(const Player& player) {
+	EnumPrivilegePosition playerPos = getPrivilegePositionFromPlayer(player);
 	for (int i = 0; i < 3; i++) {
 		if (emplacementsPrivilege[i] == playerPos) {
 			return true;
@@ -55,8 +54,8 @@ bool PrivilegeHandler::playerHasPrivilege(const Player& player) {
 	return false;
 }
 
-int PrivilegeHandler::getPlayerPrivilege(const Player& player) {
-	PrivilegePosition playerPos = GameHandler::getInstance().player1 == player ? PrivilegePosition::Player1 : PrivilegePosition::Player2;
+int SingletonPrivilegeHandler::getPlayerPrivilege(const Player& player) {
+	EnumPrivilegePosition playerPos = getPrivilegePositionFromPlayer(player);
 	int nb = 0;
 	for (int i = 0; i < 3; i++) {
 		if (emplacementsPrivilege[i] == playerPos) {

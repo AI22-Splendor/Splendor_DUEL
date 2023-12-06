@@ -46,34 +46,34 @@ void PlayerCardUI::resizeEvent(QResizeEvent* event) {
 void PlayerCardUI::addCarte(Card* c) {
 	switch (c->getDiscountType())
 	{
-	case Gemmes::Blanc:
+	case EnumGemmes::Blanc:
 		this->cards[Blanc]->ajouterCarte(c);
 		break;
-	case Gemmes::Noir:
+	case EnumGemmes::Noir:
 		this->cards[Noir]->ajouterCarte(c);
 		break;
-	case Gemmes::Vert:
+	case EnumGemmes::Vert:
 		this->cards[Vert]->ajouterCarte(c);
 		break;
-	case Gemmes::Rouge:
+	case EnumGemmes::Rouge:
 		this->cards[Rouge]->ajouterCarte(c);
 		break;
-	case Gemmes::Bleu:
+	case EnumGemmes::Bleu:
 		this->cards[Bleu]->ajouterCarte(c);
 		break;
-	case Gemmes::Vide:
+	case EnumGemmes::Vide:
 		this->cards[5]->ajouterCarte(c);
 		break;
 	}
 }
 
 void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
-	int ptur = GameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
+	int ptur = SingletonGameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
 	if (ptur != pnum) {
 		this->cards[col]->showErr();
 		return;
 	}
-	Card* cd = GameHandler::getInstance().asignCard(c);
+	Card* cd = SingletonGameHandler::getInstance().asignCard(c);
 	if (cd!=nullptr) {
 		SplendorDuel::addPlayerCard(cd, ptur);
 		SplendorDuel::changePtour();

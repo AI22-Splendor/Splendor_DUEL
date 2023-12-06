@@ -52,7 +52,7 @@ void PlayersUI::ajouterCarte(Card* c) {
 	/// <param name="g">la gems</param>
 void PlayersUI::setGemmes() {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
-		pgems->setGems(static_cast<Gemmes>(i), p->nbOfGems(static_cast<Gemmes>(i))+p->getDiscount(static_cast<Gemmes>(i)));
+		pgems->setGems(static_cast<EnumGemmes>(i), p->nbOfGems(static_cast<EnumGemmes>(i))+p->getDiscount(static_cast<EnumGemmes>(i)));
 	}
 	if (p->getNBGemmes() > 10) {
 		pgems->bigError();

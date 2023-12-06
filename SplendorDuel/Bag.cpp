@@ -10,11 +10,11 @@ using namespace std;
 //param : la taille du sac
 Bag::Bag(const int n)
 {
-	this->bag = new Gemmes[n];
+	this->bag = new EnumGemmes[n];
 	this->taille = n;
 	for (int i = 0; i < n; i++)
 	{
-		this->bag[i] = Gemmes::Vide;
+		this->bag[i] = EnumGemmes::Vide;
 	}
 }
 
@@ -23,7 +23,7 @@ Bag::Bag(const int n)
 int Bag::getNbGemmes() const{
 	int n = 0;
 	for (int i = 0; i < this->getTaille(); i++) {
-		if (this->bag[i] != Gemmes::Vide) n++;
+		if (this->bag[i] != EnumGemmes::Vide) n++;
 	}
 	return n;
 }
@@ -33,7 +33,7 @@ int Bag::getNbGemmes() const{
 //Param : int nbGemmes : nombre de gemmes a ajouter
 //return void
 //throw Exception si le sac est deja rempli
-void Bag::addGemmes(const Gemmes g, int nbGemmes) {
+void Bag::addGemmes(const EnumGemmes g, int nbGemmes) {
 	if ((this->getNbGemmes() + nbGemmes) > this->taille) {
 		//On creer notre Exception:
 		MyException exep("Erreur dans l'ajout des gemmes, le sac ne peut pas accepter autant de gemmes");
@@ -43,7 +43,7 @@ void Bag::addGemmes(const Gemmes g, int nbGemmes) {
 		//on cherche une place vide
 	for (int i = 0; i < this->getTaille() && nbGemmes > 0; i++) {
 			//si vide
-		if (this->bag[i] == Gemmes::Vide) {
+		if (this->bag[i] == EnumGemmes::Vide) {
 			//on ajoute
 			this->bag[i] = g;
 			nbGemmes--;
@@ -56,12 +56,12 @@ void Bag::addGemmes(const Gemmes g, int nbGemmes) {
 //param : g - le Type de Gemmes a supprimer
 //param : nbGemmes - le nombre de gemmes a supprimer
 //throw Exception si on la possede pas
-void Bag::suppGemmes(const Gemmes g, unsigned int nbGemmes) {
+void Bag::suppGemmes(const EnumGemmes g, unsigned int nbGemmes) {
 	//on cherche la gemme
 
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] == g) {
-			this->bag[i] = Gemmes::Vide;
+			this->bag[i] = EnumGemmes::Vide;
 			nbGemmes--;
 			if (nbGemmes == 0) return;
 		}
@@ -77,7 +77,7 @@ void Bag::suppGemmes(const Gemmes g, unsigned int nbGemmes) {
 //Avoir le nombre de Gemme de la couleur donne
 //param : la couleur
 //return le nombre
-int Bag::getNbGemmesType(const Gemmes &g) const {
+int Bag::getNbGemmesType(const EnumGemmes &g) const {
 	int n = 0;
 	for (int i = 0; i < this->getTaille(); i++) {
 		if (this->bag[i] == g)
@@ -92,7 +92,7 @@ void Bag::melanger() const {
 	for (int i = 0; i < this->getTaille(); i++) {
         int nb = rand() % this->getTaille();
 		if (nb != i) {
-			Gemmes cpy = this->bag[i];
+			EnumGemmes cpy = this->bag[i];
 			this->bag[i] = this->bag[nb];
 			this->bag[nb] = cpy;
 		}
@@ -102,17 +102,17 @@ void Bag::melanger() const {
 /**
 * Mélange puis renvoie une gemme présente dans le bag 
 */
-Gemmes Bag::piocherGemme() const {
+EnumGemmes Bag::piocherGemme() const {
 	this->melanger();
 	if (this->getNbGemmes() <= 0) {
-		return Gemmes::Vide;
+		return EnumGemmes::Vide;
 	}
 	for (int i = 0; i < this->getTaille(); i++) {
-		if (bag[i] != Gemmes::Vide) {
-			Gemmes pioche = bag[i];
-			bag[i] = Gemmes::Vide;
+		if (bag[i] != EnumGemmes::Vide) {
+			EnumGemmes pioche = bag[i];
+			bag[i] = EnumGemmes::Vide;
 			return pioche;
 		}
 	}
-	return Gemmes::Vide;
+	return EnumGemmes::Vide;
 }

@@ -1,0 +1,108 @@
+@startuml
+
+package "GameLogic" {
+    enum EnumAction { }
+    class Board { }
+    class Bag { }
+    class Card { }
+    class DrawPile { }
+    class GameFactory << static >> { }
+    class SingletonGameHandler << singleton >> { }
+    enum EnumGemmes << enum >> { }
+    class SingletonNobleHandler << singleton >> { }
+    class Player { }
+    class SingletonPrivilegeHandler << singleton >> { }
+}
+
+package "Utils" {
+    class Image { }
+    class Rules << static >> { }
+    class XmlReader << static >> { }
+}
+
+package "UI" {
+    class BackgroundWidgetUI { }
+    class CardUI { }
+    class GemmesUI { }
+    class InformationMessageUI { }
+    class PrivilegeBoardUI { }
+    class PrivilegeUI { }
+    class SplendorDuel { }
+
+    package "Board" {
+        class BoardCard { }
+        class BoardUI { }
+        class CompleteBoardUI { }
+        class PersonnageBoardUI { }
+        class RemplirBoard { }
+    }
+
+    package "Player" {
+        class PlayerCardUI { }
+        class PlayerGemsUI { }
+        class PlayerNameUI { }
+        class PlayerPoints { }
+        class PlayerUI { }
+    }
+}
+
+Bag o-- "0..25" EnumGemmes
+
+GameLogic.Board o-- "0..25" EnumGemmes
+
+Card o-- "1" EnumGemmes
+Card o-- "0..2" EnumAction
+
+DrawPile *-- "*" Card
+
+SingletonGameHandler *-- "1" Bag
+SingletonGameHandler *-- "1" GameLogic.Board
+SingletonGameHandler *-- "3" DrawPile
+SingletonGameHandler *-- "*" Card : displayedCards
+SingletonGameHandler *-- "0..1" Card : toAssign
+SingletonGameHandler *-- "1" GameLogic.Player : player1
+SingletonGameHandler *-- "1" GameLogic.Player : player2
+SingletonGameHandler o-- "1" EnumGemmes : gemme to pick
+
+SingletonNobleHandler *-- "4" Card : nobles
+
+GameLogic.Player *-- "*" Card
+
+CardUI o-- "*" Card
+
+GemmesUI o-- "1" EnumGemmes
+
+PrivilegeBoardUI *-- "*" PrivilegeUI
+
+SplendorDuel *-- "1" CompleteBoardUI
+SplendorDuel *-- "2" PlayerUI
+SplendorDuel *-- "1" PrivilegeBoardUI
+
+BoardCard *-- "0..5" CardUI
+
+BoardUI *-- "0..25" GemmesUI
+
+CompleteBoardUI o-- "1" BoardUI
+CompleteBoardUI o-- "1" RemplirBoard
+
+PersonnageBoardUI *-- "*" CardUI
+
+PlayerCardUI o-- "*" CardUI
+
+PlayerGemsUI o-- "7" GemmesUI
+
+PlayerPoints o-- "3" CardUI
+PlayerPoints o-- "1" GameLogic.Player
+
+PlayerUI o-- "1" GameLogic.Player
+
+Image <.. UI
+Image <.. UI.Board
+Image <.. UI.Player
+
+Rules <.. SingletonGameHandler
+
+XmlReader <.. SingletonNobleHandler
+XmlReader <.. GameFactory
+
+@enduml

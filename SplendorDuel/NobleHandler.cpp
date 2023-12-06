@@ -1,13 +1,13 @@
 #include "NobleHandler.h"
 
-NobleHandler* NobleHandler::singleton = nullptr;
+SingletonNobleHandler* SingletonNobleHandler::singleton = nullptr;
 
-NobleHandler* NobleHandler::getInstance() {
+SingletonNobleHandler* SingletonNobleHandler::getInstance() {
 	if (singleton) {
 		return singleton;
 	}
 
-	singleton = new NobleHandler();
+	singleton = new SingletonNobleHandler();
 
 	singleton->noblesCards = XmlReader::getNoblesFromXml();
 	for (int i = 0; i < singleton->noblesCards.size(); i++) {
@@ -17,18 +17,22 @@ NobleHandler* NobleHandler::getInstance() {
 	return singleton;
 }
 
-bool NobleHandler::playerCanBuyNoble(const Card& noble, const Player& player) const {
+void SingletonNobleHandler::destroy() {
+	delete singleton;
+}
+
+bool SingletonNobleHandler::playerCanBuyNoble(const Card& noble, const Player& player) const {
 	int nobleIdx = getNobleIdxFromCard(noble);
 	cout << nobleIdx << endl;
 	// Card is not a noble
 	if (nobleIdx < 0) return false;
 	// If noble is not on board, cannot buy it 
-	if (noblePosition[nobleIdx] != NoblePosition::Board) return false;
+	if (noblePosition[nobleIdx] != EnumNoblePosition::Board) return false;
 
-	NoblePosition newPosition = GameHandler::getInstance().player1 == player ? NoblePosition::Player1 : NoblePosition::Player2;
+	EnumNoblePosition newPosition = getNoblePositionFromPlayer(player);
 
 	int cpt = 0;
-	for (NoblePosition pos : noblePosition) {
+	for (EnumNoblePosition pos : noblePosition) {
 		if (pos == newPosition) cpt++;
 	}
 	// Player already has 2 nobles
@@ -41,10 +45,10 @@ bool NobleHandler::playerCanBuyNoble(const Card& noble, const Player& player) co
 	return true;
 }
 
-bool NobleHandler::givePlayerNoble(const Card& noble, const Player& player) {
+bool SingletonNobleHandler::givePlayerNoble(const Card& noble, const Player& player) {
 	if (!this->playerCanBuyNoble(noble, player)) return false;
 
-	NoblePosition newPosition = this->getNoblePositionFromPlayer(player);
+	EnumNoblePosition newPosition = this->getNoblePositionFromPlayer(player);
 	noblePosition[this->getNobleIdxFromCard(noble)] = newPosition;
 
 	cout << noblePosition[this->getNobleIdxFromCard(noble)];
@@ -52,9 +56,9 @@ bool NobleHandler::givePlayerNoble(const Card& noble, const Player& player) {
 	return true;
 }
 
-int NobleHandler::getNoblePrestigePlayer(const Player& player) const {
+int SingletonNobleHandler::getNoblePrestigePlayer(const Player& player) const {
 	int pts = 0;
-	NoblePosition playerPos = getNoblePositionFromPlayer(player);
+	EnumNoblePosition playerPos = getNoblePositionFromPlayer(player);
 
 	for (int i = 0; i < noblePosition.size(); i++) {
 		if (noblePosition[i] == playerPos) pts += noblesCards[i]->getPointsPrestige();
@@ -62,7 +66,7 @@ int NobleHandler::getNoblePrestigePlayer(const Player& player) const {
 	return pts;
 }
 
-int NobleHandler::getNobleIdxFromCard(const Card& noble) const {
+int SingletonNobleHandler::getNobleIdxFromCard(const Card& noble) const {
 	int nobleIdx = -1;
 	for (int i = 0; i < noblesCards.size(); i++) {
 		if (noble == *noblesCards[i]) {

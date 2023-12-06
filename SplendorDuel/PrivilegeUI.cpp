@@ -8,7 +8,7 @@ PrivilegeUI::PrivilegeUI(QWidget* parent, int pnum) : pnum(pnum), QWidget(parent
 }
 
 void PrivilegeUI::mousePressEvent(QMouseEvent* event) {
-	if (havePrivilege && ((pnum==0 && GameHandler::getInstance().isPlayer1Turn()) || (pnum==1 && !GameHandler::getInstance().isPlayer1Turn())) && GameHandler::getInstance().playPrivilege()) {
+	if (havePrivilege && ((pnum==0 && SingletonGameHandler::getInstance().isPlayer1Turn()) || (pnum==1 && !SingletonGameHandler::getInstance().isPlayer1Turn())) && SingletonGameHandler::getInstance().playPrivilege()) {
 		havePrivilege = false;
 		update();
 	}

@@ -48,7 +48,7 @@ public:
 	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajouté au Joueur qui joue
 	/// </summary>
 	/// <param name="g"> la gemme clicker</param>
-	void clickGemmes(Gemmes g);
+	void clickGemmes(EnumGemmes g);
 	
 private:
 	void paintEvent(QPaintEvent* event);
