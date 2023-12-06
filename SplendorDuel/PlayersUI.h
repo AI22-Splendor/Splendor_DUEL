@@ -22,7 +22,7 @@ public:
 	/// </summary>
 	/// <param name="parent">le widget parent</param>
 	/// <param name="player">son numéro</param>
-	PlayersUI(QWidget* parent, Player* p, int nb);
+	PlayersUI(QWidget* parent, Player& p, int nb);
 	~PlayersUI();
 
 
@@ -43,8 +43,8 @@ public:
 	inline void addCouronne(const int nb) { points->updateCouronne(nb); }
 	inline void addPrestiges(const int nb) { points->udpdatePrestiges(nb); }
 	inline void setPoints(const EnumGemmes g) { 
-		if (p->getPrestige(g) > points->getPoints() && g!=EnumGemmes::Vide)
-			points->updatePoints(p->getPrestige(g));
+		if (p.getPrestige(g) > points->getPoints() && g!=EnumGemmes::Vide)
+			points->updatePoints(p.getPrestige(g));
 	}
 
 	inline void reservCard(Card* c) { this->points->updateCard(c); };
@@ -52,7 +52,7 @@ public:
 private:
 	//son numéro de joeur
 	//ses gemmes
-	Player* p;
+	Player& p;
 	PlayerGemsUI* pgems;
 	PlayerCardUI* pcard;
 	PlayerNameUI* name;

@@ -87,4 +87,22 @@ CompleteBoardUI o-- "1" RemplirBoard
 
 PersonnageBoardUI *-- "*" CardUI
 
+PlayerCardUI o-- "*" CardUI
+
+PlayerGemsUI o-- "7" GemmesUI
+
+PlayerPoints o-- "3" CardUI
+PlayerPoints o-- "1" GameLogic.Player
+
+PlayerUI o-- "1" GameLogic.Player
+
+Image <.. UI
+Image <.. UI.Board
+Image <.. UI.Player
+
+Rules <.. SingletonGameHandler
+
+XmlReader <.. SingletonNobleHandler
+XmlReader <.. GameFactory
+
 @enduml
