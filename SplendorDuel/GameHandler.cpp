@@ -126,7 +126,7 @@ bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 		//on vole pas l'Or!
 		if (g == EnumGemmes::Or)
 			return false;
-		Player other = player1Joue ? *player2 : *player1;
+		Player& other = player1Joue ? *player2 : *player1;
 		if (other.removeGem(g, 1)) {
 			current.addGems(g, 1);
 			action.removeOne( EnumAction::STEAL_GEMMES);
@@ -239,7 +239,7 @@ Card* SingletonGameHandler::getDisplayedCard(int rareter, int pos) {
 }
 
 bool SingletonGameHandler::playPrivilege() {
-	Player current = player1Joue ? *player1 : *player2;
+	Player& current = player1Joue ? *player1 : *player2;
 	if (SingletonPrivilegeHandler::getInstance()->playerHasPrivilege(current)) {
 		SingletonPrivilegeHandler::getInstance()->putPrivilegeBackOnBoard(current);
 		action.append(EnumAction::USE_PRIVILEGE);
@@ -258,7 +258,7 @@ void SingletonGameHandler::playerBuyReservCard(int pnum) {
 }
 
 bool SingletonGameHandler::buyNoble(const Card* noble) {
-	Player currentPlayer = player1Joue ? *player1 : *player2;
+	Player& currentPlayer = player1Joue ? *player1 : *player2;
 	if (Rules::canBuyNoble(*noble, currentPlayer)) {
 		SingletonNobleHandler::getInstance()->givePlayerNoble(*noble, currentPlayer);
 		addAction(noble);
@@ -268,8 +268,8 @@ bool SingletonGameHandler::buyNoble(const Card* noble) {
 }
 
 void SingletonGameHandler::addAction(const Card* c) {
-	Player current = player1Joue ? *player1 : *player2;
-	Player next = player1Joue ? *player2 : *player1;
+	Player& current = player1Joue ? *player1 : *player2;
+	Player& next = player1Joue ? *player2 : *player1;
 	for (EnumAction ac : c->getEffect()) {
 		if (ac == ADD_PRIVILEGE) {
 			SingletonPrivilegeHandler::getInstance()->givePlayerPrivilege(current);

@@ -54,12 +54,9 @@ EnumAction Rules::isPossibleTakeGems(const Board b, const int* posTab, QList<Enu
 }
 
 bool Rules::playerWon(const Player& player) {
-	if (player.getPrestige() >= 20 || player.getNbCrowns() >= 10) {
+	if (player.getPrestige() >= 20 || player.getNbCrowns() >= 10 || player.getHighestGemPrestigeCount() ) {
+		cout << "Prestige : " << player.getPrestige() << " / Crowns : " << player.getNbCrowns() << " / Highest Gem Count : " << player.getHighestGemPrestigeCount() << endl;
 		return true;
-	}
-	for (int i = 0; i < NB_GEMMES_PAIEMENTS; i++) {
-		EnumGemmes gem = static_cast<EnumGemmes>(i);
-		if (player.getPrestige(gem) >= 10) return true;
 	}
 	return false;
 }
