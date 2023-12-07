@@ -29,8 +29,8 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    ptab[0] = new PlayersUI(main, p1, 1);
-    ptab[1] = new PlayersUI(main, p2, 2);
+    ptab[0] = new PlayersUI(main, *p1, 1);
+    ptab[1] = new PlayersUI(main, *p2, 2);
     QWidget* com = new BackgroundWidgetUI(main, Image::getFond());
     privilege = new PrivilegeBoardUI(com);
 
