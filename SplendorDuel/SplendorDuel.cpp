@@ -89,6 +89,12 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
     instance->ptab[ptrun]->setPoints(c->getDiscountType());
 }
 
+void SplendorDuel::addPlayerPrestige(int nbPoints, int pturn) {
+    if (pturn < 0 || pturn>1)
+        return;
+    instance->ptab[pturn]->addPrestiges(nbPoints);
+}
+
 bool SplendorDuel::close(){
     instance->QMainWindow::close();
     SingletonGameHandler::destroy();
