@@ -46,6 +46,8 @@ public:
 
     static void addPlayerCard(Card* c, int pturn);
 
+    static void addPlayerPrestige(int nbPoints, int pturn);
+
     static void reservCard(Card* c, int pturn) {
         instance->ptab[pturn]->reservCard(c);
     }

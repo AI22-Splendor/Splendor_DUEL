@@ -32,10 +32,12 @@ PersonnageBoardUI::~PersonnageBoardUI() {
 }
 
 void PersonnageBoardUI::clickCard(int col, int ligne, Card* c) {
+	int pturn = SingletonGameHandler::getInstance().isPlayer1Turn() ? 0 : 1;
 	if (SingletonGameHandler::getInstance().buyNoble(c)) {
 		cards[col]->supprimerCarte(c);
 		cards[col] = nullptr;
 		SplendorDuel::refreshMessage();
+		SplendorDuel::addPlayerPrestige(c->getPointsPrestige(), pturn);
 	}
 	else {
 		this->cards[col]->showErr();
