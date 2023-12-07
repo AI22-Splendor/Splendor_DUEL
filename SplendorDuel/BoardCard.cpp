@@ -61,6 +61,7 @@ void BoardCardUI::clickDCard(int col, int ligne, Card* c) {
 		this->cards[ligne][col]->supprimerCarte(c);
 		this->cards[ligne][col]->ajouterCarte(SingletonGameHandler::getInstance().getDisplayedCard(c->getLevel(), col));
 		SplendorDuel::reservCard(c, pturn);
+		SplendorDuel::refreshMessage();
 	}
 	else {
 		this->cards[ligne][col]->showErr();
@@ -81,6 +82,7 @@ void BoardCardUI::clickCard(int col, int ligne, Card* c) {
 			SplendorDuel::addPlayerCard(c, pturn);
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPlayersGems(pturn);
+		SplendorDuel::refreshMessage();
 	}
 	else{
 		this->cards[ligne][col]->showErr();

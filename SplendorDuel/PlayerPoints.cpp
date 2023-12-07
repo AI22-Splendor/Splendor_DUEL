@@ -77,6 +77,7 @@ void PlayerPoints::clickCard(int col, int ligne, Card* c) {
             SplendorDuel::addPlayerCard(c, pturn);
         SplendorDuel::changePtour();
         SplendorDuel::refreshPlayersGems(pturn);
+        SplendorDuel::refreshMessage();
         update();
     }
     else {

@@ -299,3 +299,12 @@ int SingletonGameHandler::getPlayerNbPrivilege(int pnum) {
 		return SingletonPrivilegeHandler::getInstance()->getPlayerPrivilege(*player2);
 	}
 }
+
+Message SingletonGameHandler::getActionMessage()const {
+	if (action.size() > 0) {
+		return XmlReader::getActionMessage(action.at(action.size() - 1));
+	}
+	else {
+		return Message("", "#ffffff");
+	}
+}

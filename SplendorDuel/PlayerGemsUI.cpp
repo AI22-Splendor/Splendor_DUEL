@@ -85,6 +85,7 @@ void PlayerGemsUI::clickGemmes(EnumGemmes g) {
 			SplendorDuel::changePtour();
 			SplendorDuel::refreshPlayersGems(0);
 			SplendorDuel::refreshPlayersGems(1);
+			SplendorDuel::refreshMessage();
 		}
 		else {
 			if (selected != -1) {

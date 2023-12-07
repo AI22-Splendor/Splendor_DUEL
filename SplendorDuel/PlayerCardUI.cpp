@@ -78,6 +78,7 @@ void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
 		SplendorDuel::addPlayerCard(cd, ptur);
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPlayersGems(ptur);
+		SplendorDuel::refreshMessage();
 	}
 	else {
 		this->cards[col]->showErr();

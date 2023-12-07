@@ -8,6 +8,7 @@
 #include "DrawPile.h"
 #include "Player.h"
 #include <random>
+#include "Message.h"
 
 class SingletonGameHandler {
 public:
@@ -30,7 +31,7 @@ public:
 	int getPlayerNbPrivilege(int pnum);
 	void addOtherPlayerPrivilege();
 	EnumAction getLastAction();
-
+	Message getActionMessage()const;
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours

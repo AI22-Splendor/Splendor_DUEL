@@ -1,6 +1,6 @@
 #include "XmlReader.h"
 #include <qlist.h>
-#include "Action.h"
+
 using namespace rapidxml;
 
 list<Card*> XmlReader::getCardsFromXml() {
@@ -89,4 +89,37 @@ vector<Card*> XmlReader::getNoblesFromXml() {
 		cards.push_back(card);
 	}
 	return cards;
+}
+
+Message XmlReader::getActionMessage(const EnumAction a) {
+	file<> xmlFile("./res/message.xml");
+	xml_document<> xml;
+	xml.parse<0>(xmlFile.data());
+	xml_node<>* root_node = xml.first_node("data")->first_node("fr");
+	switch (a)
+	{
+	case EnumAction::ASSIGN_CARD:
+		root_node = root_node->first_node("ASSIGN_CARD");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::SUPP_GEMS:
+		root_node = root_node->first_node("SUPP_GEMS");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::USE_PRIVILEGE:
+		root_node = root_node->first_node("USE_PRIVILEGE");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::PICK_GEMMES:
+		root_node = root_node->first_node("PICK_GEMMES");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::STEAL_GEMMES:
+		root_node = root_node->first_node("STEAL_GEMMES");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::RESERV_CARD:
+		root_node = root_node->first_node("RESERV_CARD");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	case EnumAction::REPLAY:
+		root_node = root_node->first_node("REPLAY");
+		return Message(root_node->first_node("message")->value(), root_node->first_node("color")->value());
+	default:
+		return Message("", "#ffffff");
+	}
 }

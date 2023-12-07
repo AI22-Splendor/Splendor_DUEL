@@ -222,6 +222,7 @@ void BoardUI::clickGemmes(EnumGemmes g) {
 				posSelect[i] = -1;
 			}
 		}
+		SplendorDuel::refreshMessage();
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPrivilege();
 	}

@@ -8,6 +8,7 @@
 #include "PlayersUI.h"
 #include "PrivilegeBoardUI.h"
 #include "Player.h"
+#include "InformationMessageUI.h"
 
 /// <summary>
 /// Notre fenetre principale
@@ -55,6 +56,8 @@ public:
     /// <returns></returns>
     static bool close();
 
+    static void refreshMessage();
+
     static void refreshPrivilege() {
         instance->privilege->refreshPrivilege();
     }
@@ -83,5 +86,6 @@ private:
     PlayersUI** ptab;
     //nos privilege
     PrivilegeBoardUI* privilege;
+    InformationMessageUI* message;
     Ui::SplendorDuelClass ui;
 };

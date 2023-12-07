@@ -2,6 +2,7 @@
 #include <qgridlayout.h>
 #include "XmlReader.h"
 #include "NobleHandler.h"
+#include "SplendorDuel.h"
 
 PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainersGUI(parent) {
 	cards = new CardUI*[4]();
@@ -34,6 +35,7 @@ void PersonnageBoardUI::clickCard(int col, int ligne, Card* c) {
 	if (SingletonGameHandler::getInstance().buyNoble(c)) {
 		cards[col]->supprimerCarte(c);
 		cards[col] = nullptr;
+		SplendorDuel::refreshMessage();
 	}
 	else {
 		this->cards[col]->showErr();

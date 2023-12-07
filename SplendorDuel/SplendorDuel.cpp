@@ -5,6 +5,8 @@
 #include "GameHandler.h"
 #include <qgridlayout.h>
 #include <iostream>
+#include <qpalette.h>
+#include "Message.h"
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
@@ -39,8 +41,19 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
+    
+    QWidget* leftBoard = new QWidget(com);
+    QVBoxLayout* vbox = new QVBoxLayout();
+    vbox->setSpacing(0);
+    vbox->setContentsMargins(0, 0, 0, 0);
+    leftBoard->setLayout(vbox);
+    message = new InformationMessageUI(leftBoard);
+    vbox->addWidget(message);
+    vbox->addWidget(new PersonnageBoardUI(leftBoard));
+    vbox->setStretch(0, 1);
+    vbox->setStretch(1, 5);
 
-    hbox->addWidget(new PersonnageBoardUI(com));
+    hbox->addWidget(leftBoard);
     hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
     hbox->addWidget(new BoardCardUI(com));
@@ -64,6 +77,7 @@ SplendorDuel::~SplendorDuel()
     delete instance->board;
     delete[] instance->ptab;
     delete SplendorDuel::instance;
+    delete message;
 }
 
 void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
@@ -106,4 +120,9 @@ void SplendorDuel::changePtour() {
         cout << "Winner is : " << SingletonGameHandler::getInstance().getWinner().getName() << endl;
         instance->close();
     }
+}
+
+
+void SplendorDuel::refreshMessage() {
+    instance->message->setMessage(SingletonGameHandler::getInstance().getActionMessage());
 }
