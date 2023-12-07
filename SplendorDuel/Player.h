@@ -15,6 +15,7 @@ public:
 	/// </summary>
 	/// <param name="name">Name of the player</param>
 	Player(string name);
+	Player(Player& p) = delete;
 
 	/// <summary>
 	/// Destroys a player
