@@ -22,9 +22,9 @@ public:
 	bool suppPlayerGems(EnumGemmes g, int p);
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
-	Card* asignCard(Card* c);
+	Card* assignCard(Card* c);
 	bool usePrivilege();
-	Card* getDisplayedCard(int rareter, int pos);
+	Card* getDisplayedCard(int rarete, int pos);
 	void playerBuyReservCard(int pnum);
 	bool buyNoble(const Card* noble);
 	bool playPrivilege();

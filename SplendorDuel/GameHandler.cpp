@@ -226,14 +226,14 @@ bool SingletonGameHandler::usePrivilege() {
 	return true;
 }
 
-Card* SingletonGameHandler::getDisplayedCard(int rareter, int pos) {
-	if (rareter < 3 && rareter >= 0) {
-		if (rareter == 0 && pos < 5 && pos >= 0)
-			return displayedCards[rareter][pos];
-		if (rareter == 1 && pos < 4 && pos >= 0)
-			return displayedCards[rareter][pos];
-		if (rareter == 2 && pos < 3 && pos >= 0)
-			return displayedCards[rareter][pos];
+Card* SingletonGameHandler::getDisplayedCard(int rarete, int pos) {
+	if (rarete < 3 && rarete >= 0) {
+		if (rarete == 0 && pos < 5 && pos >= 0)
+			return displayedCards[rarete][pos];
+		if (rarete == 1 && pos < 4 && pos >= 0)
+			return displayedCards[rarete][pos];
+		if (rarete == 2 && pos < 3 && pos >= 0)
+			return displayedCards[rarete][pos];
 	}
 	return nullptr;
 }
