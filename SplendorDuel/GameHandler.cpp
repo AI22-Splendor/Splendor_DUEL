@@ -199,7 +199,7 @@ int SingletonGameHandler::buyCard(Card* c, const int position) {
 	return 1;
 }
 
-Card* SingletonGameHandler::asignCard(Card* c) {
+Card* SingletonGameHandler::assignCard(Card* c) {
 	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
 	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !action.contains(EnumAction::ASSIGN_CARD))
 		return nullptr;

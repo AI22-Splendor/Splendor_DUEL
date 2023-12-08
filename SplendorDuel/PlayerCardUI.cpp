@@ -73,7 +73,7 @@ void PlayerCardUI::clickCard(int col, int ligne, Card* c) {
 		this->cards[col]->showErr();
 		return;
 	}
-	Card* cd = SingletonGameHandler::getInstance().asignCard(c);
+	Card* cd = SingletonGameHandler::getInstance().assignCard(c);
 	if (cd!=nullptr) {
 		SplendorDuel::addPlayerCard(cd, ptur);
 		SplendorDuel::changePtour();
