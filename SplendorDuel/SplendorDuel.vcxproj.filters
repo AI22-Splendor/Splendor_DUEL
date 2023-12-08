@@ -533,6 +533,9 @@
     <Image Include="res\privilege.png">
       <Filter>Resource Files\img</Filter>
     </Image>
+    <Image Include="res\Menu.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">

@@ -210,6 +210,7 @@
     <Image Include="res\Bleu8.png" />
     <Image Include="res\Bleu9.png" />
     <Image Include="res\fond.png" />
+    <Image Include="res\Menu.png" />
     <Image Include="res\Noble1.png" />
     <Image Include="res\Noble2.png" />
     <Image Include="res\Noble3.png" />
