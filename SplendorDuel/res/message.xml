@@ -12,12 +12,8 @@
 		SUPP_GEMS=9
  -->
 <data>
-	<lang>
-		fr
-	</lang>
-	<lang>
-		eng
-	</lang>
+	<lang>fr</lang>
+	<lang>eng</lang>
 	<fr>
 		<!-- Vert -->
 		<SUPP_GEMS>
@@ -25,9 +21,7 @@
 			<color>#ff0000</color>
 		</SUPP_GEMS>
 		<USE_PRIVILEGE>
-			<message>
-				Utilisation d'un privilège: choisissez un gemmes à garder (sauf Or)
-			</message>
+			<message>Utilisation d'un privilège: choisissez une gemme à garder (sauf Or)</message>
 			<color>#ffffff</color>
 		</USE_PRIVILEGE>
 		<REPLAY>
@@ -35,15 +29,15 @@
 			<color>#00ff00</color>
 		</REPLAY>
 		<PICK_GEMMES>
-			<message>Piochez la gemmes que vous voulez sur le plateau de la courleur de la carte acheté</message>
+			<message>Piochez la gemme que vous voulez sur le plateau de la courleur de la carte acheté</message>
 			<color>#00ff00</color>
 		</PICK_GEMMES>
 		<STEAL_GEMMES>
-			<message>Volez une gemmes à votre adversaire (sauf Or)</message>
+			<message>Volez une gemme à votre adversaire (sauf Or)</message>
 			<color>#00ff00</color>
 		</STEAL_GEMMES>
 		<ASSIGN_CARD>
-			<message>Assigné la cartes acheté à la couleur de votre choix</message>
+			<message>Assigné la carte acheté à la couleur de votre choix</message>
 			<color>#ffffff</color>
 		</ASSIGN_CARD>
 		<RESERV_CARD>
@@ -51,4 +45,35 @@
 			<color>#00ff00</color>
 		</RESERV_CARD>
 	</fr>
+	<eng>
+		<!-- Vert -->
+		<SUPP_GEMS>
+			<message>TODO EN ANGLAIS</message>
+			<color>#ff0000</color>
+		</SUPP_GEMS>
+		<USE_PRIVILEGE>
+			<message>TODO EN ANGLAIS</message>
+			<color>#ffffff</color>
+		</USE_PRIVILEGE>
+		<REPLAY>
+			<message>TODO EN ANGLAIS</message>
+			<color>#00ff00</color>
+		</REPLAY>
+		<PICK_GEMMES>
+			<message>TODO EN ANGLAIS</message>
+			<color>#00ff00</color>
+		</PICK_GEMMES>
+		<STEAL_GEMMES>
+			<message>TODO EN ANGLAIS</message>
+			<color>#00ff00</color>
+		</STEAL_GEMMES>
+		<ASSIGN_CARD>
+			<message>TODO EN ANGLAIS</message>
+			<color>#ffffff</color>
+		</ASSIGN_CARD>
+		<RESERV_CARD>
+			<message>TODO EN ANGLAIS</message>
+			<color>#00ff00</color>
+		</RESERV_CARD>
+	</eng>
 </data>

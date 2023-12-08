@@ -15,5 +15,9 @@ public:
 	static vector<Card*> getNoblesFromXml();
 
 	static Message getActionMessage(const EnumAction a);
+	static inline void setLanguage(string s) { XmlReader::language = s; }
+	static QList<string> getLanguage();
+private:
+	static string language;
 };
 
