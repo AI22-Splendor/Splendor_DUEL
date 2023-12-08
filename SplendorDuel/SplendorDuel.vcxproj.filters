@@ -66,6 +66,12 @@
     <Filter Include="Source Files\GameLogic">
       <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\UI\Menu">
+      <UniqueIdentifier>{df627f29-faf8-49fa-a359-28ca3b020ed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI\Menu">
+      <UniqueIdentifier>{c4639eb5-84dd-43f6-932d-acc33beca632}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="SplendorDuel.qrc">
@@ -251,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuUI.cpp">
+      <Filter>Source Files\UI\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -572,6 +581,9 @@
     </QtMoc>
     <QtMoc Include="PrivilegeUI.h">
       <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="MenuUI.h">
+      <Filter>Header Files\UI\Menu</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

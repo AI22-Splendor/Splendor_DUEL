@@ -3,6 +3,8 @@
 
 using namespace rapidxml;
 
+string XmlReader::language = "fr";
+
 list<Card*> XmlReader::getCardsFromXml() {
 	list<Card*> cards;
 
@@ -95,7 +97,7 @@ Message XmlReader::getActionMessage(const EnumAction a) {
 	file<> xmlFile("./res/message.xml");
 	xml_document<> xml;
 	xml.parse<0>(xmlFile.data());
-	xml_node<>* root_node = xml.first_node("data")->first_node("fr");
+	xml_node<>* root_node = xml.first_node("data")->first_node(XmlReader::language.c_str());
 	switch (a)
 	{
 	case EnumAction::ASSIGN_CARD:
@@ -122,4 +124,17 @@ Message XmlReader::getActionMessage(const EnumAction a) {
 	default:
 		return Message("", "#ffffff");
 	}
+}
+
+QList<string> XmlReader::getLanguage() {
+	file<> xmlFile("./res/message.xml");
+	xml_document<> xml;
+	xml.parse<0>(xmlFile.data());
+	xml_node<>* root_node = xml.first_node("data");
+
+	QList<string> language{};
+	for (xml_node<>* effect_node = root_node->first_node("lang"); effect_node; effect_node = effect_node->next_sibling()) {
+		language.append(effect_node->value());
+	}
+	return language;
 }

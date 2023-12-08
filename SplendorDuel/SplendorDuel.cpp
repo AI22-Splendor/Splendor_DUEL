@@ -51,7 +51,7 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     vbox->addWidget(message);
     vbox->addWidget(new PersonnageBoardUI(leftBoard));
     vbox->setStretch(0, 1);
-    vbox->setStretch(1, 5);
+    vbox->setStretch(1, 8);
 
     hbox->addWidget(leftBoard);
     hbox->addWidget(privilege, 0);

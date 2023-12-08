@@ -12,5 +12,5 @@ using namespace std;
 
 class GameFactory {
 public:
-	static SplendorDuel& buildNewSplendor();
+	static SplendorDuel& buildNewSplendor(const bool IA, string p1Name, string p2Name);
 };
