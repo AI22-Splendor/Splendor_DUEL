@@ -110,6 +110,7 @@
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CardContainersGUI.h" />
+    <QtMoc Include="ConfirmationPushButtonUI.h" />
     <ClInclude Include="InformationMessageUI.h" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_iterators.hpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="BoardCard.cpp" />
     <ClCompile Include="CardUI.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="ConfirmationPushButtonUI.cpp" />
     <ClCompile Include="InformationMessageUI.cpp" />
     <ClCompile Include="MenuUI.cpp" />
     <ClCompile Include="NobleHandler.cpp" />

@@ -4,9 +4,11 @@
 #include "XmlReader.h"
 #include <qpainter.h>
 #include "BackgroundWidgetUI.h"
+#include "ConfirmationPushButtonUI.h"
 
 MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name("Player 2", nullptr), ia(), P1name("Player 1", this), list(this) {
 	setWindowFlag(Qt::Dialog, true);
+	setMinimumSize(350, 300);
 	QVBoxLayout* vbox = new QVBoxLayout(this);
 	QWidget* p2 = new QWidget(this);
 	QHBoxLayout* box = new QHBoxLayout(p2);
@@ -20,7 +22,7 @@ MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name("Player 2", nullptr), i
 	vbox->addWidget(&P1name);
 	vbox->addWidget(p2);
 
-	QPushButton* b=new QPushButton("OK", this);
+	QPushButton* b=new ConfirmationPushButtonUI(this);
 	connect(b, SIGNAL(clicked()), this, SLOT(accept()));
 	
 	for (string s : XmlReader::getLanguage()) {
