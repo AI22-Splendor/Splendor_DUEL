@@ -1,14 +1,24 @@
 #pragma once
 #include <qwidget.h>
+#include <qpushbutton.h>
 #include "Message.h"
 #include <iostream>
+#include <qtimer.h>
 class InformationMessageUI : public QWidget
 {
+	Q_OBJECT
 public:
 	InformationMessageUI(QWidget* parent);
-	inline void setMessage(Message m) { message = m; update();};
+	void setMessage(Message m);
+	void timerEvent(QTimerEvent* event);
 private:
 	void paintEvent(QPaintEvent* event);
 	Message message;
+	bool afficher;
+	bool err;
+	QPushButton button;
+
+private slots:
+	void showInformation();
 };
 
