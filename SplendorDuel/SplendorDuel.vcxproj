@@ -38,7 +38,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.6.0_msvc2019_64</QtInstall>
+    <QtInstall>6.5.3_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -111,7 +111,7 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="CardContainersGUI.h" />
     <QtMoc Include="ConfirmationPushButtonUI.h" />
-    <ClInclude Include="InformationMessageUI.h" />
+    <QtMoc Include="InformationMessageUI.h" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_iterators.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp" />
