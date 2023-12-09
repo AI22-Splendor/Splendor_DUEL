@@ -83,16 +83,16 @@ BoardCard *-- "0..5" CardUI
 BoardUI *-- "0..25" GemmesUI
 
 CompleteBoardUI o-- "1" BoardUI
-CompleteBoardUI o-- "1" RemplirBoard
+CompleteBoardUI *-- "1" RemplirBoard
 
 PersonnageBoardUI *-- "*" CardUI
 
-PlayerCardUI o-- "*" CardUI
+PlayerCardUI *-- "*" CardUI
 
-PlayerGemsUI o-- "7" GemmesUI
+PlayerGemsUI *-- "7" GemmesUI
 
-PlayerPoints o-- "3" CardUI
-PlayerPoints o-- "1" GameLogic.Player
+PlayerPoints *-- "3" CardUI
+PlayerPoints *-- "1" GameLogic.Player
 
 PlayerUI o-- "1" GameLogic.Player
 
