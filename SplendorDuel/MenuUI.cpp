@@ -2,27 +2,39 @@
 #include <qformlayout.h>
 #include <qlabel.h>
 #include "XmlReader.h"
+#include <qpainter.h>
+#include "BackgroundWidgetUI.h"
+#include "ConfirmationPushButtonUI.h"
 
-MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name(), ia(), P1name(this), list(this){
+MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name("Player 2", nullptr), ia(), P1name("Player 1", this), list(this) {
 	setWindowFlag(Qt::Dialog, true);
-	QFormLayout* form = new QFormLayout(this);
-	form->addRow(tr("Player1 Name"), &P1name);
-
+	setMinimumSize(350, 300);
+	QVBoxLayout* vbox = new QVBoxLayout(this);
 	QWidget* p2 = new QWidget(this);
 	QHBoxLayout* box = new QHBoxLayout(p2);
 	P2name.setParent(p2);
 	ia.setParent(p2);
+	ia.addItem("Joueur");
+	ia.addItem("IA");
 	box->addWidget(&P2name);
-	box->addWidget(new QLabel("IA", p2));
 	box->addWidget(&ia);
-	form->addRow(tr("Player2 Name"), p2);
 
-	QPushButton* b=new QPushButton("OK", this);
+	vbox->addWidget(&P1name);
+	vbox->addWidget(p2);
+
+	QPushButton* b=new ConfirmationPushButtonUI(this);
 	connect(b, SIGNAL(clicked()), this, SLOT(accept()));
-	form->addRow(tr("Valider"), b);
+	
 	for (string s : XmlReader::getLanguage()) {
 		if(!s.empty())
 			list.addItem(s.c_str());
 	}
-	form->addRow(tr("Langue"), &list);
+	vbox->addWidget(&list);
+	vbox->addWidget(b);
+	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+}
+
+void MenuUI::paintEvent(QPaintEvent* e) {
+	QPainter painter(this);
+	painter.drawPixmap(0, 0, width(), height(), QPixmap("./res/Menu.png"));
 }
