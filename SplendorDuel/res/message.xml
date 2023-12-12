@@ -29,7 +29,7 @@
 			<color>#00ff00</color>
 		</REPLAY>
 		<PICK_GEMMES>
-			<message>Piochez la gemme que vous voulez sur le plateau de la courleur de la carte acheté</message>
+			<message>Piochez la gemme que vous voulez sur le plateau de la couleur de la carte acheté</message>
 			<color>#00ff00</color>
 		</PICK_GEMMES>
 		<STEAL_GEMMES>
@@ -37,7 +37,7 @@
 			<color>#00ff00</color>
 		</STEAL_GEMMES>
 		<ASSIGN_CARD>
-			<message>Assigné la carte acheté à la couleur de votre choix</message>
+			<message>Assignez la carte acheté à la couleur de votre choix</message>
 			<color>#ffffff</color>
 		</ASSIGN_CARD>
 		<RESERV_CARD>
@@ -48,31 +48,31 @@
 	<eng>
 		<!-- Vert -->
 		<SUPP_GEMS>
-			<message>TODO EN ANGLAIS</message>
+			<message>You have to many gems ! Please dispose of them before continuing</message>
 			<color>#ff0000</color>
 		</SUPP_GEMS>
 		<USE_PRIVILEGE>
-			<message>TODO EN ANGLAIS</message>
+			<message>Using privilege : pick any gem on the board (except Gold) !</message>
 			<color>#ffffff</color>
 		</USE_PRIVILEGE>
 		<REPLAY>
-			<message>TODO EN ANGLAIS</message>
+			<message>You can play again after this turn</message>
 			<color>#00ff00</color>
 		</REPLAY>
 		<PICK_GEMMES>
-			<message>TODO EN ANGLAIS</message>
+			<message>Pick a gem on the board with the same color than the card you just bought</message>
 			<color>#00ff00</color>
 		</PICK_GEMMES>
 		<STEAL_GEMMES>
-			<message>TODO EN ANGLAIS</message>
+			<message>Steal any gem from your adversary's stock (except Gold)</message>
 			<color>#00ff00</color>
 		</STEAL_GEMMES>
 		<ASSIGN_CARD>
-			<message>TODO EN ANGLAIS</message>
+			<message>Assign th card you just bought to the color of your choice</message>
 			<color>#ffffff</color>
 		</ASSIGN_CARD>
 		<RESERV_CARD>
-			<message>TODO EN ANGLAIS</message>
+			<message>Take 1 Gold from the board</message>
 			<color>#00ff00</color>
 		</RESERV_CARD>
 	</eng>
