@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GEMMES_H
+#define GEMMES_H
 
 #include <iostream>
 #include <qstring>
@@ -29,3 +30,5 @@ const unsigned int NB_GEMMES_PAS_VIDE = 7;
 const QString gemmesToQstr(const EnumGemmes g);
 
 ostream& operator<<(ostream& os, const EnumGemmes gem);
+
+#endif

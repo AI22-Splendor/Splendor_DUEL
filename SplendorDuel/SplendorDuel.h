@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPLEDORDUEL_H
+#define SPLEDORDUEL_H
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
@@ -91,3 +92,5 @@ private:
     InformationMessageUI* message;
     Ui::SplendorDuelClass ui;
 };
+
+#endif

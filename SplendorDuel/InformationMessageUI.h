@@ -1,4 +1,6 @@
-#pragma once
+#ifndef INFORMATIONMESSAGEUI_H
+#define INFORMATIONMESSAGEUI_H
+
 #include <qwidget.h>
 #include <qpushbutton.h>
 #include "Message.h"
@@ -22,3 +24,4 @@ private slots:
 	void showInformation();
 };
 
+#endif

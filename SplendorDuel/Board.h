@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <iostream>
 #include "Gemmes.h"
@@ -79,3 +80,5 @@ private:
 };
 
 ostream& operator<<(ostream& os, const Board board);
+
+#endif

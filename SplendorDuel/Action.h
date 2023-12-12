@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ACTION_H
+#define ACTION_H
 
 /// <summary>
 /// Classe contenant les Actions pouvant être réaliser par le joeur
@@ -23,3 +24,5 @@ enum EnumAction {
 	SUPP_GEMS = 9,
 	IMPOSSIBLE = -2,
 };
+
+#endif

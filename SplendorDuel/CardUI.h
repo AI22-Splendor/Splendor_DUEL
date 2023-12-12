@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CARDUI_H
+#define CARDUI_H
+
 #include <qwidget.h>
 #include "GemmesUI.h"
 #include "Card.h"
@@ -39,3 +41,4 @@ private:
 	QList<Card*> cardList;
 };
 
+#endif

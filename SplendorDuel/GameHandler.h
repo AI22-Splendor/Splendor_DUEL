@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMEHANDLER_H
+#define GAMEHANDLER_H
 
 #include "BoardUI.h"
 #include "Bag.h"
@@ -97,3 +98,5 @@ private:
 	friend class SingletonPrivilegeHandler;
 	friend class SingletonNobleHandler;
 };
+
+#endif

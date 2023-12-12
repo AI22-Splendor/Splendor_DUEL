@@ -1,4 +1,6 @@
-#pragma once
+#ifndef XMLREADER_H
+#define XMLREADER_H
+
 // Library imports here to avoid redondancy
 #include "./libs/rapidxml-1.13/rapidxml.hpp"
 #include "./libs/rapidxml-1.13/rapidxml_utils.hpp"
@@ -21,3 +23,4 @@ private:
 	static string language;
 };
 
+#endif

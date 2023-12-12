@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PRIVILEGEBOARDUI_H
+#define PRIVILEGEBOARDUI_H
+
 #include <qwidget.h>
 #include "PrivilegeUI.h"
 
@@ -14,4 +16,6 @@ private:
 
 	PrivilegeUI*** tab;
 };
+
+#endif
 

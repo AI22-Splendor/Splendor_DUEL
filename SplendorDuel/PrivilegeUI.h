@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PRIVILEGEUI_H
+#define PRIVILEGEUI_H
+
 #include <qwidget.h>
 #include <qevent.h>
 class PrivilegeUI : public QWidget
@@ -17,3 +19,4 @@ private:
 	bool havePrivilege;
 };
 
+#endif

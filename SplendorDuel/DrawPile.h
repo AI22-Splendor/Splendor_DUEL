@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DRAWPILE_H
+#define DRAWPILE_H
 
 #include "Card.h"
 
@@ -44,3 +45,4 @@ private:
 
 ostream& operator<<(ostream& os, const DrawPile drawPile);
 
+#endif

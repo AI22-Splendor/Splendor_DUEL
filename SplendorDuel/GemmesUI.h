@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GEMMESUI_H
+#define GEMMESUI_H
+
 #include "GemmesUI.h"
 #include <qwidget.h>
 #include "Gemmes.h"
@@ -79,3 +81,4 @@ private:
 	void timerEvent(QTimerEvent* event);
 };
 
+#endif

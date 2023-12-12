@@ -127,9 +127,6 @@
     <ClInclude Include="Card.h">
       <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="CardContainersGUI.h">
-      <Filter>Header Files\GameLogic</Filter>
-    </ClInclude>
     <ClInclude Include="DrawPile.h">
       <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
@@ -151,14 +148,14 @@
     <ClInclude Include="PrivilegeHandler.h">
       <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="InformationMessageUI.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
     <ClInclude Include="Message.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CardContainersGUI.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -593,6 +590,9 @@
     </QtMoc>
     <QtMoc Include="ConfirmationPushButtonUI.h">
       <Filter>Header Files\UI\Menu</Filter>
+    </QtMoc>
+    <QtMoc Include="InformationMessageUI.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

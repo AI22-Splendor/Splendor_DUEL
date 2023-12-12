@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERPOINTS_H
+#define PLAYERPOINTS_H
+
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include <qgridlayout.h>
@@ -28,3 +30,4 @@ private:
 	int pnum;
 };
 
+#endif

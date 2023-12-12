@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CARD_H
+#define CARD_H
 
 #include "Gemmes.h"
 #include "MyException.h"
@@ -70,3 +71,5 @@ private:
 };
 
 ostream& operator<<(ostream& os, const Card card);
+
+#endif

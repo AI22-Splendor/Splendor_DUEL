@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERGEMSUI_H
+#define PLAYERGEMSUI_H
+
 #include "GemmesContainerGUI.h"
 #include "GemmesUI.h"
 
@@ -26,3 +28,4 @@ private:
 	int selected;
 };
 
+#endif

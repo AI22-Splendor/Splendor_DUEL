@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BAG_H
+#define BAG_H
 
 #include "Gemmes.h"
 
@@ -59,3 +60,4 @@ private:
 	EnumGemmes* bag;
 };
 
+#endif
