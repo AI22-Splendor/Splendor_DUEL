@@ -1,4 +1,6 @@
-#pragma once
+#ifndef IMAGE_H
+#define IMAGE_H
+
 #include <qpixmap.h>
 #include "Gemmes.h"
 /// <summary>
@@ -89,3 +91,4 @@ private:
 	QPixmap Privilege;
 };
 
+#endif

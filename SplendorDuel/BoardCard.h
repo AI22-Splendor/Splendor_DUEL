@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOARDCARD_H
+#define BOARDCARD_H
+
 #include "GemmesContainerGUI.h"
 #include "CardUI.h"
 #include "Card.h"
@@ -27,3 +29,4 @@ private:
 	CardUI*** cards;
 };
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include<string>
 #include<list>
@@ -127,3 +128,4 @@ protected:
 	unsigned int gems[NB_GEMMES_PAS_VIDE];
 };
 
+#endif

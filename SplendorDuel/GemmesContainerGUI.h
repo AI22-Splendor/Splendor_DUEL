@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GEMMESCONTAINERGUI_H
+#define GEMMESCONTAINERGUI_H
 
 #include <qwidget.h>
 #include "Gemmes.h"
@@ -13,3 +14,5 @@ public:
 	virtual void hoverGemmes(const int pos, const bool red) = 0;
 	virtual void clickGemmes(EnumGemmes g) = 0;
 };
+
+#endif

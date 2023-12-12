@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COMPLETEBOARDUI_H
+#define COMPLETEBOARDUI_H
 
 #include <qwidget.h>
 #include "Board.h"
@@ -31,5 +32,4 @@ private:
 	void resizeEvent(QResizeEvent* event);
 };
 
-
-
+#endif

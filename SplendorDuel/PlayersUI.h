@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERSUI_H
+#define PLAYERSUI_H
+
 #include <qwidget.h>
 // Ajoutez la déclaration avant (forward declaration)
 #include "PlayerGemsUI.h"
@@ -58,3 +60,5 @@ private:
 	PlayerNameUI* name;
 	PlayerPoints* points;
 };
+
+#endif

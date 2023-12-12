@@ -1,4 +1,5 @@
-#pragma once
+#ifndef NOBLEHANDLER_H
+#define NOBLEHANDLER_H
 
 #include <vector>
 #include "Player.h"
@@ -45,3 +46,4 @@ private:
 	vector<EnumNoblePosition> noblePosition;
 };
 
+#endif

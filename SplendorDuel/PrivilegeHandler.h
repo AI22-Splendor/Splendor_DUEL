@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PRIVILEGEHANDLER_H
+#define PRIVILEGEHANDLER_H
 
 #include "GameHandler.h"
 #include "Player.h"
@@ -33,3 +34,4 @@ private:
 	EnumPrivilegePosition emplacementsPrivilege[3];
 };
 
+#endif

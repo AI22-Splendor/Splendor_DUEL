@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CARDCONTAINERGUI_H
+#define CARDCONTAINERGUI_H
 
 #include <qwidget.h>
 #include "Card.h"
@@ -13,3 +14,5 @@ public:
 	virtual void clickDCard(int col, int ligne, Card* c) = 0;
 	virtual void clickCard(int col, int ligne, Card* c) = 0;
 };
+
+#endif

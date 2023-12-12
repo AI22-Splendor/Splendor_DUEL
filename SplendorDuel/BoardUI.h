@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOARDUI_H
+#define BOARDUI_H
+
 #include "GemmesContainerGUI.h"
 #include <qwidget.h>
 #include "qpainter.h"
@@ -71,3 +73,4 @@ private:
 	int posSelect[3];
 };
 
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CONFIRMATIONPUSHBUTTON_H
+#define CONFIRMATIONPUSHBUTTON_H
+
 #include <qpushbutton.h>
 class ConfirmationPushButtonUI : public QPushButton
 {
@@ -18,3 +20,4 @@ private:
 	}
 };
 
+#endif

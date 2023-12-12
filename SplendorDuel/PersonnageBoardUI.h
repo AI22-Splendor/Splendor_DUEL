@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PERSONNAGEBOARDUI_H
+#define PERSONNAGEBOARDUI_H
+
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
@@ -24,3 +26,4 @@ private:
 	CardUI** cards;
 };
 
+#endif

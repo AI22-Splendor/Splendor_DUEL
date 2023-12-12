@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MESSAGE_H
+#define MESSAGE_H
+
 #include <qstring.h>
 #include <qcolor.h>
 class Message
@@ -12,3 +14,5 @@ private:
 	QString s;
 	QColor c;
 };
+
+#endif

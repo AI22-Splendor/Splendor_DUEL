@@ -1,4 +1,6 @@
-#pragma once
+#ifndef RULES_H
+#define RULES_H
+
 #include "Board.h"
 #include "Action.h"
 #include <qlist.h>
@@ -30,3 +32,4 @@ private:
 	~Rules() = delete;
 };
 
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MENUUI_H
+#define MENUUI_H
+
 #include <qdialog.h>
 #include <qlineedit.h>
 #include "SplendorDuel.h"
@@ -24,3 +26,4 @@ private:
 	QLineEdit P2name;
 };
 
+#endif
