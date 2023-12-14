@@ -15,12 +15,13 @@ public:
 	PlayerGemsUI(QWidget* parent, int pnum);
 	~PlayerGemsUI();
 	void bigError();
+	void scroll(int nb)override {};
 	void setGems(const EnumGemmes g, const int nb);
 
 private:
-	void clickCard() {};
-	void hoverGemmes(const int pos, const bool red);
-	void clickGemmes(EnumGemmes g);
+	void clickDGemmes()override{}
+	void hoverGemmes(const int pos, const bool red)override;
+	void clickGemmes(EnumGemmes g)override;
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	GemmesUI** gem;

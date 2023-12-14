@@ -74,6 +74,7 @@ private:
 	bool err;
 	int nbErr;
 
+	void wheelEvent(QWheelEvent* e);
 	void mousePressEvent(QMouseEvent* mouse);
 	void enterEvent(QEnterEvent* event);
 	void leaveEvent(QEvent* event);

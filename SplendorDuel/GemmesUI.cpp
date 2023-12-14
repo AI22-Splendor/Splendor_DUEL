@@ -17,9 +17,24 @@ void GemmesUI::isClicked() {
 	this->setGemmes(EnumGemmes::Vide);
 }
 
+void GemmesUI::wheelEvent(QWheelEvent* e) {
+	if (e->angleDelta().y()*0.1 > 0) {
+		//scroll vers le haut
+		((GemmesContainerGUI*)this->parentWidget())->scroll(1);
+	}else {
+		((GemmesContainerGUI*)this->parentWidget())->scroll(-1);
+	}
+}
+
 void GemmesUI::mousePressEvent(QMouseEvent* mouse) {
-	if(this->gem != EnumGemmes::Vide)
-		((GemmesContainerGUI*)this->parentWidget())->clickGemmes(this->gem);
+	if (this->gem != EnumGemmes::Vide) {
+		if (mouse->button() == Qt::RightButton) {
+			((GemmesContainerGUI*)this->parentWidget())->clickDGemmes();
+		}
+		else {
+			((GemmesContainerGUI*)this->parentWidget())->clickGemmes(this->gem);
+		}
+	}
 }
 
 void GemmesUI::enterEvent(QEnterEvent* event){
