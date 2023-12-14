@@ -32,7 +32,7 @@ public:
 	/// </summary>
 	/// <param name="pos">sa postiotion</param>
 	/// <param name="red">si elle est survoler ou pas</param>
-	void hoverGemmes(const int pos, const bool red);
+	void hoverGemmes(const int pos, const bool red)override;
 
 	/// <summary>
 	/// change la direction de selection des gemmes
@@ -50,7 +50,16 @@ public:
 	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajouté au Joueur qui joue
 	/// </summary>
 	/// <param name="g"> la gemme clicker</param>
-	void clickGemmes(EnumGemmes g);
+	void clickGemmes(EnumGemmes g)override;
+
+	/// <summary>
+	/// 
+	/// </summary>
+	void clickDGemmes()override {
+		changeDirection();
+	}
+
+	void scroll(int nb)override;
 	
 private:
 	void paintEvent(QPaintEvent* event);

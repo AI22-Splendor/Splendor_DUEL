@@ -66,9 +66,13 @@ void BoardUI::hoverGemmes(const int pos, const bool red){
 		posSelect[1] = -1;
 		posSelect[2] = -1;
 	}
+	int count = 0;
 	for (int i = 0; i < nb; i++) {
 		if (posSelect[i] != -1) {
-			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(red);
+			if (count < nbGemmes) {
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(red);
+				count++;
+			}
 			if (!red)
 				posSelect[i] = -1;
 		}
@@ -204,6 +208,17 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 	int minS = qMin(width(), height());
 	resize(minS, minS);
 }
+
+void BoardUI::scroll(int nb){
+	nbGemmes += nb;
+	if (nbGemmes == 4)
+		nbGemmes = 3;
+	else if (nbGemmes == 0)
+		nbGemmes = 1;
+	nbGemmes--;
+	changeNbGemmes();
+}
+
 
 void BoardUI::clickGemmes(EnumGemmes g) {
 	int pturn;
