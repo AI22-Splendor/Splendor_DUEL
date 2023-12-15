@@ -261,6 +261,9 @@
     <ClCompile Include="ConfirmationPushButtonUI.cpp">
       <Filter>Source Files\UI\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="FinPartie.cpp">
+      <Filter>Source Files\UI\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\remplir.png">
@@ -593,6 +596,9 @@
     </QtMoc>
     <QtMoc Include="InformationMessageUI.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="FinPartie.h">
+      <Filter>Header Files\UI\Menu</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

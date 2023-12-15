@@ -1,7 +1,7 @@
 #include "ConfirmationPushButtonUI.h"
 #include "Image.h"
 #include <qpainter.h>
-ConfirmationPushButtonUI::ConfirmationPushButtonUI(QWidget* parent) : hover(false), QPushButton(parent) {
+ConfirmationPushButtonUI::ConfirmationPushButtonUI(QWidget* parent, const char* c) : text(c), hover(false), QPushButton(parent) {
 
 }
 
@@ -24,9 +24,9 @@ void ConfirmationPushButtonUI::paintEvent(QPaintEvent* e) {
 	}
 	QFont font = painter.font();
 	int min = qMin(width(), height());
-	font.setPointSize(min / 7);
+	font.setPointSize(min / text.length());
 	painter.setFont(font);
 	painter.setPen(QColor("#ffffff"));
 	QRect drawRect(0, 0, width(), height());
-	painter.drawText(drawRect, Qt::AlignCenter, "Valider");
+	painter.drawText(drawRect, Qt::AlignCenter, text);
 }

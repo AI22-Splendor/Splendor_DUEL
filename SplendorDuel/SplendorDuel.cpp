@@ -11,6 +11,7 @@
 #include <qevent.h>
 #include "PlayerGemsUI.h"
 #include "BoardCard.h"
+#include "FinPartie.h"
 #include "BackgroundWidgetUI.h"
 #include "NobleHandler.h"
 
@@ -123,8 +124,14 @@ void SplendorDuel::changePtour() {
         }
     }
     else {
-        cout << "Winner is : " << SingletonGameHandler::getInstance().getWinner().getName() << endl;
-        instance->close();
+        FinPartie* fin = new FinPartie();
+        fin->show();
+        if (fin->exec() == FinPartie::Accepted) {
+            //TODO REPLAY
+            instance->close();
+        }else {
+            instance->close();
+        }
     }
 }
 
