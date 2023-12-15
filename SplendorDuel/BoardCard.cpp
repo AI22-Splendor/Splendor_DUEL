@@ -81,6 +81,7 @@ void BoardCardUI::clickCard(int col, int ligne, Card* c) {
 		if(n>0)
 			SplendorDuel::addPlayerCard(c, pturn);
 		SplendorDuel::changePtour();
+		SplendorDuel::refreshPrivilege();
 		SplendorDuel::refreshPlayersGems(pturn);
 		SplendorDuel::refreshMessage();
 	}

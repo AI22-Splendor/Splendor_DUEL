@@ -5,6 +5,7 @@
 #include <qpainter.h>
 #include "BackgroundWidgetUI.h"
 #include "ConfirmationPushButtonUI.h"
+#include "Image.h"
 
 MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name("Player 2", nullptr), ia(), P1name("Player 1", this), list(this) {
 	setWindowFlag(Qt::Dialog, true);
@@ -37,4 +38,6 @@ MenuUI::MenuUI(QWidget* parent): QDialog(parent), P2name("Player 2", nullptr), i
 void MenuUI::paintEvent(QPaintEvent* e) {
 	QPainter painter(this);
 	painter.drawPixmap(0, 0, width(), height(), QPixmap("./res/Menu.png"));
+	//pour charger les images en arrière plan avant de lancer l'apli
+	Image::getPlateau();
 }

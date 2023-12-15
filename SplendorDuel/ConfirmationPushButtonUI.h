@@ -6,9 +6,10 @@ class ConfirmationPushButtonUI : public QPushButton
 {
 	Q_OBJECT
 public:
-	ConfirmationPushButtonUI(QWidget* parent= nullptr);
+	ConfirmationPushButtonUI(QWidget* parent= nullptr, const char* text="Valider");
 private:
 	bool hover;
+	const QString text;
 	void paintEvent(QPaintEvent* e);
 	inline void enterEvent(QEnterEvent* e) {
 		hover = true;

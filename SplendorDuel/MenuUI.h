@@ -13,7 +13,6 @@ class MenuUI : public QDialog
 
 public:
 	MenuUI(QWidget* parent=nullptr);
-	~MenuUI() { std::cout << "destroy"; }
 	inline const string getP1name()const { return P1name.text().toStdString(); }
 	inline const string getP2name()const { return P2name.text().toStdString(); }
 	inline const bool IA()const { return ia.currentText()=="IA"; }
