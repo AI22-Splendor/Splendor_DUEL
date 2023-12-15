@@ -6,9 +6,9 @@
 #include "GemmesContainerGUI.h"
 
 /// <summary>
-/// Classe représentant un Gemmes en UI
-/// elle doit être contenue dans un GemmesContainersGUI afin qui gerera ses event comme il le souhait
-/// pour pouvoir être utilisé dans différente occasion
+/// Classe reprï¿½sentant un Gemmes en UI
+/// elle doit ï¿½tre contenue dans un GemmesContainersGUI afin qui gerera ses event comme il le souhait
+/// pour pouvoir ï¿½tre utilisï¿½ dans diffï¿½rente occasion
 /// </summary>
 class GemmesUI : public QWidget
 {
@@ -34,7 +34,7 @@ public:
 	inline ~GemmesUI() { QWidget::~QWidget(); }
 
 	/// <summary>
-	/// Modifie la gemmes affiché sur le plateau
+	/// Modifie la gemmes affichï¿½ sur le plateau
 	/// </summary>
 	/// <param name="g">la gemme</param>
 	void setGemmes(const Gemmes& g);
@@ -77,5 +77,7 @@ private:
 	void leaveEvent(QEvent* event);
 	void isClicked();
 	void timerEvent(QTimerEvent* event);
+	friend class AI;
+	
 };
 

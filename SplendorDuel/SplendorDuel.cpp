@@ -8,8 +8,13 @@
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
-#include "BoardCard.h"
+
 #include "BackgroundWidgetUI.h"
+<<<<<<< Updated upstream
+=======
+#include "NobleHandler.h"
+#include <iostream>
+>>>>>>> Stashed changes
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
@@ -38,11 +43,28 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
+<<<<<<< Updated upstream
+=======
+    
+    
+    
+    this->boardcards = new BoardCardUI(com);
+    QWidget* leftBoard = new QWidget(com);
+    QVBoxLayout* vbox = new QVBoxLayout();
+    vbox->setSpacing(0);
+    vbox->setContentsMargins(0, 0, 0, 0);
+    leftBoard->setLayout(vbox);
+    message = new InformationMessageUI(leftBoard);
+    vbox->addWidget(message);
+    vbox->addWidget(new PersonnageBoardUI(leftBoard));
+    vbox->setStretch(0, 1);
+    vbox->setStretch(1, 8);
+>>>>>>> Stashed changes
 
     hbox->addWidget(new PersonnageBoardUI(com));
     hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
-    hbox->addWidget(new BoardCardUI(com));
+    hbox->addWidget(boardcards);
 
     vl->addWidget(ptab[0],0, 0);
     vl->addWidget(com, 1, 0);
@@ -52,7 +74,7 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     vl->setRowStretch(1, 9);
     vl->setRowStretch(2, 3);
     vl->setRowStretch(0, 3);
-    //on supprime les espace par défault
+    //on supprime les espace par dï¿½fault
     vl->setSpacing(0);
     vl->setContentsMargins(0, 0, 0, 0);
     this->setCentralWidget(main);
@@ -95,8 +117,14 @@ void SplendorDuel::changePtour() {
             instance->ptab[1]->changePtour(false);
         }
         else {
-            instance->ptab[0]->changePtour(false);
-            instance->ptab[1]->changePtour(true);
+            if (!SingletonGameHandler::getInstance().isPlayer2AI()){
+                instance->ptab[0]->changePtour(false);
+                instance->ptab[1]->changePtour(true);
+            }else{
+                instance->ptab[0]->changePtour(false);
+                instance->ptab[1]->changePtour(true);
+                SingletonGameHandler::getInstance().getAI()->play();
+            }
         }
     }
     else {

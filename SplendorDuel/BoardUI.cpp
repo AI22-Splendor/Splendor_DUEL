@@ -7,6 +7,8 @@
 #include <qgridlayout.h>
 #include "Image.h"
 
+#include <iostream>
+
 BoardUI::BoardUI(QWidget* parent): GemmesContainerGUI(parent), nbGemmes(3){
 	for (int i = 0; i < 3; i++) {
 		//valeur sentinelle : aucune gemmes select
@@ -59,7 +61,7 @@ void BoardUI::hoverGemmes(const int pos, const bool red){
 		selectOtherGemmes(pos);
 	}
 	else {
-		//Si 1 seul gemmes à selectonner
+		//Si 1 seul gemmes ï¿½ selectonner
 		// pas besoin de calculer ses voisines
 		//On selectionne que la Gemmes
 		posSelect[0] = pos;
@@ -205,21 +207,32 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 	resize(minS, minS);
 }
 
+<<<<<<< Updated upstream
 void BoardUI::clickGemmes(Gemmes g) {
+=======
+bool BoardUI::clickGemmes(EnumGemmes g) {
+	bool isWorked=false;
+>>>>>>> Stashed changes
 	int pturn;
 	if (GameHandler::getInstance().getInstance().isPlayer1Turn())
 		pturn = 0;
 	else {
 		pturn = 1;
 	}
+<<<<<<< Updated upstream
 	//si les règles sont ok
 	if (GameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
+=======
+	//si les rï¿½gles sont ok
+	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {	
+>>>>>>> Stashed changes
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
 				SplendorDuel::refreshPlayersGems(pturn);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;
+				isWorked=true;
 			}
 		}
 		SplendorDuel::changePtour();
@@ -232,4 +245,5 @@ void BoardUI::clickGemmes(Gemmes g) {
 			}
 		}
 	}
+	return isWorked;
 }

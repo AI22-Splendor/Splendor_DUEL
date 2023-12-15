@@ -7,6 +7,7 @@
 #include <qlist.h>
 #include "DrawPile.h"
 #include "Player.h"
+#include "AI.h"
 #include <random>
 
 class GameHandler {
@@ -18,7 +19,12 @@ public:
 	const Player& getWinner();
 	void nextAction();
 	bool isPlayer1Turn();
+<<<<<<< Updated upstream
 	bool suppPlayerGems(Gemmes g, int p);
+=======
+	
+	bool suppPlayerGems(EnumGemmes g, int p);
+>>>>>>> Stashed changes
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
 	Card* asignCard(Card* c);
@@ -32,7 +38,7 @@ public:
 	Action getLastAction();
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
-	/// le nombre dépend de l'action en cours
+	/// le nombre dï¿½pend de l'action en cours
 	/// </summary>
 	/// <param name="pos">sa position</param>
 	/// <param name="isHover">afficher ou ne pas afficher</param>
@@ -47,7 +53,16 @@ public:
 	/// <summary>
 	/// Remplir le Board Avec le sac
 	/// </summary>
+<<<<<<< Updated upstream
 	const Board remplirBoard();
+=======
+	const Board& remplirBoard();
+
+	const bool isPlayer2AI(){return (player2->getName()=="IA");}
+
+	AI* getAI();
+	
+>>>>>>> Stashed changes
 private:
 	static GameHandler* instance;
 
@@ -76,6 +91,12 @@ private:
 	Card* toAsign;
 	Gemmes typeToPick;
 
+<<<<<<< Updated upstream
 	friend class PrivilegeHandler;
 	friend class NobleHandler;
+=======
+	friend class SingletonPrivilegeHandler;
+	friend class SingletonNobleHandler;
+	friend class AI;
+>>>>>>> Stashed changes
 };

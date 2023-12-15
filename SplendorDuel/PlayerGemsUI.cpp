@@ -80,8 +80,13 @@ void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
 	this->gem[g]->setNb(nb);
 }
 
+<<<<<<< Updated upstream
 void PlayerGemsUI::clickGemmes(Gemmes g) {
 		if (GameHandler::getInstance().suppPlayerGems(g, pnum)) {
+=======
+bool PlayerGemsUI::clickGemmes(EnumGemmes g) {
+		if (SingletonGameHandler::getInstance().suppPlayerGems(g, pnum)) {
+>>>>>>> Stashed changes
 			SplendorDuel::changePtour();
 			SplendorDuel::refreshPlayersGems(0);
 			SplendorDuel::refreshPlayersGems(1);
@@ -91,6 +96,7 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 				gem[selected]->showErr();
 			}
 		}
+		return true;
 	}
 
 void PlayerGemsUI::hoverGemmes(const int pos, const bool red) {

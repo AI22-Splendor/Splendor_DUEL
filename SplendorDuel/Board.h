@@ -25,7 +25,7 @@ public:
 	*/
 	void remplirBoard(const Bag& bag) const;
 	/**
-	* Retire une gemme a une position donnée sur le plateau et la renvoie
+	* Retire une gemme a une position donnï¿½e sur le plateau et la renvoie
 	*/
 	Gemmes prendreGemme(const int pos) const;
 	/**
@@ -41,11 +41,16 @@ public:
 	Gemmes const connaitreGemmes(const int pos)const;
 
 	/// <summary>
-	/// Verifie si une gemme d'un type spécifique est sur le plateau
+	/// Verifie si une gemme d'un type spï¿½cifique est sur le plateau
 	/// </summary>
 	/// <param name="gem">Type de la gemme a trouver</param>
+<<<<<<< Updated upstream
 	/// <return>True si une gemme du type est présente, false sinon</return>
 	bool hasGemOfType(Gemmes gem) const;
+=======
+	/// <return>True si une gemme du type est prï¿½sente, false sinon</return>
+	bool hasGemOfType(EnumGemmes gem) const;
+>>>>>>> Stashed changes
 
 	class iterator {
 	public:
@@ -75,6 +80,7 @@ private:
 	Gemmes* gems;
 
 	friend class Board::iterator;
+	friend class AI;
 	friend ostream& operator<<(ostream& os, const Board board);
 };
 

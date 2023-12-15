@@ -26,6 +26,23 @@ SplendorDuel& GameFactory::buildNewSplendor() {
 	for (int i = 0; i < 3; i++) {
 		drawPiles[i]->melanger();
 	}
+<<<<<<< Updated upstream
+=======
+	if (p1Name.empty())
+		p1Name = "Player1";
+	if (p2Name.empty())
+		p2Name = "Player2";
+	Player* player1 = (new Player(p1Name));
+	Player* player2;
+	AI* ai;
+
+	if(!IA)
+		player2 = (new Player(p2Name));
+	else {
+		//TODO ADD IA
+		player2= (new AI());
+	}
+>>>>>>> Stashed changes
 
 	Player* player1 = (new Player("Player 1"));
 	Player* player2 = (new Player("Player 2"));

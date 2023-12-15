@@ -29,6 +29,7 @@ private:
 	RemplirBoard remplir;
 
 	void resizeEvent(QResizeEvent* event);
+	friend class AI;
 };
 
 

@@ -2,6 +2,8 @@
 #include "GemmesContainerGUI.h"
 #include "CardUI.h"
 #include "Card.h"
+#include "AI.h"
+
 class BoardCardUI : public CardContainersGUI
 {
 	Q_OBJECT
@@ -25,5 +27,6 @@ private:
 	void clickDCard(int col, int ligne, Card* c);
 	void clickCard(int col, int ligne, Card* c);
 	CardUI*** cards;
+	friend AI;
 };
 

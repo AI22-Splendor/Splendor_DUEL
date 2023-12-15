@@ -18,7 +18,11 @@ public:
 private:
 	void clickCard() {};
 	void hoverGemmes(const int pos, const bool red);
+<<<<<<< Updated upstream
 	void clickGemmes(Gemmes g);
+=======
+	bool clickGemmes(EnumGemmes g);
+>>>>>>> Stashed changes
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	GemmesUI** gem;

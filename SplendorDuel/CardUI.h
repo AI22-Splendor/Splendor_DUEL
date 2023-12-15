@@ -20,6 +20,7 @@ public:
 	bool isVide();
 	~CardUI();
 	void showErr();
+	friend class AI;
 
 private:
 	void mousePressEvent(QMouseEvent* mouse);

@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Player.h"
 #include "XmlReader.h"
+#include "AI.h"
 
 using namespace std;
 

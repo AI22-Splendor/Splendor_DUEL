@@ -8,6 +8,12 @@
 #include "PlayersUI.h"
 #include "PrivilegeBoardUI.h"
 #include "Player.h"
+<<<<<<< Updated upstream
+=======
+#include "AI.h"
+#include "InformationMessageUI.h"
+#include "BoardCard.h"
+>>>>>>> Stashed changes
 
 /// <summary>
 /// Notre fenetre principale
@@ -38,7 +44,7 @@ public:
    /// On ajoute au joueur une Gemmes
    /// </summary>
    /// <param name="g">la couleur de la gemme</param>
-   /// <param name="p">sa position (de 0 à 6)</param>
+   /// <param name="p">sa position (de 0 ï¿½ 6)</param>
     static inline void refreshPlayersGems(const int p) {
         instance->ptab[p]->setGemmes();
     }
@@ -72,8 +78,13 @@ private:
     /// </summary>
     /// <param name="bag">le sac du futur gameHandler</param>
     /// <param name="board">le board avec lequel initialiser notre UI et le GH</param>
+<<<<<<< Updated upstream
     /// <param name="drawPiles">les carte avec lesquels initialisé notre UI et le GH</param>
     SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2);
+=======
+    /// <param name="drawPiles">les carte avec lesquels initialisï¿½ notre UI et le GH</param>
+    SplendorDuel(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2);
+>>>>>>> Stashed changes
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
@@ -81,7 +92,12 @@ private:
     CompleteBoardUI* board;
     //nos joueurs
     PlayersUI** ptab;
+
+    BoardCardUI* boardcards;
+
     //nos privilege
     PrivilegeBoardUI* privilege;
     Ui::SplendorDuelClass ui;
+    
+    friend class AI;
 };

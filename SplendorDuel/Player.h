@@ -15,6 +15,15 @@ public:
 	/// </summary>
 	/// <param name="name">Name of the player</param>
 	Player(string name);
+<<<<<<< Updated upstream
+=======
+	Player(Player& p) = delete;
+
+	/// <summary>
+	/// Destroys a player
+	/// </summary>
+	virtual ~Player();
+>>>>>>> Stashed changes
 
 	/// <summary>
 	/// Returns the name of the player
@@ -42,7 +51,7 @@ public:
 	int canAddGems(const unsigned int nbAdd = 1) const;
 
 	/// <summary>
-	/// Adds gems to the usér's gems
+	/// Adds gems to the usï¿½r's gems
 	/// </summary>
 	/// <pre>We can add this amount of gems to the player</pre>
 	/// <param name="gem">Type of the gem to add</param>

@@ -5,11 +5,20 @@
 using namespace std;
 
 void Board::remplirBoard(const Bag& bag) const {
+	cout<<"Remplissage\n";
 	iterator it = this->getIterator();
 	while (it.hasNext()) {
+<<<<<<< Updated upstream
 		Gemmes* gem = it.getNext();
 		if (*gem == Gemmes::Vide) {
 			// Si il n'y a plus de gemmes dans le bag, alors la gemme retournée est nulle
+=======
+		cout<<"It\n!";
+		EnumGemmes* gem = it.getNext();
+		if (*gem == EnumGemmes::Vide) {
+			cout<<"Vide!\n";
+			// Si il n'y a plus de gemmes dans le bag, alors la gemme retournï¿½e est nulle
+>>>>>>> Stashed changes
 			*gem = bag.piocherGemme();
 		}
 	}

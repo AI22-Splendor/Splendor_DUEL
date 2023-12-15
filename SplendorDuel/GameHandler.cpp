@@ -41,7 +41,23 @@ const Player& GameHandler::getWinner() {
 	throw new MyException("No player won yet");
 }
 
+<<<<<<< Updated upstream
 void GameHandler::nextAction() {
+=======
+AI* SingletonGameHandler::getAI(){
+	if (isPlayer2AI()==true){
+		if (AI* ai = dynamic_cast<AI*>(player2)) {
+			std::cout << "Successfully casted to AI class." << std::endl;
+			return (ai);
+		} else {
+			std::cout << "Failed to cast to AI class." << std::endl;
+		}
+		
+		}
+	}
+
+void SingletonGameHandler::nextAction() {
+>>>>>>> Stashed changes
 	//si il a pas encore fait son action principale
 	if (mainActionIsDone == false)
 		return;
@@ -58,10 +74,17 @@ void GameHandler::nextAction() {
 	player1Joue = !player1Joue;
 }
 
+<<<<<<< Updated upstream
 const Board GameHandler::remplirBoard() {
 	//TODO vérifier dans les règles
 	if (bag.getNbGemmes() != 0) {
 		board.remplirBoard(bag);
+=======
+const Board& SingletonGameHandler::remplirBoard() {
+	//TODO vï¿½rifier dans les rï¿½gles
+	if (bag->getNbGemmes() != 0) {
+		board->remplirBoard(*bag);
+>>>>>>> Stashed changes
 		addOtherPlayerPrivilege();
 	}
 	return board;
@@ -82,9 +105,15 @@ bool GameHandler::gemmesPick(const int *posTab){
 	Action a = Rules::isPossibleTakeGems(board, posTab, action, typeToPick);
 	if (a!=Action::IMPOSSIBLE)
 	{
+<<<<<<< Updated upstream
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
 		if (action.size() == 0 || (action.size() == 1 && action.contains(Action::REPLAY))) {
+=======
+		//Si il n'utilisa pas de privilï¿½ge et qu'il n'achï¿½te pas un perso, 
+		// c'est donc la derniï¿½re action de son tour
+		if (action.size() == 0 || (action.size() == 1 && action.contains(EnumAction::REPLAY))) {
+>>>>>>> Stashed changes
 			mainActionIsDone = true;
 		}
 		else {
@@ -186,22 +215,34 @@ int GameHandler::buyCard(Card* c, const int position) {
 	else {
 		return -1;
 	}
-	//je gère pas les actions pour l'instant
+	//je gï¿½re pas les actions pour l'instant
 	mainActionIsDone = true;
 	displayedCards[c->getLevel()][position] = drawPiles[c->getLevel()]->piocher();
 	
 	//on ajoute tous les effets de la carte
 	addAction(c);
+<<<<<<< Updated upstream
 	GameHandler::nextAction();
 	//si carte doit etre assigné
 	if (action.contains(Action::ASSIGN_CARD))
+=======
+	SingletonGameHandler::nextAction();
+	//si carte doit etre assignï¿½
+	if (action.contains(EnumAction::ASSIGN_CARD))
+>>>>>>> Stashed changes
 		return 0;
 	return 1;
 }
 
+<<<<<<< Updated upstream
 Card* GameHandler::asignCard(Card* c) {
 	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
 	if (toAsign == nullptr || c->getDiscountType() == Gemmes::Vide || !action.contains(Action::ASSIGN_CARD))
+=======
+Card* SingletonGameHandler::assignCard(Card* c) {
+	//si la carte n'a pas de type, ou qu'il ne doit pas assignï¿½
+	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !action.contains(EnumAction::ASSIGN_CARD))
+>>>>>>> Stashed changes
 		return nullptr;
 	toAsign->setDiscountType(c->getDiscountType());
 	Card* ret = toAsign;
@@ -278,9 +319,15 @@ void GameHandler::addAction(const Card* c) {
 				action.append(ac);
 			}
 		}
+<<<<<<< Updated upstream
 		else if (ac == Action::PICK_GEMMES) {
 			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
 			if (board.hasGemOfType(c->getDiscountType())) {
+=======
+		else if (ac == EnumAction::PICK_GEMMES) {
+			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ï¿½a ne sert ï¿½ rien
+			if (board->hasGemOfType(c->getDiscountType())) {
+>>>>>>> Stashed changes
 				action.append(ac);
 				typeToPick = c->getDiscountType();
 			}

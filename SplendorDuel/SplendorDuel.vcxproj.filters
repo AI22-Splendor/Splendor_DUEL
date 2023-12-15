@@ -151,6 +151,9 @@
     <ClInclude Include="InformationMessageUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameHandler.cpp">
@@ -248,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="InformationMessageUI.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Source Files\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

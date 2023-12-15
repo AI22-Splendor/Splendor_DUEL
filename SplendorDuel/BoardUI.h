@@ -19,14 +19,14 @@ public:
 	BoardUI(QWidget* parent);
 	~BoardUI();
 	/// <summary>
-	/// réaffiche toutes nos gemmes avec le Board donné
+	/// rï¿½affiche toutes nos gemmes avec le Board donnï¿½
 	/// </summary>
 	/// <param name="b">le board</param>
 	void setGemmes(const Board& b);
 
 	/// <summary>
 	/// quand une gemmes est survoler on retient sa postion dans le tableau des gemmes selectionner
-	/// on demande au GH le nombre de gemme à selectionner
+	/// on demande au GH le nombre de gemme ï¿½ selectionner
 	/// </summary>
 	/// <param name="pos">sa postiotion</param>
 	/// <param name="red">si elle est survoler ou pas</param>
@@ -45,16 +45,20 @@ public:
 	/// <summary>
 	/// une gemmes est clicker
 	/// on donne donc l'information au GH avec le tableau des gemmes selectionner et si il les retire (renvoie true)
-	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajouté au Joueur qui joue
+	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajoutï¿½ au Joueur qui joue
 	/// </summary>
 	/// <param name="g"> la gemme clicker</param>
+<<<<<<< Updated upstream
 	void clickGemmes(Gemmes g);
+=======
+	bool clickGemmes(EnumGemmes g);
+>>>>>>> Stashed changes
 	
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	void selectOtherGemmes(const int pos);
-	//tableau à deux dimensions
+	//tableau ï¿½ deux dimensions
 	GemmesUI*** tabCase;
 	//RemplirBoard *unboard;
 
@@ -69,5 +73,6 @@ private:
 	direction direction;
 	//tableau des gemmes selectionner
 	int posSelect[3];
+	friend class AI;
 };
 
