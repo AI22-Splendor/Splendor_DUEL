@@ -16,6 +16,7 @@ public:
 	static SingletonGameHandler* Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2);
 	static void destroy();
 	static inline SingletonGameHandler& getInstance() { return *SingletonGameHandler::instance; }
+
 	bool gameFinished();
 	const Player& getWinner();
 	void nextAction();
@@ -32,7 +33,8 @@ public:
 	int getPlayerNbPrivilege(int pnum);
 	void addOtherPlayerPrivilege();
 	EnumAction getLastAction();
-	Message getActionMessage()const;
+	Message getActionMessage() const;
+
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre dépend de l'action en cours
@@ -51,6 +53,7 @@ public:
 	/// Remplir le Board Avec le sac
 	/// </summary>
 	const Board& remplirBoard();
+
 private:
 	static SingletonGameHandler* instance;
 
@@ -97,6 +100,7 @@ private:
 
 	friend class SingletonPrivilegeHandler;
 	friend class SingletonNobleHandler;
+	friend class XmlWriter;
 };
 
 #endif

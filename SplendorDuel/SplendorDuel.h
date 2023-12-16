@@ -67,6 +67,8 @@ public:
 
     static void changePtour();
 
+    
+    void closeEvent(QCloseEvent* event) override;
 private:
     //le singleton
     static SplendorDuel* instance;

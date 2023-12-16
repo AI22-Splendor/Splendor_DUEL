@@ -14,6 +14,7 @@
 #include "FinPartie.h"
 #include "BackgroundWidgetUI.h"
 #include "NobleHandler.h"
+#include "XmlWriter.h"
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
@@ -138,4 +139,8 @@ void SplendorDuel::changePtour() {
 
 void SplendorDuel::refreshMessage() {
     instance->message->setMessage(SingletonGameHandler::getInstance().getActionMessage());
+}
+
+void SplendorDuel::closeEvent(QCloseEvent* event) {
+    XmlWriter::createSaveFile();
 }

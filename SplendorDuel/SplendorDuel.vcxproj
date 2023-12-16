@@ -38,7 +38,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -105,6 +105,7 @@
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CardContainersGUI.h" />
+    <ClInclude Include="XmlWriter.h" />
     <QtMoc Include="ConfirmationPushButtonUI.h" />
     <QtMoc Include="InformationMessageUI.h" />
     <QtMoc Include="FinPartie.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="SplendorDuel.cpp" />
     <ClCompile Include="XmlReader.cpp" />
+    <ClCompile Include="XmlWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\0.png" />

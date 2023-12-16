@@ -13,7 +13,7 @@ list<Card*> XmlReader::getCardsFromXml() {
 	xml.parse<0>(xmlFile.data());
 
 	xml_node<>* root_node = xml.first_node("data")->first_node("cards");
-
+	
 	int cpt = 0;
 	// Iterate over the brewerys
 	for (xml_node<>* card_node = root_node->first_node("card"); card_node; card_node = card_node->next_sibling()) {
