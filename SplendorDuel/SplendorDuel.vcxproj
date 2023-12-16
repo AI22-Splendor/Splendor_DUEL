@@ -46,11 +46,6 @@
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>6.5.3_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
-    <QtBuildConfig>release</QtBuildConfig>
-  </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
   </Target>
@@ -115,11 +110,15 @@
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="CardContainersGUI.h" />
-    <ClInclude Include="InformationMessageUI.h" />
+    <QtMoc Include="ConfirmationPushButtonUI.h" />
+    <QtMoc Include="InformationMessageUI.h" />
+    <QtMoc Include="FinPartie.h" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_iterators.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp" />
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_utils.hpp" />
+    <QtMoc Include="MenuUI.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="NobleHandler.h" />
     <ClInclude Include="PrivilegeBoardUI.h" />
     <QtMoc Include="PrivilegeUI.h" />
@@ -156,7 +155,10 @@
     <ClCompile Include="BoardCard.cpp" />
     <ClCompile Include="CardUI.cpp" />
     <ClCompile Include="CompleteBoardUI.cpp" />
+    <ClCompile Include="ConfirmationPushButtonUI.cpp" />
+    <ClCompile Include="FinPartie.cpp" />
     <ClCompile Include="InformationMessageUI.cpp" />
+    <ClCompile Include="MenuUI.cpp" />
     <ClCompile Include="NobleHandler.cpp" />
     <ClCompile Include="PersonnageBoardUI.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -213,6 +215,7 @@
     <Image Include="res\Bleu8.png" />
     <Image Include="res\Bleu9.png" />
     <Image Include="res\fond.png" />
+    <Image Include="res\Menu.png" />
     <Image Include="res\Noble1.png" />
     <Image Include="res\Noble2.png" />
     <Image Include="res\Noble3.png" />

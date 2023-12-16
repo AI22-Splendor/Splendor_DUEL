@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MYEXCEPTION_H
+#define MYEXCEPTION_H
+
 #include <iostream>
 #include <string>
 
@@ -26,4 +28,4 @@ private:
     string erreur;
 };
 
-
+#endif

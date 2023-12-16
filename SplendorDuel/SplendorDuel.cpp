@@ -5,9 +5,12 @@
 #include "GameHandler.h"
 #include <qgridlayout.h>
 #include <iostream>
+#include <qpalette.h>
+#include "Message.h"
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
+<<<<<<< HEAD
 
 #include "BackgroundWidgetUI.h"
 <<<<<<< Updated upstream
@@ -15,17 +18,23 @@
 #include "NobleHandler.h"
 #include <iostream>
 >>>>>>> Stashed changes
+=======
+#include "BoardCard.h"
+#include "FinPartie.h"
+#include "BackgroundWidgetUI.h"
+#include "NobleHandler.h"
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1, Player* p2) :
+SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1, Player* p2) :
     QMainWindow(nullptr)
 {
     this->setWindowState(Qt::WindowMaximized);
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
-    GameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
+    SingletonGameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
 
     //mise en page avec le widget main
     QWidget* main = new BackgroundWidgetUI(this, QPixmap("./res/playerFond.png"));
@@ -33,22 +42,26 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     main->setLayout(vl);
 
     this->ptab = new PlayersUI*[2]();
-    ptab[0] = new PlayersUI(main, p1, 1);
-    ptab[1] = new PlayersUI(main, p2, 2);
+    ptab[0] = new PlayersUI(main, *p1, 1);
+    ptab[1] = new PlayersUI(main, *p2, 2);
     QWidget* com = new BackgroundWidgetUI(main, Image::getFond());
     privilege = new PrivilegeBoardUI(com);
 
-    this->board = new CompleteBoardUI(com, b);
+    this->board = new CompleteBoardUI(com, *b);
     QHBoxLayout* hbox = new QHBoxLayout();
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     
     
     
     this->boardcards = new BoardCardUI(com);
+=======
+    
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
     QWidget* leftBoard = new QWidget(com);
     QVBoxLayout* vbox = new QVBoxLayout();
     vbox->setSpacing(0);
@@ -59,9 +72,12 @@ SplendorDuel::SplendorDuel(Bag& bag, Board& b, DrawPile** drawPiles, Player* p1,
     vbox->addWidget(new PersonnageBoardUI(leftBoard));
     vbox->setStretch(0, 1);
     vbox->setStretch(1, 8);
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
-    hbox->addWidget(new PersonnageBoardUI(com));
+    hbox->addWidget(leftBoard);
     hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
     hbox->addWidget(boardcards);
@@ -85,6 +101,7 @@ SplendorDuel::~SplendorDuel()
     delete instance->board;
     delete[] instance->ptab;
     delete SplendorDuel::instance;
+    delete message;
 }
 
 void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
@@ -96,8 +113,16 @@ void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
     instance->ptab[ptrun]->setPoints(c->getDiscountType());
 }
 
+void SplendorDuel::addPlayerPrestige(int nbPoints, int pturn) {
+    if (pturn < 0 || pturn>1)
+        return;
+    instance->ptab[pturn]->addPrestiges(nbPoints);
+}
+
 bool SplendorDuel::close(){
     instance->QMainWindow::close();
+    SingletonGameHandler::destroy();
+    SingletonNobleHandler::destroy();
     return true;
 }
 
@@ -111,8 +136,8 @@ void SplendorDuel::keyPressEvent(QKeyEvent* e) {
 };
 
 void SplendorDuel::changePtour() {
-    if (!GameHandler::getInstance().gameFinished()) {
-        if (GameHandler::getInstance().isPlayer1Turn()) {
+    if (!SingletonGameHandler::getInstance().gameFinished()) {
+        if (SingletonGameHandler::getInstance().isPlayer1Turn()) {
             instance->ptab[0]->changePtour(true);
             instance->ptab[1]->changePtour(false);
         }
@@ -128,7 +153,18 @@ void SplendorDuel::changePtour() {
         }
     }
     else {
-        cout << "Winner is : " << GameHandler::getInstance().getWinner().getName() << endl;
-        instance->close();
+        FinPartie* fin = new FinPartie();
+        fin->show();
+        if (fin->exec() == FinPartie::Accepted) {
+            //TODO REPLAY
+            instance->close();
+        }else {
+            instance->close();
+        }
     }
+}
+
+
+void SplendorDuel::refreshMessage() {
+    instance->message->setMessage(SingletonGameHandler::getInstance().getActionMessage());
 }

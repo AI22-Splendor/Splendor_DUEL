@@ -18,25 +18,25 @@ PlayerGemsUI::PlayerGemsUI(QWidget* parent, int pnum) : GemmesContainerGUI(paren
 			switch (i)
 			{
 			case 0:
-				boutton->setGemmes(Gemmes::Vert);
+				boutton->setGemmes(EnumGemmes::Vert);
 				break;
 			case 1:
-				boutton->setGemmes(Gemmes::Rouge);
+				boutton->setGemmes(EnumGemmes::Rouge);
 				break;
 			case 2:
-				boutton->setGemmes(Gemmes::Bleu);
+				boutton->setGemmes(EnumGemmes::Bleu);
 				break;
 			case 3:
-				boutton->setGemmes(Gemmes::Noir);
+				boutton->setGemmes(EnumGemmes::Noir);
 				break;
 			case 4:
-				boutton->setGemmes(Gemmes::Blanc);
+				boutton->setGemmes(EnumGemmes::Blanc);
 				break;
 			case 5:
-				boutton->setGemmes(Gemmes::Perle);
+				boutton->setGemmes(EnumGemmes::Perle);
 				break;
 			case 6:
-				boutton->setGemmes(Gemmes::Or);
+				boutton->setGemmes(EnumGemmes::Or);
 				break;
 			}
 			grid->addWidget(boutton, 1, i + 1);
@@ -76,10 +76,11 @@ void PlayerGemsUI::bigError() {
 	}
 }
 
-void PlayerGemsUI::setGems(const Gemmes g, const int nb) {
+void PlayerGemsUI::setGems(const EnumGemmes g, const int nb) {
 	this->gem[g]->setNb(nb);
 }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 void PlayerGemsUI::clickGemmes(Gemmes g) {
 		if (GameHandler::getInstance().suppPlayerGems(g, pnum)) {
@@ -87,9 +88,14 @@ void PlayerGemsUI::clickGemmes(Gemmes g) {
 bool PlayerGemsUI::clickGemmes(EnumGemmes g) {
 		if (SingletonGameHandler::getInstance().suppPlayerGems(g, pnum)) {
 >>>>>>> Stashed changes
+=======
+void PlayerGemsUI::clickGemmes(EnumGemmes g) {
+		if (SingletonGameHandler::getInstance().suppPlayerGems(g, pnum)) {
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 			SplendorDuel::changePtour();
 			SplendorDuel::refreshPlayersGems(0);
 			SplendorDuel::refreshPlayersGems(1);
+			SplendorDuel::refreshMessage();
 		}
 		else {
 			if (selected != -1) {

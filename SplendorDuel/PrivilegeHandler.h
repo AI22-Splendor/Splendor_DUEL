@@ -1,16 +1,21 @@
-#pragma once
+#ifndef PRIVILEGEHANDLER_H
+#define PRIVILEGEHANDLER_H
+
+#include "GameHandler.h"
 #include "Player.h"
 
 
-class PrivilegeHandler {
+class SingletonPrivilegeHandler {
 public:
-	enum PrivilegePosition { Board = 1, Player1 = 2, Player2 = 3 };
-	// On supprime la recopie (singleton)
-	PrivilegeHandler(PrivilegeHandler& copie) = delete;
-	// On supprime l'opérateur d'affectation (singleton)
-	void operator=(const PrivilegeHandler&) = delete;
+	// Represente la position d'un privilege dans le jeu (sur le plateau, detenu par un joueur)
+	enum EnumPrivilegePosition { Board = 1, Player1 = 2, Player2 = 3 };
 
-	static PrivilegeHandler* getInstance();
+	// On supprime la recopie (singleton)
+	SingletonPrivilegeHandler(SingletonPrivilegeHandler& copie) = delete;
+	// On supprime l'opérateur d'affectation (singleton)
+	void operator=(const SingletonPrivilegeHandler&) = delete;
+
+	static SingletonPrivilegeHandler* getInstance();
 
 	int getPlayerPrivilege(const Player& player);
 	void givePlayerPrivilege(const Player& player);
@@ -18,10 +23,15 @@ public:
 	bool playerHasPrivilege(const Player& player);
 private:
 	// On empêche la construction du singleton
-	PrivilegeHandler() {}
+	SingletonPrivilegeHandler() {}
 
-	static PrivilegeHandler* singleton;
+	inline EnumPrivilegePosition getPrivilegePositionFromPlayer(const Player& player) const {
+		return *SingletonGameHandler::getInstance().player1 == player ? EnumPrivilegePosition::Player1 : EnumPrivilegePosition::Player2;
+	}
 
-	PrivilegePosition emplacementsPrivilege[3];
+	static SingletonPrivilegeHandler* singleton;
+
+	EnumPrivilegePosition emplacementsPrivilege[3];
 };
 
+#endif

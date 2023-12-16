@@ -43,7 +43,7 @@ void PrivilegeBoardUI::resizeEvent(QResizeEvent* event) {
 
 void PrivilegeBoardUI::refreshPrivilege(){
 	for (int i = 0; i < 2; i++) {
-		int nb = GameHandler::getInstance().getPlayerNbPrivilege(i);
+		int nb = SingletonGameHandler::getInstance().getPlayerNbPrivilege(i);
 
 		for (int j = 0; j < 3; j++) {
 			tab[i][j]->setPrivilege((j < nb));

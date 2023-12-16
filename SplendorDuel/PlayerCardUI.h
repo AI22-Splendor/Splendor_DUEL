@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERCARDUI_H
+#define PLAYERCARDUI_H
+
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
@@ -24,3 +26,4 @@ private:
 	int pnum;
 };
 
+#endif

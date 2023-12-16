@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DRAWPILE_H
+#define DRAWPILE_H
 
 #include "Card.h"
 
@@ -10,6 +11,9 @@ public:
 	DrawPile(const unsigned int level, size_t taille): level(level), taille(taille) {
 		pile = new Card*[taille];
 		for (int i = 0; i < taille; i++) pile[i] = nullptr;
+	}
+	~DrawPile() {
+		delete pile;
 	}
 
 	bool estVide() const;
@@ -41,3 +45,4 @@ private:
 
 ostream& operator<<(ostream& os, const DrawPile drawPile);
 
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BAG_H
+#define BAG_H
 
 #include "Gemmes.h"
 
@@ -24,20 +25,20 @@ public:
 	//Param : int nbGemmes : nombre de gemmes a ajouter
 	//return void
 	//throw Exception si le sac est deja rempli
-	void addGemmes(const Gemmes g, int nbGemmes = 1);
+	void addGemmes(const EnumGemmes g, int nbGemmes = 1);
 
 	//Retire une Gemme du Sac
 	//Prerequis : le Sac dois en contenir une de ce type
 	//param : g - le Type de Gemmes a supprimer
 	//param : nbGemmes - le nombre de gemmes a supprimer
 	//throw Exception si on la possede pas
-	void suppGemmes(const Gemmes g, const unsigned int nbGemmes = 1);
+	void suppGemmes(const EnumGemmes g, const unsigned int nbGemmes = 1);
 
 
 	//Avoir le nombre de Gemme de la couleur donne
 	//param : la couleur
 	//return le nombre
-	int getNbGemmesType(const Gemmes& g) const;
+	int getNbGemmesType(const EnumGemmes& g) const;
 
 	//Melanger les Gemmes dans le sac
 	void melanger() const;
@@ -49,13 +50,14 @@ public:
 	* Mélange puis renvoie une gemme présente dans le bag
 	* Si le bag est vide, renvoie une gemme vide
 	*/
-	Gemmes piocherGemme() const;
+	EnumGemmes piocherGemme() const;
 
 private:
 	//la taille du sac
 	int taille;
 
 	//la tableau de gemmes
-	Gemmes* bag;
+	EnumGemmes* bag;
 };
 
+#endif

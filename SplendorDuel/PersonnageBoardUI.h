@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PERSONNAGEBOARDUI_H
+#define PERSONNAGEBOARDUI_H
+
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
@@ -16,7 +18,7 @@ public:
 	/// suppprime la card de la main du joueur
 	/// </summary>
 	/// <param name="g">la carte param>
-	void suppCarte(const Gemmes& g, Card c) {}
+	void suppCarte(const EnumGemmes& g, Card c) {}
 
 private:
 	void clickDCard(int col, int ligne, Card* c) {}
@@ -24,3 +26,4 @@ private:
 	CardUI** cards;
 };
 
+#endif

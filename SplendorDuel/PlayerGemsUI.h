@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERGEMSUI_H
+#define PLAYERGEMSUI_H
+
 #include "GemmesContainerGUI.h"
 #include "GemmesUI.h"
 
@@ -13,9 +15,11 @@ public:
 	PlayerGemsUI(QWidget* parent, int pnum);
 	~PlayerGemsUI();
 	void bigError();
-	void setGems(const Gemmes g, const int nb);
+	void scroll(int nb)override {};
+	void setGems(const EnumGemmes g, const int nb);
 
 private:
+<<<<<<< HEAD
 	void clickCard() {};
 	void hoverGemmes(const int pos, const bool red);
 <<<<<<< Updated upstream
@@ -23,6 +27,11 @@ private:
 =======
 	bool clickGemmes(EnumGemmes g);
 >>>>>>> Stashed changes
+=======
+	void clickDGemmes()override{}
+	void hoverGemmes(const int pos, const bool red)override;
+	void clickGemmes(EnumGemmes g)override;
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	GemmesUI** gem;
@@ -30,3 +39,4 @@ private:
 	int selected;
 };
 
+#endif

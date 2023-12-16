@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMEFACTORY_H
+#define GAMEFACTORY_H
 
 #include "SplendorDuel.h"
 #include "Board.h"
@@ -13,5 +14,7 @@ using namespace std;
 
 class GameFactory {
 public:
-	static SplendorDuel& buildNewSplendor();
+	static SplendorDuel& buildNewSplendor(const bool IA, string p1Name, string p2Name);
 };
+
+#endif

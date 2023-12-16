@@ -1,4 +1,6 @@
-#pragma once
+#ifndef IMAGE_H
+#define IMAGE_H
+
 #include <qpixmap.h>
 #include "Gemmes.h"
 /// <summary>
@@ -14,7 +16,7 @@ public:
 	/// </summary>
 	/// <param name="g">la gemme</param>
 	/// <returns>l'image</returns>
-	static QPixmap getPixmap(const Gemmes g);
+	static QPixmap getPixmap(const EnumGemmes g);
 
 	/// <summary>
 	/// retourne l'image de la gemmes donné
@@ -89,3 +91,4 @@ private:
 	QPixmap Privilege;
 };
 
+#endif

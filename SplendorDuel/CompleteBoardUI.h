@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COMPLETEBOARDUI_H
+#define COMPLETEBOARDUI_H
 
 #include <qwidget.h>
 #include "Board.h"
@@ -32,5 +33,4 @@ private:
 	friend class AI;
 };
 
-
-
+#endif

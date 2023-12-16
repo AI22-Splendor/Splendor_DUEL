@@ -4,31 +4,46 @@
 #include <qevent.h>
 #include "Image.h"
 
-GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), nbErr(0), QWidget(parent), gem(Gemmes::Vide), nb(0), err(false) {
+GemmesUI::GemmesUI(const int ligne, const int col, GemmesContainerGUI* parent):selected(false), ligne(ligne), col(col), nbErr(0), QWidget(parent), gem(EnumGemmes::Vide), nb(0), err(false) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(QSize(20, 20));
 }
 
-void GemmesUI::setGemmes(const Gemmes& g) {
+void GemmesUI::setGemmes(const EnumGemmes& g) {
 	this->gem = g;
 }
 
 void GemmesUI::isClicked() {
-	this->setGemmes(Gemmes::Vide);
+	this->setGemmes(EnumGemmes::Vide);
+}
+
+void GemmesUI::wheelEvent(QWheelEvent* e) {
+	if (e->angleDelta().y()*0.1 > 0) {
+		//scroll vers le haut
+		((GemmesContainerGUI*)this->parentWidget())->scroll(1);
+	}else {
+		((GemmesContainerGUI*)this->parentWidget())->scroll(-1);
+	}
 }
 
 void GemmesUI::mousePressEvent(QMouseEvent* mouse) {
-	if(this->gem != Gemmes::Vide)
-		((GemmesContainerGUI*)this->parentWidget())->clickGemmes(this->gem);
+	if (this->gem != EnumGemmes::Vide) {
+		if (mouse->button() == Qt::RightButton) {
+			((GemmesContainerGUI*)this->parentWidget())->clickDGemmes();
+		}
+		else {
+			((GemmesContainerGUI*)this->parentWidget())->clickGemmes(this->gem);
+		}
+	}
 }
 
 void GemmesUI::enterEvent(QEnterEvent* event){
-	if (this->gem != Gemmes::Vide)
+	if (this->gem != EnumGemmes::Vide)
 		((GemmesContainerGUI*)this->parentWidget())->hoverGemmes(ligne * 5 + col, true);
 }
 
 void GemmesUI::leaveEvent(QEvent* event){
-	if (this->gem != Gemmes::Vide)
+	if (this->gem != EnumGemmes::Vide)
 		((GemmesContainerGUI*)this->parentWidget())->hoverGemmes(ligne * 5 + col, false);
 }
 
@@ -44,7 +59,7 @@ void GemmesUI::paintEvent(QPaintEvent* event) {
 	//on peint la case de transparent
 	QPainter painter(this);
 	//si la gemme est vide on ne peint pas la gemme
-	if (gem == Gemmes::Vide)
+	if (gem == EnumGemmes::Vide)
 		return;
 
 	if (this->err == true) {

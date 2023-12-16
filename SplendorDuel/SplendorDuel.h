@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPLEDORDUEL_H
+#define SPLEDORDUEL_H
 
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
@@ -8,12 +9,16 @@
 #include "PlayersUI.h"
 #include "PrivilegeBoardUI.h"
 #include "Player.h"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 #include "AI.h"
 #include "InformationMessageUI.h"
 #include "BoardCard.h"
 >>>>>>> Stashed changes
+=======
+#include "InformationMessageUI.h"
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
 /// <summary>
 /// Notre fenetre principale
@@ -30,7 +35,7 @@ public:
     /// <param name="bag">le sac</param>
     /// <param name="board">le board</param>
     /// <param name="drawPiles">les cartes</param>
-    static inline void instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2) {
+    static inline void instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2) {
         if (SplendorDuel::instance == nullptr) {
             SplendorDuel::instance = new SplendorDuel(bag, board, drawPiles, p1, p2);
             SplendorDuel::instance->changePtour();
@@ -51,6 +56,8 @@ public:
 
     static void addPlayerCard(Card* c, int pturn);
 
+    static void addPlayerPrestige(int nbPoints, int pturn);
+
     static void reservCard(Card* c, int pturn) {
         instance->ptab[pturn]->reservCard(c);
     }
@@ -60,6 +67,8 @@ public:
     /// </summary>
     /// <returns></returns>
     static bool close();
+
+    static void refreshMessage();
 
     static void refreshPrivilege() {
         instance->privilege->refreshPrivilege();
@@ -80,11 +89,15 @@ private:
     /// <param name="board">le board avec lequel initialiser notre UI et le GH</param>
 <<<<<<< Updated upstream
     /// <param name="drawPiles">les carte avec lesquels initialisé notre UI et le GH</param>
+<<<<<<< HEAD
     SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2);
 =======
     /// <param name="drawPiles">les carte avec lesquels initialisï¿½ notre UI et le GH</param>
     SplendorDuel(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2);
 >>>>>>> Stashed changes
+=======
+    SplendorDuel(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2);
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
@@ -97,7 +110,14 @@ private:
 
     //nos privilege
     PrivilegeBoardUI* privilege;
+    InformationMessageUI* message;
     Ui::SplendorDuelClass ui;
+<<<<<<< HEAD
     
     friend class AI;
 };
+=======
+};
+
+#endif
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39

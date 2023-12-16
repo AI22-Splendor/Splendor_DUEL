@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOARDCARD_H
+#define BOARDCARD_H
+
 #include "GemmesContainerGUI.h"
 #include "CardUI.h"
 #include "Card.h"
@@ -15,13 +17,13 @@ public:
 	/// Ajoute la carte dans la main du joeur
 	/// </summary>
 	/// <param name="g">la carte</param>
-	void addCarte(const Gemmes& g, Card c) {}
+	void addCarte(const EnumGemmes& g, Card c) {}
 
 	/// <summary>
 	/// suppprime la card de la main du joueur
 	/// </summary>
 	/// <param name="g">la carte param>
-	void suppCarte(const Gemmes& g, Card c) {}
+	void suppCarte(const EnumGemmes& g, Card c) {}
 
 private:
 	void clickDCard(int col, int ligne, Card* c);
@@ -30,3 +32,4 @@ private:
 	friend AI;
 };
 
+#endif

@@ -53,7 +53,7 @@ BoardUI::~BoardUI() {
 
 void BoardUI::hoverGemmes(const int pos, const bool red){
 	//on demande au GH le nombre de gemmes a selectionner
-	int nb = GameHandler::getInstance().getInstance().gemmesToSelect();
+	int nb = SingletonGameHandler::getInstance().getInstance().gemmesToSelect();
 	//la gemme centrale
 	posSelect[0] = pos;
 	if (nb>1 && this->nbGemmes>1) {
@@ -68,9 +68,13 @@ void BoardUI::hoverGemmes(const int pos, const bool red){
 		posSelect[1] = -1;
 		posSelect[2] = -1;
 	}
+	int count = 0;
 	for (int i = 0; i < nb; i++) {
 		if (posSelect[i] != -1) {
-			tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(red);
+			if (count < nbGemmes) {
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(red);
+				count++;
+			}
 			if (!red)
 				posSelect[i] = -1;
 		}
@@ -82,13 +86,13 @@ void BoardUI::selectOtherGemmes(const int pos) {
 	{
 	case BoardUI::HORIZONTAL:
 		//si col pas tout a gauche
-		if ((pos % 5) != 0 && tabCase[pos/5][pos%5-1]->getGemmes()!=Gemmes::Vide) {
+		if ((pos % 5) != 0 && tabCase[pos/5][pos%5-1]->getGemmes()!=EnumGemmes::Vide) {
 			posSelect[1] = pos - 1;
 		}else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite
-		if ((pos % 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5][pos % 5 +1]->getGemmes() != Gemmes::Vide) {
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5][pos % 5 +1]->getGemmes() != EnumGemmes::Vide) {
 			if (nbGemmes > 2 || posSelect[1] == -1)
 				posSelect[2] = pos + 1;
 		}else {
@@ -97,14 +101,14 @@ void BoardUI::selectOtherGemmes(const int pos) {
 		break;
 	case BoardUI::VERTICALE:
 		//si pas tout en haut
-		if ((pos / 5) != 0 && tabCase[pos / 5 -1][pos % 5]->getGemmes() != Gemmes::Vide) {
+		if ((pos / 5) != 0 && tabCase[pos / 5 -1][pos % 5]->getGemmes() != EnumGemmes::Vide) {
 			posSelect[1] = pos - 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout en bas
-		if ((pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5 +1][pos % 5]->getGemmes() != Gemmes::Vide) {
+		if ((pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5 +1][pos % 5]->getGemmes() != EnumGemmes::Vide) {
 			if (nbGemmes > 2 || posSelect[1] == -1)
 				posSelect[2] = pos + 5;
 		}
@@ -114,14 +118,14 @@ void BoardUI::selectOtherGemmes(const int pos) {
 		break;
 	case BoardUI::DIAGONALED:
 		//si pas tout a gauche et en bas
-		if ((pos % 5) != 0 && (pos / 5) < Board::BOARD_SIDE-1 && tabCase[pos / 5+1][pos % 5-1]->getGemmes() != Gemmes::Vide) {
+		if ((pos % 5) != 0 && (pos / 5) < Board::BOARD_SIDE-1 && tabCase[pos / 5+1][pos % 5-1]->getGemmes() != EnumGemmes::Vide) {
 			posSelect[1] = pos - 1 + 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite et en haut
-		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos/5) > 0 && tabCase[pos / 5-1][pos % 5+1]->getGemmes() != Gemmes::Vide) {
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos/5) > 0 && tabCase[pos / 5-1][pos % 5+1]->getGemmes() != EnumGemmes::Vide) {
 			if (nbGemmes > 2 || posSelect[1] == -1)
 				posSelect[2] = pos + 1 - 5;
 		}
@@ -131,14 +135,14 @@ void BoardUI::selectOtherGemmes(const int pos) {
 		break;
 	case BoardUI::DIAGONALEL:
 		//si pas tout a gauvhe et en haut
-		if ((pos % 5) != 0 && (pos / 5) > 0 && tabCase[pos / 5-1][pos % 5-1]->getGemmes() != Gemmes::Vide) {
+		if ((pos % 5) != 0 && (pos / 5) > 0 && tabCase[pos / 5-1][pos % 5-1]->getGemmes() != EnumGemmes::Vide) {
 			posSelect[1] = pos - 1 - 5;
 		}
 		else {
 			posSelect[1] = -1;
 		}
 		//si pas tout a droite et en bas
-		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5+1][pos % 5+1]->getGemmes() != Gemmes::Vide) {
+		if ((pos % 5) < Board::BOARD_SIDE - 1 && (pos / 5) < Board::BOARD_SIDE - 1 && tabCase[pos / 5+1][pos % 5+1]->getGemmes() != EnumGemmes::Vide) {
 			if (nbGemmes > 2 || posSelect[1] == -1)
 				posSelect[2] = pos + 1 + 5;
 		}
@@ -207,34 +211,54 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 	resize(minS, minS);
 }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 void BoardUI::clickGemmes(Gemmes g) {
 =======
 bool BoardUI::clickGemmes(EnumGemmes g) {
 	bool isWorked=false;
 >>>>>>> Stashed changes
+=======
+void BoardUI::scroll(int nb){
+	nbGemmes += nb;
+	if (nbGemmes == 4)
+		nbGemmes = 3;
+	else if (nbGemmes == 0)
+		nbGemmes = 1;
+	nbGemmes--;
+	changeNbGemmes();
+}
+
+
+void BoardUI::clickGemmes(EnumGemmes g) {
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	int pturn;
-	if (GameHandler::getInstance().getInstance().isPlayer1Turn())
+	if (SingletonGameHandler::getInstance().getInstance().isPlayer1Turn())
 		pturn = 0;
 	else {
 		pturn = 1;
 	}
 <<<<<<< Updated upstream
 	//si les règles sont ok
+<<<<<<< HEAD
 	if (GameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
 =======
 	//si les rï¿½gles sont ok
 	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {	
 >>>>>>> Stashed changes
+=======
+	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
 				SplendorDuel::refreshPlayersGems(pturn);
-				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(Gemmes::Vide);
+				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(EnumGemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;
 				isWorked=true;
 			}
 		}
+		SplendorDuel::refreshMessage();
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPrivilege();
 	}

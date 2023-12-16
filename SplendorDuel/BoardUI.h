@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOARDUI_H
+#define BOARDUI_H
+
 #include "GemmesContainerGUI.h"
 #include <qwidget.h>
 #include "qpainter.h"
@@ -30,7 +32,7 @@ public:
 	/// </summary>
 	/// <param name="pos">sa postiotion</param>
 	/// <param name="red">si elle est survoler ou pas</param>
-	void hoverGemmes(const int pos, const bool red);
+	void hoverGemmes(const int pos, const bool red)override;
 
 	/// <summary>
 	/// change la direction de selection des gemmes
@@ -48,11 +50,24 @@ public:
 	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajout� au Joueur qui joue
 	/// </summary>
 	/// <param name="g"> la gemme clicker</param>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	void clickGemmes(Gemmes g);
 =======
 	bool clickGemmes(EnumGemmes g);
 >>>>>>> Stashed changes
+=======
+	void clickGemmes(EnumGemmes g)override;
+
+	/// <summary>
+	/// 
+	/// </summary>
+	void clickDGemmes()override {
+		changeDirection();
+	}
+
+	void scroll(int nb)override;
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	
 private:
 	void paintEvent(QPaintEvent* event);
@@ -76,3 +91,4 @@ private:
 	friend class AI;
 };
 
+#endif

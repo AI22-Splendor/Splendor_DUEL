@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMEHANDLER_H
+#define GAMEHANDLER_H
 
 #include "BoardUI.h"
 #include "Bag.h"
@@ -9,33 +10,39 @@
 #include "Player.h"
 #include "AI.h"
 #include <random>
+#include "Message.h"
 
-class GameHandler {
+class SingletonGameHandler {
 public:
-	static GameHandler* Instanciate(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2);
+	static SingletonGameHandler* Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2);
 	static void destroy();
-	static inline GameHandler& getInstance() { return *GameHandler::instance; }
+	static inline SingletonGameHandler& getInstance() { return *SingletonGameHandler::instance; }
 	bool gameFinished();
 	const Player& getWinner();
 	void nextAction();
 	bool isPlayer1Turn();
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	bool suppPlayerGems(Gemmes g, int p);
 =======
 	
 	bool suppPlayerGems(EnumGemmes g, int p);
 >>>>>>> Stashed changes
+=======
+	bool suppPlayerGems(EnumGemmes g, int p);
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
-	Card* asignCard(Card* c);
+	Card* assignCard(Card* c);
 	bool usePrivilege();
-	Card* getDisplayedCard(int rareter, int pos);
+	Card* getDisplayedCard(int rarete, int pos);
 	void playerBuyReservCard(int pnum);
 	bool buyNoble(const Card* noble);
 	bool playPrivilege();
 	int getPlayerNbPrivilege(int pnum);
 	void addOtherPlayerPrivilege();
-	Action getLastAction();
+	EnumAction getLastAction();
+	Message getActionMessage()const;
 	/// <summary>
 	/// Affiche la selection de Gemmes en cours
 	/// le nombre d�pend de l'action en cours
@@ -53,6 +60,7 @@ public:
 	/// <summary>
 	/// Remplir le Board Avec le sac
 	/// </summary>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	const Board remplirBoard();
 =======
@@ -63,11 +71,14 @@ public:
 	AI* getAI();
 	
 >>>>>>> Stashed changes
+=======
+	const Board& remplirBoard();
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 private:
-	static GameHandler* instance;
+	static SingletonGameHandler* instance;
 
-	GameHandler(Bag& bag, Board& board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), typeToPick(Gemmes::Vide), toAsign(nullptr), board(board), drawPiles(drawPiles), player1(*player1), mainActionIsDone(false), player2(*player2), action() {
+	SingletonGameHandler(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2)
+		: bag(bag), typeToPick(EnumGemmes::Vide), toAssign(nullptr), board(board), drawPiles(drawPiles), player1(player1), mainActionIsDone(false), player2(player2), action() {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -75,22 +86,39 @@ private:
 			}
 		}
 	}
-	GameHandler(const GameHandler&)=delete;
-	~GameHandler(){}
+	SingletonGameHandler(const SingletonGameHandler&)=delete;
+	
 	void addAction(const Card* c);
 
+	
+	~SingletonGameHandler(){
+		delete bag;
+		delete board;
+		for (int i = 0; i < 3; i++) delete drawPiles[i];
+		delete[] drawPiles;
+		delete player1;
+		delete player2;
+		delete toAssign;
+		for (vector<vector<Card*>>::iterator it = displayedCards.begin(); it != displayedCards.end(); it++) {
+			for (vector<Card*>::iterator it2 = it->begin(); it2 != it->end(); it2++) {
+				delete (*it2);
+			}
+		}
+	}
+
 	bool mainActionIsDone;
-	QList<Action> action;
+	QList<EnumAction> action;
 	bool player1Joue;
-	Bag& bag;
-	Board& board;
+	Bag* bag;
+	Board* board;
 	DrawPile** drawPiles;
 	vector<vector<Card*>> displayedCards;
-	Player& player1;
-	Player& player2;
-	Card* toAsign;
-	Gemmes typeToPick;
+	Card* toAssign;
+	Player* player1;
+	Player* player2;
+	EnumGemmes typeToPick;
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	friend class PrivilegeHandler;
 	friend class NobleHandler;
@@ -99,4 +127,10 @@ private:
 	friend class SingletonNobleHandler;
 	friend class AI;
 >>>>>>> Stashed changes
+=======
+	friend class SingletonPrivilegeHandler;
+	friend class SingletonNobleHandler;
+>>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 };
+
+#endif

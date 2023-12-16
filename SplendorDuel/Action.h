@@ -1,10 +1,11 @@
-#pragma once
+#ifndef ACTION_H
+#define ACTION_H
 
 /// <summary>
 /// Classe contenant les Actions pouvant être réaliser par le joeur
 /// Impossible = pas possible de faire l'action
 /// </summary>
-enum Action {
+enum EnumAction {
 	MAIN_ACTION = -1,
 	
 	// OPTIONAL ACTIONS
@@ -23,3 +24,5 @@ enum Action {
 	SUPP_GEMS = 9,
 	IMPOSSIBLE = -2,
 };
+
+#endif

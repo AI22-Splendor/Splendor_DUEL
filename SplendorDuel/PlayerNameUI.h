@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PLAYERNAMEUI_H
+#define PLAYERNAMEUI_H
+
 #include <qwidget.h>
 #include <qevent.h>
 class PlayerNameUI : public QWidget
@@ -22,3 +24,4 @@ private:
 	QString name;
 };
 
+#endif

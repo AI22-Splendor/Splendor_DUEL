@@ -51,12 +51,6 @@
     <Filter Include="Header Files\UI\Player">
       <UniqueIdentifier>{cd3a9aaf-de04-419d-b5d5-63960ed972ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\CardEffects">
-      <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CardEffects">
-      <UniqueIdentifier>{fbe71395-51b6-41d1-a0c4-2ecc375d3b13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\img\Card">
       <UniqueIdentifier>{b8768f63-269e-4dcc-b47f-69bf68989ccf}</UniqueIdentifier>
     </Filter>
@@ -65,6 +59,18 @@
     </Filter>
     <Filter Include="Source Files\libs\rapidxml-1.13">
       <UniqueIdentifier>{e1a613e3-f99d-4f8a-9b7b-a54002df6d4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameLogic">
+      <UniqueIdentifier>{d1eda6e8-9652-41f8-82c5-76b93ca5d96c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLogic">
+      <UniqueIdentifier>{26470e97-c0c4-4336-aba7-9c8e052b774e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\Menu">
+      <UniqueIdentifier>{df627f29-faf8-49fa-a359-28ca3b020ed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI\Menu">
+      <UniqueIdentifier>{c4639eb5-84dd-43f6-932d-acc33beca632}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,35 +82,8 @@
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MyException.h">
       <Filter>Header Files\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="PrivilegeHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawPile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gemmes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>Header Files\Util</Filter>
@@ -114,12 +93,6 @@
     </ClInclude>
     <ClInclude Include="GemmesContainerGUI.h">
       <Filter>Header Files\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="XmlReader.h">
       <Filter>Header Files\Util</Filter>
@@ -136,51 +109,60 @@
     <ClInclude Include="libs\rapidxml-1.13\rapidxml_print.hpp">
       <Filter>Source Files\libs\rapidxml-1.13</Filter>
     </ClInclude>
-    <ClInclude Include="CardContainersGUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PrivilegeBoardUI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundWidgetUI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="NobleHandler.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Action.h">
+      <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
-    <ClInclude Include="InformationMessageUI.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Bag.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawPile.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFactory.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHandler.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Gemmes.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="NobleHandler.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivilegeHandler.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\GameLogic</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CardContainersGUI.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="AI.h">
       <Filter>Header Files\GameLogic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawPile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Card.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PrivilegeHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gemmes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GemmesUI.cpp">
@@ -207,9 +189,6 @@
     <ClCompile Include="PlayerGemsUI.cpp">
       <Filter>Source Files\UI\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BoardCard.cpp">
       <Filter>Source Files\UI\Board</Filter>
     </ClCompile>
@@ -221,9 +200,6 @@
     </ClCompile>
     <ClCompile Include="PlayersUI.cpp">
       <Filter>Source Files\UI\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CardUI.cpp">
       <Filter>Source Files\UI</Filter>
@@ -246,11 +222,50 @@
     <ClCompile Include="PrivilegeUI.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Bag.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawPile.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFactory.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHandler.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Gemmes.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
     <ClCompile Include="NobleHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivilegeHandler.cpp">
+      <Filter>Source Files\GameLogic</Filter>
     </ClCompile>
     <ClCompile Include="InformationMessageUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuUI.cpp">
+      <Filter>Source Files\UI\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfirmationPushButtonUI.cpp">
+      <Filter>Source Files\UI\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="FinPartie.cpp">
+      <Filter>Source Files\UI\Menu</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp">
       <Filter>Source Files\GameLogic</Filter>
@@ -527,6 +542,9 @@
     <Image Include="res\privilege.png">
       <Filter>Resource Files\img</Filter>
     </Image>
+    <Image Include="res\Menu.png">
+      <Filter>Resource Files\img</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SplendorDuel.rc">
@@ -575,6 +593,18 @@
     </QtMoc>
     <QtMoc Include="PrivilegeUI.h">
       <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="MenuUI.h">
+      <Filter>Header Files\UI\Menu</Filter>
+    </QtMoc>
+    <QtMoc Include="ConfirmationPushButtonUI.h">
+      <Filter>Header Files\UI\Menu</Filter>
+    </QtMoc>
+    <QtMoc Include="InformationMessageUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="FinPartie.h">
+      <Filter>Header Files\UI\Menu</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GEMMES_H
+#define GEMMES_H
 
 #include <iostream>
 #include <qstring>
@@ -7,7 +8,7 @@ using namespace std;
 
 //Class enum pouvant representer toutes les couleurs des gemmes
 //ainsi que Vide = rien
-enum Gemmes
+enum EnumGemmes
 {
 	Vert = 0,
 	Rouge = 1,
@@ -26,6 +27,8 @@ enum Gemmes
 const unsigned int NB_GEMMES_PAIEMENTS = 6; 
 const unsigned int NB_GEMMES_PAS_VIDE = 7; 
 
-const QString gemmesToQstr(const Gemmes& g);
+const QString gemmesToQstr(const EnumGemmes g);
 
-ostream& operator<<(ostream& os, const Gemmes& gem);
+ostream& operator<<(ostream& os, const EnumGemmes gem);
+
+#endif

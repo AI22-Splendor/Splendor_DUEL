@@ -1,4 +1,6 @@
-#pragma once
+#ifndef GEMMESUI_H
+#define GEMMESUI_H
+
 #include "GemmesUI.h"
 #include <qwidget.h>
 #include "Gemmes.h"
@@ -37,12 +39,12 @@ public:
 	/// Modifie la gemmes affich� sur le plateau
 	/// </summary>
 	/// <param name="g">la gemme</param>
-	void setGemmes(const Gemmes& g);
+	void setGemmes(const EnumGemmes& g);
 
 	/// <summary>
 	/// retourne la gemmes contenue
 	/// </summary>
-	inline const Gemmes getGemmes()const { return this->gem; };
+	inline const EnumGemmes getGemmes()const { return this->gem; };
 
 	/// <summary>
 	/// change le nombre a afficher
@@ -68,10 +70,11 @@ private:
 
 	//savoir si elle est survoler
 	bool selected;
-	Gemmes gem;
+	EnumGemmes gem;
 	bool err;
 	int nbErr;
 
+	void wheelEvent(QWheelEvent* e);
 	void mousePressEvent(QMouseEvent* mouse);
 	void enterEvent(QEnterEvent* event);
 	void leaveEvent(QEvent* event);
@@ -81,3 +84,4 @@ private:
 	
 };
 
+#endif
