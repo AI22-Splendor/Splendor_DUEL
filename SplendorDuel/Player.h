@@ -16,22 +16,12 @@ public:
 	/// </summary>
 	/// <param name="name">Name of the player</param>
 	Player(string name);
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	Player(Player& p) = delete;
 
 	/// <summary>
 	/// Destroys a player
 	/// </summary>
-<<<<<<< HEAD
 	virtual ~Player();
->>>>>>> Stashed changes
-=======
-	~Player();
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
 	/// <summary>
 	/// Returns the name of the player

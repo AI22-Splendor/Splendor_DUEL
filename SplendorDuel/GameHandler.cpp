@@ -41,10 +41,6 @@ const Player& SingletonGameHandler::getWinner() {
 	throw new MyException("No player won yet");
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-void GameHandler::nextAction() {
-=======
 AI* SingletonGameHandler::getAI(){
 	if (isPlayer2AI()==true){
 		if (AI* ai = dynamic_cast<AI*>(player2)) {
@@ -58,10 +54,6 @@ AI* SingletonGameHandler::getAI(){
 	}
 
 void SingletonGameHandler::nextAction() {
->>>>>>> Stashed changes
-=======
-void SingletonGameHandler::nextAction() {
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	//si il a pas encore fait son action principale
 	if (mainActionIsDone == false)
 		return;
@@ -78,24 +70,10 @@ void SingletonGameHandler::nextAction() {
 	player1Joue = !player1Joue;
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-const Board GameHandler::remplirBoard() {
-	//TODO vérifier dans les règles
-	if (bag.getNbGemmes() != 0) {
-		board.remplirBoard(bag);
-=======
 const Board& SingletonGameHandler::remplirBoard() {
 	//TODO vï¿½rifier dans les rï¿½gles
 	if (bag->getNbGemmes() != 0) {
 		board->remplirBoard(*bag);
->>>>>>> Stashed changes
-=======
-const Board& SingletonGameHandler::remplirBoard() {
-	//TODO vérifier dans les règles
-	if (bag->getNbGemmes() != 0) {
-		board->remplirBoard(*bag);
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 		addOtherPlayerPrivilege();
 	}
 	return *board;
@@ -116,19 +94,9 @@ bool SingletonGameHandler::gemmesPick(const int *posTab){
 	EnumAction a = Rules::isPossibleTakeGems(*board, posTab, action, typeToPick);
 	if (a!=EnumAction::IMPOSSIBLE)
 	{
-<<<<<<< Updated upstream
-		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
-		// c'est donc la dernière action de son tour
-<<<<<<< HEAD
-		if (action.size() == 0 || (action.size() == 1 && action.contains(Action::REPLAY))) {
-=======
-		//Si il n'utilisa pas de privilï¿½ge et qu'il n'achï¿½te pas un perso, 
-		// c'est donc la derniï¿½re action de son tour
+		//Si il n'utilisa pas de privilÃ¨ge et qu'il n'achÃ¨te pas un perso, 
+		// c'est donc la derniÃ¨re action de son tour
 		if (action.size() == 0 || (action.size() == 1 && action.contains(EnumAction::REPLAY))) {
->>>>>>> Stashed changes
-=======
-		if (action.size() == 0 || (action.size() == 1 && action.contains(EnumAction::REPLAY))) {
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 			mainActionIsDone = true;
 		}
 		else {
@@ -230,46 +198,22 @@ int SingletonGameHandler::buyCard(Card* c, const int position) {
 	else {
 		return -1;
 	}
-	//je gï¿½re pas les actions pour l'instant
+	//je gÃ¨re pas les actions pour l'instant
 	mainActionIsDone = true;
 	displayedCards[c->getLevel()][position] = drawPiles[c->getLevel()]->piocher();
 	
 	//on ajoute tous les effets de la carte
 	addAction(c);
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	GameHandler::nextAction();
-	//si carte doit etre assigné
-	if (action.contains(Action::ASSIGN_CARD))
-=======
 	SingletonGameHandler::nextAction();
-	//si carte doit etre assignï¿½
+	//si carte doit etre assignÃ©
 	if (action.contains(EnumAction::ASSIGN_CARD))
->>>>>>> Stashed changes
-=======
-	SingletonGameHandler::nextAction();
-	//si carte doit etre assigné
-	if (action.contains(EnumAction::ASSIGN_CARD))
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 		return 0;
 	return 1;
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-Card* GameHandler::asignCard(Card* c) {
-	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
-	if (toAsign == nullptr || c->getDiscountType() == Gemmes::Vide || !action.contains(Action::ASSIGN_CARD))
-=======
 Card* SingletonGameHandler::assignCard(Card* c) {
-	//si la carte n'a pas de type, ou qu'il ne doit pas assignï¿½
+	//si la carte n'a pas de type, ou qu'il ne doit pas assignÃ©
 	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !action.contains(EnumAction::ASSIGN_CARD))
->>>>>>> Stashed changes
-=======
-Card* SingletonGameHandler::assignCard(Card* c) {
-	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
-	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !action.contains(EnumAction::ASSIGN_CARD))
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 		return nullptr;
 	toAssign->setDiscountType(c->getDiscountType());
 	Card* ret = toAssign;
@@ -346,21 +290,9 @@ void SingletonGameHandler::addAction(const Card* c) {
 				action.append(ac);
 			}
 		}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-		else if (ac == Action::PICK_GEMMES) {
-			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
-			if (board.hasGemOfType(c->getDiscountType())) {
-=======
 		else if (ac == EnumAction::PICK_GEMMES) {
-			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ï¿½a ne sert ï¿½ rien
+			//si le plateau n'a pas les gemmes de ce type on ajoute sinon Ã§a ne sert Ã  rien
 			if (board->hasGemOfType(c->getDiscountType())) {
->>>>>>> Stashed changes
-=======
-		else if (ac == EnumAction::PICK_GEMMES) {
-			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
-			if (board->hasGemOfType(c->getDiscountType())) {
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 				action.append(ac);
 				typeToPick = c->getDiscountType();
 			}

@@ -211,14 +211,6 @@ void BoardUI::resizeEvent(QResizeEvent* event) {
 	resize(minS, minS);
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-void BoardUI::clickGemmes(Gemmes g) {
-=======
-bool BoardUI::clickGemmes(EnumGemmes g) {
-	bool isWorked=false;
->>>>>>> Stashed changes
-=======
 void BoardUI::scroll(int nb){
 	nbGemmes += nb;
 	if (nbGemmes == 4)
@@ -230,25 +222,16 @@ void BoardUI::scroll(int nb){
 }
 
 
-void BoardUI::clickGemmes(EnumGemmes g) {
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
+bool BoardUI::clickGemmes(EnumGemmes g) {
+	bool isWorked=false;
 	int pturn;
 	if (SingletonGameHandler::getInstance().getInstance().isPlayer1Turn())
 		pturn = 0;
 	else {
 		pturn = 1;
 	}
-<<<<<<< Updated upstream
-	//si les règles sont ok
-<<<<<<< HEAD
-	if (GameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
-=======
-	//si les rï¿½gles sont ok
+	//si les rÃ¨gles sont ok
 	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {	
->>>>>>> Stashed changes
-=======
-	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
 				SplendorDuel::refreshPlayersGems(pturn);

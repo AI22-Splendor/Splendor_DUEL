@@ -38,11 +38,8 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-<<<<<<< Updated upstream
     <QtInstall>6.5.3_msvc2019_64</QtInstall>
-=======
     <QtInstall>6.5.3</QtInstall>
->>>>>>> Stashed changes
     <QtModules>core;gui;qml;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>

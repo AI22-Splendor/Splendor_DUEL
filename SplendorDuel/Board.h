@@ -42,21 +42,12 @@ public:
 	EnumGemmes const connaitreGemmes(const int pos)const;
 
 	/// <summary>
-	/// Verifie si une gemme d'un type sp�cifique est sur le plateau
+	/// Verifie si une gemme d'un type spécifique est sur le plateau
 	/// </summary>
 	/// <param name="gem">Type de la gemme a trouver</param>
-<<<<<<< Updated upstream
-	/// <return>True si une gemme du type est pr�sente, false sinon</return>
-<<<<<<< HEAD
-	bool hasGemOfType(Gemmes gem) const;
-=======
+	/// <return>True si une gemme du type est présente, false sinon</return>
 	/// <return>True si une gemme du type est pr�sente, false sinon</return>
 	bool hasGemOfType(EnumGemmes gem) const;
->>>>>>> Stashed changes
-=======
-	bool hasGemOfType(EnumGemmes gem) const;
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
-
 	class iterator {
 	public:
 		iterator(const Board& board) : board(board) {

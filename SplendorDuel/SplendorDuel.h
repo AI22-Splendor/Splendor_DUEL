@@ -9,17 +9,9 @@
 #include "PlayersUI.h"
 #include "PrivilegeBoardUI.h"
 #include "Player.h"
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 #include "AI.h"
 #include "InformationMessageUI.h"
 #include "BoardCard.h"
->>>>>>> Stashed changes
-=======
-#include "InformationMessageUI.h"
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
-
 /// <summary>
 /// Notre fenetre principale
 /// un singleton car on en auras qu'une seule durant tpute l'execution de notre programme
@@ -87,17 +79,8 @@ private:
     /// </summary>
     /// <param name="bag">le sac du futur gameHandler</param>
     /// <param name="board">le board avec lequel initialiser notre UI et le GH</param>
-<<<<<<< Updated upstream
-    /// <param name="drawPiles">les carte avec lesquels initialisé notre UI et le GH</param>
-<<<<<<< HEAD
-    SplendorDuel(Bag& bag, Board& board, DrawPile** drawPiles, Player* p1, Player* p2);
-=======
     /// <param name="drawPiles">les carte avec lesquels initialisï¿½ notre UI et le GH</param>
     SplendorDuel(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2);
->>>>>>> Stashed changes
-=======
-    SplendorDuel(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2);
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
     SplendorDuel(const SplendorDuel& s) = delete;
 
     void keyPressEvent(QKeyEvent* e);
@@ -112,12 +95,7 @@ private:
     PrivilegeBoardUI* privilege;
     InformationMessageUI* message;
     Ui::SplendorDuelClass ui;
-<<<<<<< HEAD
-    
     friend class AI;
-};
-=======
 };
 
 #endif
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39

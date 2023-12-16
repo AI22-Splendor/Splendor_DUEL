@@ -25,34 +25,19 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 	for (int i = 0; i < 3; i++) {
 		drawPiles[i]->melanger();
 	}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	if (p1Name.empty())
 		p1Name = "Player1";
 	if (p2Name.empty())
 		p2Name = "Player2";
 	Player* player1 = (new Player(p1Name));
 	Player* player2;
-<<<<<<< HEAD
 	AI* ai;
 
-=======
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	if(!IA)
 		player2 = (new Player(p2Name));
 	else {
-		//TODO ADD IA
-<<<<<<< HEAD
 		player2= (new AI());
 	}
->>>>>>> Stashed changes
-=======
-		player2 = (new Player("IA"));
-	}
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
 	Board* board = new Board;
 	board->remplirBoard(*bag);

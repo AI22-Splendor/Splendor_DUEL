@@ -20,17 +20,8 @@ public:
 	bool gameFinished();
 	const Player& getWinner();
 	void nextAction();
-	bool isPlayer1Turn();
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	bool suppPlayerGems(Gemmes g, int p);
-=======
-	
+	bool isPlayer1Turn();	
 	bool suppPlayerGems(EnumGemmes g, int p);
->>>>>>> Stashed changes
-=======
-	bool suppPlayerGems(EnumGemmes g, int p);
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 	bool reservCard(const Card* c, const int position);
 	int buyCard(Card* c,const int position);
 	Card* assignCard(Card* c);
@@ -60,20 +51,11 @@ public:
 	/// <summary>
 	/// Remplir le Board Avec le sac
 	/// </summary>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	const Board remplirBoard();
-=======
 	const Board& remplirBoard();
 
 	const bool isPlayer2AI(){return (player2->getName()=="IA");}
 
 	AI* getAI();
-	
->>>>>>> Stashed changes
-=======
-	const Board& remplirBoard();
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 private:
 	static SingletonGameHandler* instance;
 
@@ -118,19 +100,9 @@ private:
 	Player* player2;
 	EnumGemmes typeToPick;
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	friend class PrivilegeHandler;
-	friend class NobleHandler;
-=======
 	friend class SingletonPrivilegeHandler;
 	friend class SingletonNobleHandler;
 	friend class AI;
->>>>>>> Stashed changes
-=======
-	friend class SingletonPrivilegeHandler;
-	friend class SingletonNobleHandler;
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 };
 
 #endif

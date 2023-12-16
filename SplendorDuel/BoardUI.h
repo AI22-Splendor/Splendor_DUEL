@@ -50,15 +50,7 @@ public:
 	/// on les supprime visuelement et donne l'info a SplendorDuel de les ajout� au Joueur qui joue
 	/// </summary>
 	/// <param name="g"> la gemme clicker</param>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	void clickGemmes(Gemmes g);
-=======
-	bool clickGemmes(EnumGemmes g);
->>>>>>> Stashed changes
-=======
-	void clickGemmes(EnumGemmes g)override;
-
+	bool clickGemmes(EnumGemmes g)override;
 	/// <summary>
 	/// 
 	/// </summary>
@@ -67,8 +59,7 @@ public:
 	}
 
 	void scroll(int nb)override;
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
-	
+
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);

@@ -10,20 +10,11 @@
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
-<<<<<<< HEAD
-
 #include "BackgroundWidgetUI.h"
-<<<<<<< Updated upstream
-=======
 #include "NobleHandler.h"
-#include <iostream>
->>>>>>> Stashed changes
-=======
 #include "BoardCard.h"
 #include "FinPartie.h"
 #include "BackgroundWidgetUI.h"
-#include "NobleHandler.h"
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
 
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
@@ -52,16 +43,7 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     com->setLayout(hbox);
     hbox->setSpacing(0);
     hbox->setContentsMargins(0, 0, 0, 0);
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-    
-    
-    
     this->boardcards = new BoardCardUI(com);
-=======
-    
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
     QWidget* leftBoard = new QWidget(com);
     QVBoxLayout* vbox = new QVBoxLayout();
     vbox->setSpacing(0);
@@ -72,11 +54,6 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     vbox->addWidget(new PersonnageBoardUI(leftBoard));
     vbox->setStretch(0, 1);
     vbox->setStretch(1, 8);
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 837c85eb72fd14b5c5985edc33ba1f6b11654a39
-
     hbox->addWidget(leftBoard);
     hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
