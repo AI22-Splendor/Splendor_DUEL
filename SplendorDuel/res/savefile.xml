@@ -7,158 +7,44 @@
 	<typeToPick>7</typeToPick>
 	<player name="p1" nbCartesReservees="0">
 		<cards/>
-		<gems vert="1" rouge="0" bleu="3" noir="3" blanc="1" perle="0" or="0"/>
+		<gems vert="0" rouge="0" bleu="0" noir="0" blanc="0" perle="0" or="0"/>
 	</player>
 	<player name="p2" nbCartesReservees="0">
 		<cards/>
-		<gems vert="2" rouge="3" bleu="1" noir="0" blanc="1" perle="1" or="0"/>
+		<gems vert="0" rouge="0" bleu="0" noir="0" blanc="0" perle="0" or="0"/>
 	</player>
 	<bag tailleMax="25" vert="0" rouge="0" bleu="0" noir="0" blanc="0" perle="0" or="0"/>
 	<board>
-		<pos pos="0" gem="7"/>
-		<pos pos="1" gem="7"/>
-		<pos pos="2" gem="7"/>
-		<pos pos="3" gem="7"/>
-		<pos pos="4" gem="7"/>
-		<pos pos="5" gem="4"/>
-		<pos pos="6" gem="5"/>
-		<pos pos="7" gem="6"/>
-		<pos pos="8" gem="1"/>
-		<pos pos="9" gem="4"/>
-		<pos pos="10" gem="7"/>
-		<pos pos="11" gem="7"/>
-		<pos pos="12" gem="7"/>
-		<pos pos="13" gem="6"/>
-		<pos pos="14" gem="0"/>
-		<pos pos="15" gem="3"/>
-		<pos pos="16" gem="6"/>
-		<pos pos="17" gem="7"/>
-		<pos pos="18" gem="7"/>
-		<pos pos="19" gem="7"/>
-		<pos pos="20" gem="7"/>
-		<pos pos="21" gem="7"/>
-		<pos pos="22" gem="7"/>
-		<pos pos="23" gem="7"/>
-		<pos pos="24" gem="7"/>
+		<pos pos="0" gem="0"/>
+		<pos pos="1" gem="2"/>
+		<pos pos="2" gem="4"/>
+		<pos pos="3" gem="5"/>
+		<pos pos="4" gem="4"/>
+		<pos pos="5" gem="2"/>
+		<pos pos="6" gem="3"/>
+		<pos pos="7" gem="3"/>
+		<pos pos="8" gem="6"/>
+		<pos pos="9" gem="1"/>
+		<pos pos="10" gem="4"/>
+		<pos pos="11" gem="1"/>
+		<pos pos="12" gem="4"/>
+		<pos pos="13" gem="0"/>
+		<pos pos="14" gem="3"/>
+		<pos pos="15" gem="5"/>
+		<pos pos="16" gem="1"/>
+		<pos pos="17" gem="6"/>
+		<pos pos="18" gem="0"/>
+		<pos pos="19" gem="1"/>
+		<pos pos="20" gem="2"/>
+		<pos pos="21" gem="6"/>
+		<pos pos="22" gem="2"/>
+		<pos pos="23" gem="0"/>
+		<pos pos="24" gem="3"/>
 	</board>
 	<displayedCards>
 		<cardRow level="0">
-			<card image="./res/Bleu11.png" prestige="0" crowns="1" discount="1" discountType="2" level="0">
-				<cost vert="3" rouge="0" bleu="0" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Rouge9.png" prestige="0" crowns="0" discount="1" discountType="1" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="2" perle="1"/>
-				<effects>
-					<effect effect="1"/>
-				</effects>
-			</card>
-			<card image="./res/Vert3.png" prestige="0" crowns="1" discount="1" discountType="0" level="0">
-				<cost vert="0" rouge="3" bleu="0" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Bleu7.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
-				<cost vert="2" rouge="2" bleu="0" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="1"/>
-				</effects>
-			</card>
-			<card image="./res/Vert5.png" prestige="0" crowns="0" discount="1" discountType="0" level="0">
-				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="2" perle="0"/>
-				<effects>
-					<effect effect="3"/>
-				</effects>
-			</card>
-		</cardRow>
-		<cardRow level="1">
-			<card image="./res/Rouge6.png" prestige="2" crowns="0" discount="1" discountType="1" level="1">
-				<cost vert="2" rouge="4" bleu="0" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="2"/>
-				</effects>
-			</card>
-			<card image="./res/Bleu4.png" prestige="2" crowns="0" discount="1" discountType="2" level="1">
-				<cost vert="0" rouge="0" bleu="4" noir="0" blanc="2" perle="1"/>
-				<effects>
-					<effect effect="2"/>
-				</effects>
-			</card>
-			<card image="./res/Bleu3.png" prestige="1" crowns="0" discount="1" discountType="2" level="1">
-				<cost vert="4" rouge="0" bleu="0" noir="3" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="4"/>
-				</effects>
-			</card>
-			<card image="./res/Rouge11.png" prestige="1" crowns="0" discount="2" discountType="1" level="1">
-				<cost vert="0" rouge="0" bleu="0" noir="5" blanc="2" perle="0"/>
-				<effects/>
-			</card>
-		</cardRow>
-		<cardRow level="2">
-			<card image="./res/Noir7.png" prestige="3" crowns="2" discount="1" discountType="3" level="2">
-				<cost vert="5" rouge="3" bleu="0" noir="0" blanc="3" perle="1"/>
-				<effects/>
-			</card>
-			<card image="./res/Noir2.png" prestige="4" crowns="0" discount="1" discountType="3" level="2">
-				<cost vert="0" rouge="2" bleu="0" noir="6" blanc="2" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Blanc5.png" prestige="3" crowns="2" discount="1" discountType="4" level="2">
-				<cost vert="0" rouge="5" bleu="3" noir="3" blanc="0" perle="1"/>
-				<effects/>
-			</card>
-		</cardRow>
-	</displayedCards>
-	<drawPiles>
-		<drawPile>
-			<card image="./res/Vert4.png" prestige="0" crowns="0" discount="1" discountType="0" level="0">
-				<cost vert="0" rouge="1" bleu="1" noir="1" blanc="1" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Bleu6.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="2" perle="0"/>
-				<effects>
-					<effect effect="3"/>
-				</effects>
-			</card>
-			<card image="./res/NoColor1.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
-				<cost vert="2" rouge="0" bleu="0" noir="1" blanc="2" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/Bleu5.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
-				<cost vert="1" rouge="1" bleu="0" noir="1" blanc="1" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Noir1.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
-				<cost vert="2" rouge="2" bleu="0" noir="0" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="3"/>
-				</effects>
-			</card>
-			<card image="./res/Blanc1.png" prestige="1" crowns="0" discount="1" discountType="4" level="0">
-				<cost vert="2" rouge="3" bleu="0" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Blanc7.png" prestige="0" crowns="1" discount="1" discountType="4" level="0">
-				<cost vert="0" rouge="0" bleu="3" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Noir8.png" prestige="0" crowns="1" discount="1" discountType="3" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="0" blanc="3" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/NoColor10.png" prestige="3" crowns="0" discount="0" discountType="7" level="0">
-				<cost vert="0" rouge="4" bleu="0" noir="0" blanc="0" perle="1"/>
-				<effects/>
-			</card>
-			<card image="./res/Vert8.png" prestige="1" crowns="0" discount="1" discountType="0" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="3" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Rouge3.png" prestige="1" crowns="0" discount="1" discountType="1" level="0">
-				<cost vert="0" rouge="0" bleu="3" noir="0" blanc="2" perle="0"/>
+			<card image="./res/Noir3.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
+				<cost vert="1" rouge="1" bleu="1" noir="0" blanc="1" perle="0"/>
 				<effects/>
 			</card>
 			<card image="./res/Vert6.png" prestige="0" crowns="0" discount="1" discountType="0" level="0">
@@ -167,124 +53,32 @@
 					<effect effect="1"/>
 				</effects>
 			</card>
-			<card image="./res/Rouge1.png" prestige="0" crowns="1" discount="1" discountType="1" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="3" blanc="0" perle="0"/>
+			<card image="./res/Blanc7.png" prestige="0" crowns="1" discount="1" discountType="4" level="0">
+				<cost vert="0" rouge="0" bleu="3" noir="0" blanc="0" perle="0"/>
 				<effects/>
-			</card>
-			<card image="./res/Blanc8.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
-				<cost vert="1" rouge="1" bleu="1" noir="1" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Blanc9.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
-				<cost vert="0" rouge="2" bleu="0" noir="2" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="3"/>
-				</effects>
-			</card>
-			<card image="./res/Bleu2.png" prestige="1" crowns="0" discount="1" discountType="2" level="0">
-				<cost vert="0" rouge="2" bleu="0" noir="3" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Rouge8.png" prestige="0" crowns="0" discount="1" discountType="1" level="0">
-				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="3"/>
-				</effects>
 			</card>
 			<card image="./res/Rouge2.png" prestige="0" crowns="0" discount="1" discountType="1" level="0">
 				<cost vert="1" rouge="0" bleu="1" noir="1" blanc="1" perle="0"/>
 				<effects/>
 			</card>
-			<card image="./res/Noir4.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
-				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="2" perle="1"/>
-				<effects>
-					<effect effect="1"/>
-				</effects>
-			</card>
-			<card image="./res/Noir9.png" prestige="1" crowns="0" discount="1" discountType="3" level="0">
-				<cost vert="3" rouge="0" bleu="2" noir="0" blanc="0" perle="0"/>
+			<card image="./res/Rouge3.png" prestige="1" crowns="0" discount="1" discountType="1" level="0">
+				<cost vert="0" rouge="0" bleu="3" noir="0" blanc="2" perle="0"/>
 				<effects/>
 			</card>
-			<card image="./res/NoColor4.png" prestige="0" crowns="1" discount="1" discountType="7" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="0" blanc="4" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/Noir3.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
-				<cost vert="1" rouge="1" bleu="1" noir="0" blanc="1" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/NoColor5.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
-				<cost vert="0" rouge="2" bleu="2" noir="1" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/NoColor6.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
-				<cost vert="0" rouge="0" bleu="0" noir="4" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/Blanc10.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
-				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="1"/>
-				</effects>
-			</card>
-		</drawPile>
-		<drawPile>
-			<card image="./res/Blanc11.png" prestige="1" crowns="0" discount="2" discountType="4" level="1">
-				<cost vert="2" rouge="0" bleu="5" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Vert9.png" prestige="2" crowns="0" discount="1" discountType="0" level="1">
-				<cost vert="4" rouge="0" bleu="2" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="2"/>
-				</effects>
-			</card>
-			<card image="./res/Vert10.png" prestige="2" crowns="1" discount="1" discountType="0" level="1">
-				<cost vert="0" rouge="0" bleu="2" noir="2" blanc="2" perle="1"/>
-				<effects/>
-			</card>
-			<card image="./res/NoColor9.png" prestige="0" crowns="2" discount="1" discountType="7" level="1">
-				<cost vert="6" rouge="0" bleu="0" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/Noir10.png" prestige="1" crowns="0" discount="1" discountType="3" level="1">
-				<cost vert="3" rouge="0" bleu="0" noir="0" blanc="4" perle="0"/>
-				<effects>
-					<effect effect="4"/>
-				</effects>
-			</card>
-			<card image="./res/Blanc2.png" prestige="1" crowns="0" discount="1" discountType="4" level="1">
-				<cost vert="0" rouge="3" bleu="4" noir="0" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="4"/>
-				</effects>
-			</card>
+		</cardRow>
+		<cardRow level="1">
 			<card image="./res/Bleu1.png" prestige="1" crowns="0" discount="2" discountType="2" level="1">
 				<cost vert="5" rouge="2" bleu="0" noir="0" blanc="0" perle="0"/>
 				<effects/>
 			</card>
-			<card image="./res/Noir5.png" prestige="1" crowns="0" discount="2" discountType="3" level="1">
-				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="5" perle="0"/>
-				<effects/>
+			<card image="./res/Bleu4.png" prestige="2" crowns="0" discount="1" discountType="2" level="1">
+				<cost vert="0" rouge="0" bleu="4" noir="0" blanc="2" perle="1"/>
+				<effects>
+					<effect effect="2"/>
+				</effects>
 			</card>
-			<card image="./res/Blanc4.png" prestige="2" crowns="1" discount="1" discountType="4" level="1">
-				<cost vert="2" rouge="2" bleu="0" noir="2" blanc="0" perle="1"/>
-				<effects/>
-			</card>
-			<card image="./res/Vert7.png" prestige="1" crowns="0" discount="2" discountType="0" level="1">
-				<cost vert="0" rouge="5" bleu="0" noir="2" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/NoColor2.png" prestige="0" crowns="2" discount="1" discountType="7" level="1">
-				<cost vert="0" rouge="0" bleu="6" noir="0" blanc="0" perle="1"/>
+			<card image="./res/NoColor9.png" prestige="0" crowns="2" discount="1" discountType="7" level="1">
+				<cost vert="6" rouge="0" bleu="0" noir="0" blanc="0" perle="1"/>
 				<effects>
 					<effect effect="5"/>
 				</effects>
@@ -295,8 +89,186 @@
 					<effect effect="4"/>
 				</effects>
 			</card>
-			<card image="./res/NoColor12.png" prestige="5" crowns="0" discount="0" discountType="7" level="1">
-				<cost vert="0" rouge="0" bleu="6" noir="0" blanc="0" perle="1"/>
+		</cardRow>
+		<cardRow level="2">
+			<card image="./res/Blanc5.png" prestige="3" crowns="2" discount="1" discountType="4" level="2">
+				<cost vert="0" rouge="5" bleu="3" noir="3" blanc="0" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/NoColor3.png" prestige="0" crowns="3" discount="1" discountType="7" level="2">
+				<cost vert="0" rouge="0" bleu="0" noir="8" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+			<card image="./res/Vert11.png" prestige="3" crowns="2" discount="1" discountType="0" level="2">
+				<cost vert="0" rouge="3" bleu="3" noir="0" blanc="5" perle="1"/>
+				<effects/>
+			</card>
+		</cardRow>
+	</displayedCards>
+	<drawPiles>
+		<drawPile taille="30">
+			<card image="./res/Bleu5.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
+				<cost vert="1" rouge="1" bleu="0" noir="1" blanc="1" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Blanc9.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
+				<cost vert="0" rouge="2" bleu="0" noir="2" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="3"/>
+				</effects>
+			</card>
+			<card image="./res/Noir8.png" prestige="0" crowns="1" discount="1" discountType="3" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="0" blanc="3" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Rouge9.png" prestige="0" crowns="0" discount="1" discountType="1" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="2" perle="1"/>
+				<effects>
+					<effect effect="1"/>
+				</effects>
+			</card>
+			<card image="./res/NoColor10.png" prestige="3" crowns="0" discount="0" discountType="7" level="0">
+				<cost vert="0" rouge="4" bleu="0" noir="0" blanc="0" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/Blanc1.png" prestige="1" crowns="0" discount="1" discountType="4" level="0">
+				<cost vert="2" rouge="3" bleu="0" noir="0" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Noir1.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
+				<cost vert="2" rouge="2" bleu="0" noir="0" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="3"/>
+				</effects>
+			</card>
+			<card image="./res/Vert3.png" prestige="0" crowns="1" discount="1" discountType="0" level="0">
+				<cost vert="0" rouge="3" bleu="0" noir="0" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Rouge1.png" prestige="0" crowns="1" discount="1" discountType="1" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="3" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Noir4.png" prestige="0" crowns="0" discount="1" discountType="3" level="0">
+				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="2" perle="1"/>
+				<effects>
+					<effect effect="1"/>
+				</effects>
+			</card>
+			<card image="./res/Rouge8.png" prestige="0" crowns="0" discount="1" discountType="1" level="0">
+				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="3"/>
+				</effects>
+			</card>
+			<card image="./res/Bleu7.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
+				<cost vert="2" rouge="2" bleu="0" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="1"/>
+				</effects>
+			</card>
+			<card image="./res/Vert4.png" prestige="0" crowns="0" discount="1" discountType="0" level="0">
+				<cost vert="0" rouge="1" bleu="1" noir="1" blanc="1" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/NoColor4.png" prestige="0" crowns="1" discount="1" discountType="7" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="0" blanc="4" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+			<card image="./res/NoColor6.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="4" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+			<card image="./res/Bleu11.png" prestige="0" crowns="1" discount="1" discountType="2" level="0">
+				<cost vert="3" rouge="0" bleu="0" noir="0" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Bleu6.png" prestige="0" crowns="0" discount="1" discountType="2" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="2" perle="0"/>
+				<effects>
+					<effect effect="3"/>
+				</effects>
+			</card>
+			<card image="./res/NoColor5.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
+				<cost vert="0" rouge="2" bleu="2" noir="1" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+			<card image="./res/Blanc10.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
+				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="1"/>
+				</effects>
+			</card>
+			<card image="./res/Bleu2.png" prestige="1" crowns="0" discount="1" discountType="2" level="0">
+				<cost vert="0" rouge="2" bleu="0" noir="3" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Blanc8.png" prestige="0" crowns="0" discount="1" discountType="4" level="0">
+				<cost vert="1" rouge="1" bleu="1" noir="1" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Noir9.png" prestige="1" crowns="0" discount="1" discountType="3" level="0">
+				<cost vert="3" rouge="0" bleu="2" noir="0" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Vert5.png" prestige="0" crowns="0" discount="1" discountType="0" level="0">
+				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="2" perle="0"/>
+				<effects>
+					<effect effect="3"/>
+				</effects>
+			</card>
+			<card image="./res/Vert8.png" prestige="1" crowns="0" discount="1" discountType="0" level="0">
+				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="3" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/NoColor1.png" prestige="1" crowns="0" discount="1" discountType="7" level="0">
+				<cost vert="2" rouge="0" bleu="0" noir="1" blanc="2" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+		</drawPile>
+		<drawPile taille="24">
+			<card image="./res/Blanc2.png" prestige="1" crowns="0" discount="1" discountType="4" level="1">
+				<cost vert="0" rouge="3" bleu="4" noir="0" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="4"/>
+				</effects>
+			</card>
+			<card image="./res/Blanc11.png" prestige="1" crowns="0" discount="2" discountType="4" level="1">
+				<cost vert="2" rouge="0" bleu="5" noir="0" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Vert7.png" prestige="1" crowns="0" discount="2" discountType="0" level="1">
+				<cost vert="0" rouge="5" bleu="0" noir="2" blanc="0" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Noir10.png" prestige="1" crowns="0" discount="1" discountType="3" level="1">
+				<cost vert="3" rouge="0" bleu="0" noir="0" blanc="4" perle="0"/>
+				<effects>
+					<effect effect="4"/>
+				</effects>
+			</card>
+			<card image="./res/Noir11.png" prestige="2" crowns="1" discount="1" discountType="3" level="1">
+				<cost vert="2" rouge="2" bleu="2" noir="0" blanc="0" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/Bleu3.png" prestige="1" crowns="0" discount="1" discountType="2" level="1">
+				<cost vert="4" rouge="0" bleu="0" noir="3" blanc="0" perle="0"/>
+				<effects>
+					<effect effect="4"/>
+				</effects>
+			</card>
+			<card image="./res/Rouge5.png" prestige="2" crowns="1" discount="1" discountType="1" level="1">
+				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="2" perle="1"/>
 				<effects/>
 			</card>
 			<card image="./res/Bleu8.png" prestige="2" crowns="1" discount="1" discountType="2" level="1">
@@ -309,8 +281,36 @@
 					<effect effect="2"/>
 				</effects>
 			</card>
-			<card image="./res/Noir11.png" prestige="2" crowns="1" discount="1" discountType="3" level="1">
-				<cost vert="2" rouge="2" bleu="2" noir="0" blanc="0" perle="1"/>
+			<card image="./res/NoColor12.png" prestige="5" crowns="0" discount="0" discountType="7" level="1">
+				<cost vert="0" rouge="0" bleu="6" noir="0" blanc="0" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/NoColor7.png" prestige="2" crowns="0" discount="1" discountType="7" level="1">
+				<cost vert="6" rouge="0" bleu="0" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
+			</card>
+			<card image="./res/Blanc4.png" prestige="2" crowns="1" discount="1" discountType="4" level="1">
+				<cost vert="2" rouge="2" bleu="0" noir="2" blanc="0" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/Rouge11.png" prestige="1" crowns="0" discount="2" discountType="1" level="1">
+				<cost vert="0" rouge="0" bleu="0" noir="5" blanc="2" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Rouge6.png" prestige="2" crowns="0" discount="1" discountType="1" level="1">
+				<cost vert="2" rouge="4" bleu="0" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="2"/>
+				</effects>
+			</card>
+			<card image="./res/Noir5.png" prestige="1" crowns="0" discount="2" discountType="3" level="1">
+				<cost vert="0" rouge="0" bleu="2" noir="0" blanc="5" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Vert10.png" prestige="2" crowns="1" discount="1" discountType="0" level="1">
+				<cost vert="0" rouge="0" bleu="2" noir="2" blanc="2" perle="1"/>
 				<effects/>
 			</card>
 			<card image="./res/Rouge4.png" prestige="1" crowns="0" discount="1" discountType="1" level="1">
@@ -319,9 +319,17 @@
 					<effect effect="4"/>
 				</effects>
 			</card>
-			<card image="./res/Rouge5.png" prestige="2" crowns="1" discount="1" discountType="1" level="1">
-				<cost vert="2" rouge="0" bleu="2" noir="0" blanc="2" perle="1"/>
-				<effects/>
+			<card image="./res/Vert9.png" prestige="2" crowns="0" discount="1" discountType="0" level="1">
+				<cost vert="4" rouge="0" bleu="2" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="2"/>
+				</effects>
+			</card>
+			<card image="./res/NoColor2.png" prestige="0" crowns="2" discount="1" discountType="7" level="1">
+				<cost vert="0" rouge="0" bleu="6" noir="0" blanc="0" perle="1"/>
+				<effects>
+					<effect effect="5"/>
+				</effects>
 			</card>
 			<card image="./res/Blanc3.png" prestige="2" crowns="0" discount="1" discountType="4" level="1">
 				<cost vert="0" rouge="0" bleu="0" noir="2" blanc="4" perle="1"/>
@@ -329,16 +337,26 @@
 					<effect effect="2"/>
 				</effects>
 			</card>
-			<card image="./res/NoColor7.png" prestige="2" crowns="0" discount="1" discountType="7" level="1">
-				<cost vert="6" rouge="0" bleu="0" noir="0" blanc="0" perle="1"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
 		</drawPile>
-		<drawPile>
-			<card image="./res/Vert11.png" prestige="3" crowns="2" discount="1" discountType="0" level="2">
-				<cost vert="0" rouge="3" bleu="3" noir="0" blanc="5" perle="1"/>
+		<drawPile taille="13">
+			<card image="./res/Noir7.png" prestige="3" crowns="2" discount="1" discountType="3" level="2">
+				<cost vert="5" rouge="3" bleu="0" noir="0" blanc="3" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/Noir2.png" prestige="4" crowns="0" discount="1" discountType="3" level="2">
+				<cost vert="0" rouge="2" bleu="0" noir="6" blanc="2" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Bleu9.png" prestige="3" crowns="2" discount="1" discountType="2" level="2">
+				<cost vert="3" rouge="0" bleu="0" noir="5" blanc="3" perle="1"/>
+				<effects/>
+			</card>
+			<card image="./res/Blanc6.png" prestige="4" crowns="0" discount="1" discountType="4" level="2">
+				<cost vert="0" rouge="0" bleu="2" noir="2" blanc="6" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Rouge10.png" prestige="4" crowns="0" discount="1" discountType="1" level="2">
+				<cost vert="2" rouge="6" bleu="0" noir="2" blanc="0" perle="0"/>
 				<effects/>
 			</card>
 			<card image="./res/NoColor8.png" prestige="3" crowns="0" discount="1" discountType="7" level="2">
@@ -348,38 +366,20 @@
 					<effect effect="1"/>
 				</effects>
 			</card>
-			<card image="./res/Blanc6.png" prestige="4" crowns="0" discount="1" discountType="4" level="2">
-				<cost vert="0" rouge="0" bleu="2" noir="2" blanc="6" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/NoColor3.png" prestige="0" crowns="3" discount="1" discountType="7" level="2">
-				<cost vert="0" rouge="0" bleu="0" noir="8" blanc="0" perle="0"/>
-				<effects>
-					<effect effect="5"/>
-				</effects>
-			</card>
-			<card image="./res/Vert2.png" prestige="4" crowns="0" discount="1" discountType="0" level="2">
-				<cost vert="6" rouge="2" bleu="2" noir="0" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Rouge10.png" prestige="4" crowns="0" discount="1" discountType="1" level="2">
-				<cost vert="2" rouge="6" bleu="0" noir="2" blanc="0" perle="0"/>
-				<effects/>
-			</card>
-			<card image="./res/Bleu9.png" prestige="3" crowns="2" discount="1" discountType="2" level="2">
-				<cost vert="3" rouge="0" bleu="0" noir="5" blanc="3" perle="1"/>
+			<card image="./res/Rouge7.png" prestige="3" crowns="2" discount="1" discountType="1" level="2">
+				<cost vert="3" rouge="0" bleu="5" noir="3" blanc="0" perle="1"/>
 				<effects/>
 			</card>
 			<card image="./res/NoColor11.png" prestige="6" crowns="0" discount="0" discountType="7" level="2">
 				<cost vert="0" rouge="0" bleu="0" noir="0" blanc="8" perle="0"/>
 				<effects/>
 			</card>
-			<card image="./res/Rouge7.png" prestige="3" crowns="2" discount="1" discountType="1" level="2">
-				<cost vert="3" rouge="0" bleu="5" noir="3" blanc="0" perle="1"/>
-				<effects/>
-			</card>
 			<card image="./res/Bleu10.png" prestige="4" crowns="0" discount="1" discountType="2" level="2">
 				<cost vert="2" rouge="0" bleu="6" noir="0" blanc="2" perle="0"/>
+				<effects/>
+			</card>
+			<card image="./res/Vert2.png" prestige="4" crowns="0" discount="1" discountType="0" level="2">
+				<cost vert="6" rouge="2" bleu="2" noir="0" blanc="0" perle="0"/>
 				<effects/>
 			</card>
 		</drawPile>
