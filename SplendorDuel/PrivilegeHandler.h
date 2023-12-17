@@ -32,6 +32,8 @@ private:
 	static SingletonPrivilegeHandler* singleton;
 
 	EnumPrivilegePosition emplacementsPrivilege[3];
+
+	friend class XmlWriter;
 };
 
 #endif

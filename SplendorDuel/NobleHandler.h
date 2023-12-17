@@ -44,6 +44,8 @@ private:
 
 	vector<Card*> noblesCards;
 	vector<EnumNoblePosition> noblePosition;
+
+	friend class XmlWriter;
 };
 
 #endif

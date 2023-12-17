@@ -55,6 +55,10 @@ void XmlWriter::createSaveFile(const string filename) {
 
 	data->append_node(saveDrawPiles(xmldoc, game.drawPiles));
 
+	data->append_node(savePrivileges(xmldoc));
+
+	data->append_node(saveNobles(xmldoc));
+
 	xmldoc.append_node(data);
 
 	ofstream file;
@@ -175,4 +179,28 @@ xml_node<>* XmlWriter::saveDrawPiles(xml_document<>& xmldoc, DrawPile** drawPile
 	}
 
 	return drawPilesNode;
+}
+
+xml_node<>* XmlWriter::savePrivileges(xml_document<>& xmldoc) {
+	xml_node<>* privilegesNode = xmldoc.allocate_node(node_element, "privileges");
+
+	for (int i = 0; i < 3; i++) {
+		xml_node<>* privilegeNode = xmldoc.allocate_node(node_element, "privilege", 
+			int2char(xmldoc, SingletonPrivilegeHandler::getInstance()->emplacementsPrivilege[i]));
+		privilegesNode->append_node(privilegeNode);
+	}
+
+	return privilegesNode;
+}
+
+xml_node<>* XmlWriter::saveNobles(xml_document<>& xmldoc) {
+	xml_node<>* noblesNode = xmldoc.allocate_node(node_element, "nobles");
+
+	for (int i = 0; i < 4; i++) {
+		xml_node<>* nobleNode = xmldoc.allocate_node(node_element, "noble",
+			int2char(xmldoc, SingletonNobleHandler::getInstance()->noblePosition[i]));
+		noblesNode->append_node(nobleNode);
+	}
+
+	return noblesNode;
 }

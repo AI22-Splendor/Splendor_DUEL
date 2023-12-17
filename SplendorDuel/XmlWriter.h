@@ -2,6 +2,8 @@
 #define XMLWRITER_H
 
 #include "GameHandler.h"
+#include "PrivilegeHandler.h"
+#include "NobleHandler.h"
 
 #include "./libs/rapidxml-1.13/rapidxml.hpp"
 #include "./libs/rapidxml-1.13/rapidxml_utils.hpp"
@@ -24,6 +26,10 @@ private:
 	static xml_node<>* saveBoard(xml_document<>& xmldoc, const Board& board);
 	static xml_node<>* saveDisplayedCards(xml_document<>& xmldoc, const vector<vector<Card*>>& displayedCards);
 	static xml_node<>* saveDrawPiles(xml_document<>& xmldoc, DrawPile** drawPiles);
+
+	static xml_node<>* savePrivileges(xml_document<>& xmldoc);
+	
+	static xml_node<>* saveNobles(xml_document<>& xmldoc);
 };
 
 #endif

@@ -44,6 +44,8 @@ Card* readCard(xml_node<>* card_node) {
 	card->setCost(EnumGemmes::Blanc, cost);
 	sscanf(cost_node->first_attribute("perle")->value(), "%u", &cost);
 	card->setCost(EnumGemmes::Perle, cost);
+
+	return card;
 }
 
 list<Card*> XmlReader::getCardsFromXml() {
