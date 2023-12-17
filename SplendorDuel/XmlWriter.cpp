@@ -11,7 +11,7 @@ char* XmlWriter::bool2char(xml_document<>& xmldoc, const bool value) {
 	return xmldoc.allocate_string(tmpval);
 }
 
-void XmlWriter::createSaveFile() {
+void XmlWriter::createSaveFile(const string filename) {
 
 	xml_document<> xmldoc;
 
@@ -58,7 +58,7 @@ void XmlWriter::createSaveFile() {
 	xmldoc.append_node(data);
 
 	ofstream file;
-	file.open("./res/savefile.xml");
+	file.open(filename);
 	file.clear();
 
 	file << xmldoc;

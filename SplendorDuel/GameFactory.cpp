@@ -1,6 +1,19 @@
 #include "GameFactory.h"
 
 SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string p2Name) {
+	string filename = "./res/savefile.xml";
+	
+	// Check if savefile exists
+	struct stat buffer;
+	if (stat(filename.c_str(), &buffer) == 0) {
+		return buildNewSplendorFromSavefile(filename);
+	}
+	else {
+		return buildNewSplendorFromScratch(IA, p1Name, p2Name);
+	}
+}
+
+SplendorDuel& GameFactory::buildNewSplendorFromScratch(const bool IA, string p1Name, string p2Name) {
 	Bag* bag = new Bag(25);
 	for (int i = 0; i < 4; i++) {
 		bag->addGemmes(EnumGemmes::Bleu);
@@ -25,16 +38,12 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 	for (int i = 0; i < 3; i++) {
 		drawPiles[i]->melanger();
 	}
-	if (p1Name.empty())
-		p1Name = "Player1";
-	if (p2Name.empty())
-		p2Name = "Player2";
+
 	Player* player1 = (new Player(p1Name));
 	Player* player2;
-	if(!IA)
+	if (!IA)
 		player2 = (new Player(p2Name));
 	else {
-		//TODO ADD IA
 		player2 = (new Player("IA"));
 	}
 
@@ -43,4 +52,9 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 
 	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
 	return SplendorDuel::getInstance();
+}
+
+
+SplendorDuel& GameFactory::buildNewSplendorFromSavefile(const string filename) {
+	return buildNewSplendorFromScratch(false, "p1", "p2");
 }

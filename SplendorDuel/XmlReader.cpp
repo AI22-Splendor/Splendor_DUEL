@@ -5,6 +5,47 @@ using namespace rapidxml;
 
 string XmlReader::language = "fr";
 
+Card* readCard(xml_node<>* card_node) {
+	string imageSrc = card_node->first_attribute("image")->value();
+	unsigned int prestige;
+	sscanf(card_node->first_attribute("prestige")->value(), "%u", &prestige);
+	unsigned int bonus;
+	sscanf(card_node->first_attribute("discountType")->value(), "%u", &bonus);
+	unsigned int nbBonus;
+	sscanf(card_node->first_attribute("discount")->value(), "%u", &nbBonus);
+	unsigned int crowns;
+	sscanf(card_node->first_attribute("crowns")->value(), "%u", &crowns);
+	unsigned int level;
+	sscanf(card_node->first_attribute("level")->value(), "%u", &level);
+
+	QList<EnumAction> effect{};
+	for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
+		unsigned int action;
+		sscanf(effect_node->first_attribute("effect")->value(), "%u", &action);
+		if (action > 0) {
+			effect.append(static_cast<EnumAction>(action));
+		}
+	}
+
+	Card* card = new Card(level, prestige, static_cast<EnumGemmes>(bonus), nbBonus, crowns, imageSrc, effect);
+
+	xml_node<>* cost_node = card_node->first_node("cost");
+
+	unsigned int cost;
+	sscanf(cost_node->first_attribute("vert")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Vert, cost);
+	sscanf(cost_node->first_attribute("rouge")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Rouge, cost);
+	sscanf(cost_node->first_attribute("bleu")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Bleu, cost);
+	sscanf(cost_node->first_attribute("noir")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Noir, cost);
+	sscanf(cost_node->first_attribute("blanc")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Blanc, cost);
+	sscanf(cost_node->first_attribute("perle")->value(), "%u", &cost);
+	card->setCost(EnumGemmes::Perle, cost);
+}
+
 list<Card*> XmlReader::getCardsFromXml() {
 	list<Card*> cards;
 
@@ -17,47 +58,8 @@ list<Card*> XmlReader::getCardsFromXml() {
 	int cpt = 0;
 	// Iterate over the brewerys
 	for (xml_node<>* card_node = root_node->first_node("card"); card_node; card_node = card_node->next_sibling()) {
-		
-		string imageSrc = card_node->first_node("image")->value();
-		unsigned int prestige;
-		sscanf(card_node->first_node("prestige")->value(), "%u", &prestige);
-		unsigned int bonus;
-		sscanf(card_node->first_node("discountType")->value(), "%u", &bonus);
-		unsigned int nbBonus;
-		sscanf(card_node->first_node("discount")->value(), "%u", &nbBonus);
-		unsigned int crowns;
-		sscanf(card_node->first_node("crowns")->value(), "%u", &crowns);
-		unsigned int level;
-		sscanf(card_node->first_node("level")->value(), "%u", &level);
 
-		QList<EnumAction> effect{};
-		for (xml_node<>* effect_node = card_node->first_node("effects")->first_node("effect"); effect_node; effect_node = effect_node->next_sibling()) {
-			unsigned int action;
-			sscanf(effect_node->value(), "%u", &action);
-			if (action > 0) {
-				effect.append(static_cast<EnumAction>(action));
-			}
-		}
-
-		Card* card = new Card(level, prestige, static_cast<EnumGemmes>(bonus), nbBonus, crowns, imageSrc, effect);
-
-		xml_node<>* cost_node = card_node->first_node("cost");
-
-		unsigned int cost;
-		sscanf(cost_node->first_node("vert")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Vert, cost);
-		sscanf(cost_node->first_node("rouge")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Rouge, cost);
-		sscanf(cost_node->first_node("bleu")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Bleu, cost);
-		sscanf(cost_node->first_node("noir")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Noir, cost);
-		sscanf(cost_node->first_node("blanc")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Blanc, cost);
-		sscanf(cost_node->first_node("perle")->value(), "%u", &cost);
-		card->setCost(EnumGemmes::Perle, cost);
-
-		cards.push_back(card);
+		cards.push_back(readCard(card_node));
 		cpt++;
 	}
 

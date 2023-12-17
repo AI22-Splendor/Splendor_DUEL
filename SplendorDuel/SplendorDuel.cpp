@@ -142,5 +142,11 @@ void SplendorDuel::refreshMessage() {
 }
 
 void SplendorDuel::closeEvent(QCloseEvent* event) {
-    XmlWriter::createSaveFile();
+    string savefilename = "./res/savefile.xml";
+    if (!SingletonGameHandler::getInstance().gameFinished()) {
+        XmlWriter::createSaveFile(savefilename);
+    }
+    else {
+        remove(savefilename.c_str());
+    }
 }

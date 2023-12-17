@@ -12,7 +12,7 @@ using namespace std;
 
 class XmlWriter {
 public:
-	static void createSaveFile();
+	static void createSaveFile(const string filename);
 
 private:
 	static char* int2char(xml_document<>& xmldoc, const int value);
