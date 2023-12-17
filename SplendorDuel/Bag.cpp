@@ -11,7 +11,7 @@ using namespace std;
 Bag::Bag(const int n)
 {
 	this->bag = new EnumGemmes[n];
-	this->taille = n;
+	this->tailleMax = n;
 	for (int i = 0; i < n; i++)
 	{
 		this->bag[i] = EnumGemmes::Vide;
@@ -34,7 +34,7 @@ int Bag::getNbGemmes() const{
 //return void
 //throw Exception si le sac est deja rempli
 void Bag::addGemmes(const EnumGemmes g, int nbGemmes) {
-	if ((this->getNbGemmes() + nbGemmes) > this->taille) {
+	if ((this->getNbGemmes() + nbGemmes) > this->tailleMax) {
 		//On creer notre Exception:
 		MyException exep("Erreur dans l'ajout des gemmes, le sac ne peut pas accepter autant de gemmes");
 		throw exep;

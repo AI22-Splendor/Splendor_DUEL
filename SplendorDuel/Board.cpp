@@ -85,6 +85,17 @@ EnumGemmes* Board::iterator::getNext() {
 }
 
 
+void Board::putGem(const int pos, EnumGemmes gem) {
+	if (pos < BOARD_SIZE && pos >= 0) {
+		gems[pos] = gem;
+		return;
+	}
+	char* error = new char[35];
+	sprintf(error, "This position is out of the board: %d", pos);
+	throw new MyException(error);
+}
+
+
 ostream& operator<<(ostream& os, const Board board) {
 	for (int i = 0; i < Board::BOARD_SIDE; i++) {
 		for (int j = 0; j < Board::BOARD_SIDE; j++) {

@@ -45,3 +45,26 @@ const QString gemmesToQstr(const EnumGemmes g){
 		return "err";
 	}
 }
+
+const string gemmesToStr(const EnumGemmes g){
+	switch (g) {
+	case EnumGemmes::Blanc:
+		return "blanc";
+	case EnumGemmes::Vert:
+		return "vert";
+	case EnumGemmes::Bleu:
+		return "bleu";
+	case EnumGemmes::Or:
+		return "or";
+	case EnumGemmes::Perle:
+		return "perle";
+	case EnumGemmes::Noir:
+		return "noir";
+	case EnumGemmes::Rouge:
+		return "rouge";
+	case EnumGemmes::Vide :
+		return "vide";
+	default:
+		return "err";
+	}
+}

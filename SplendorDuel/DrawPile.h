@@ -8,7 +8,7 @@ using namespace std;
 
 class DrawPile {
 public:
-	DrawPile(const unsigned int level, size_t taille): level(level), taille(taille) {
+	DrawPile(size_t taille): taille(taille) {
 		pile = new Card*[taille];
 		for (int i = 0; i < taille; i++) pile[i] = nullptr;
 	}
@@ -35,11 +35,12 @@ public:
 	void melanger();
 
 private:
-	unsigned int level;
 	Card** pile;
 	size_t taille;
 	int head = 0;
 	int last = 0;
+
+	friend class XmlWriter;
 	friend ostream& operator<<(ostream& os, const DrawPile drawPile);
 };
 

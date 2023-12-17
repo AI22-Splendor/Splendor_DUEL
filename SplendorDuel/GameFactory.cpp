@@ -13,9 +13,9 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 	}
 
 	DrawPile** drawPiles = new DrawPile * [3];
-	drawPiles[0] = new DrawPile(0, 30);
-	drawPiles[1] = new DrawPile(1, 24);
-	drawPiles[2] = new DrawPile(2, 13);
+	drawPiles[0] = new DrawPile(30);
+	drawPiles[1] = new DrawPile(24);
+	drawPiles[2] = new DrawPile(13);
 
 	list<Card*> cards = XmlReader::getCardsFromXml();
 	list<Card*>::iterator it;

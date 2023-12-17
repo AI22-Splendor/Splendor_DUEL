@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(string name) : name(name), nbCarteReserver(0) {
+Player::Player(string name) : name(name), nbCarteReservees(0) {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		gems[i] = 0;
 	}
@@ -100,7 +100,7 @@ bool Player::buyCard(const Card& card, Bag& gameBag) {
 	return true;
 }
 
-unsigned int Player::getNBGemmes() const {
+unsigned int Player::getNbGemmes() const {
 	int sum = 0;
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		sum += gems[i];

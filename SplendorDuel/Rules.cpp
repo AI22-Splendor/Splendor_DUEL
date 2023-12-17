@@ -62,7 +62,7 @@ bool Rules::playerWon(const Player& player) {
 }
 
 bool Rules::playerHaveToSuppGems(const Player& player) {
-	if (player.getNBGemmes() > 10)
+	if (player.getNbGemmes() > 10)
 		return true;
 	return false;
 }

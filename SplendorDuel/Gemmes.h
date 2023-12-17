@@ -29,6 +29,8 @@ const unsigned int NB_GEMMES_PAS_VIDE = 7;
 
 const QString gemmesToQstr(const EnumGemmes g);
 
+const string gemmesToStr(const EnumGemmes g);
+
 ostream& operator<<(ostream& os, const EnumGemmes gem);
 
 #endif

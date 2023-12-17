@@ -107,7 +107,7 @@ public:
 	/// retourne le nombre de gemmes en possesion du joueur
 	/// </summary>
 	/// <returns></returns>
-	unsigned int getNBGemmes() const;
+	unsigned int getNbGemmes() const;
 
 	/// <summary>
 	/// Returns the value of the highest prestige count between all gems
@@ -115,14 +115,14 @@ public:
 	/// <returns>the value of the highest prestige count between all gems</returns>
 	unsigned int getHighestGemPrestigeCount() const;
 
-	inline int getNbCarteReserver() { return nbCarteReserver; }
-	inline void adCarteReserver(const int nb) { nbCarteReserver += nb; }
+	inline int getNbCarteReservees() const { return nbCarteReservees; }
+	inline void addCarteReservees(const int nb) { nbCarteReservees += nb; }
 
 	bool operator==(const Player& player) { return name.compare(player.name) == 0; }
 
 // Protected for future possible AI impl
 protected:
-	int nbCarteReserver;
+	int nbCarteReservees;
 	string name;
 	list<const Card*> cards;
 	unsigned int gems[NB_GEMMES_PAS_VIDE];

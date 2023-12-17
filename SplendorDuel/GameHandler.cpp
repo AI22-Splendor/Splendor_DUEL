@@ -17,8 +17,8 @@ SingletonGameHandler* SingletonGameHandler::Instanciate(Bag* bag, Board* board, 
 }
 
 EnumAction SingletonGameHandler::getLastAction() {
-	if (action.size() > 0) {
-		return action.at(action.size() - 1);
+	if (actions.size() > 0) {
+		return actions.at(actions.size() - 1);
 	}
 	else {
 		return EnumAction::MAIN_ACTION;
@@ -45,13 +45,13 @@ void SingletonGameHandler::nextAction() {
 	//si il a pas encore fait son action principale
 	if (mainActionIsDone == false)
 		return;
-	if (action.contains(EnumAction::REPLAY)) {
-		action.removeOne(EnumAction::REPLAY);
+	if (actions.contains(EnumAction::REPLAY)) {
+		actions.removeOne(EnumAction::REPLAY);
 		mainActionIsDone = false;
 		return;
 	}
 	//si il a pas finit toutes ses actions a faire
-	if (action.size() > 0)
+	if (actions.size() > 0)
 		return;
 	mainActionIsDone = false;
 	// Player& currentPlayer = isPlayer1Turn() ? player1 : player2;
@@ -68,27 +68,27 @@ const Board& SingletonGameHandler::remplirBoard() {
 }
 
 const int SingletonGameHandler::gemmesToSelect() {
-	if (action.size()==0 || (action.size() == 1 && action.at(0)==EnumAction::REPLAY))
+	if (actions.size()==0 || (actions.size() == 1 && actions.at(0)==EnumAction::REPLAY))
 		return 3;
 	return 1;
 }
 
 bool SingletonGameHandler::gemmesPick(const int *posTab){
 	Player& current = isPlayer1Turn() ? *player1 : *player2;
-	if (action.size()==0 && mainActionIsDone == true)
+	if (actions.size()==0 && mainActionIsDone == true)
 		return false;
-	if (action.contains(EnumAction::SUPP_GEMS))
+	if (actions.contains(EnumAction::SUPP_GEMS))
 		return false;
-	EnumAction a = Rules::isPossibleTakeGems(*board, posTab, action, typeToPick);
+	EnumAction a = Rules::isPossibleTakeGems(*board, posTab, actions, typeToPick);
 	if (a!=EnumAction::IMPOSSIBLE)
 	{
 		//Si il n'utilisa pas de privilège et qu'il n'achète pas un perso, 
 		// c'est donc la dernière action de son tour
-		if (action.size() == 0 || (action.size() == 1 && action.contains(EnumAction::REPLAY))) {
+		if (actions.size() == 0 || (actions.size() == 1 && actions.contains(EnumAction::REPLAY))) {
 			mainActionIsDone = true;
 		}
 		else {
-			action.removeOne(a);
+			actions.removeOne(a);
 		}
 		for (int i = 0; i < 3; i++) {
 			if (posTab[i] != -1) {
@@ -98,7 +98,7 @@ bool SingletonGameHandler::gemmesPick(const int *posTab){
 		}
 		//si le joueur doit supprimer une gemmes on bloque toutes les autres actions
 		if (Rules::playerHaveToSuppGems(current))
-			action.append(EnumAction::SUPP_GEMS);
+			actions.append(EnumAction::SUPP_GEMS);
 		SingletonGameHandler::nextAction();
 		return true;
 	}
@@ -111,7 +111,7 @@ bool SingletonGameHandler::isPlayer1Turn() {
 
 bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 	Player& current = player1Joue ? *player1 : *player2;
-	if (action.contains(EnumAction::SUPP_GEMS)) {
+	if (actions.contains(EnumAction::SUPP_GEMS)) {
 		if (current.removeGem(g, 1)) {
 			bag->addGemmes(g);
 		}
@@ -120,7 +120,7 @@ bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 		}
 	}
 	//action de voler une gemmes de l'autre joeur
-	else if (action.contains(EnumAction::STEAL_GEMMES)){
+	else if (actions.contains(EnumAction::STEAL_GEMMES)){
 		if ((isPlayer1Turn() && p == 1) || (!isPlayer1Turn() && p == 2))
 			return false;
 		//on vole pas l'Or!
@@ -129,7 +129,7 @@ bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 		Player& other = player1Joue ? *player2 : *player1;
 		if (other.removeGem(g, 1)) {
 			current.addGems(g, 1);
-			action.removeOne( EnumAction::STEAL_GEMMES);
+			actions.removeOne( EnumAction::STEAL_GEMMES);
 		}
 		else {
 			return false;
@@ -139,9 +139,9 @@ bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 		return false;
 	}
 	if (Rules::playerHaveToSuppGems(current))
-		action.append(EnumAction::SUPP_GEMS);
+		actions.append(EnumAction::SUPP_GEMS);
 	else {
-		action.removeAll(EnumAction::SUPP_GEMS);
+		actions.removeAll(EnumAction::SUPP_GEMS);
 	}
 	SingletonGameHandler::nextAction();
 	return true;
@@ -150,19 +150,19 @@ bool SingletonGameHandler::suppPlayerGems(EnumGemmes g, int p) {
 bool SingletonGameHandler::reservCard(const Card* c, const int position) {
 	if (mainActionIsDone || !board->hasGemOfType(EnumGemmes::Or))
 		return false;
-	if (action.contains(EnumAction::SUPP_GEMS))
+	if (actions.contains(EnumAction::SUPP_GEMS))
 		return false;
 	//si il peux reserver
-	if (isPlayer1Turn() && player1->getNbCarteReserver()<3) {
-		player1->adCarteReserver(1);
+	if (isPlayer1Turn() && player1->getNbCarteReservees()<3) {
+		player1->addCarteReservees(1);
 	}
-	else if (!isPlayer1Turn() && player2->getNbCarteReserver() < 3) {
-		player2->adCarteReserver(1);
+	else if (!isPlayer1Turn() && player2->getNbCarteReservees() < 3) {
+		player2->addCarteReservees(1);
 	}
 	else {
 		return false;
 	}
-	action.append(EnumAction::RESERV_CARD);
+	actions.append(EnumAction::RESERV_CARD);
 	mainActionIsDone = true;
 	displayedCards[c->getLevel()][position] = drawPiles[c->getLevel()]->piocher();
 	return true;
@@ -171,14 +171,14 @@ bool SingletonGameHandler::reservCard(const Card* c, const int position) {
 int SingletonGameHandler::buyCard(Card* c, const int position) {
 	if (mainActionIsDone)
 		return -1;
-	if (action.contains(EnumAction::SUPP_GEMS))
+	if (actions.contains(EnumAction::SUPP_GEMS))
 		return -1;
 	Player& p = player1Joue ? *player1 : *player2;
-	if (c->getEffect().contains(EnumAction::ASSIGN_CARD) && !Rules::playerCanBuyCardAsign(p)) {
+	if (c->getEffects().contains(EnumAction::ASSIGN_CARD) && !Rules::playerCanBuyCardAsign(p)) {
 		return -1;
 	}
 	if (p.canBuyCard(*c)) {
-		if(c->getEffect().contains(EnumAction::ASSIGN_CARD)){
+		if(c->getEffects().contains(EnumAction::ASSIGN_CARD)){
 			toAssign = c;
 		}
 		p.buyCard(*c, *bag);
@@ -194,18 +194,18 @@ int SingletonGameHandler::buyCard(Card* c, const int position) {
 	addAction(c);
 	SingletonGameHandler::nextAction();
 	//si carte doit etre assigné
-	if (action.contains(EnumAction::ASSIGN_CARD))
+	if (actions.contains(EnumAction::ASSIGN_CARD))
 		return 0;
 	return 1;
 }
 
 Card* SingletonGameHandler::assignCard(Card* c) {
 	//si la carte n'a pas de type, ou qu'il ne doit pas assigné
-	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !action.contains(EnumAction::ASSIGN_CARD))
+	if (toAssign == nullptr || c->getDiscountType() == EnumGemmes::Vide || !actions.contains(EnumAction::ASSIGN_CARD))
 		return nullptr;
 	toAssign->setDiscountType(c->getDiscountType());
 	Card* ret = toAssign;
-	action.removeOne(EnumAction::ASSIGN_CARD);
+	actions.removeOne(EnumAction::ASSIGN_CARD);
 	toAssign = nullptr;
 	SingletonGameHandler::nextAction();
 	return ret;
@@ -221,7 +221,7 @@ bool SingletonGameHandler::usePrivilege() {
 	if (!SingletonPrivilegeHandler::getInstance()->playerHasPrivilege(currentPlayer)) {
 		return false;
 	}
-	action.append(EnumAction::USE_PRIVILEGE);
+	actions.append(EnumAction::USE_PRIVILEGE);
 	SingletonPrivilegeHandler::getInstance()->putPrivilegeBackOnBoard(currentPlayer);
 	return true;
 }
@@ -242,7 +242,7 @@ bool SingletonGameHandler::playPrivilege() {
 	Player& current = player1Joue ? *player1 : *player2;
 	if (SingletonPrivilegeHandler::getInstance()->playerHasPrivilege(current)) {
 		SingletonPrivilegeHandler::getInstance()->putPrivilegeBackOnBoard(current);
-		action.append(EnumAction::USE_PRIVILEGE);
+		actions.append(EnumAction::USE_PRIVILEGE);
 		return true;
 	}
 	return false;
@@ -250,10 +250,10 @@ bool SingletonGameHandler::playPrivilege() {
 
 void SingletonGameHandler::playerBuyReservCard(int pnum) {
 	if (pnum == 0) {
-		player1->adCarteReserver(-1);
+		player1->addCarteReservees(-1);
 	}
 	if (pnum == 1) {
-		player2->adCarteReserver(-1);
+		player2->addCarteReservees(-1);
 	}
 }
 
@@ -270,23 +270,23 @@ bool SingletonGameHandler::buyNoble(const Card* noble) {
 void SingletonGameHandler::addAction(const Card* c) {
 	Player& current = player1Joue ? *player1 : *player2;
 	Player& next = player1Joue ? *player2 : *player1;
-	for (EnumAction ac : c->getEffect()) {
+	for (EnumAction ac : c->getEffects()) {
 		if (ac == ADD_PRIVILEGE) {
 			SingletonPrivilegeHandler::getInstance()->givePlayerPrivilege(current);
 		}else if (ac == STEAL_GEMMES) {
-			if (next.getNBGemmes() > 0 && (next.nbOfGems(EnumGemmes::Or) != next.getNBGemmes())) {
-				action.append(ac);
+			if (next.getNbGemmes() > 0 && (next.nbOfGems(EnumGemmes::Or) != next.getNbGemmes())) {
+				actions.append(ac);
 			}
 		}
 		else if (ac == EnumAction::PICK_GEMMES) {
 			//si le plateau n'a pas les gemmes de ce type on ajoute sinon ça ne sert à rien
 			if (board->hasGemOfType(c->getDiscountType())) {
-				action.append(ac);
+				actions.append(ac);
 				typeToPick = c->getDiscountType();
 			}
 		}
 		else {
-			action.append(ac);
+			actions.append(ac);
 		}
 	}
 }
@@ -301,8 +301,8 @@ int SingletonGameHandler::getPlayerNbPrivilege(int pnum) {
 }
 
 Message SingletonGameHandler::getActionMessage()const {
-	if (action.size() > 0) {
-		return XmlReader::getActionMessage(action.at(action.size() - 1));
+	if (actions.size() > 0) {
+		return XmlReader::getActionMessage(actions.at(actions.size() - 1));
 	}
 	else {
 		return Message("", "#ffffff");

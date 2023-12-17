@@ -58,7 +58,7 @@ private:
 	static SingletonGameHandler* instance;
 
 	SingletonGameHandler(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2)
-		: bag(bag), typeToPick(EnumGemmes::Vide), toAssign(nullptr), board(board), drawPiles(drawPiles), player1(player1), mainActionIsDone(false), player2(player2), action() {
+		: bag(bag), typeToPick(EnumGemmes::Vide), toAssign(nullptr), board(board), drawPiles(drawPiles), player1(player1), mainActionIsDone(false), player2(player2), actions() {
 		for (int i = 0; i < 3; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
@@ -87,7 +87,7 @@ private:
 	}
 
 	bool mainActionIsDone;
-	QList<EnumAction> action;
+	QList<EnumAction> actions;
 	bool player1Joue;
 	Bag* bag;
 	Board* board;

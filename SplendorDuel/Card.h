@@ -38,7 +38,7 @@ public:
 	unsigned int getDiscount() const { return discount;  }
 	unsigned int getCrowns() const { return crowns;  }
 	inline void setDiscountType(const EnumGemmes g) { discountType = g; }
-	inline const QList<EnumAction> getEffect() const { return effects; };
+	inline const QList<EnumAction> getEffects() const { return effects; };
 	QString getImageSrc() const { return imageSrc; }
 
 	inline bool operator==(const Card& card) { 

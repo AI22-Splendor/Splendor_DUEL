@@ -73,10 +73,13 @@ public:
 
 	iterator getIterator() const { return iterator(*this); }
 private:
+	void putGem(const int pos, EnumGemmes gem);
+
 	EnumGemmes* gems;
 
 	friend class Board::iterator;
 	friend ostream& operator<<(ostream& os, const Board board);
+	friend class XmlWriter;
 };
 
 ostream& operator<<(ostream& os, const Board board);

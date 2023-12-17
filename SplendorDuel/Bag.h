@@ -44,7 +44,7 @@ public:
 	void melanger() const;
 
 	//getteur de la taille du sac
-	int inline getTaille() const { return this->taille; }
+	int inline getTaille() const { return this->tailleMax; }
 
 	/**
 	* Mélange puis renvoie une gemme présente dans le bag
@@ -54,7 +54,7 @@ public:
 
 private:
 	//la taille du sac
-	int taille;
+	int tailleMax;
 
 	//la tableau de gemmes
 	EnumGemmes* bag;

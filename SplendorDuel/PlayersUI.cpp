@@ -54,7 +54,7 @@ void PlayersUI::setGemmes() {
 	for (int i = 0; i < NB_GEMMES_PAS_VIDE; i++) {
 		pgems->setGems(static_cast<EnumGemmes>(i), p.nbOfGems(static_cast<EnumGemmes>(i))+p.getDiscount(static_cast<EnumGemmes>(i)));
 	}
-	if (p.getNBGemmes() > 10) {
+	if (p.getNbGemmes() > 10) {
 		pgems->bigError();
 	}
 }
