@@ -100,6 +100,7 @@ private:
 
 	friend class SingletonPrivilegeHandler;
 	friend class SingletonNobleHandler;
+	friend class GameFactory;
 	friend class XmlWriter;
 };
 

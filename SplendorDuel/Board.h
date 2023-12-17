@@ -48,6 +48,13 @@ public:
 	/// <return>True si une gemme du type est présente, false sinon</return>
 	bool hasGemOfType(EnumGemmes gem) const;
 
+	/// <summary>
+	/// Permet de placer une gemme a une position
+	/// </summary>
+	/// <param name="pos">Position de la gemme</param>
+	/// <param name="gem">Gemme a poser</param>
+	void putGem(const int pos, EnumGemmes gem);
+
 	class iterator {
 	public:
 		iterator(const Board& board) : board(board) {
@@ -73,7 +80,6 @@ public:
 
 	iterator getIterator() const { return iterator(*this); }
 private:
-	void putGem(const int pos, EnumGemmes gem);
 
 	EnumGemmes* gems;
 

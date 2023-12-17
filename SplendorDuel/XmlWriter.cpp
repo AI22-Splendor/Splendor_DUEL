@@ -141,10 +141,12 @@ xml_node<>* XmlWriter::saveBoard(xml_document<>& xmldoc, const Board& board) {
 	xml_node<>* boardNode = xmldoc.allocate_node(node_element, "board");
 
 	for (int i = 0; i < board.BOARD_SIZE; i++) {
-		xml_node<>* positionNode = xmldoc.allocate_node(node_element, "pos");
-		positionNode->append_attribute(xmldoc.allocate_attribute("pos", int2char(xmldoc, i)));
-		positionNode->append_attribute(xmldoc.allocate_attribute("gem", int2char(xmldoc, board.connaitreGemmes(i))));
-		boardNode->append_node(positionNode);
+		if (board.connaitreGemmes(i) != EnumGemmes::Vide) {
+			xml_node<>* positionNode = xmldoc.allocate_node(node_element, "pos");
+			positionNode->append_attribute(xmldoc.allocate_attribute("pos", int2char(xmldoc, i)));
+			positionNode->append_attribute(xmldoc.allocate_attribute("gem", int2char(xmldoc, board.connaitreGemmes(i))));
+			boardNode->append_node(positionNode);
+		}
 	}
 
 	return boardNode;
@@ -170,6 +172,7 @@ xml_node<>* XmlWriter::saveDrawPiles(xml_document<>& xmldoc, DrawPile** drawPile
 
 	for (int i = 0; i < 3; i++) {
 		xml_node<>* drawPileNode = xmldoc.allocate_node(node_element, "drawPile");
+		drawPileNode->append_attribute(xmldoc.allocate_attribute("taille", int2char(xmldoc, drawPiles[i]->taille)))
 
 		for (int j = drawPiles[i]->head; j != drawPiles[i]->last; j = (j + 1) % drawPiles[i]->taille) {
 			drawPileNode->append_node(saveCard(xmldoc, *drawPiles[i]->pile[j]));
