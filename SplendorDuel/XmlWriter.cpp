@@ -172,7 +172,7 @@ xml_node<>* XmlWriter::saveDrawPiles(xml_document<>& xmldoc, DrawPile** drawPile
 
 	for (int i = 0; i < 3; i++) {
 		xml_node<>* drawPileNode = xmldoc.allocate_node(node_element, "drawPile");
-		drawPileNode->append_attribute(xmldoc.allocate_attribute("taille", int2char(xmldoc, drawPiles[i]->taille)))
+		drawPileNode->append_attribute(xmldoc.allocate_attribute("taille", int2char(xmldoc, drawPiles[i]->taille)));
 
 		for (int j = drawPiles[i]->head; j != drawPiles[i]->last; j = (j + 1) % drawPiles[i]->taille) {
 			drawPileNode->append_node(saveCard(xmldoc, *drawPiles[i]->pile[j]));
