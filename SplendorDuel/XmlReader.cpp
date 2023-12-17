@@ -56,6 +56,8 @@ SplendorDuel& XmlReader::getSplendorFromXml(const string filename) {
 	Player* player2;
 
 	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
+
+	return SplendorDuel::getInstance();
 }
 
 list<Card*> XmlReader::getCardsFromXml() {
