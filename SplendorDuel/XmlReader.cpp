@@ -52,8 +52,8 @@ SplendorDuel& XmlReader::getSplendorFromXml(const string filename) {
 	Bag* bag = getBagFromXml(filename);
 	Board* board = getBoardFromXml(filename);
 	DrawPile** drawPiles = getDrawPilesFromXml(filename);
-	Player* player1;
-	Player* player2;
+	Player* player1 = getPlayerFromXml(filename, 1);
+	Player* player2 = getPlayerFromXml(filename, 2);
 
 	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
 
@@ -220,4 +220,45 @@ DrawPile** XmlReader::getDrawPilesFromXml(const string filename) {
 	}
 
 	return drawPiles;
+}
+
+Player* XmlReader::getPlayerFromXml(const string filename, int pos) {
+	Player* player;
+
+	file<> xmlFile(filename.c_str());
+	xml_document<> xml;
+	xml.parse<0>(xmlFile.data());
+
+	xml_node<>* player_node = xml.first_node("data")->first_node("drawPiles");
+	for (int i = 1; i < pos; i++) player_node = player_node->next_sibling();
+
+	string name;
+	sscanf(player_node->first_attribute("name")->value(), "%s", &name);
+
+	player = new Player(name);
+
+	int nbCartesReservees;
+	sscanf(player_node->first_attribute("nbCartesReservees")->value(), "%d", &nbCartesReservees);
+	player->addCarteReservees(nbCartesReservees);
+
+	for (xml_node<>* card_node = player_node->first_node("cards")->first_node("card"); card_node; card_node = card_node->next_sibling()) {
+		player->cards.push_back(readCard(card_node));
+	}
+
+	xml_node<>* gems_node = player_node->first_node("gems");
+	int gems;
+	sscanf(gems_node->first_attribute("vert")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Vert, gems);
+	sscanf(gems_node->first_attribute("rouge")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Rouge, gems);
+	sscanf(gems_node->first_attribute("bleu")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Bleu, gems);
+	sscanf(gems_node->first_attribute("noir")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Noir, gems);
+	sscanf(gems_node->first_attribute("blanc")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Blanc, gems);
+	sscanf(gems_node->first_attribute("perle")->value(), "%u", &gems);
+	player->addGems(EnumGemmes::Perle, gems);
+
+	return player;
 }

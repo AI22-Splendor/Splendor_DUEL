@@ -26,6 +26,7 @@ private:
 	static Bag* getBagFromXml(const string filname);
 	static Board* getBoardFromXml(const string filename);
 	static DrawPile** getDrawPilesFromXml(const string filename);
+	static Player* getPlayerFromXml(const string filename, int pos);
 
 	static string language;
 };
