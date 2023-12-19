@@ -19,13 +19,13 @@
 using namespace std;
 SplendorDuel* SplendorDuel::instance = nullptr;
 
-SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1, Player* p2) :
+SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1, Player* p2, bool autoDiplayCards) :
     QMainWindow(nullptr)
 {
     this->setWindowState(Qt::WindowMaximized);
     setWindowTitle("SplendorDuel");
     //on instance notre GameHandler
-    SingletonGameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2);
+    SingletonGameHandler::getInstance().Instanciate(bag, b, drawPiles, p1, p2, autoDiplayCards);
 
     //mise en page avec le widget main
     QWidget* main = new BackgroundWidgetUI(this, QPixmap("./res/playerFond.png"));

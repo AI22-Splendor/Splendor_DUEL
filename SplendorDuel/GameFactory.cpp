@@ -56,6 +56,6 @@ SplendorDuel& GameFactory::buildNewSplendorFromScratch(const bool IA, string p1N
 
 
 SplendorDuel& GameFactory::buildNewSplendorFromSavefile(const string filename) {
-	return buildNewSplendorFromScratch(false, "p1", "p2");
-	//return XmlReader::getSplendorFromXml(filename);
+	//return buildNewSplendorFromScratch(false, "p1", "p2");
+	return XmlReader::getSplendorFromXml(filename);
 }

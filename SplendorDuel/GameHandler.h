@@ -13,7 +13,7 @@
 
 class SingletonGameHandler {
 public:
-	static SingletonGameHandler* Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2);
+	static SingletonGameHandler* Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2, bool autoDiplayCards);
 	static void destroy();
 	static inline SingletonGameHandler& getInstance() { return *SingletonGameHandler::instance; }
 
@@ -57,9 +57,9 @@ public:
 private:
 	static SingletonGameHandler* instance;
 
-	SingletonGameHandler(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2)
+	SingletonGameHandler(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2, bool autoDisplayCard = true)
 		: bag(bag), typeToPick(EnumGemmes::Vide), toAssign(nullptr), board(board), drawPiles(drawPiles), player1(player1), mainActionIsDone(false), player2(player2), actions() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3 && autoDisplayCard; i++) {
 			displayedCards.push_back(*(new vector<Card*>()));
 			for (int j = 0; j < 5 - i; j++) {
 				displayedCards[i].push_back(drawPiles[i]->piocher()); 
@@ -102,6 +102,7 @@ private:
 	friend class SingletonNobleHandler;
 	friend class GameFactory;
 	friend class XmlWriter;
+	friend class XmlReader;
 };
 
 #endif

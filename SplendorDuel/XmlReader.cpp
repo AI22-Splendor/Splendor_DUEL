@@ -1,7 +1,4 @@
-#include "XmlReader.h"
-#include <qlist.h>
-
-using namespace rapidxml;
+#include"XmlReader.h"
 
 string XmlReader::language = "fr";
 
@@ -49,13 +46,44 @@ Card* readCard(xml_node<>* card_node) {
 }
 
 SplendorDuel& XmlReader::getSplendorFromXml(const string filename) {
-	Bag* bag = getBagFromXml(filename);
-	Board* board = getBoardFromXml(filename);
-	DrawPile** drawPiles = getDrawPilesFromXml(filename);
-	Player* player1 = getPlayerFromXml(filename, 1);
-	Player* player2 = getPlayerFromXml(filename, 2);
+	file<> xmlFile(filename.c_str());
+	xml_document<> xml;
+	xml.parse<0>(xmlFile.data());
 
-	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2);
+	xml_node<>* data_node = xml.first_node("data");
+
+	Bag* bag = getBagFromXml(data_node);
+	Board* board = getBoardFromXml(data_node);
+	DrawPile** drawPiles = getDrawPilesFromXml(data_node);
+	Player* player1 = getPlayerFromXml(data_node, 1);
+	Player* player2 = getPlayerFromXml(data_node, 2);
+	
+	SingletonGameHandler& game = SingletonGameHandler::Instanciate(bag, board, drawPiles, player1, player2, false)->getInstance();
+
+	cout << game.player1Joue << "\n";
+
+	game.displayedCards = getDisplayedCardsFromXml(data_node);
+
+	// player1Joue
+	sscanf(data_node->first_node("player1Joue")->value(), "%d", &game.player1Joue);
+	// mainActionIsDone
+	sscanf(data_node->first_node("mainActionIsDone")->value(), "%d", &game.mainActionIsDone);
+	int gem_num;
+	// typeToPick
+	sscanf(data_node->first_node("typeToPick")->value(), "%d", &gem_num);
+	game.typeToPick = static_cast<EnumGemmes>(gem_num);
+	// toAssign
+	xml_node<>* card_node = data_node->first_node("typeToPick")->first_node("card");
+	if (card_node) game.toAssign = readCard(card_node);
+	// actions
+	xml_node<>* actions_node = data_node->first_node("actions");
+	for (xml_node<>* action_node = actions_node->first_node("action"); action_node; action_node = action_node->next_sibling()) {
+		int num_action;
+		sscanf(actions_node->value(), "%d", &num_action);
+		game.actions.push_back(static_cast<EnumAction>(num_action));
+	}
+
+	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2, false);
 
 	return SplendorDuel::getInstance();
 }
@@ -151,14 +179,10 @@ QList<string> XmlReader::getLanguage() {
 	return language;
 }
 
-Bag* XmlReader::getBagFromXml(const string filename) {
+Bag* XmlReader::getBagFromXml(const xml_node<>* data) {
 	Bag* bag;
-
-	file<> xmlFile(filename.c_str());
-	xml_document<> xml;
-	xml.parse<0>(xmlFile.data());
 	
-	xml_node<>* bag_node = xml.first_node("data")->first_node("bag");
+	xml_node<>* bag_node = data->first_node("bag");
 
 	int tailleMax;
 	sscanf(bag_node->first_attribute("tailleMax")->value(), "%d", &tailleMax);
@@ -175,14 +199,10 @@ Bag* XmlReader::getBagFromXml(const string filename) {
 	return bag;
 }
 
-Board* XmlReader::getBoardFromXml(const string filename) {
+Board* XmlReader::getBoardFromXml(const xml_node<>* data) {
 	Board* board = new Board();
 
-	file<> xmlFile(filename.c_str());
-	xml_document<> xml;
-	xml.parse<0>(xmlFile.data());
-
-	xml_node<>* board_node = xml.first_node("data")->first_node("board");
+	xml_node<>* board_node = data->first_node("board");
 
 	for (xml_node<>* pos_node = board_node->first_node("pos"); pos_node; pos_node = pos_node->next_sibling()) {
 		int pos;
@@ -195,14 +215,10 @@ Board* XmlReader::getBoardFromXml(const string filename) {
 	return board;
 }
 
-DrawPile** XmlReader::getDrawPilesFromXml(const string filename) {
-	DrawPile* drawPiles[3];
+DrawPile** XmlReader::getDrawPilesFromXml(const xml_node<>* data) {
+	DrawPile** drawPiles = new DrawPile*[3];
 
-	file<> xmlFile(filename.c_str());
-	xml_document<> xml;
-	xml.parse<0>(xmlFile.data());
-
-	xml_node<>* drawPiles_node = xml.first_node("data")->first_node("drawPiles");
+	xml_node<>* drawPiles_node = data->first_node("drawPiles");
 
 
 	int cpt = 0;
@@ -222,18 +238,14 @@ DrawPile** XmlReader::getDrawPilesFromXml(const string filename) {
 	return drawPiles;
 }
 
-Player* XmlReader::getPlayerFromXml(const string filename, int pos) {
+Player* XmlReader::getPlayerFromXml(const xml_node<>* data, int pos) {
 	Player* player;
 
-	file<> xmlFile(filename.c_str());
-	xml_document<> xml;
-	xml.parse<0>(xmlFile.data());
-
-	xml_node<>* player_node = xml.first_node("data")->first_node("drawPiles");
+	xml_node<>* player_node = data->first_node("player");
 	for (int i = 1; i < pos; i++) player_node = player_node->next_sibling();
 
-	string name;
-	sscanf(player_node->first_attribute("name")->value(), "%s", &name);
+	char* name;
+	sscanf(player_node->first_attribute("name")->value(), "%s", name);
 
 	player = new Player(name);
 
@@ -260,5 +272,23 @@ Player* XmlReader::getPlayerFromXml(const string filename, int pos) {
 	sscanf(gems_node->first_attribute("perle")->value(), "%u", &gems);
 	player->addGems(EnumGemmes::Perle, gems);
 
+	printf("%s", player->name);
+
 	return player;
+}
+
+vector<vector<Card*>> XmlReader::getDisplayedCardsFromXml(xml_node<>* data) {
+	vector<vector<Card*>> displayedCards;
+	xml_node<>* diplayedCards_node = data->first_node("displayedCards");
+
+	for (xml_node<>* cardRow_node = diplayedCards_node->first_node("cardRow"); cardRow_node; cardRow_node = cardRow_node->next_sibling()) {
+		displayedCards.push_back(vector<Card*>());
+		int i;
+		sscanf(cardRow_node->first_attribute("level")->value(), "%d", &i);
+		for (xml_node<>* card_node = cardRow_node->first_node("card"); card_node; card_node = card_node->next_sibling()) {
+			displayedCards.at(i).push_back(readCard(card_node));
+		}
+	}
+
+	return displayedCards;
 }

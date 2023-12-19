@@ -7,9 +7,9 @@
 
 SingletonGameHandler* SingletonGameHandler::instance = nullptr;
 
-SingletonGameHandler* SingletonGameHandler::Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2) {
+SingletonGameHandler* SingletonGameHandler::Instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* player1, Player* player2, bool autoDiplayCards) {
 	if (SingletonGameHandler::instance == nullptr){
-		SingletonGameHandler::instance = new SingletonGameHandler(bag, board, drawPiles, player1, player2);
+		SingletonGameHandler::instance = new SingletonGameHandler(bag, board, drawPiles, player1, player2, autoDiplayCards);
 		SingletonGameHandler::instance->player1Joue = (rand () % 2);
 		SingletonGameHandler::instance->addOtherPlayerPrivilege();
 	}
