@@ -11,8 +11,8 @@ Player::Player(string name) : name(name), nbCarteReserver(0) {
 }
 
 Player::~Player() {
-	for (list<const Card*>::iterator it = cards.begin(); it != cards.end(); it++) {
-		delete (*it);
+	for (const Card* c: cards) {
+		delete c;
 	}
 }
 

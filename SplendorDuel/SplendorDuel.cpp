@@ -10,7 +10,6 @@
 #include "Image.h";
 #include <qevent.h>
 #include "PlayerGemsUI.h"
-#include "BoardCard.h"
 #include "FinPartie.h"
 #include "BackgroundWidgetUI.h"
 #include "NobleHandler.h"
@@ -50,14 +49,16 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
     leftBoard->setLayout(vbox);
     message = new InformationMessageUI(leftBoard);
     vbox->addWidget(message);
-    vbox->addWidget(new PersonnageBoardUI(leftBoard));
+    personnage = new PersonnageBoardUI(leftBoard);
+    vbox->addWidget(personnage);
     vbox->setStretch(0, 1);
     vbox->setStretch(1, 8);
 
     hbox->addWidget(leftBoard);
     hbox->addWidget(privilege, 0);
     hbox->addWidget(board);
-    hbox->addWidget(new BoardCardUI(com));
+    cards = new BoardCardUI(com);
+    hbox->addWidget(cards);
 
     vl->addWidget(ptab[0],0, 0);
     vl->addWidget(com, 1, 0);
@@ -76,9 +77,12 @@ SplendorDuel::SplendorDuel(Bag* bag, Board* b, DrawPile** drawPiles, Player* p1,
 SplendorDuel::~SplendorDuel()
 {
     delete instance->board;
+    delete instance->message;
+    delete instance->cards;
+    delete instance->privilege;
+    delete personnage;
     delete[] instance->ptab;
     delete SplendorDuel::instance;
-    delete message;
 }
 
 void SplendorDuel::addPlayerCard(Card* c, int ptrun) {
@@ -118,9 +122,10 @@ void SplendorDuel::changePtour() {
             instance->ptab[0]->changePtour(true);
             instance->ptab[1]->changePtour(false);
         }
-        else {
+        else if(instance->ptab[1]->getPtour()==false){
             instance->ptab[0]->changePtour(false);
             instance->ptab[1]->changePtour(true);
+            SingletonGameHandler::getInstance().AIPlay();
         }
     }
     else {

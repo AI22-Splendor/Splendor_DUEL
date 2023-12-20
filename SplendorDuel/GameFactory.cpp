@@ -1,4 +1,5 @@
 #include "GameFactory.h"
+#include "AI.h"
 
 SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string p2Name) {
 	Bag* bag = new Bag(25);
@@ -35,7 +36,7 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 		player2 = (new Player(p2Name));
 	else {
 		//TODO ADD IA
-		player2 = (new Player("IA"));
+		player2 = new AI();
 	}
 
 	Board* board = new Board;

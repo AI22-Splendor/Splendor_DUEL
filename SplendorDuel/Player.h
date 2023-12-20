@@ -21,7 +21,7 @@ public:
 	/// <summary>
 	/// Destroys a player
 	/// </summary>
-	~Player();
+	virtual ~Player();
 
 	/// <summary>
 	/// Returns the name of the player
@@ -126,6 +126,7 @@ protected:
 	string name;
 	list<const Card*> cards;
 	unsigned int gems[NB_GEMMES_PAS_VIDE];
+	friend class AI;
 };
 
 #endif

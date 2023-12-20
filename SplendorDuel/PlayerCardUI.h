@@ -24,6 +24,8 @@ private:
 	void resizeEvent(QResizeEvent* event);
 	CardUI** cards;
 	int pnum;
+
+	friend class AI;
 };
 
 #endif

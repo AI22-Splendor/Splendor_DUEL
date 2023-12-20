@@ -24,6 +24,7 @@ private:
 	void clickDCard(int col, int ligne, Card* c) {}
 	void clickCard(int col, int ligne, Card* c);
 	CardUI** cards;
+	friend class AI;
 };
 
 #endif

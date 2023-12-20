@@ -70,7 +70,6 @@ void BoardCardUI::clickDCard(int col, int ligne, Card* c) {
 
 void BoardCardUI::clickCard(int col, int ligne, Card* c) {
 	if (c == nullptr) {
-		cout << "Carte null";
 		return;
 	}
 	int pturn = SingletonGameHandler::getInstance().isPlayer1Turn() ? 0: 1;

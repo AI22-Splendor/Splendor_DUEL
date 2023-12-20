@@ -16,13 +16,15 @@ public:
 	inline ~RemplirBoard() { QWidget::~QWidget(); }
 
 private:
-	
+	friend class AI;
 	bool hover;
 	void mouseMoveEvent(QMouseEvent* mouse);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
 	void mousePressEvent(QMouseEvent* mouse);
 	void leaveEvent(QEvent* event);
+
+	friend class AI;
 };
 
 #endif
