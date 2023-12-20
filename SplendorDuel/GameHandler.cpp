@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "PrivilegeHandler.h"
 #include <math.h>
+#include <thread>
 #include "NobleHandler.h"
 
 SingletonGameHandler* SingletonGameHandler::instance = nullptr;

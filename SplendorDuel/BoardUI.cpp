@@ -231,12 +231,12 @@ void BoardUI::clickGemmes(EnumGemmes g) {
 	if (SingletonGameHandler::getInstance().getInstance().gemmesPick(posSelect)) {
 		for (int i = 0; i < 3; i++) {
 			if (posSelect[i] != -1) {
-				SplendorDuel::refreshPlayersGems(pturn);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->setGemmes(EnumGemmes::Vide);
 				tabCase[posSelect[i] / 5][posSelect[i] % 5]->hover(false);
 				posSelect[i] = -1;
 			}
 		}
+		SplendorDuel::refreshPlayersGems(pturn);
 		SplendorDuel::refreshMessage();
 		SplendorDuel::changePtour();
 		SplendorDuel::refreshPrivilege();

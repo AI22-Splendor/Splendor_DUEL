@@ -80,6 +80,7 @@ private:
 	direction direction;
 	//tableau des gemmes selectionner
 	int posSelect[3];
+	friend class AI;
 };
 
 #endif

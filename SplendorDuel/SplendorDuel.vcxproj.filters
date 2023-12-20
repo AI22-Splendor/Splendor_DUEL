@@ -157,6 +157,9 @@
     <ClInclude Include="CardContainersGUI.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -263,6 +266,9 @@
     </ClCompile>
     <ClCompile Include="FinPartie.cpp">
       <Filter>Source Files\UI\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

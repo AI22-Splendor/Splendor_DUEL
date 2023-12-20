@@ -4,12 +4,15 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_SplendorDuel.h"
 #include "GameHandler.h"
+#include "BoardCard.h"
 #include "GemmesContainerGUI.h"
 #include "CompleteBoardUI.h"
 #include "PlayersUI.h"
 #include "PrivilegeBoardUI.h"
+#include "PersonnageBoardUI.h"
 #include "Player.h"
 #include "InformationMessageUI.h"
+#include "AI.h"
 
 /// <summary>
 /// Notre fenetre principale
@@ -29,8 +32,9 @@ public:
     static inline void instanciate(Bag* bag, Board* board, DrawPile** drawPiles, Player* p1, Player* p2) {
         if (SplendorDuel::instance == nullptr) {
             SplendorDuel::instance = new SplendorDuel(bag, board, drawPiles, p1, p2);
-            SplendorDuel::instance->changePtour();
             SplendorDuel::instance->privilege->refreshPrivilege();
+            SplendorDuel::instance->changePtour();
+            SingletonGameHandler::getInstance().AIPlay();
         }
     }
 
@@ -87,10 +91,14 @@ private:
     CompleteBoardUI* board;
     //nos joueurs
     PlayersUI** ptab;
+    BoardCardUI* cards;
+    PersonnageBoardUI* personnage;
     //nos privilege
     PrivilegeBoardUI* privilege;
     InformationMessageUI* message;
     Ui::SplendorDuelClass ui;
+
+    friend class AI;
 };
 
 #endif

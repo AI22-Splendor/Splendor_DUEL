@@ -7,13 +7,17 @@ class PlayerNameUI : public QWidget
 {
 	Q_OBJECT
 public:
-	inline PlayerNameUI(QString name, QWidget* parent): QWidget(parent), name(name){
+	inline PlayerNameUI(QString name, QWidget* parent): QWidget(parent), name(name), tour(false){
 		setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 		setMinimumSize(QSize(20, 20));
 	}
 	inline ~PlayerNameUI() { QWidget::~QWidget(); };
 	inline void setTour(bool b) {
 		if (b != tour) { tour = b; update(); }
+	}
+
+	inline bool getPTour() {
+		return tour;
 	}
 
 

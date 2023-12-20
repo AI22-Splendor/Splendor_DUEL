@@ -27,6 +27,8 @@ private:
 	GemmesUI** gem;
 	const int pnum;
 	int selected;
+
+	friend class AI;
 };
 
 #endif

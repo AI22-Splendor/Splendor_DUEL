@@ -36,13 +36,13 @@ FinPartie::FinPartie(): QDialog(nullptr) {
 	QPushButton* replay = new ConfirmationPushButtonUI(this, "Rejouer");
 	connect(replay, SIGNAL(clicked()), this, SLOT(accept()));
 	QPushButton* quit = new ConfirmationPushButtonUI(this, "Quitter");
-	connect(quit, SIGNAL(clicked()), this, SLOT(rejected()));
+	connect(quit, SIGNAL(clicked()), this, SLOT(close()));
 
 	grid->addWidget(label, 1, 1);
 	QWidget* h = new QWidget(this);
 	grid->addWidget(h, 2, 1);
 	QHBoxLayout* hbox = new QHBoxLayout(h);
-	hbox->addWidget(replay);
+	//hbox->addWidget(replay);
 	hbox->addWidget(quit);
 }
 

@@ -6,6 +6,7 @@
 #include "Board.h"
 #include "Action.h"
 #include <qlist.h>
+#include "AI.h"
 #include "DrawPile.h"
 #include "Player.h"
 #include <random>
@@ -19,6 +20,7 @@ public:
 	bool gameFinished();
 	const Player& getWinner();
 	void nextAction();
+	void AIPlay(){if (!player1Joue && dynamic_cast<AI*>(player2)) {dynamic_cast<AI*>(player2)->play();}}
 	bool isPlayer1Turn();
 	bool suppPlayerGems(EnumGemmes g, int p);
 	bool reservCard(const Card* c, const int position);
@@ -97,6 +99,7 @@ private:
 
 	friend class SingletonPrivilegeHandler;
 	friend class SingletonNobleHandler;
+	friend class AI;
 };
 
 #endif

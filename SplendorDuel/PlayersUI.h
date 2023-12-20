@@ -42,6 +42,10 @@ public:
 		name->setTour(b);
 	};
 
+	inline bool getPtour() {
+		return name->getPTour();
+	}
+
 	inline void addCouronne(const int nb) { points->updateCouronne(nb); }
 	inline void addPrestiges(const int nb) { points->udpdatePrestiges(nb); }
 	inline void setPoints(const EnumGemmes g) { 
@@ -59,6 +63,7 @@ private:
 	PlayerCardUI* pcard;
 	PlayerNameUI* name;
 	PlayerPoints* points;
+	friend class AI;
 };
 
 #endif

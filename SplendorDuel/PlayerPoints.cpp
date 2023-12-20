@@ -68,8 +68,8 @@ void PlayerPoints::clickCard(int col, int ligne, Card* c) {
     int n = SingletonGameHandler::getInstance().buyCard(c, col);
     if (n >= 0) {
         ((QGridLayout*)this->layout())->removeWidget(card[col]);
-        card[col]->deleteLater();
         card[col]->supprimerCarte(c);
+        card[col]->deleteLater();
         card[col] = nullptr;
         this->layout()->update();
         SingletonGameHandler::getInstance().playerBuyReservCard(pturn);

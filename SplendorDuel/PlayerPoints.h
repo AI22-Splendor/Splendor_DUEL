@@ -24,7 +24,7 @@ private:
 	void clickCard(int col, int ligne, Card* c);
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
-
+	friend class AI;
 	CardUI** card;
 	Player& player;
 	int pnum;

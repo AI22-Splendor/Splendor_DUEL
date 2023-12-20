@@ -39,6 +39,7 @@ private:
 	int nbCard;
 	bool selected;
 	QList<Card*> cardList;
+	friend class AI;
 };
 
 #endif
