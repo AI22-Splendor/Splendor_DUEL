@@ -5,7 +5,7 @@ class AI : public Player
 public:
 	AI() : Player("AI"), isplaying(false) {};
 	void play();
-	~AI() { Player::~Player(); }
+	~AI() {for (const Card* c : cards) {delete c;}}
 
 private:
 	bool isplaying;

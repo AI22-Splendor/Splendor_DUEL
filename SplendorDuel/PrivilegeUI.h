@@ -17,6 +17,7 @@ private:
 	bool hover;
 	int pnum;
 	bool havePrivilege;
+	friend class AI;
 };
 
 #endif
