@@ -11,7 +11,6 @@ PlayersUI::PlayersUI(QWidget* parent, Player& p, int nb) : BackgroundWidgetUI(pa
 
 	setLayout(grid);
 	pgems = new PlayerGemsUI(this, nb);
-	cout << p.getName() << "\n";
 	this->name = new PlayerNameUI(QString(p.getName().c_str()), this);
 	
 	if (nb == 1) {

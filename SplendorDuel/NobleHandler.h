@@ -41,11 +41,15 @@ private:
 	}
 	
 	int getNobleIdxFromCard(const Card& noble) const;
+	inline void setPositionAtIdxForNoble(int idxNoble, EnumNoblePosition pos) {
+		if (idxNoble >= 0 && idxNoble < 4) noblePosition[idxNoble] = pos;
+	}
 
 	vector<Card*> noblesCards;
 	vector<EnumNoblePosition> noblePosition;
 
 	friend class XmlWriter;
+	friend class XmlReader;
 };
 
 #endif

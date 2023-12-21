@@ -1,4 +1,6 @@
 #include"XmlReader.h"
+#include "PrivilegeHandler.h"
+#include "NobleHandler.h"
 
 string XmlReader::language = "fr";
 
@@ -60,8 +62,6 @@ SplendorDuel& XmlReader::getSplendorFromXml(const string filename) {
 	
 	SingletonGameHandler& game = SingletonGameHandler::Instanciate(bag, board, drawPiles, player1, player2, false)->getInstance();
 
-	cout << game.player1Joue << "\n";
-
 	game.displayedCards = getDisplayedCardsFromXml(data_node);
 
 	// player1Joue
@@ -84,6 +84,10 @@ SplendorDuel& XmlReader::getSplendorFromXml(const string filename) {
 	}
 
 	SplendorDuel::instanciate(bag, board, drawPiles, player1, player2, false);
+
+	instanciatePrivilegesFromXml(data_node);
+	instanciateNoblesFromXml(data_node);
+
 
 	return SplendorDuel::getInstance();
 }
@@ -291,4 +295,30 @@ vector<vector<Card*>> XmlReader::getDisplayedCardsFromXml(xml_node<>* data) {
 	}
 
 	return displayedCards;
+}
+
+void XmlReader::instanciatePrivilegesFromXml(xml_node<>* data) {
+	xml_node<>* privileges_node = data->first_node("privileges");
+
+	SingletonPrivilegeHandler::EnumPrivilegePosition emplacementsPrivilege[3];
+	int cpt = 0;
+	for (xml_node<>* privilege_node = privileges_node->first_node("privilege"); privilege_node; privilege_node = privilege_node->next_sibling()) {
+		int pos_num;
+		sscanf(privilege_node->value(), "%d", &pos_num);
+		SingletonPrivilegeHandler::getInstance()->setPositionAtIdxForPrivilege(cpt, static_cast<SingletonPrivilegeHandler::EnumPrivilegePosition>(pos_num));
+		cpt++;
+	}
+}
+
+void XmlReader::instanciateNoblesFromXml(xml_node<>* data) {
+	xml_node<>* nobles_node = data->first_node("nobles");
+
+	SingletonPrivilegeHandler::EnumPrivilegePosition emplacementsPrivilege[3];
+	int cpt = 0;
+	for (xml_node<>* noble_node = nobles_node->first_node("noble"); noble_node; noble_node = noble_node->next_sibling()) {
+		int pos_num;
+		sscanf(noble_node->value(), "%d", &pos_num);
+		SingletonNobleHandler::getInstance()->setPositionAtIdxForNoble(cpt, static_cast<SingletonNobleHandler::EnumNoblePosition>(pos_num));
+		cpt++;
+	}
 }

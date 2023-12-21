@@ -28,12 +28,16 @@ private:
 	inline EnumPrivilegePosition getPrivilegePositionFromPlayer(const Player& player) const {
 		return *SingletonGameHandler::getInstance().player1 == player ? EnumPrivilegePosition::Player1 : EnumPrivilegePosition::Player2;
 	}
+	inline void setPositionAtIdxForPrivilege(int idxPrivilege, EnumPrivilegePosition pos) {
+		if (idxPrivilege >= 0 && idxPrivilege < 3) emplacementsPrivilege[idxPrivilege] = pos;
+	}
 
 	static SingletonPrivilegeHandler* singleton;
 
 	EnumPrivilegePosition emplacementsPrivilege[3];
 
 	friend class XmlWriter;
+	friend class XmlReader;
 };
 
 #endif

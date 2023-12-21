@@ -31,6 +31,8 @@ private:
 	static DrawPile** getDrawPilesFromXml(const xml_node<>* data);
 	static Player* getPlayerFromXml(const xml_node<>* data, int pos);
 	static vector<vector<Card*>> getDisplayedCardsFromXml(xml_node<>* data);
+	static void instanciatePrivilegesFromXml(xml_node<>* data);
+	static void instanciateNoblesFromXml(xml_node<>* data);
 
 	static string language;
 };
