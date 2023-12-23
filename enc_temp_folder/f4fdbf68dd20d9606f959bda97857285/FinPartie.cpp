@@ -13,7 +13,7 @@ FinPartie::FinPartie(): QDialog(nullptr) {
 	const Player& p = SingletonGameHandler::getInstance().getWinner();
 	QString text = "Le joueur ";
 	text.append(p.getName());
-	text.append(" a gagne avec : ");
+	text.append(" a gagne avec :");
 	if (p.getNbCrowns() >= 10) {
 		text.append(QString::number(p.getNbCrowns()));
 		text.append(" Couronnes");
