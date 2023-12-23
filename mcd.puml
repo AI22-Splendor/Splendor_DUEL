@@ -86,7 +86,7 @@ BoardCard *-- "0..5" CardUI
 
 BoardUI *-- "0..25" GemmesUI
 
-CompleteBoardUI o-- "1" BoardUI
+CompleteBoardUI *-- "1" BoardUI
 CompleteBoardUI *-- "1" RemplirBoard
 
 PersonnageBoardUI *-- "*" CardUI
@@ -99,6 +99,10 @@ PlayerPoints *-- "3" CardUI
 PlayerPoints *-- "1" GameLogic.Player
 
 PlayerUI o-- "1" GameLogic.Player
+PlayerUI *-- "1" PlayerPoints
+PlayerUI *-- "1" PlayerNameUI
+PlayerUI *-- "1" PlayerCardUI
+PlayerUI *-- "1" PlayerGemsUI
 PlayerUI --|> BackgroundWidgetUI
 
 Image <.. UI

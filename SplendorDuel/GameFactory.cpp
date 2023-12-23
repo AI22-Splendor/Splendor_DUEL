@@ -13,13 +13,24 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 		if (i < 2) bag->addGemmes(EnumGemmes::Perle);
 	}
 
-	DrawPile** drawPiles = new DrawPile * [3];
-	drawPiles[0] = new DrawPile(0, 30);
-	drawPiles[1] = new DrawPile(1, 24);
-	drawPiles[2] = new DrawPile(2, 13);
 
 	list<Card*> cards = XmlReader::getCardsFromXml();
+
+	int nbLvl1Cards = 0;
+	int nbLvl2Cards = 0;
+	int nbLvl3Cards = 0;
 	list<Card*>::iterator it;
+	for (it = cards.begin(); it != cards.end(); it++) {
+		if ((*it)->getLevel() == 0) nbLvl1Cards++;
+		if ((*it)->getLevel() == 1) nbLvl2Cards++;
+		if ((*it)->getLevel() == 2) nbLvl3Cards++;
+	}
+
+	DrawPile** drawPiles = new DrawPile * [3];
+	drawPiles[0] = new DrawPile(0, nbLvl1Cards);
+	drawPiles[1] = new DrawPile(1, nbLvl2Cards);
+	drawPiles[2] = new DrawPile(2, nbLvl3Cards);
+
 	for (it = cards.begin(); it != cards.end(); it++) {
 		drawPiles[(*it)->getLevel()]->deposer(*it);
 	}
