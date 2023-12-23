@@ -2,19 +2,28 @@
 #include "CardUI.h"
 #include "SplendorDuel.h"
 #include "GameHandler.h"
+#include "PrivilegeHandler.h"
 #include "Rules.h"
 void AI::play() {
     if (isplaying)
         return;
     isplaying = true;
+    //LES PRIVILEGES
+    while (SingletonPrivilegeHandler::getInstance()->playerHasPrivilege(*this)) {
+        //ON remplis le tableau si besoin
+        SplendorDuel::getInstance().board->remplir.hover = true;
+        SplendorDuel::getInstance().board->remplir.mousePressEvent(nullptr);
+        SplendorDuel::getInstance().board->remplir.hover = false;
+
+        SplendorDuel::getInstance().privilege->tab[1][0]->mousePressEvent(nullptr);
+        doAction(SingletonGameHandler::getInstance().action);
+    }
 
     //LES NOBLES
     for (int i = 0; i < 2; i++) {
-        if (!SplendorDuel::getInstance().personnage->cards[i]->cardList.isEmpty()) {
+        if (SplendorDuel::getInstance().personnage->cards[i]!=nullptr && !SplendorDuel::getInstance().personnage->cards[i]->cardList.isEmpty()) {
             if (Rules::canBuyNoble(*SplendorDuel::getInstance().personnage->cards[i]->cardList[0] ,*this)){
-                QList<EnumAction> ac = SplendorDuel::getInstance().personnage->cards[i]->cardList[0]->getEffect();
                 SplendorDuel::getInstance().personnage->clickCard(i, 0, SplendorDuel::getInstance().personnage->cards[i]->cardList[0]);
-                doAction(ac);
             }
         }
     }
@@ -24,7 +33,8 @@ void AI::play() {
     SplendorDuel::getInstance().board->remplir.mousePressEvent(nullptr);
     SplendorDuel::getInstance().board->remplir.hover = false;
 
-    //TODO PRIVILEGE
+    //on se retire toues les actions de plus
+    doAction(SingletonGameHandler::getInstance().action);
 
     //Achats Cartes reserver:
     for (int i = 0; i < 3; i++) {
@@ -94,7 +104,6 @@ void AI::play() {
                     if (Rules::isPossibleTakeGems(*SingletonGameHandler::getInstance().board, SplendorDuel::getInstance().board->board.posSelect, SingletonGameHandler::getInstance().action, EnumGemmes::Vide) != EnumAction::IMPOSSIBLE) {
                         SplendorDuel::getInstance().board->board.clickGemmes(EnumGemmes::Vide);
                         isplaying = false;
-                        cout << "PIOCHE" << k;
                         return;
                     }
                     SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, false);
@@ -122,6 +131,7 @@ void AI::doAction(QList<EnumAction> ac) {
                         SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, true);
                         SplendorDuel::getInstance().board->board.clickGemmes(EnumGemmes::Or);
                         SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, false);
+                        worked = true;
                         break;
                     }
                 }
@@ -153,6 +163,20 @@ void AI::doAction(QList<EnumAction> ac) {
                         break;
                     }
                 }
+            }
+        case USE_PRIVILEGE:
+            for (int i = 0; i < Board::BOARD_SIDE; i++) {
+                for (int j = 0; j < Board::BOARD_SIDE; j++) {
+                    if (SingletonGameHandler::getInstance().board->connaitreGemmes(i * 5 + j) != EnumGemmes::Or && SingletonGameHandler::getInstance().board->connaitreGemmes(i * 5 + j) != EnumGemmes::Vide) {
+                        SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, true);
+                        SplendorDuel::getInstance().board->board.clickGemmes(EnumGemmes::Or);
+                        SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, false);
+                        worked = true;
+                        break;
+                    }
+                }
+                if (worked)
+                    break;
             }
         }
     }

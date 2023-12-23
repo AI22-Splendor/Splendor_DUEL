@@ -33,8 +33,8 @@ FinPartie::FinPartie(): QDialog(nullptr) {
 	}
 
 	QLabel* label = new QLabel(text, this);
-	QPushButton* replay = new ConfirmationPushButtonUI(this, "Rejouer");
-	connect(replay, SIGNAL(clicked()), this, SLOT(accept()));
+	//QPushButton* replay = new ConfirmationPushButtonUI(this, "Rejouer");
+	//connect(replay, SIGNAL(clicked()), this, SLOT(accept()));
 	QPushButton* quit = new ConfirmationPushButtonUI(this, "Quitter");
 	connect(quit, SIGNAL(clicked()), this, SLOT(close()));
 

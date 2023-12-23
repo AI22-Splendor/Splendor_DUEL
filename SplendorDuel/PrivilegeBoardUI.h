@@ -13,7 +13,7 @@ public:
 private:
 	void paintEvent(QPaintEvent* event);
 	void resizeEvent(QResizeEvent* event);
-
+	friend class AI;
 	PrivilegeUI*** tab;
 };
 

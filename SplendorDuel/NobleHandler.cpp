@@ -23,7 +23,6 @@ void SingletonNobleHandler::destroy() {
 
 bool SingletonNobleHandler::playerCanBuyNoble(const Card& noble, const Player& player) const {
 	int nobleIdx = getNobleIdxFromCard(noble);
-	cout << nobleIdx << endl;
 	// Card is not a noble
 	if (nobleIdx < 0) return false;
 	// If noble is not on board, cannot buy it 
