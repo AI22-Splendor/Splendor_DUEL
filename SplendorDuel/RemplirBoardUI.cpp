@@ -6,7 +6,7 @@
 #include "CompleteBoardUI.h"
 #include "SplendorDuel.h"
 
-RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
+RemplirBoardUI::RemplirBoardUI(QWidget* parent) : QWidget(parent), hover(false) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(QSize(50*5, 50));
 	setMaximumWidth(parent->width());
@@ -14,21 +14,21 @@ RemplirBoard::RemplirBoard(QWidget* parent) : QWidget(parent), hover(false) {
 }
 
 
-void RemplirBoard::mousePressEvent(QMouseEvent* mouse) {
+void RemplirBoardUI::mousePressEvent(QMouseEvent* mouse) {
 	if (hover) {
 		((CompleteBoardUI*)parentWidget())->remplirBoard(SingletonGameHandler::getInstance().remplirBoard());
 		SplendorDuel::refreshPrivilege();
 	}
 }
 
-void RemplirBoard::leaveEvent(QEvent* event) {
+void RemplirBoardUI::leaveEvent(QEvent* event) {
 	if (hover) {
 		hover = false;
 		update();
 	}
 }
 
-void RemplirBoard::mouseMoveEvent(QMouseEvent* mouse){
+void RemplirBoardUI::mouseMoveEvent(QMouseEvent* mouse){
 	QWidget::mouseMoveEvent(mouse);
 	if (hover) {
 		if (mouse->x() < width() / 2 - height() / 2 || mouse->x() > width() / 2 + height() / 2) {
@@ -45,7 +45,7 @@ void RemplirBoard::mouseMoveEvent(QMouseEvent* mouse){
 }
 
 
-void RemplirBoard::paintEvent(QPaintEvent* event) {
+void RemplirBoardUI::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
 	QPixmap pix = Image::getUnderPlateau();
 	painter.drawPixmap(0, 0, width(), height(), pix);
@@ -59,7 +59,7 @@ void RemplirBoard::paintEvent(QPaintEvent* event) {
 	}
 }
 
-void RemplirBoard::resizeEvent(QResizeEvent* event) {
+void RemplirBoardUI::resizeEvent(QResizeEvent* event) {
 	// Appelez la fonction de base pour que l'événement soit correctement traité
 	QWidget::resizeEvent(event);
 	// Forcer un nouveau rendu lorsque la taille change

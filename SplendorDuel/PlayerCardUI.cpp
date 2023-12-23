@@ -5,7 +5,7 @@
 #include "GameHandler.h"
 #include "SplendorDuel.h"
 
-PlayerCardUI::PlayerCardUI(QWidget* parent, int pnum) : pnum(pnum), CardContainersGUI(parent) {
+PlayerCardUI::PlayerCardUI(QWidget* parent, int pnum) : pnum(pnum), CardContainerGUI(parent) {
 	this->cards = new CardUI * [6]();
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	setMinimumSize(20 * 6, 30);

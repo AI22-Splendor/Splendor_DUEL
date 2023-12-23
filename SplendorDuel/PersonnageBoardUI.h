@@ -7,7 +7,7 @@
 #include "Image.h"
 #include <qpainter.h>
 #include "GameHandler.h"
-class PersonnageBoardUI : public CardContainersGUI
+class PersonnageBoardUI : public CardContainerGUI
 {
 	Q_OBJECT
 public:

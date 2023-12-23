@@ -5,7 +5,7 @@
 #include "MyException.h"
 #include <qevent.h>
 
-CardUI::CardUI(CardContainersGUI* parent, int ligne, int col, bool details)
+CardUI::CardUI(CardContainerGUI* parent, int ligne, int col, bool details)
     :col(col), ligne(ligne), showDetails(details), selected(false), nbCard(0), QWidget(parent), cardList(), totalReduc(0), totalPoints(0), err(false), nbErr(0) {
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMinimumSize(QSize(20, 30));
@@ -14,7 +14,7 @@ CardUI::CardUI(CardContainersGUI* parent, int ligne, int col, bool details)
 CardUI::~CardUI() {}
 
 void CardUI::mousePressEvent(QMouseEvent* mouse) {
-    CardContainersGUI* parentGem = dynamic_cast<CardContainersGUI*>(parentWidget());
+    CardContainerGUI* parentGem = dynamic_cast<CardContainerGUI*>(parentWidget());
     if (parentGem) {
         if (!cardList.isEmpty() && mouse->button() == Qt::LeftButton) {
             parentGem->clickCard(this->col, this->ligne, this->cardList.at(cardList.size() - 1));

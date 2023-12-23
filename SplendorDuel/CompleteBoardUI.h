@@ -27,7 +27,7 @@ public:
 	inline void remplirBoard(Board b) { board.setGemmes(b); };
 private:
 	BoardUI board;
-	RemplirBoard remplir;
+	RemplirBoardUI remplir;
 
 	void resizeEvent(QResizeEvent* event);
 	friend class AI;

@@ -16,7 +16,7 @@ class CardUI : public QWidget
 {
 	Q_OBJECT
 public:
-	CardUI(CardContainersGUI* parent, int linge=-1, int col=-1, bool details=false);
+	CardUI(CardContainerGUI* parent, int linge=-1, int col=-1, bool details=false);
 	void ajouterCarte(Card* s);
 	void supprimerCarte(Card* s);
 	bool isVide();

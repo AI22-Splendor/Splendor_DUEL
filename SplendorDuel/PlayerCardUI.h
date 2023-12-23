@@ -4,7 +4,7 @@
 #include "CardContainersGUI.h"
 #include "CardUI.h"
 #include "Card.h"
-class PlayerCardUI : public CardContainersGUI
+class PlayerCardUI : public CardContainerGUI
 {
 		Q_OBJECT
 	public:

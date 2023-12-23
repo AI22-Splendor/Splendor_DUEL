@@ -4,8 +4,12 @@ package "GameLogic" {
 }
 
 package "Utils" {
-    class Image { }
+    class Image {}
 }
+
+note "A trop de dépendances pour tout afficher : \nOn relie donc aux packages concernés" as note_image
+note_image .- Image
+
 
 package "UI" {
     class BackgroundWidgetUI { }
@@ -15,13 +19,15 @@ package "UI" {
     class PrivilegeBoardUI { }
     class PrivilegeUI { }
     class SingletonSplendorDuel { }
+    abstract class CardContainerGUI { }
+    abstract class GemmesContainerGUI { }
 
     package "Board" {
-        class BoardCard { }
+        class BoardCardUI { }
         class BoardUI { }
         class CompleteBoardUI { }
         class PersonnageBoardUI { }
-        class RemplirBoard { }
+        class RemplirBoardUI { }
     }
 
     package "Player" {
@@ -30,6 +36,12 @@ package "UI" {
         class PlayerNameUI { }
         class PlayerPoints { }
         class PlayerUI { }
+    }
+
+    package "Menu" {
+        class ConfirmationPushButtonUI { }
+        class FinPartie { }
+        class MenuUI { }
     }
 }
 
@@ -43,18 +55,30 @@ SingletonSplendorDuel *-- "1" CompleteBoardUI
 SingletonSplendorDuel *-- "2" PlayerUI
 SingletonSplendorDuel *-- "1" PrivilegeBoardUI
 SingletonSplendorDuel *-- "1" InformationMessageUI
-SingletonSplendorDuel ..> BackgroundWidgetUI
+SingletonSplendorDuel ..> "1" FinPartie
 
-BoardCard *-- "0..5" GameLogic.Card
+ConfirmationPushButtonUI <.. FinPartie
+ConfirmationPushButtonUI <.. MenuUI
+
+CardContainerGUI <|-- BoardCardUI
+CardContainerGUI <|-- PlayerCardUI
+CardContainerGUI <|-- PersonnageBoardUI
+CardContainerGUI <|-- PlayerPoints
+
+GemmesContainerGUI <|-- BoardUI
+GemmesContainerGUI <|-- PlayerGemsUI
+
+
+BoardCardUI *-- "0..5" CardUI
 
 BoardUI *-- "0..25" GemmesUI
 
-CompleteBoardUI o-- "1" BoardUI
-CompleteBoardUI *-- "1" RemplirBoard
+CompleteBoardUI *-- "1" BoardUI
+CompleteBoardUI *-- "1" RemplirBoardUI
 
 PersonnageBoardUI *-- "*" CardUI
 
-PlayerCardUI *- "*" CardUI
+PlayerCardUI *-- "*" CardUI
 
 PlayerGemsUI *-- "7" GemmesUI
 
@@ -62,13 +86,24 @@ PlayerPoints *-- "3" CardUI
 PlayerPoints *-- "1" GameLogic.Player
 
 PlayerUI o-- "1" GameLogic.Player
-PlayerUI --|> BackgroundWidgetUI
+PlayerUI *-- "1" PlayerPoints
+PlayerUI *-- "1" PlayerNameUI
+PlayerUI *-- "1" PlayerCardUI
+PlayerUI *-- "1" PlayerGemsUI
+PlayerUI -|> BackgroundWidgetUI
 
-Image <. UI
+'Image <.. BoardUI
+'Image <.. GemmesUI
+'Image <.. CardUI
+'Image <.. MenuUI
+'Image <.. PlayerCardUI
+'Image <.. PlayerGemsUI
+'Image <.. PlayerPoints
+'Image <.. PrivilegeUI
+'Image <.. RemplirBoardUI
+'Image <.. SingletonSplendorDuel
 Image <.. UI.Board
-Image <.. UI.Player
-
-
-
+Image <.. UI.PLayer
+Image <.. UI
 
 @enduml

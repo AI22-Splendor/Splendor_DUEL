@@ -5,7 +5,7 @@
 #include "Image.h"
 #include <qpainter.h>
 
-BoardCardUI::BoardCardUI(QWidget* parent) : CardContainersGUI(parent) {
+BoardCardUI::BoardCardUI(QWidget* parent) : CardContainerGUI(parent) {
 	this->cards = new CardUI **[3]();
 	this->cards[0] = new CardUI *[3]();
 	this->cards[1] = new CardUI * [4]();

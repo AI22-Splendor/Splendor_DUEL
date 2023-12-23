@@ -4,7 +4,7 @@
 #include "GameHandler.h"
 #include "SplendorDuel.h"
 
-PlayerPoints::PlayerPoints(QWidget* parent, Player& player, int pnum) : player(player), pnum(pnum), CardContainersGUI(parent) {
+PlayerPoints::PlayerPoints(QWidget* parent, Player& player, int pnum) : player(player), pnum(pnum), CardContainerGUI(parent) {
 	setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     QGridLayout* grid = new QGridLayout(this);
     card = new CardUI*[3]();

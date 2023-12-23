@@ -29,13 +29,15 @@ package "UI" {
     class PrivilegeBoardUI { }
     class PrivilegeUI { }
     class SingletonSplendorDuel { }
+    abstract class CardContainerGUI { }
+    abstract class GemmesContainerGUI { }
 
     package "Board" {
-        class BoardCard { }
+        class BoardCardUI { }
         class BoardUI { }
         class CompleteBoardUI { }
         class PersonnageBoardUI { }
-        class RemplirBoard { }
+        class RemplirBoardUI { }
     }
 
     package "Player" {
@@ -44,6 +46,12 @@ package "UI" {
         class PlayerNameUI { }
         class PlayerPoints { }
         class PlayerUI { }
+    }
+
+    package "Menu" {
+        class ConfirmationPushButtonUI { }
+        class FinPartie { }
+        class MenuUI { }
     }
 }
 
@@ -81,13 +89,26 @@ SingletonSplendorDuel *-- "1" CompleteBoardUI
 SingletonSplendorDuel *-- "2" PlayerUI
 SingletonSplendorDuel *-- "1" PrivilegeBoardUI
 SingletonSplendorDuel *-- "1" InformationMessageUI
+SingletonSplendorDuel ..> "1" FinPartie
 
-BoardCard *-- "0..5" CardUI
+ConfirmationPushButtonUI <.. FinPartie
+ConfirmationPushButtonUI <.. MenuUI
+
+CardContainerGUI <|- BoardCardUI
+CardContainerGUI <|-- PlayerCardUI
+CardContainerGUI <|- PersonnageBoardUI
+CardContainerGUI <|-- PlayerPoints
+
+GemmesContainerGUI <|-- BoardUI
+GemmesContainerGUI <|-- PlayerGemsUI
+
+
+BoardCardUI *-- "0..5" CardUI
 
 BoardUI *-- "0..25" GemmesUI
 
 CompleteBoardUI *-- "1" BoardUI
-CompleteBoardUI *-- "1" RemplirBoard
+CompleteBoardUI *-- "1" RemplirBoardUI
 
 PersonnageBoardUI *-- "*" CardUI
 
@@ -103,7 +124,7 @@ PlayerUI *-- "1" PlayerPoints
 PlayerUI *-- "1" PlayerNameUI
 PlayerUI *-- "1" PlayerCardUI
 PlayerUI *-- "1" PlayerGemsUI
-PlayerUI --|> BackgroundWidgetUI
+PlayerUI -|> BackgroundWidgetUI
 
 Image <.. UI
 Image <.. UI.Board

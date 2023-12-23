@@ -6,14 +6,14 @@
 #include "Gemmes.h"
 #include "GemmesContainerGUI.h"
 
-class RemplirBoard : public QWidget
+class RemplirBoardUI : public QWidget
 {
 	Q_OBJECT
 
 public:
 
-	RemplirBoard(QWidget* parent);
-	inline ~RemplirBoard() { QWidget::~QWidget(); }
+	RemplirBoardUI(QWidget* parent);
+	inline ~RemplirBoardUI() { QWidget::~QWidget(); }
 
 private:
 	friend class AI;

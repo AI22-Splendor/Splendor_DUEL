@@ -6,7 +6,7 @@
 #include <qgridlayout.h>
 #include "Player.h"
 
-class PlayerPoints : public CardContainersGUI
+class PlayerPoints : public CardContainerGUI
 {
 	Q_OBJECT
 

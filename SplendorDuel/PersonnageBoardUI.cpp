@@ -4,7 +4,7 @@
 #include "NobleHandler.h"
 #include "SplendorDuel.h"
 
-PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainersGUI(parent) {
+PersonnageBoardUI::PersonnageBoardUI(QWidget* parent): CardContainerGUI(parent) {
 	cards = new CardUI*[4]();
 	// TODO CHANGER
 	vector<Card*> nobles = SingletonNobleHandler::getInstance()->getNobleCards();
