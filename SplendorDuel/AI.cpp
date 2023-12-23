@@ -33,8 +33,8 @@ void AI::play() {
     SplendorDuel::getInstance().board->remplir.mousePressEvent(nullptr);
     SplendorDuel::getInstance().board->remplir.hover = false;
 
-    //on se retire toues les actions de plus
     doAction(SingletonGameHandler::getInstance().action);
+
 
     //Achats Cartes reserver:
     for (int i = 0; i < 3; i++) {
@@ -87,6 +87,7 @@ void AI::play() {
                     SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, true);
                     SplendorDuel::getInstance().board->board.clickGemmes(EnumGemmes::Or);
                     SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, false);
+                    doAction(SingletonGameHandler::getInstance().action);
                     isplaying = false;
                     return;
                 }
@@ -103,6 +104,7 @@ void AI::play() {
                     SplendorDuel::getInstance().board->board.hoverGemmes(i * 5 + j, true);
                     if (Rules::isPossibleTakeGems(*SingletonGameHandler::getInstance().board, SplendorDuel::getInstance().board->board.posSelect, SingletonGameHandler::getInstance().action, EnumGemmes::Vide) != EnumAction::IMPOSSIBLE) {
                         SplendorDuel::getInstance().board->board.clickGemmes(EnumGemmes::Vide);
+                        doAction(SingletonGameHandler::getInstance().action);
                         isplaying = false;
                         return;
                     }
@@ -181,6 +183,9 @@ void AI::doAction(QList<EnumAction> ac) {
         }
     }
     isplaying = false;
+    while (!SingletonGameHandler::getInstance().action.isEmpty()) {
+        doAction(SingletonGameHandler::getInstance().action);
+    }
     if (replay)
         play();
     return;

@@ -37,7 +37,6 @@ void PersonnageBoardUI::clickCard(int col, int ligne, Card* c) {
 		cards[col]->supprimerCarte(c);
 		cards[col] = nullptr;
 		SplendorDuel::refreshMessage();
-		SplendorDuel::refreshPrivilege();
 		SplendorDuel::addPlayerPrestige(c->getPointsPrestige(), pturn);
 	}
 	else {
