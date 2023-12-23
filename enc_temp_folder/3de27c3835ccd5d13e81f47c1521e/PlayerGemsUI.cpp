@@ -82,11 +82,10 @@ void PlayerGemsUI::setGems(const EnumGemmes g, const int nb) {
 
 void PlayerGemsUI::clickGemmes(EnumGemmes g) {
 		if (SingletonGameHandler::getInstance().suppPlayerGems(g, pnum)) {
-			
+			SplendorDuel::changePtour();
 			SplendorDuel::refreshPlayersGems(0);
 			SplendorDuel::refreshPlayersGems(1);
 			SplendorDuel::refreshMessage();
-			SplendorDuel::changePtour();
 		}
 		else {
 			if (selected != -1) {
