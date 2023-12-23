@@ -238,8 +238,8 @@ void BoardUI::clickGemmes(EnumGemmes g) {
 		}
 		SplendorDuel::refreshPlayersGems(pturn);
 		SplendorDuel::refreshMessage();
-		SplendorDuel::refreshPrivilege();
 		SplendorDuel::changePtour();
+		SplendorDuel::refreshPrivilege();
 	}
 	else {
 		for (int i = 0; i < 3; i++) {

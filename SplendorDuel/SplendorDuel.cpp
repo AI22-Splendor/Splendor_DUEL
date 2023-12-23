@@ -122,7 +122,7 @@ void SplendorDuel::changePtour() {
             instance->ptab[0]->changePtour(true);
             instance->ptab[1]->changePtour(false);
         }
-        else if(instance->ptab[1]->getPtour()==false){
+        else{
             instance->ptab[0]->changePtour(false);
             instance->ptab[1]->changePtour(true);
             SingletonGameHandler::getInstance().AIPlay();

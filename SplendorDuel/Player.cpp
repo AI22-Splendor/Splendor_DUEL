@@ -58,10 +58,9 @@ unsigned int Player::getPrestige(EnumGemmes gem) const {
 
 unsigned int Player::getDiscount(EnumGemmes gem) const {
 	unsigned int discount = 0;
-	list<const Card*>::const_iterator it;
-	for (it = cards.cbegin(); it != cards.cend(); it++) {
-		if ((*it)->getDiscountType() == gem) {
-			discount += (*it)->getDiscount();
+	for (const Card* c: cards) {
+		if (c->getDiscountType() == gem) {
+			discount += c->getDiscount();
 		};
 	}
 	return discount;
