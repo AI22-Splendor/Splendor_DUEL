@@ -15,9 +15,6 @@ public:
 	*/
 	Card(const unsigned int level, const unsigned int ptsPrestige, const EnumGemmes bonus, const unsigned int nbBonus = 1,
 		const unsigned int crowns = 0, const string imageSrc = "./res/blanc1.png", const QList<EnumAction> action = QList<EnumAction>{});
-	~Card() {
-
-	}
 
 	/**
 	* Definit le prix de la carte pour la gemme donnée
