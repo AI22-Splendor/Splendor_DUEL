@@ -11,6 +11,7 @@ package "GameLogic" {
     enum EnumGemmes << enum >> { }
     class SingletonNobleHandler << singleton >> { }
     class Player { }
+    class AI { }
     class SingletonPrivilegeHandler << singleton >> { }
 }
 
@@ -27,7 +28,7 @@ package "UI" {
     class InformationMessageUI { }
     class PrivilegeBoardUI { }
     class PrivilegeUI { }
-    class SplendorDuel { }
+    class SingletonSplendorDuel { }
 
     package "Board" {
         class BoardCard { }
@@ -64,6 +65,8 @@ SingletonGameHandler *-- "1" GameLogic.Player : player1
 SingletonGameHandler *-- "1" GameLogic.Player : player2
 SingletonGameHandler o-- "1" EnumGemmes : gemme to pick
 
+GameLogic.Player <|-- AI
+
 SingletonNobleHandler *-- "4" Card : nobles
 
 GameLogic.Player *-- "*" Card
@@ -74,9 +77,10 @@ GemmesUI o-- "1" EnumGemmes
 
 PrivilegeBoardUI *-- "*" PrivilegeUI
 
-SplendorDuel *-- "1" CompleteBoardUI
-SplendorDuel *-- "2" PlayerUI
-SplendorDuel *-- "1" PrivilegeBoardUI
+SingletonSplendorDuel *-- "1" CompleteBoardUI
+SingletonSplendorDuel *-- "2" PlayerUI
+SingletonSplendorDuel *-- "1" PrivilegeBoardUI
+SingletonSplendorDuel *-- "1" InformationMessageUI
 
 BoardCard *-- "0..5" CardUI
 
@@ -95,6 +99,7 @@ PlayerPoints *-- "3" CardUI
 PlayerPoints *-- "1" GameLogic.Player
 
 PlayerUI o-- "1" GameLogic.Player
+PlayerUI --|> BackgroundWidgetUI
 
 Image <.. UI
 Image <.. UI.Board

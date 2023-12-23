@@ -1,21 +1,8 @@
 <!-- language: {fr} -->
-<!-- EMessage type: { 
-		##effect
-		USE_PRIVILEGE = 7,
-		REPLAY = 1,
-		PICK_GEMMES = 3,
-		STEAL_GEMMES = 4,
-		ASSIGN_CARD = 5,
-		RESERV_CARD = 6,
-		
-		##errir
-		SUPP_GEMS=9
- -->
 <data>
 	<lang>fr</lang>
 	<lang>eng</lang>
 	<fr>
-		<!-- Vert -->
 		<SUPP_GEMS>
 			<message>Vous avez trop de gemmes, supprimez en une avant de continuer</message>
 			<color>#ff0000</color>
@@ -37,16 +24,15 @@
 			<color>#00ff00</color>
 		</STEAL_GEMMES>
 		<ASSIGN_CARD>
-			<message>Assignez la carte acheté à la couleur de votre choix</message>
+			<message>Assignez la carte achetée à la couleur de votre choix</message>
 			<color>#ffffff</color>
 		</ASSIGN_CARD>
 		<RESERV_CARD>
-			<message>Prennez 1 d'Or sur le plateau</message>
+			<message>Prenez 1 d'Or sur le plateau</message>
 			<color>#00ff00</color>
 		</RESERV_CARD>
 	</fr>
 	<eng>
-		<!-- Vert -->
 		<SUPP_GEMS>
 			<message>You have to many gems ! Please dispose of them before continuing</message>
 			<color>#ff0000</color>

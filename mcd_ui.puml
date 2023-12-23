@@ -1,0 +1,74 @@
+@startuml
+
+package "GameLogic" {
+}
+
+package "Utils" {
+    class Image { }
+}
+
+package "UI" {
+    class BackgroundWidgetUI { }
+    class CardUI { }
+    class GemmesUI { }
+    class InformationMessageUI { }
+    class PrivilegeBoardUI { }
+    class PrivilegeUI { }
+    class SingletonSplendorDuel { }
+
+    package "Board" {
+        class BoardCard { }
+        class BoardUI { }
+        class CompleteBoardUI { }
+        class PersonnageBoardUI { }
+        class RemplirBoard { }
+    }
+
+    package "Player" {
+        class PlayerCardUI { }
+        class PlayerGemsUI { }
+        class PlayerNameUI { }
+        class PlayerPoints { }
+        class PlayerUI { }
+    }
+}
+
+CardUI o-- "*" GameLogic.Card
+
+GemmesUI o-- "1" GameLogic.EnumGemmes
+
+PrivilegeBoardUI *-- "*" PrivilegeUI
+
+SingletonSplendorDuel *-- "1" CompleteBoardUI
+SingletonSplendorDuel *-- "2" PlayerUI
+SingletonSplendorDuel *-- "1" PrivilegeBoardUI
+SingletonSplendorDuel *-- "1" InformationMessageUI
+SingletonSplendorDuel ..> BackgroundWidgetUI
+
+BoardCard *-- "0..5" GameLogic.Card
+
+BoardUI *-- "0..25" GemmesUI
+
+CompleteBoardUI o-- "1" BoardUI
+CompleteBoardUI *-- "1" RemplirBoard
+
+PersonnageBoardUI *-- "*" CardUI
+
+PlayerCardUI *- "*" CardUI
+
+PlayerGemsUI *-- "7" GemmesUI
+
+PlayerPoints *-- "3" CardUI
+PlayerPoints *-- "1" GameLogic.Player
+
+PlayerUI o-- "1" GameLogic.Player
+PlayerUI --|> BackgroundWidgetUI
+
+Image <. UI
+Image <.. UI.Board
+Image <.. UI.Player
+
+
+
+
+@enduml

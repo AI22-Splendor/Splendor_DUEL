@@ -1,0 +1,61 @@
+@startuml
+
+package "GameLogic" {
+    enum EnumAction { }
+    class Board { }
+    class Bag { }
+    class Card { }
+    class DrawPile { }
+    class GameFactory << static >> { }
+    class SingletonGameHandler << singleton >> { }
+    enum EnumGemmes << enum >> { }
+    class SingletonNobleHandler << singleton >> { }
+    class Player { }
+    class AI  { }
+    class SingletonPrivilegeHandler << singleton >> { }
+}
+
+package "Utils" {
+    class Rules << static >> { }
+    class XmlReader << static >> { }
+}
+
+
+Bag o-- "0..25" EnumGemmes
+
+GameLogic.Board o-- "0..25" EnumGemmes
+
+Card o-- "1" EnumGemmes
+Card o-- "0..2" EnumAction
+
+DrawPile *-- "*" Card
+
+SingletonGameHandler *-- "1" Bag
+SingletonGameHandler *-- "1" GameLogic.Board
+SingletonGameHandler *-- "3" DrawPile
+SingletonGameHandler *-- "*" Card : displayedCards
+SingletonGameHandler *-- "0..1" Card : toAssign
+SingletonGameHandler *-- "1" GameLogic.Player : player1
+SingletonGameHandler *-- "1" GameLogic.Player : player2
+SingletonGameHandler o-- "1" EnumGemmes : gemme to pick
+
+SingletonGameHandler ..> SingletonPrivilegeHandler 
+AI ..> SingletonPrivilegeHandler
+
+Rules ..> SingletonNobleHandler
+GameLogic.Player ..> SingletonNobleHandler
+SingletonGameHandler ..> SingletonNobleHandler
+
+GameLogic.Player <|- AI
+
+SingletonNobleHandler *-- "4" Card : nobles
+
+GameLogic.Player *-- "*" Card
+
+
+Rules <.. SingletonGameHandler
+
+XmlReader <.. SingletonNobleHandler
+XmlReader <.. GameFactory
+
+@enduml

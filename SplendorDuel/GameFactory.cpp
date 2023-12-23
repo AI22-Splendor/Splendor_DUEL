@@ -35,7 +35,6 @@ SplendorDuel& GameFactory::buildNewSplendor(const bool IA, string p1Name, string
 	if(!IA)
 		player2 = (new Player(p2Name));
 	else {
-		//TODO ADD IA
 		player2 = new AI();
 	}
 
